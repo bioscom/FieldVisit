@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Forms_ViewInput : aspnetPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            RetrieveData();
+        }
+    }
+    protected void grdView_PageIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdView.PageIndex = e.NewPageIndex;
+        RetrieveData();
+    }
+    protected void grdView_Sorted(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdView_Sorting(object sender, GridViewSortEventArgs e)
+    {
+
+    }
+
+    private void RetrieveData()
+    {
+        Initiative oInitiative = new Initiative();
+        grdView.DataSource = oInitiative.dtGetInitiativeByUserId(oSessnx.getOnlineUser.m_iUserId);
+        grdView.DataBind();
+    }
+    protected void grdView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        string ButtonClicked = e.CommandName;
+        int index = Convert.ToInt32(e.CommandArgument);
+
+        if (ButtonClicked == "editThis")
+        {
+            LinkButton lbEdit = (LinkButton)grdView.Rows[index].FindControl("editLinkButton");
+            long lIntiativeId = long.Parse(lbEdit.Attributes["IDINITIATIVE"].ToString());
+
+            Response.Redirect("~/Forms/Default.aspx?xMod=Edt&IntiativeId=" + lIntiativeId);
+        }
+        else if (ButtonClicked == "View")
+        {
+            LinkButton lbView = (LinkButton)grdView.Rows[index].FindControl("viewLinkButton");
+            long lIntiativeId = long.Parse(lbView.Attributes["IDINITIATIVE"].ToString());
+
+            Response.Redirect("~/Forms/DetailView.aspx?IntiativeId=" + lIntiativeId);
+        }
+        else if (ButtonClicked == "report")
+        {
+            LinkButton lbReport = (LinkButton)grdView.Rows[index].FindControl("reportLinkButton");
+            long lIntiativeId = long.Parse(lbReport.Attributes["IDINITIATIVE"].ToString());
+
+            Response.Redirect("~/Report/xReport.aspx?IntiativeId=" + lIntiativeId);
+        }
+        else if (ButtonClicked == "MainReport")
+        {
+            LinkButton lbReport = (LinkButton)grdView.Rows[index].FindControl("MainReportLinkButton");
+            long lIntiativeId = long.Parse(lbReport.Attributes["IDINITIATIVE"].ToString());
+
+            Response.Redirect("~/Report/MainReport.aspx?IntiativeId=" + lIntiativeId);
+        }
+            
+        else if (ButtonClicked == "deleteThis")
+        {
+            LinkButton lbDelete = (LinkButton)grdView.Rows[index].FindControl("deleteLinkButton");
+            long iIntiativeId = long.Parse(lbDelete.Attributes["IDINITIATIVE"].ToString());
+        }
+    }
+}

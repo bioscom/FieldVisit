@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="report" targetNamespace="http://tempuri.org/report.xsd" xmlns:mstns="http://tempuri.org/report.xsd" xmlns="http://tempuri.org/report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FieldVisitReportTableAdapter" GeneratorDataComponentClassName="FieldVisitReportTableAdapter" Name="FieldVisitReport" UserDataComponentName="FieldVisitReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_RPT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_QUESTION, SEQUENCIAL, QUESTION, DESCRIPTION, CHECKLIST, ID_ACTIVITIES, TASK_DESCRIPTION, USERID, STATUS, ACTIVITYID, DATE_FROM, DATE_TO, 
+                         "ACCOUNT", GENERAL_COMMENT, NO_OF_PERSONNEL, NO_OF_NIGHTS, FULLNAME, ID_FACILITIES, FACILITIES, ID_DISTRICT, DISTRICT, ID_SUPERINTENDENT, 
+                         SUPERINTENDENT, SUPERINTENDENT_EMAIL
+FROM            PROD_VIW_RPT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_QUESTION" DataSetColumn="ID_QUESTION" />
+              <Mapping SourceColumn="SEQUENCIAL" DataSetColumn="SEQUENCIAL" />
+              <Mapping SourceColumn="QUESTION" DataSetColumn="QUESTION" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="CHECKLIST" DataSetColumn="CHECKLIST" />
+              <Mapping SourceColumn="ID_ACTIVITIES" DataSetColumn="ID_ACTIVITIES" />
+              <Mapping SourceColumn="TASK_DESCRIPTION" DataSetColumn="TASK_DESCRIPTION" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="ACTIVITYID" DataSetColumn="ACTIVITYID" />
+              <Mapping SourceColumn="DATE_FROM" DataSetColumn="DATE_FROM" />
+              <Mapping SourceColumn="DATE_TO" DataSetColumn="DATE_TO" />
+              <Mapping SourceColumn="ACCOUNT" DataSetColumn="ACCOUNT" />
+              <Mapping SourceColumn="GENERAL_COMMENT" DataSetColumn="GENERAL_COMMENT" />
+              <Mapping SourceColumn="NO_OF_PERSONNEL" DataSetColumn="NO_OF_PERSONNEL" />
+              <Mapping SourceColumn="NO_OF_NIGHTS" DataSetColumn="NO_OF_NIGHTS" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="ID_FACILITIES" DataSetColumn="ID_FACILITIES" />
+              <Mapping SourceColumn="FACILITIES" DataSetColumn="FACILITIES" />
+              <Mapping SourceColumn="ID_DISTRICT" DataSetColumn="ID_DISTRICT" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="ID_SUPERINTENDENT" DataSetColumn="ID_SUPERINTENDENT" />
+              <Mapping SourceColumn="SUPERINTENDENT" DataSetColumn="SUPERINTENDENT" />
+              <Mapping SourceColumn="SUPERINTENDENT_EMAIL" DataSetColumn="SUPERINTENDENT_EMAIL" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinPersonnelTableAdapter" GeneratorDataComponentClassName="SepcinPersonnelTableAdapter" Name="SepcinPersonnel" UserDataComponentName="SepcinPersonnelTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_PERSONNEL" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_PERSONNEL, ID_ACTIVITYINFO, EMPLOYEE_NAME, GENDER, COMPANY, BOSIET_VALID, HUET_VALID, MEDICAL, PPE, ID_VISA, VISA_TYPE, ID_LAST_VISIT, 
+                         LAST_VISIT, ID_BAG, BAGGAGE, ID_CONTACT, CONTACT_PERSON
+FROM            PROD_VIW_PERSONNEL</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_PERSONNEL" DataSetColumn="ID_PERSONNEL" />
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
+              <Mapping SourceColumn="GENDER" DataSetColumn="GENDER" />
+              <Mapping SourceColumn="COMPANY" DataSetColumn="COMPANY" />
+              <Mapping SourceColumn="BOSIET_VALID" DataSetColumn="BOSIET_VALID" />
+              <Mapping SourceColumn="HUET_VALID" DataSetColumn="HUET_VALID" />
+              <Mapping SourceColumn="MEDICAL" DataSetColumn="MEDICAL" />
+              <Mapping SourceColumn="PPE" DataSetColumn="PPE" />
+              <Mapping SourceColumn="ID_VISA" DataSetColumn="ID_VISA" />
+              <Mapping SourceColumn="VISA_TYPE" DataSetColumn="VISA_TYPE" />
+              <Mapping SourceColumn="ID_LAST_VISIT" DataSetColumn="ID_LAST_VISIT" />
+              <Mapping SourceColumn="LAST_VISIT" DataSetColumn="LAST_VISIT" />
+              <Mapping SourceColumn="ID_BAG" DataSetColumn="ID_BAG" />
+              <Mapping SourceColumn="BAGGAGE" DataSetColumn="BAGGAGE" />
+              <Mapping SourceColumn="ID_CONTACT" DataSetColumn="ID_CONTACT" />
+              <Mapping SourceColumn="CONTACT_PERSON" DataSetColumn="CONTACT_PERSON" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinActivityInformationTableAdapter" GeneratorDataComponentClassName="SepcinActivityInformationTableAdapter" Name="SepcinActivityInformation" UserDataComponentName="SepcinActivityInformationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_ACTIVITY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_ACTIVITYINFO, ACTIVITYDESCRIPTION, JUSTIFICATION, USERID, ACTIVITYID, DATE_SUMBITTED, FUNCTION_LOCATION, NO_BEDS, FIRST_NIGHT, LAST_NIGHT, 
+                         ACTIVITY_CAUSE_OIL_DEFRMNT, VOLUME, STATUS, ID_UNIT, UNITS, ID_ACTIVITY_TYPE, ACTIVITY_TYPE, ID_FACILITIES, FACILITIES, ID_DISTRICT, DISTRICT, 
+                         ID_SUPERINTENDENT, SUPERINTENDENT, SUPERINTENDENT_EMAIL, FULLNAME
+FROM            PROD_VIW_ACTIVITY</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+              <Mapping SourceColumn="ACTIVITYDESCRIPTION" DataSetColumn="ACTIVITYDESCRIPTION" />
+              <Mapping SourceColumn="JUSTIFICATION" DataSetColumn="JUSTIFICATION" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="ACTIVITYID" DataSetColumn="ACTIVITYID" />
+              <Mapping SourceColumn="DATE_SUMBITTED" DataSetColumn="DATE_SUMBITTED" />
+              <Mapping SourceColumn="FUNCTION_LOCATION" DataSetColumn="FUNCTION_LOCATION" />
+              <Mapping SourceColumn="NO_BEDS" DataSetColumn="NO_BEDS" />
+              <Mapping SourceColumn="FIRST_NIGHT" DataSetColumn="FIRST_NIGHT" />
+              <Mapping SourceColumn="LAST_NIGHT" DataSetColumn="LAST_NIGHT" />
+              <Mapping SourceColumn="ACTIVITY_CAUSE_OIL_DEFRMNT" DataSetColumn="ACTIVITY_CAUSE_OIL_DEFRMNT" />
+              <Mapping SourceColumn="VOLUME" DataSetColumn="VOLUME" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="ID_UNIT" DataSetColumn="ID_UNIT" />
+              <Mapping SourceColumn="UNITS" DataSetColumn="UNITS" />
+              <Mapping SourceColumn="ID_ACTIVITY_TYPE" DataSetColumn="ID_ACTIVITY_TYPE" />
+              <Mapping SourceColumn="ACTIVITY_TYPE" DataSetColumn="ACTIVITY_TYPE" />
+              <Mapping SourceColumn="ID_FACILITIES" DataSetColumn="ID_FACILITIES" />
+              <Mapping SourceColumn="FACILITIES" DataSetColumn="FACILITIES" />
+              <Mapping SourceColumn="ID_DISTRICT" DataSetColumn="ID_DISTRICT" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="ID_SUPERINTENDENT" DataSetColumn="ID_SUPERINTENDENT" />
+              <Mapping SourceColumn="SUPERINTENDENT" DataSetColumn="SUPERINTENDENT" />
+              <Mapping SourceColumn="SUPERINTENDENT_EMAIL" DataSetColumn="SUPERINTENDENT_EMAIL" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinVendorCallOutTableAdapter" GeneratorDataComponentClassName="SepcinVendorCallOutTableAdapter" Name="SepcinVendorCallOut" UserDataComponentName="SepcinVendorCallOutTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_VENDOR" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_VENDOR, ID_ACTIVITYINFO, VENDOR_NAME, CONTACT_PERSON, TELEPHONE, EMAIL_ADDRESS, VENDOR_ADDRESS, TOOLS_MATERIALS, ID_TRADE_TYPE, 
+                         TRADE_TYPE
+FROM            PROD_VIW_VENDOR</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_VENDOR" DataSetColumn="ID_VENDOR" />
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+              <Mapping SourceColumn="VENDOR_NAME" DataSetColumn="VENDOR_NAME" />
+              <Mapping SourceColumn="CONTACT_PERSON" DataSetColumn="CONTACT_PERSON" />
+              <Mapping SourceColumn="TELEPHONE" DataSetColumn="TELEPHONE" />
+              <Mapping SourceColumn="EMAIL_ADDRESS" DataSetColumn="EMAIL_ADDRESS" />
+              <Mapping SourceColumn="VENDOR_ADDRESS" DataSetColumn="VENDOR_ADDRESS" />
+              <Mapping SourceColumn="TOOLS_MATERIALS" DataSetColumn="TOOLS_MATERIALS" />
+              <Mapping SourceColumn="ID_TRADE_TYPE" DataSetColumn="ID_TRADE_TYPE" />
+              <Mapping SourceColumn="TRADE_TYPE" DataSetColumn="TRADE_TYPE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinPlanExecutionCriteriaTableAdapter" GeneratorDataComponentClassName="SepcinPlanExecutionCriteriaTableAdapter" Name="SepcinPlanExecutionCriteria" UserDataComponentName="SepcinPlanExecutionCriteriaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_PEC" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_FIELD_LOC, FIELD_LOCATION, ID_FIELD, ID_ACTIVITYINFO, STATUS
+FROM            PROD_VIW_PEC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_FIELD_LOC" DataSetColumn="ID_FIELD_LOC" />
+              <Mapping SourceColumn="FIELD_LOCATION" DataSetColumn="FIELD_LOCATION" />
+              <Mapping SourceColumn="ID_FIELD" DataSetColumn="ID_FIELD" />
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinActivityTimeLineTableAdapter" GeneratorDataComponentClassName="SepcinActivityTimeLineTableAdapter" Name="SepcinActivityTimeLine" UserDataComponentName="SepcinActivityTimeLineTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_SEPCIN_ACTIVITY_TIMELINE" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM "PROD_SEPCIN_ACTIVITY_TIMELINE" WHERE (("ID_TIMELINE" = :Original_ID_TIMELINE))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="Original_ID_TIMELINE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_TIMELINE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO "PROD_SEPCIN_ACTIVITY_TIMELINE" ("ID_TIMELINE", "ACTIVITY_DESCRIPTION", "START_DATE", "FINISH_DATE", "ID_ACTIVITYINFO") VALUES (:ID_TIMELINE, :ACTIVITY_DESCRIPTION, :START_DATE, :FINISH_DATE, :ID_ACTIVITYINFO)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="ID_TIMELINE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_TIMELINE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="ACTIVITY_DESCRIPTION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ACTIVITY_DESCRIPTION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="START_DATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="START_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="FINISH_DATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FINISH_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="ID_ACTIVITYINFO" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_ACTIVITYINFO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_TIMELINE, ACTIVITY_DESCRIPTION, START_DATE, FINISH_DATE, ID_ACTIVITYINFO
+FROM            PROD_SEPCIN_ACTIVITY_TIMELINE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE "PROD_SEPCIN_ACTIVITY_TIMELINE" SET "ID_TIMELINE" = :ID_TIMELINE, "ACTIVITY_DESCRIPTION" = :ACTIVITY_DESCRIPTION, "START_DATE" = :START_DATE, "FINISH_DATE" = :FINISH_DATE, "ID_ACTIVITYINFO" = :ID_ACTIVITYINFO WHERE (("ID_TIMELINE" = :Original_ID_TIMELINE))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="ID_TIMELINE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_TIMELINE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="ACTIVITY_DESCRIPTION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ACTIVITY_DESCRIPTION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="START_DATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="START_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="FINISH_DATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FINISH_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="ID_ACTIVITYINFO" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_ACTIVITYINFO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="Original_ID_TIMELINE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="ID_TIMELINE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_TIMELINE" DataSetColumn="ID_TIMELINE" />
+              <Mapping SourceColumn="ACTIVITY_DESCRIPTION" DataSetColumn="ACTIVITY_DESCRIPTION" />
+              <Mapping SourceColumn="START_DATE" DataSetColumn="START_DATE" />
+              <Mapping SourceColumn="FINISH_DATE" DataSetColumn="FINISH_DATE" />
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SepcinApprovalTableAdapter" GeneratorDataComponentClassName="SepcinApprovalTableAdapter" Name="SepcinApproval" UserDataComponentName="SepcinApprovalTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="PRODUCTION.PROD_VIW_APPROVAL" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID_ACTIVITYINFO, ACTIVITYDESCRIPTION, JUSTIFICATION, ACTIVITYID, ID_APPROVAL, DATE_RECEIVED, DATE_REVIEWED, STAND, COMMENTS, USERID, 
+                         FULLNAME, EMAIL, USERNAME, REFIND, ROLEID
+FROM            PROD_VIW_APPROVAL</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_ACTIVITYINFO" DataSetColumn="ID_ACTIVITYINFO" />
+              <Mapping SourceColumn="ACTIVITYDESCRIPTION" DataSetColumn="ACTIVITYDESCRIPTION" />
+              <Mapping SourceColumn="JUSTIFICATION" DataSetColumn="JUSTIFICATION" />
+              <Mapping SourceColumn="ACTIVITYID" DataSetColumn="ACTIVITYID" />
+              <Mapping SourceColumn="ID_APPROVAL" DataSetColumn="ID_APPROVAL" />
+              <Mapping SourceColumn="DATE_RECEIVED" DataSetColumn="DATE_RECEIVED" />
+              <Mapping SourceColumn="DATE_REVIEWED" DataSetColumn="DATE_REVIEWED" />
+              <Mapping SourceColumn="STAND" DataSetColumn="STAND" />
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="USERNAME" DataSetColumn="USERNAME" />
+              <Mapping SourceColumn="REFIND" DataSetColumn="REFIND" />
+              <Mapping SourceColumn="ROLEID" DataSetColumn="ROLEID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="report" msprop:Generator_UserDSName="report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FieldVisitReport" msprop:Generator_TableClassName="FieldVisitReportDataTable" msprop:Generator_TableVarName="tableFieldVisitReport" msprop:Generator_RowChangedName="FieldVisitReportRowChanged" msprop:Generator_TablePropName="FieldVisitReport" msprop:Generator_RowDeletingName="FieldVisitReportRowDeleting" msprop:Generator_RowChangingName="FieldVisitReportRowChanging" msprop:Generator_RowEvHandlerName="FieldVisitReportRowChangeEventHandler" msprop:Generator_RowDeletedName="FieldVisitReportRowDeleted" msprop:Generator_RowClassName="FieldVisitReportRow" msprop:Generator_UserTableName="FieldVisitReport" msprop:Generator_RowEvArgName="FieldVisitReportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_QUESTION" msprop:Generator_ColumnVarNameInTable="columnID_QUESTION" msprop:Generator_ColumnPropNameInRow="ID_QUESTION" msprop:Generator_ColumnPropNameInTable="ID_QUESTIONColumn" msprop:Generator_UserColumnName="ID_QUESTION" type="xs:decimal" />
+              <xs:element name="SEQUENCIAL" msprop:Generator_ColumnVarNameInTable="columnSEQUENCIAL" msprop:Generator_ColumnPropNameInRow="SEQUENCIAL" msprop:Generator_ColumnPropNameInTable="SEQUENCIALColumn" msprop:Generator_UserColumnName="SEQUENCIAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="QUESTION" msprop:Generator_ColumnVarNameInTable="columnQUESTION" msprop:Generator_ColumnPropNameInRow="QUESTION" msprop:Generator_ColumnPropNameInTable="QUESTIONColumn" msprop:Generator_UserColumnName="QUESTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHECKLIST" msprop:Generator_ColumnVarNameInTable="columnCHECKLIST" msprop:Generator_ColumnPropNameInRow="CHECKLIST" msprop:Generator_ColumnPropNameInTable="CHECKLISTColumn" msprop:Generator_UserColumnName="CHECKLIST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID_ACTIVITIES" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITIES" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITIES" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITIESColumn" msprop:Generator_UserColumnName="ID_ACTIVITIES" type="xs:decimal" />
+              <xs:element name="TASK_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnTASK_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="TASK_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="TASK_DESCRIPTIONColumn" msprop:Generator_UserColumnName="TASK_DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" />
+              <xs:element name="ACTIVITYID" msprop:Generator_ColumnVarNameInTable="columnACTIVITYID" msprop:Generator_ColumnPropNameInRow="ACTIVITYID" msprop:Generator_ColumnPropNameInTable="ACTIVITYIDColumn" msprop:Generator_UserColumnName="ACTIVITYID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE_FROM" msprop:Generator_ColumnVarNameInTable="columnDATE_FROM" msprop:Generator_ColumnPropNameInRow="DATE_FROM" msprop:Generator_ColumnPropNameInTable="DATE_FROMColumn" msprop:Generator_UserColumnName="DATE_FROM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATE_TO" msprop:Generator_ColumnVarNameInTable="columnDATE_TO" msprop:Generator_ColumnPropNameInRow="DATE_TO" msprop:Generator_ColumnPropNameInTable="DATE_TOColumn" msprop:Generator_UserColumnName="DATE_TO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ACCOUNT" msprop:Generator_ColumnVarNameInTable="columnACCOUNT" msprop:Generator_ColumnPropNameInRow="ACCOUNT" msprop:Generator_ColumnPropNameInTable="ACCOUNTColumn" msprop:Generator_UserColumnName="ACCOUNT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GENERAL_COMMENT" msprop:Generator_ColumnVarNameInTable="columnGENERAL_COMMENT" msprop:Generator_ColumnPropNameInRow="GENERAL_COMMENT" msprop:Generator_ColumnPropNameInTable="GENERAL_COMMENTColumn" msprop:Generator_UserColumnName="GENERAL_COMMENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NO_OF_PERSONNEL" msprop:Generator_ColumnVarNameInTable="columnNO_OF_PERSONNEL" msprop:Generator_ColumnPropNameInRow="NO_OF_PERSONNEL" msprop:Generator_ColumnPropNameInTable="NO_OF_PERSONNELColumn" msprop:Generator_UserColumnName="NO_OF_PERSONNEL" type="xs:decimal" />
+              <xs:element name="NO_OF_NIGHTS" msprop:Generator_ColumnVarNameInTable="columnNO_OF_NIGHTS" msprop:Generator_ColumnPropNameInRow="NO_OF_NIGHTS" msprop:Generator_ColumnPropNameInTable="NO_OF_NIGHTSColumn" msprop:Generator_UserColumnName="NO_OF_NIGHTS" type="xs:decimal" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_FACILITIES" msprop:Generator_ColumnVarNameInTable="columnID_FACILITIES" msprop:Generator_ColumnPropNameInRow="ID_FACILITIES" msprop:Generator_ColumnPropNameInTable="ID_FACILITIESColumn" msprop:Generator_UserColumnName="ID_FACILITIES" type="xs:decimal" />
+              <xs:element name="FACILITIES" msprop:Generator_ColumnVarNameInTable="columnFACILITIES" msprop:Generator_ColumnPropNameInRow="FACILITIES" msprop:Generator_ColumnPropNameInTable="FACILITIESColumn" msprop:Generator_UserColumnName="FACILITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_DISTRICT" msprop:Generator_ColumnVarNameInTable="columnID_DISTRICT" msprop:Generator_ColumnPropNameInRow="ID_DISTRICT" msprop:Generator_ColumnPropNameInTable="ID_DISTRICTColumn" msprop:Generator_UserColumnName="ID_DISTRICT" type="xs:decimal" />
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_SUPERINTENDENT" msprop:Generator_ColumnVarNameInTable="columnID_SUPERINTENDENT" msprop:Generator_ColumnPropNameInRow="ID_SUPERINTENDENT" msprop:Generator_ColumnPropNameInTable="ID_SUPERINTENDENTColumn" msprop:Generator_UserColumnName="ID_SUPERINTENDENT" type="xs:decimal" />
+              <xs:element name="SUPERINTENDENT" msprop:Generator_ColumnVarNameInTable="columnSUPERINTENDENT" msprop:Generator_ColumnPropNameInRow="SUPERINTENDENT" msprop:Generator_ColumnPropNameInTable="SUPERINTENDENTColumn" msprop:Generator_UserColumnName="SUPERINTENDENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SUPERINTENDENT_EMAIL" msprop:Generator_ColumnVarNameInTable="columnSUPERINTENDENT_EMAIL" msprop:Generator_ColumnPropNameInRow="SUPERINTENDENT_EMAIL" msprop:Generator_ColumnPropNameInTable="SUPERINTENDENT_EMAILColumn" msprop:Generator_UserColumnName="SUPERINTENDENT_EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinPersonnel" msprop:Generator_TableClassName="SepcinPersonnelDataTable" msprop:Generator_TableVarName="tableSepcinPersonnel" msprop:Generator_RowChangedName="SepcinPersonnelRowChanged" msprop:Generator_TablePropName="SepcinPersonnel" msprop:Generator_RowDeletingName="SepcinPersonnelRowDeleting" msprop:Generator_RowChangingName="SepcinPersonnelRowChanging" msprop:Generator_RowEvHandlerName="SepcinPersonnelRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinPersonnelRowDeleted" msprop:Generator_RowClassName="SepcinPersonnelRow" msprop:Generator_UserTableName="SepcinPersonnel" msprop:Generator_RowEvArgName="SepcinPersonnelRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_PERSONNEL" msprop:Generator_ColumnVarNameInTable="columnID_PERSONNEL" msprop:Generator_ColumnPropNameInRow="ID_PERSONNEL" msprop:Generator_ColumnPropNameInTable="ID_PERSONNELColumn" msprop:Generator_UserColumnName="ID_PERSONNEL" type="xs:decimal" />
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EMPLOYEE_NAME" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_NAME" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_NAME" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_NAMEColumn" msprop:Generator_UserColumnName="EMPLOYEE_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GENDER" msprop:Generator_ColumnVarNameInTable="columnGENDER" msprop:Generator_ColumnPropNameInRow="GENDER" msprop:Generator_ColumnPropNameInTable="GENDERColumn" msprop:Generator_UserColumnName="GENDER" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COMPANY" msprop:Generator_ColumnVarNameInTable="columnCOMPANY" msprop:Generator_ColumnPropNameInRow="COMPANY" msprop:Generator_ColumnPropNameInTable="COMPANYColumn" msprop:Generator_UserColumnName="COMPANY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BOSIET_VALID" msprop:Generator_ColumnVarNameInTable="columnBOSIET_VALID" msprop:Generator_ColumnPropNameInRow="BOSIET_VALID" msprop:Generator_ColumnPropNameInTable="BOSIET_VALIDColumn" msprop:Generator_UserColumnName="BOSIET_VALID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HUET_VALID" msprop:Generator_ColumnVarNameInTable="columnHUET_VALID" msprop:Generator_ColumnPropNameInRow="HUET_VALID" msprop:Generator_ColumnPropNameInTable="HUET_VALIDColumn" msprop:Generator_UserColumnName="HUET_VALID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MEDICAL" msprop:Generator_ColumnVarNameInTable="columnMEDICAL" msprop:Generator_ColumnPropNameInRow="MEDICAL" msprop:Generator_ColumnPropNameInTable="MEDICALColumn" msprop:Generator_UserColumnName="MEDICAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PPE" msprop:Generator_ColumnVarNameInTable="columnPPE" msprop:Generator_ColumnPropNameInRow="PPE" msprop:Generator_ColumnPropNameInTable="PPEColumn" msprop:Generator_UserColumnName="PPE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID_VISA" msprop:Generator_ColumnVarNameInTable="columnID_VISA" msprop:Generator_ColumnPropNameInRow="ID_VISA" msprop:Generator_ColumnPropNameInTable="ID_VISAColumn" msprop:Generator_UserColumnName="ID_VISA" type="xs:decimal" />
+              <xs:element name="VISA_TYPE" msprop:Generator_ColumnVarNameInTable="columnVISA_TYPE" msprop:Generator_ColumnPropNameInRow="VISA_TYPE" msprop:Generator_ColumnPropNameInTable="VISA_TYPEColumn" msprop:Generator_UserColumnName="VISA_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_LAST_VISIT" msprop:Generator_ColumnVarNameInTable="columnID_LAST_VISIT" msprop:Generator_ColumnPropNameInRow="ID_LAST_VISIT" msprop:Generator_ColumnPropNameInTable="ID_LAST_VISITColumn" msprop:Generator_UserColumnName="ID_LAST_VISIT" type="xs:decimal" />
+              <xs:element name="LAST_VISIT" msprop:Generator_ColumnVarNameInTable="columnLAST_VISIT" msprop:Generator_ColumnPropNameInRow="LAST_VISIT" msprop:Generator_ColumnPropNameInTable="LAST_VISITColumn" msprop:Generator_UserColumnName="LAST_VISIT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_BAG" msprop:Generator_ColumnVarNameInTable="columnID_BAG" msprop:Generator_ColumnPropNameInRow="ID_BAG" msprop:Generator_ColumnPropNameInTable="ID_BAGColumn" msprop:Generator_UserColumnName="ID_BAG" type="xs:decimal" />
+              <xs:element name="BAGGAGE" msprop:Generator_ColumnVarNameInTable="columnBAGGAGE" msprop:Generator_ColumnPropNameInRow="BAGGAGE" msprop:Generator_ColumnPropNameInTable="BAGGAGEColumn" msprop:Generator_UserColumnName="BAGGAGE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_CONTACT" msprop:Generator_ColumnVarNameInTable="columnID_CONTACT" msprop:Generator_ColumnPropNameInRow="ID_CONTACT" msprop:Generator_ColumnPropNameInTable="ID_CONTACTColumn" msprop:Generator_UserColumnName="ID_CONTACT" type="xs:decimal" />
+              <xs:element name="CONTACT_PERSON" msprop:Generator_ColumnVarNameInTable="columnCONTACT_PERSON" msprop:Generator_ColumnPropNameInRow="CONTACT_PERSON" msprop:Generator_ColumnPropNameInTable="CONTACT_PERSONColumn" msprop:Generator_UserColumnName="CONTACT_PERSON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinActivityInformation" msprop:Generator_TableClassName="SepcinActivityInformationDataTable" msprop:Generator_TableVarName="tableSepcinActivityInformation" msprop:Generator_RowChangedName="SepcinActivityInformationRowChanged" msprop:Generator_TablePropName="SepcinActivityInformation" msprop:Generator_RowDeletingName="SepcinActivityInformationRowDeleting" msprop:Generator_RowChangingName="SepcinActivityInformationRowChanging" msprop:Generator_RowEvHandlerName="SepcinActivityInformationRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinActivityInformationRowDeleted" msprop:Generator_RowClassName="SepcinActivityInformationRow" msprop:Generator_UserTableName="SepcinActivityInformation" msprop:Generator_RowEvArgName="SepcinActivityInformationRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" />
+              <xs:element name="ACTIVITYDESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnACTIVITYDESCRIPTION" msprop:Generator_ColumnPropNameInRow="ACTIVITYDESCRIPTION" msprop:Generator_ColumnPropNameInTable="ACTIVITYDESCRIPTIONColumn" msprop:Generator_UserColumnName="ACTIVITYDESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JUSTIFICATION" msprop:Generator_ColumnVarNameInTable="columnJUSTIFICATION" msprop:Generator_ColumnPropNameInRow="JUSTIFICATION" msprop:Generator_ColumnPropNameInTable="JUSTIFICATIONColumn" msprop:Generator_UserColumnName="JUSTIFICATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ACTIVITYID" msprop:Generator_ColumnVarNameInTable="columnACTIVITYID" msprop:Generator_ColumnPropNameInRow="ACTIVITYID" msprop:Generator_ColumnPropNameInTable="ACTIVITYIDColumn" msprop:Generator_UserColumnName="ACTIVITYID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE_SUMBITTED" msprop:Generator_ColumnVarNameInTable="columnDATE_SUMBITTED" msprop:Generator_ColumnPropNameInRow="DATE_SUMBITTED" msprop:Generator_ColumnPropNameInTable="DATE_SUMBITTEDColumn" msprop:Generator_UserColumnName="DATE_SUMBITTED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FUNCTION_LOCATION" msprop:Generator_ColumnVarNameInTable="columnFUNCTION_LOCATION" msprop:Generator_ColumnPropNameInRow="FUNCTION_LOCATION" msprop:Generator_ColumnPropNameInTable="FUNCTION_LOCATIONColumn" msprop:Generator_UserColumnName="FUNCTION_LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NO_BEDS" msprop:Generator_ColumnVarNameInTable="columnNO_BEDS" msprop:Generator_ColumnPropNameInRow="NO_BEDS" msprop:Generator_ColumnPropNameInTable="NO_BEDSColumn" msprop:Generator_UserColumnName="NO_BEDS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FIRST_NIGHT" msprop:Generator_ColumnVarNameInTable="columnFIRST_NIGHT" msprop:Generator_ColumnPropNameInRow="FIRST_NIGHT" msprop:Generator_ColumnPropNameInTable="FIRST_NIGHTColumn" msprop:Generator_UserColumnName="FIRST_NIGHT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LAST_NIGHT" msprop:Generator_ColumnVarNameInTable="columnLAST_NIGHT" msprop:Generator_ColumnPropNameInRow="LAST_NIGHT" msprop:Generator_ColumnPropNameInTable="LAST_NIGHTColumn" msprop:Generator_UserColumnName="LAST_NIGHT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ACTIVITY_CAUSE_OIL_DEFRMNT" msprop:Generator_ColumnVarNameInTable="columnACTIVITY_CAUSE_OIL_DEFRMNT" msprop:Generator_ColumnPropNameInRow="ACTIVITY_CAUSE_OIL_DEFRMNT" msprop:Generator_ColumnPropNameInTable="ACTIVITY_CAUSE_OIL_DEFRMNTColumn" msprop:Generator_UserColumnName="ACTIVITY_CAUSE_OIL_DEFRMNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VOLUME" msprop:Generator_ColumnVarNameInTable="columnVOLUME" msprop:Generator_ColumnPropNameInRow="VOLUME" msprop:Generator_ColumnPropNameInTable="VOLUMEColumn" msprop:Generator_UserColumnName="VOLUME" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID_UNIT" msprop:Generator_ColumnVarNameInTable="columnID_UNIT" msprop:Generator_ColumnPropNameInRow="ID_UNIT" msprop:Generator_ColumnPropNameInTable="ID_UNITColumn" msprop:Generator_UserColumnName="ID_UNIT" type="xs:decimal" />
+              <xs:element name="UNITS" msprop:Generator_ColumnVarNameInTable="columnUNITS" msprop:Generator_ColumnPropNameInRow="UNITS" msprop:Generator_ColumnPropNameInTable="UNITSColumn" msprop:Generator_UserColumnName="UNITS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_ACTIVITY_TYPE" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITY_TYPE" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITY_TYPE" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITY_TYPEColumn" msprop:Generator_UserColumnName="ID_ACTIVITY_TYPE" type="xs:decimal" />
+              <xs:element name="ACTIVITY_TYPE" msprop:Generator_ColumnVarNameInTable="columnACTIVITY_TYPE" msprop:Generator_ColumnPropNameInRow="ACTIVITY_TYPE" msprop:Generator_ColumnPropNameInTable="ACTIVITY_TYPEColumn" msprop:Generator_UserColumnName="ACTIVITY_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_FACILITIES" msprop:Generator_ColumnVarNameInTable="columnID_FACILITIES" msprop:Generator_ColumnPropNameInRow="ID_FACILITIES" msprop:Generator_ColumnPropNameInTable="ID_FACILITIESColumn" msprop:Generator_UserColumnName="ID_FACILITIES" type="xs:decimal" />
+              <xs:element name="FACILITIES" msprop:Generator_ColumnVarNameInTable="columnFACILITIES" msprop:Generator_ColumnPropNameInRow="FACILITIES" msprop:Generator_ColumnPropNameInTable="FACILITIESColumn" msprop:Generator_UserColumnName="FACILITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_DISTRICT" msprop:Generator_ColumnVarNameInTable="columnID_DISTRICT" msprop:Generator_ColumnPropNameInRow="ID_DISTRICT" msprop:Generator_ColumnPropNameInTable="ID_DISTRICTColumn" msprop:Generator_UserColumnName="ID_DISTRICT" type="xs:decimal" />
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_SUPERINTENDENT" msprop:Generator_ColumnVarNameInTable="columnID_SUPERINTENDENT" msprop:Generator_ColumnPropNameInRow="ID_SUPERINTENDENT" msprop:Generator_ColumnPropNameInTable="ID_SUPERINTENDENTColumn" msprop:Generator_UserColumnName="ID_SUPERINTENDENT" type="xs:decimal" />
+              <xs:element name="SUPERINTENDENT" msprop:Generator_ColumnVarNameInTable="columnSUPERINTENDENT" msprop:Generator_ColumnPropNameInRow="SUPERINTENDENT" msprop:Generator_ColumnPropNameInTable="SUPERINTENDENTColumn" msprop:Generator_UserColumnName="SUPERINTENDENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SUPERINTENDENT_EMAIL" msprop:Generator_ColumnVarNameInTable="columnSUPERINTENDENT_EMAIL" msprop:Generator_ColumnPropNameInRow="SUPERINTENDENT_EMAIL" msprop:Generator_ColumnPropNameInTable="SUPERINTENDENT_EMAILColumn" msprop:Generator_UserColumnName="SUPERINTENDENT_EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinVendorCallOut" msprop:Generator_TableClassName="SepcinVendorCallOutDataTable" msprop:Generator_TableVarName="tableSepcinVendorCallOut" msprop:Generator_RowChangedName="SepcinVendorCallOutRowChanged" msprop:Generator_TablePropName="SepcinVendorCallOut" msprop:Generator_RowDeletingName="SepcinVendorCallOutRowDeleting" msprop:Generator_RowChangingName="SepcinVendorCallOutRowChanging" msprop:Generator_RowEvHandlerName="SepcinVendorCallOutRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinVendorCallOutRowDeleted" msprop:Generator_RowClassName="SepcinVendorCallOutRow" msprop:Generator_UserTableName="SepcinVendorCallOut" msprop:Generator_RowEvArgName="SepcinVendorCallOutRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_VENDOR" msprop:Generator_ColumnVarNameInTable="columnID_VENDOR" msprop:Generator_ColumnPropNameInRow="ID_VENDOR" msprop:Generator_ColumnPropNameInTable="ID_VENDORColumn" msprop:Generator_UserColumnName="ID_VENDOR" type="xs:decimal" />
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VENDOR_NAME" msprop:Generator_ColumnVarNameInTable="columnVENDOR_NAME" msprop:Generator_ColumnPropNameInRow="VENDOR_NAME" msprop:Generator_ColumnPropNameInTable="VENDOR_NAMEColumn" msprop:Generator_UserColumnName="VENDOR_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CONTACT_PERSON" msprop:Generator_ColumnVarNameInTable="columnCONTACT_PERSON" msprop:Generator_ColumnPropNameInRow="CONTACT_PERSON" msprop:Generator_ColumnPropNameInTable="CONTACT_PERSONColumn" msprop:Generator_UserColumnName="CONTACT_PERSON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TELEPHONE" msprop:Generator_ColumnVarNameInTable="columnTELEPHONE" msprop:Generator_ColumnPropNameInRow="TELEPHONE" msprop:Generator_ColumnPropNameInTable="TELEPHONEColumn" msprop:Generator_UserColumnName="TELEPHONE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL_ADDRESS" msprop:Generator_ColumnVarNameInTable="columnEMAIL_ADDRESS" msprop:Generator_ColumnPropNameInRow="EMAIL_ADDRESS" msprop:Generator_ColumnPropNameInTable="EMAIL_ADDRESSColumn" msprop:Generator_UserColumnName="EMAIL_ADDRESS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VENDOR_ADDRESS" msprop:Generator_ColumnVarNameInTable="columnVENDOR_ADDRESS" msprop:Generator_ColumnPropNameInRow="VENDOR_ADDRESS" msprop:Generator_ColumnPropNameInTable="VENDOR_ADDRESSColumn" msprop:Generator_UserColumnName="VENDOR_ADDRESS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOOLS_MATERIALS" msprop:Generator_ColumnVarNameInTable="columnTOOLS_MATERIALS" msprop:Generator_ColumnPropNameInRow="TOOLS_MATERIALS" msprop:Generator_ColumnPropNameInTable="TOOLS_MATERIALSColumn" msprop:Generator_UserColumnName="TOOLS_MATERIALS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_TRADE_TYPE" msprop:Generator_ColumnVarNameInTable="columnID_TRADE_TYPE" msprop:Generator_ColumnPropNameInRow="ID_TRADE_TYPE" msprop:Generator_ColumnPropNameInTable="ID_TRADE_TYPEColumn" msprop:Generator_UserColumnName="ID_TRADE_TYPE" type="xs:decimal" />
+              <xs:element name="TRADE_TYPE" msprop:Generator_ColumnVarNameInTable="columnTRADE_TYPE" msprop:Generator_ColumnPropNameInRow="TRADE_TYPE" msprop:Generator_ColumnPropNameInTable="TRADE_TYPEColumn" msprop:Generator_UserColumnName="TRADE_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinPlanExecutionCriteria" msprop:Generator_TableClassName="SepcinPlanExecutionCriteriaDataTable" msprop:Generator_TableVarName="tableSepcinPlanExecutionCriteria" msprop:Generator_RowChangedName="SepcinPlanExecutionCriteriaRowChanged" msprop:Generator_TablePropName="SepcinPlanExecutionCriteria" msprop:Generator_RowDeletingName="SepcinPlanExecutionCriteriaRowDeleting" msprop:Generator_RowChangingName="SepcinPlanExecutionCriteriaRowChanging" msprop:Generator_RowEvHandlerName="SepcinPlanExecutionCriteriaRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinPlanExecutionCriteriaRowDeleted" msprop:Generator_RowClassName="SepcinPlanExecutionCriteriaRow" msprop:Generator_UserTableName="SepcinPlanExecutionCriteria" msprop:Generator_RowEvArgName="SepcinPlanExecutionCriteriaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_FIELD_LOC" msprop:Generator_ColumnVarNameInTable="columnID_FIELD_LOC" msprop:Generator_ColumnPropNameInRow="ID_FIELD_LOC" msprop:Generator_ColumnPropNameInTable="ID_FIELD_LOCColumn" msprop:Generator_UserColumnName="ID_FIELD_LOC" type="xs:decimal" />
+              <xs:element name="FIELD_LOCATION" msprop:Generator_ColumnVarNameInTable="columnFIELD_LOCATION" msprop:Generator_ColumnPropNameInRow="FIELD_LOCATION" msprop:Generator_ColumnPropNameInTable="FIELD_LOCATIONColumn" msprop:Generator_UserColumnName="FIELD_LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_FIELD" msprop:Generator_ColumnVarNameInTable="columnID_FIELD" msprop:Generator_ColumnPropNameInRow="ID_FIELD" msprop:Generator_ColumnPropNameInTable="ID_FIELDColumn" msprop:Generator_UserColumnName="ID_FIELD" type="xs:decimal" />
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinActivityTimeLine" msprop:Generator_TableClassName="SepcinActivityTimeLineDataTable" msprop:Generator_TableVarName="tableSepcinActivityTimeLine" msprop:Generator_RowChangedName="SepcinActivityTimeLineRowChanged" msprop:Generator_TablePropName="SepcinActivityTimeLine" msprop:Generator_RowDeletingName="SepcinActivityTimeLineRowDeleting" msprop:Generator_RowChangingName="SepcinActivityTimeLineRowChanging" msprop:Generator_RowEvHandlerName="SepcinActivityTimeLineRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinActivityTimeLineRowDeleted" msprop:Generator_RowClassName="SepcinActivityTimeLineRow" msprop:Generator_UserTableName="SepcinActivityTimeLine" msprop:Generator_RowEvArgName="SepcinActivityTimeLineRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_TIMELINE" msprop:Generator_ColumnVarNameInTable="columnID_TIMELINE" msprop:Generator_ColumnPropNameInRow="ID_TIMELINE" msprop:Generator_ColumnPropNameInTable="ID_TIMELINEColumn" msprop:Generator_UserColumnName="ID_TIMELINE" type="xs:decimal" />
+              <xs:element name="ACTIVITY_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnACTIVITY_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="ACTIVITY_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="ACTIVITY_DESCRIPTIONColumn" msprop:Generator_UserColumnName="ACTIVITY_DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="START_DATE" msprop:Generator_ColumnVarNameInTable="columnSTART_DATE" msprop:Generator_ColumnPropNameInRow="START_DATE" msprop:Generator_ColumnPropNameInTable="START_DATEColumn" msprop:Generator_UserColumnName="START_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FINISH_DATE" msprop:Generator_ColumnVarNameInTable="columnFINISH_DATE" msprop:Generator_ColumnPropNameInRow="FINISH_DATE" msprop:Generator_ColumnPropNameInTable="FINISH_DATEColumn" msprop:Generator_UserColumnName="FINISH_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SepcinApproval" msprop:Generator_TableClassName="SepcinApprovalDataTable" msprop:Generator_TableVarName="tableSepcinApproval" msprop:Generator_TablePropName="SepcinApproval" msprop:Generator_RowDeletingName="SepcinApprovalRowDeleting" msprop:Generator_RowChangingName="SepcinApprovalRowChanging" msprop:Generator_RowEvHandlerName="SepcinApprovalRowChangeEventHandler" msprop:Generator_RowDeletedName="SepcinApprovalRowDeleted" msprop:Generator_UserTableName="SepcinApproval" msprop:Generator_RowChangedName="SepcinApprovalRowChanged" msprop:Generator_RowEvArgName="SepcinApprovalRowChangeEvent" msprop:Generator_RowClassName="SepcinApprovalRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_ACTIVITYINFO" msprop:Generator_ColumnVarNameInTable="columnID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInRow="ID_ACTIVITYINFO" msprop:Generator_ColumnPropNameInTable="ID_ACTIVITYINFOColumn" msprop:Generator_UserColumnName="ID_ACTIVITYINFO" type="xs:decimal" />
+              <xs:element name="ACTIVITYDESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnACTIVITYDESCRIPTION" msprop:Generator_ColumnPropNameInRow="ACTIVITYDESCRIPTION" msprop:Generator_ColumnPropNameInTable="ACTIVITYDESCRIPTIONColumn" msprop:Generator_UserColumnName="ACTIVITYDESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JUSTIFICATION" msprop:Generator_ColumnVarNameInTable="columnJUSTIFICATION" msprop:Generator_ColumnPropNameInRow="JUSTIFICATION" msprop:Generator_ColumnPropNameInTable="JUSTIFICATIONColumn" msprop:Generator_UserColumnName="JUSTIFICATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ACTIVITYID" msprop:Generator_ColumnVarNameInTable="columnACTIVITYID" msprop:Generator_ColumnPropNameInRow="ACTIVITYID" msprop:Generator_ColumnPropNameInTable="ACTIVITYIDColumn" msprop:Generator_UserColumnName="ACTIVITYID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_APPROVAL" msprop:Generator_ColumnVarNameInTable="columnID_APPROVAL" msprop:Generator_ColumnPropNameInRow="ID_APPROVAL" msprop:Generator_ColumnPropNameInTable="ID_APPROVALColumn" msprop:Generator_UserColumnName="ID_APPROVAL" type="xs:decimal" />
+              <xs:element name="DATE_RECEIVED" msprop:Generator_ColumnVarNameInTable="columnDATE_RECEIVED" msprop:Generator_ColumnPropNameInRow="DATE_RECEIVED" msprop:Generator_ColumnPropNameInTable="DATE_RECEIVEDColumn" msprop:Generator_UserColumnName="DATE_RECEIVED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATE_REVIEWED" msprop:Generator_ColumnVarNameInTable="columnDATE_REVIEWED" msprop:Generator_ColumnPropNameInRow="DATE_REVIEWED" msprop:Generator_ColumnPropNameInTable="DATE_REVIEWEDColumn" msprop:Generator_UserColumnName="DATE_REVIEWED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="STAND" msprop:Generator_ColumnVarNameInTable="columnSTAND" msprop:Generator_ColumnPropNameInRow="STAND" msprop:Generator_ColumnPropNameInTable="STANDColumn" msprop:Generator_UserColumnName="STAND" type="xs:decimal" />
+              <xs:element name="COMMENTS" msprop:Generator_ColumnVarNameInTable="columnCOMMENTS" msprop:Generator_ColumnPropNameInRow="COMMENTS" msprop:Generator_ColumnPropNameInTable="COMMENTSColumn" msprop:Generator_UserColumnName="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" msprop:Generator_UserColumnName="USERNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REFIND" msprop:Generator_ColumnVarNameInTable="columnREFIND" msprop:Generator_ColumnPropNameInRow="REFIND" msprop:Generator_ColumnPropNameInTable="REFINDColumn" msprop:Generator_UserColumnName="REFIND" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ROLEID" msprop:Generator_ColumnVarNameInTable="columnROLEID" msprop:Generator_ColumnPropNameInRow="ROLEID" msprop:Generator_ColumnPropNameInTable="ROLEIDColumn" msprop:Generator_UserColumnName="ROLEID" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SepcinActivityTimeLine" />
+      <xs:field xpath="mstns:ID_TIMELINE" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

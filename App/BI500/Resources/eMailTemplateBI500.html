@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 0.5em 8em 0.5em 8em; border: solid 1px silver; font-size: 10pt; font-family: Tahoma; width: 600px">
+        <div id="header" style="margin: 0em 0em 0em 0em; border: solid 1px silver; border-bottom: solid 3px #D42E12; height: 60px">
+            <div style="float: left">
+                <img alt="" src="~/Images/ShellLogo.png" />
+            </div>
+            <div style="float: left; color: #D42E12; padding: 1em 1em 1em 1em; font-size: 120%; font: bold">
+                Bright Ideas (BI 500)</div>
+        </div>
+        @=EMAIL<br />
+
+        <span class="auto-style1">
+            <br />
+            Reviewers:</span>
+        <br />
+        <br />
+        Project Champion: @=PROJCHAMPION<br />
+        Project Manager: @=PROJMGRS<br />
+        Project Sponsor: @=SPONSOR<br />
+        Lead Team Support Focal Point: @=FOCALPOINT<br />
+
+        <br />
+        Click <a href="@=EEEE">here</a> to approve. Please, contact the Administrator for any support.
+        <br />
+        <br />
+        @=TTTT
+        <br />
+        <br />
+        <font color="#000000" face="tahoma" size="2"><b>Support Contacts &gt;Production: @=L1SUPPORT,&nbsp; System Support: @=L2SUPPORT </b> </font>
+    </div>
+
+</body>
+</html>

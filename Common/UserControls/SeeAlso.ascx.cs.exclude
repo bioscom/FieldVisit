@@ -1,0 +1,150 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using Telerik.QuickStart;
+
+public partial class Common_UserControls_SeeAlso : System.Web.UI.UserControl
+{
+    #region Constants
+
+    private const string CONNECTION_STRING_KEY = "QSFRatingsConnectionString";
+    private const int INITIAL_COUNT = 1;
+
+    private const string DOCS = "http://docs.telerik.com/devtools/aspnet-ajax/controls/";
+    private const string FORUM = "http://www.telerik.com/forums/aspnet-ajax/";
+    private const string CL = "http://www.telerik.com/support/code-library/aspnet-ajax/";
+    private const string KB = "http://www.telerik.com/support/kb/aspnet-ajax/";
+    private const string SA = "http://demos.telerik.com/";
+
+    #endregion
+
+    #region Fields
+
+    private Dictionary<string, string> Resources = new Dictionary<string, string>() 
+    {
+        { "docs", DOCS },
+        { "forum", FORUM },
+        { "cl", CL },
+        { "kb", KB },
+        { "sa", SA }
+    };
+
+    private Dictionary<string, string> ResourceNames = new Dictionary<string, string>() 
+    {
+        { "docs", "Online Documentation" },
+        { "forum", "Forums" },
+        { "cl", "Code Libraries" },
+        { "kb", "KB Articles" },
+        { "sa", "Sample Apps" }
+    };
+
+    #endregion
+
+    #region Properties
+
+    public QSFMasterPage Master
+    {
+        get { return Page.Master as QSFMasterPage; }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+
+        CreateResourcesViewer();
+    }
+
+    protected void CreateResourcesViewer()
+    {
+        var controlResources = ResourcesProvider.Instance.ControlResources(Master.OriginalControlName);
+        Action<KeyValuePair<string, string>> renderResource = (resource) =>
+        {
+            HtmlGenericControl wrapper = new HtmlGenericControl("li");
+            HtmlGenericControl link = new HtmlGenericControl("a");
+            link.Attributes["href"] = string.Concat(resource.Value, controlResources[resource.Key]);
+            Literal text = new Literal
+            {
+                Text = ResourceNames[resource.Key]
+            };
+            link.Controls.Add(text);
+            wrapper.Controls.Add(link);
+            ResourcesPlaceHolder.Controls.Add(wrapper);
+        };
+
+        if (controlResources != null)
+        {
+            foreach (var resource in Resources)
+            {
+                if (controlResources.ContainsKey(resource.Key))
+                {
+                    renderResource(resource);
+                }
+            }
+        }
+    }
+
+    protected void Rating_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string columnName = Rating.SelectedValue;
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings[CONNECTION_STRING_KEY].ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM Ratings WHERE ControlName='" + Master.OriginalControlName + "' AND DemoPath='" + Master.DemoPath + "'";
+            cmd.Connection = connection;
+
+            try
+            {
+                connection.Open();
+                var reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    cmd.CommandText = string.Format("INSERT Ratings(ControlName, DemoName, DemoPath,{0}) VALUES (@ControlName, @DemoName, @DemoPath, @{0})", columnName);
+                    cmd.Parameters.AddWithValue("@ControlName", Master.OriginalControlName);
+                    cmd.Parameters.AddWithValue("@DemoName", Master.DemoName);
+                    cmd.Parameters.AddWithValue("@DemoPath", Master.DemoPath);
+                    cmd.Parameters.AddWithValue(string.Format("@{0}", columnName), INITIAL_COUNT);
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        var count = (int)reader[columnName];
+                        var id = reader["ID"];
+
+
+                        cmd.CommandText = "UPDATE Ratings SET " + columnName + " = @count WHERE ID = @id";
+                        cmd.Parameters.AddWithValue("@count", count + 1);
+                        cmd.Parameters.AddWithValue("@id", id);
+                    }
+                }
+
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                
+                Tracker.TrackData(this, ex);
+            }
+            finally 
+            {
+                Rating.Visible = false;
+            }
+        }
+    }
+
+    #endregion
+}

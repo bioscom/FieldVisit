@@ -1,0 +1,308 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.UI;
+using Telerik.Web.UI;
+using System.Web.UI.HtmlControls;
+using Telerik.QuickStart;
+using System.IO;
+using System.Xml;
+using System.Collections.Specialized;
+
+public partial class Common_UserControls_CodeViewer : System.Web.UI.UserControl
+{
+    #region Fields
+
+    private List<string> additionalFiles;
+
+    private readonly string[] knownItems = new string[] {
+			"*.aspx",
+			"*.ascx",
+			"*.cs",
+			"*.vb",
+			"*.js",
+			"*.css",
+            "*.xml",
+            "*.srt"
+		};
+
+    private static readonly string[] filesToRemoveCS = new string[] { ".vb", "vb.aspx", "vb.ascx" };
+    private static readonly string[] filesToRemoveVB = new string[] { ".cs", "cs.aspx", "cs.ascx" };
+    private static readonly char[] pathSeparators = new char[2] { '\\', '/' };
+
+    #endregion
+
+    #region Properties
+
+    public string ExamplePath
+    {
+        get
+        {
+            return MapPathSecure(Page.TemplateSourceDirectory);
+        }
+    }
+
+    public QSFMasterPage Master
+    {
+        get
+        {
+            return Page.Master as QSFMasterPage;
+        }
+    }
+
+    public string CurrentLanguage
+    {
+        get
+        {
+            return Master.CurrentLanguage;
+        }
+    }
+
+    public string LanguageToSet
+    {
+        get
+        {
+            return Master.CurrentLanguage.IsEqualTo("cs") ? "vb" : "cs";
+        }
+    }
+
+    public string DemoPath
+    {
+        get
+        {
+            return Master.DemoPath;
+        }
+    }
+
+    public string[] AdditionalCodeViewerFiles
+    {
+        get
+        {
+            if (additionalFiles == null)
+            {
+                XmlNodeList fileNodes = Master.DemoNode.SelectNodes(".//file[@path]");
+                additionalFiles = new List<string>();
+                foreach (XmlNode node in fileNodes)
+                {
+                    additionalFiles.Add(node.Attributes["path"].Value);
+                }
+            }
+
+            return additionalFiles.ToArray();
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+
+        if (!Page.IsPostBack)
+        {
+            CreateCodeViewer();
+            SetUrls();
+            SelectLanguageTab();
+        }
+
+        PopulateInfoSection();
+        PopulateCodeViewer();
+    }
+
+    private void SelectLanguageTab()
+    {
+        if (Request.QueryString["show-source"] != null)
+        {
+            ActionButtons.Tabs.FindTabByValue(CurrentLanguage.ToLower()).Selected = true;
+        }
+    }
+
+    private void SetUrls()
+    {
+        string query = "?show-source=true";
+        string url = string.Format("~/{0}/default{1}.aspx", DemoPath, LanguageToSet);
+
+        if (Request.QueryString.Count > 0)
+        {
+            url += "?" + Request.QueryString;
+            query = query.Replace("?", "&");
+        }
+
+        if (Request.QueryString["show-source"] == null)
+        {
+            url += query;
+        }
+
+        ActionButtons.FindTabByValue(LanguageToSet).NavigateUrl = url;
+    }
+
+    private void PopulateInfoSection()
+    {
+        if (Master.IsLocal)
+        {
+            LocalDemoMessageBox.Visible = true;
+        }
+
+        if (Master.QrCode != null && Master.QrCode.Visible)
+        {
+            AboutThisDemo.Controls.Add(Master.QrCode);
+        }
+
+        string path = Path.Combine(ExamplePath, "about.html");
+
+        LiteralControl innerHtml = new LiteralControl();
+        innerHtml.Text = CodeViewerHelper.Instance.RenderHtmlFile(path);
+
+        AboutThisDemo.Controls.Add( innerHtml );
+    }
+
+    private void CreateCodeViewer()
+    {
+        foreach (string itemFilter in knownItems)
+        {
+            List<string> filesOfKnownType = new List<string>(Directory.GetFiles(ExamplePath, itemFilter));
+
+            //strip path from these
+            for (int i = 0; i < filesOfKnownType.Count; i++)
+            {
+                filesOfKnownType[i] = filesOfKnownType[i].Remove(0, ExamplePath.Length).TrimStart(pathSeparators);
+            }
+
+            if (AdditionalCodeViewerFiles.Length > 0)
+            {
+                for (int i = 0; i < AdditionalCodeViewerFiles.Length; i++)
+                {
+                    var filePath = AdditionalCodeViewerFiles[i];
+                    if (filePath.EndsWith(itemFilter.Replace("*", ""), StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        filePath = Request.ApplicationPath + "/" + filePath.TrimStart(new char[] { '/', '~', '\\' });
+                        filesOfKnownType.Add(filePath);
+                    }
+                }
+            }
+
+            if (filesOfKnownType.Count > 0)
+            {
+                filesOfKnownType.RemoveAll(HasOtherLanguage);
+            }
+
+            if (filesOfKnownType.Count < 1)
+            {
+                continue;
+            }
+
+            RadToolBarItem fileTypeItem = CreateCodeViewerItem(filesOfKnownType);
+            string cssClass = "file-type-" + itemFilter.Replace("*.", "");
+
+            if (fileTypeItem is RadToolBarSplitButton)
+            {
+                foreach (RadToolBarButton button in (fileTypeItem as RadToolBarSplitButton).Buttons)
+                {
+                    button.CssClass = cssClass;
+                    button.CheckOnClick = true;
+                }
+            }
+            else
+            {
+                fileTypeItem.CssClass = cssClass;
+            }
+
+            ToolBarDemoSource.Items.Add(fileTypeItem);
+        }
+    }
+
+    private void PopulateCodeViewer()
+    {
+        if (ToolBarDemoSource.Items.Count == 0)
+        {
+            return;
+        }
+
+        RadToolBarItem item = ToolBarDemoSource.Items[0];
+        RadToolBarSplitButton splitButton = item as RadToolBarSplitButton;
+        string fileName;
+
+        if (splitButton != null)
+        {
+            fileName = splitButton.Buttons[0].Text;
+        }
+        else
+        {
+            fileName = item.Text;
+        }
+
+        HtmlGenericControl contentWrapper = new HtmlGenericControl("div");
+        contentWrapper.Attributes["class"] = ToolBarDemoSource.Items[0].Text.Replace(".", "-");
+        contentWrapper.InnerHtml = CodeViewerHelper.Instance.RenderFile(Path.Combine(ExamplePath, fileName));
+        CodeListings.Controls.Add(contentWrapper);
+    }
+
+    private bool HasOtherLanguage(String s)
+    {
+        string[] filesToRemove = CurrentLanguage.IsEqualTo("CS") ? filesToRemoveCS : filesToRemoveVB;
+
+        foreach (string pattern in filesToRemove)
+        {
+            if (s.EndsWith(pattern, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private RadToolBarItem CreateCodeViewerItem(List<string> fileNames)
+    {
+        RadToolBarItem codeViewerItem;
+
+        if (fileNames.Count == 1)
+        {
+            codeViewerItem = CreateSingleCodeViewerItem(fileNames[0]);
+        }
+        else
+        {
+            RadToolBarDropDown multipleFileCodeViewerItem = new RadToolBarDropDown();
+
+            foreach (string fileName in fileNames)
+            {
+                RadToolBarItem singleCodeViewerItem = CreateSingleCodeViewerItem(fileName);
+
+                multipleFileCodeViewerItem.Buttons.Add(singleCodeViewerItem);
+            }
+
+            multipleFileCodeViewerItem.Text = multipleFileCodeViewerItem.Buttons[0].Text;
+
+            codeViewerItem = multipleFileCodeViewerItem;
+        }
+
+        return codeViewerItem;
+    }
+
+    private RadToolBarItem CreateSingleCodeViewerItem(string fileName)
+    {
+        string filePath = string.Empty;
+        int lastIndex = fileName.LastIndexOfAny(pathSeparators);
+        if (lastIndex != -1)
+        {
+            filePath = fileName.Substring(0, lastIndex + 1);
+            fileName = fileName.Remove(0, lastIndex + 1);
+        }
+        RadToolBarButton codeViewerItem = new RadToolBarButton(fileName);
+        if (!string.IsNullOrEmpty(filePath))
+        {
+            codeViewerItem.Value = filePath;
+        }
+        else
+        {
+            codeViewerItem.Value = Page.TemplateSourceDirectory;
+        }
+
+        codeViewerItem.CausesValidation = false;
+
+        return codeViewerItem;
+    }
+
+    #endregion
+}

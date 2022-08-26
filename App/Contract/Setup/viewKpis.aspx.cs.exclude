@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class AdminInterface_Setup_viewKpis : aspnetPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        bool bRet = false;
+        try
+        {
+            string[] sPageAccess = { OnlineUserHelper.userRole.admin.ToString(), OnlineUserHelper.userRole.dnlt.ToString(), OnlineUserHelper.userRole.focalPoint.ToString(), OnlineUserHelper.userRole.corporate.ToString() };
+            OnlineUserHelper oAccess = new OnlineUserHelper();
+            bRet = oAccess.grantPageAccess(sPageAccess, this.oSessnx.getOnlineUser.m_eUserRole);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        if (!bRet) Response.Redirect("~/Profiles/pageDenied.aspx");
+
+    }
+}

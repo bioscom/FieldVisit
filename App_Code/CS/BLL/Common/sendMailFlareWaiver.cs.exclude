@@ -1,0 +1,286 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Web;
+
+/// <summary>
+/// Summary description for sendMail
+/// </summary>
+
+public class sendMailFlareWaiver
+{
+    private const string c_sMailSubjet = " - Flare Waiver";
+    private string c_sLogoPath = HttpContext.Current.Server.MapPath(@"~/Images/ShellLogo.png");
+    private structUserMailIdx m_eSender;
+
+    bool bRet = false;
+    appUsersHelper oappUsersHelper = new appUsersHelper();
+
+    public sendMailFlareWaiver(structUserMailIdx _eSender)
+    {
+        m_eSender = _eSender;
+    }
+
+    public static structUserMailIdx eManager()
+    {
+        //Todo: decipher the 0 value here
+        return new structUserMailIdx(AppConfiguration.adminName, AppConfiguration.adminEmail, "");
+    }
+
+    public bool UserDefinition(appUsers oAppUser)
+    {
+        bool bRet = false;
+        string sSubject = AppConfiguration.siteNameFlareWaiver;
+        try
+        {
+            string sBody = Resources.FlareWaiver.eMailUsers;
+            sBody = sBody.Replace("@=ROLE", appUsersRoles.userRoleDesc((appUsersRoles.userRole)oAppUser.m_eUserRole));
+            sBody = sBody.Replace("@=AAAA", oAppUser.m_sUserName);
+            sBody = sBody.Replace("@=BBBB", oAppUser.m_sFullName);
+            sBody = sBody.Replace("@=CCCC", oAppUser.m_sUserMail);
+            sBody = sBody.Replace("@=TTTT", DateTime.Now.ToLongDateString());
+
+            AlternateView altView = CommonContent(sBody);
+            emailClientExPic oMail = new emailClientExPic(m_eSender);
+
+            bRet = oMail.sendShellMail(oAppUser.structUserIdx, sSubject, sBody, altView);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        return bRet;
+    }
+
+    public bool ForwardRequestForSupportApproval(FlareWaiver oFlareWaiver, appUsers oNextSupportApprover, List<structUserMailIdx> cCopy)
+    {
+        string mSubject = oFlareWaiver.m_sRequestNumber + " - Flare Waiver Request pending your action.";
+        string mBody = Resources.FlareWaiver.eMailTemplate;
+        mBody = mBody.Replace("@=EMAIL", Resources.FlareWaiver.ForSupportApproval);
+
+        mBody = mBody.Replace("@=CATEGORY", Category.objGetCategoryByCatId(oFlareWaiver.m_iCategoryId).m_sCategory);
+        mBody = mBody.Replace("@=FACILITY", facility.objGetFacilityById(oFlareWaiver.m_iFacilityId).m_sFacility);
+
+        string sActionRequired = "support";
+        if (oNextSupportApprover.m_iRoleId == (int)appUsersRoles.userRole.GMProduction) sActionRequired = "approval";
+
+        mBody = mBody.Replace("@=ACTION", sActionRequired);
+        mBody = mBody.Replace("@=INITIATOR", oappUsersHelper.objGetUserByUserID(oFlareWaiver.m_iUserId).m_sFullName);
+        mBody = mBody.Replace("@=VOLUME", oFlareWaiver.m_sFlareVol.ToString());
+        mBody = mBody.Replace("@=OIL", oFlareWaiver.m_sOilProduced.ToString());
+
+        mBody = mBody.Replace("@=SDATE", oFlareWaiver.m_sStartDate);
+        mBody = mBody.Replace("@=STIME", oFlareWaiver.m_sStartTime);
+        mBody = mBody.Replace("@=EDATE", oFlareWaiver.m_sEndDate);
+        mBody = mBody.Replace("@=ETIME", oFlareWaiver.m_sEndTime);
+        mBody = mBody.Replace("@=REASON", oFlareWaiver.m_sReason);
+        mBody = mBody.Replace("@=JUSTIFICATION", oFlareWaiver.m_sJustification);
+
+        mBody = mBody.Replace("@=POSTEVENT", oFlareWaiver.m_sPostEvent);
+
+        AlternateView altView = CommonContent(mBody);
+        emailClientExPic oMail = new emailClientExPic(m_eSender);
+        bRet = oMail.sendShellMail(oNextSupportApprover.structUserIdx, cCopy, mSubject, mBody, altView);
+
+        return bRet;
+    }
+
+    public bool ForwardRequestForSupportApproval(FlareWaiver oFlareWaiver, appUsers oNextSupportApprover, structUserMailIdx cCopy)
+    {
+        string mSubject = oFlareWaiver.m_sRequestNumber + " - Flare Waiver Request pending your action.";
+        string mBody = Resources.FlareWaiver.eMailTemplate;
+        mBody = mBody.Replace("@=EMAIL", Resources.FlareWaiver.ForSupportApproval);
+
+        mBody = mBody.Replace("@=CATEGORY", Category.objGetCategoryByCatId(oFlareWaiver.m_iCategoryId).m_sCategory);
+        mBody = mBody.Replace("@=FACILITY", facility.objGetFacilityById(oFlareWaiver.m_iFacilityId).m_sFacility);
+
+        string sActionRequired = "support";
+        if (oNextSupportApprover.m_iRoleId == (int)appUsersRoles.userRole.GMProduction) sActionRequired = "approval";
+
+        mBody = mBody.Replace("@=ACTION", sActionRequired);
+        mBody = mBody.Replace("@=INITIATOR", oappUsersHelper.objGetUserByUserID(oFlareWaiver.m_iUserId).m_sFullName);
+        mBody = mBody.Replace("@=VOLUME", oFlareWaiver.m_sFlareVol.ToString());
+        mBody = mBody.Replace("@=OIL", oFlareWaiver.m_sOilProduced.ToString());
+
+        mBody = mBody.Replace("@=SDATE", oFlareWaiver.m_sStartDate);
+        mBody = mBody.Replace("@=STIME", oFlareWaiver.m_sStartTime);
+        mBody = mBody.Replace("@=EDATE", oFlareWaiver.m_sEndDate);
+        mBody = mBody.Replace("@=ETIME", oFlareWaiver.m_sEndTime);
+        mBody = mBody.Replace("@=REASON", oFlareWaiver.m_sReason);
+        mBody = mBody.Replace("@=JUSTIFICATION", oFlareWaiver.m_sJustification);
+
+        mBody = mBody.Replace("@=POSTEVENT", oFlareWaiver.m_sPostEvent);
+
+        AlternateView altView = CommonContent(mBody);
+        emailClientExPic oMail = new emailClientExPic(m_eSender);
+        bRet = oMail.sendShellMail(oNextSupportApprover.structUserIdx, cCopy, mSubject, mBody, altView);
+
+        return bRet;
+    }
+
+    public bool RequestNotSupportedApproved(FlareWaiver oFlareWaiver, appUsers oOnlineUser, string sReason, List<structUserMailIdx> cCopy)
+    {
+        appUsers oInitiator = oappUsersHelper.objGetUserByUserID(oFlareWaiver.m_iUserId);
+        string sActionRequired = "supported";
+        if (oOnlineUser.m_iRoleId == (int)appUsersRoles.userRole.GMProduction) sActionRequired = "approved";
+
+        string mSubject = oFlareWaiver.m_sRequestNumber + " - Flare Waiver Request Not " + sActionRequired + ".";
+        string mBody = Resources.FlareWaiver.eMailTemplate;
+        mBody = mBody.Replace("@=EMAIL", Resources.FlareWaiver.ForNotSupportedApproved);
+
+        mBody = mBody.Replace("@=CATEGORY", Category.objGetCategoryByCatId(oFlareWaiver.m_iCategoryId).m_sCategory);
+        mBody = mBody.Replace("@=FACILITY", facility.objGetFacilityById(oFlareWaiver.m_iFacilityId).m_sFacility);
+
+        mBody = mBody.Replace("@=ACTION", sActionRequired);
+        mBody = mBody.Replace("@=INITIATOR", oInitiator.m_sFullName);
+        mBody = mBody.Replace("@=SUPPORTAPPROVAL", oOnlineUser.m_sFullName);
+        mBody = mBody.Replace("@=ACTIONED", sActionRequired);
+
+        mBody = mBody.Replace("@=XREASON", sReason);
+
+
+        mBody = mBody.Replace("@=VOLUME", oFlareWaiver.m_sFlareVol.ToString());
+        mBody = mBody.Replace("@=OIL", oFlareWaiver.m_sOilProduced.ToString());
+
+        mBody = mBody.Replace("@=SDATE", oFlareWaiver.m_sStartDate);
+        mBody = mBody.Replace("@=STIME", oFlareWaiver.m_sStartTime);
+        mBody = mBody.Replace("@=EDATE", oFlareWaiver.m_sEndDate);
+        mBody = mBody.Replace("@=ETIME", oFlareWaiver.m_sEndTime);
+        mBody = mBody.Replace("@=REASON", oFlareWaiver.m_sReason);
+        mBody = mBody.Replace("@=JUSTIFICATION", oFlareWaiver.m_sJustification);
+
+        mBody = mBody.Replace("@=POSTEVENT", oFlareWaiver.m_sPostEvent);
+
+        AlternateView altView = CommonContent(mBody);
+        emailClientExPic oMail = new emailClientExPic(m_eSender);
+        bRet = oMail.sendShellMail(oInitiator.structUserIdx, cCopy, mSubject, mBody, altView);
+
+        return bRet;
+    }
+
+    public bool RequestApproved(FlareWaiver oFlareWaiver, appUsers oOnlineUser, List<structUserMailIdx> cCopy)
+    {
+        appUsers oInitiator = oappUsersHelper.objGetUserByUserID(oFlareWaiver.m_iUserId);
+
+        string mSubject = oFlareWaiver.m_sRequestNumber + " - Flare Waiver Request Approved.";
+        string mBody = Resources.FlareWaiver.eMailTemplate;
+        mBody = mBody.Replace("@=EMAIL", Resources.FlareWaiver.ForApproved);
+
+        mBody = mBody.Replace("@=CATEGORY", Category.objGetCategoryByCatId(oFlareWaiver.m_iCategoryId).m_sCategory);
+        mBody = mBody.Replace("@=FACILITY", facility.objGetFacilityById(oFlareWaiver.m_iFacilityId).m_sFacility);
+        mBody = mBody.Replace("@=APPROVER", oOnlineUser.m_sFullName);
+
+        mBody = mBody.Replace("@=INITIATOR", oInitiator.m_sFullName);
+        mBody = mBody.Replace("@=SUPPORTAPPROVAL", oOnlineUser.m_sFullName);
+
+        mBody = mBody.Replace("@=VOLUME", oFlareWaiver.m_sFlareVol.ToString());
+        mBody = mBody.Replace("@=OIL", oFlareWaiver.m_sOilProduced.ToString());
+
+        mBody = mBody.Replace("@=SDATE", oFlareWaiver.m_sStartDate);
+        mBody = mBody.Replace("@=STIME", oFlareWaiver.m_sStartTime);
+        mBody = mBody.Replace("@=EDATE", oFlareWaiver.m_sEndDate);
+        mBody = mBody.Replace("@=ETIME", oFlareWaiver.m_sEndTime);
+        mBody = mBody.Replace("@=REASON", oFlareWaiver.m_sReason);
+        mBody = mBody.Replace("@=JUSTIFICATION", oFlareWaiver.m_sJustification);
+
+        mBody = mBody.Replace("@=POSTEVENT", oFlareWaiver.m_sPostEvent);
+
+        AlternateView altView = CommonContent(mBody);
+        emailClientExPic oMail = new emailClientExPic(m_eSender);
+        bRet = oMail.sendShellMail(oInitiator.structUserIdx, cCopy, mSubject, mBody, altView);
+
+        return bRet;
+    }
+
+    public bool PendingRequestReminder(FlareWaiver oFlareWaiver, appUsers oNextSupportApprover, structUserMailIdx cCopy)
+    {
+        string mSubject = oFlareWaiver.m_sRequestNumber + " - Pending Flare Waiver Request Reminder.";
+        string mBody = Resources.FlareWaiver.eMailTemplate;
+        mBody = mBody.Replace("@=EMAIL", Resources.FlareWaiver.ForSupportApproval);
+
+        mBody = mBody.Replace("@=CATEGORY", Category.objGetCategoryByCatId(oFlareWaiver.m_iCategoryId).m_sCategory);
+        mBody = mBody.Replace("@=FACILITY", facility.objGetFacilityById(oFlareWaiver.m_iFacilityId).m_sFacility);
+
+        string sActionRequired = "support";
+        if (oNextSupportApprover.m_iRoleId == (int)appUsersRoles.userRole.GMProduction) sActionRequired = "approval";
+
+        mBody = mBody.Replace("@=ACTION", sActionRequired);
+        mBody = mBody.Replace("@=INITIATOR", oappUsersHelper.objGetUserByUserID(oFlareWaiver.m_iUserId).m_sFullName);
+        mBody = mBody.Replace("@=VOLUME", oFlareWaiver.m_sFlareVol.ToString());
+        mBody = mBody.Replace("@=OIL", oFlareWaiver.m_sOilProduced.ToString());
+
+        mBody = mBody.Replace("@=SDATE", oFlareWaiver.m_sStartDate);
+        mBody = mBody.Replace("@=STIME", oFlareWaiver.m_sStartTime);
+        mBody = mBody.Replace("@=EDATE", oFlareWaiver.m_sEndDate);
+        mBody = mBody.Replace("@=ETIME", oFlareWaiver.m_sEndTime);
+        mBody = mBody.Replace("@=REASON", oFlareWaiver.m_sReason);
+        mBody = mBody.Replace("@=JUSTIFICATION", oFlareWaiver.m_sJustification);
+
+        mBody = mBody.Replace("@=POSTEVENT", oFlareWaiver.m_sPostEvent);
+
+        AlternateView altView = CommonContent(mBody);
+        emailClientExPic oMail = new emailClientExPic(m_eSender);
+        bRet = oMail.sendShellMail(oNextSupportApprover.structUserIdx, cCopy, mSubject, mBody, altView);
+
+        return bRet;
+    }
+
+    public bool ApplicationErrorMessage(List<structUserMailIdx> toEmail, string errorMessage)
+    {
+        string mBody;
+        string mSubject = AppConfiguration.siteName + " Error Message:";
+        mBody = "Dear System Administrator, <br/> <br/>";
+        mBody += errorMessage;
+        mBody += "<br/>";
+
+        emailClient oMail = new emailClient(m_eSender);
+        bRet = oMail.sendShellMail(toEmail, mSubject, mBody);
+
+        return bRet;
+    }
+
+    public bool UserPasswordReset(structUserMailIdx eUserDefined, appUsers me)
+    {
+        bool bRet = false;
+        string sSubject = "Account Password reset.";
+        try
+        {
+            string sBody = ""; //Resources.Resource.PasswordReset;
+            sBody = sBody.Replace("@=AAAA", eUserDefined.m_sUserName);
+            sBody = sBody.Replace("@=BBBB", me.m_sFullName);
+            sBody = sBody.Replace("@=CCCC", eUserDefined.m_sUserMail);
+            //sBody = sBody.Replace("@PPPP", me.m_sPassword);
+            sBody = sBody.Replace("@=TTTT", DateTime.Now.ToLongDateString());
+
+            sBody = sBody.Replace("@=EEEE", AppConfiguration.siteHostName + "/LPswReset.aspx");
+            //sBody = sBody.Replace("@=L1SUPPORT", AppConfiguration.prodAdminName + "[" + AppConfiguration.prodAdminEmail + "]");
+            sBody = sBody.Replace("@=L2SUPPORT", AppConfiguration.adminName + "[" + AppConfiguration.adminEmail + "]");
+            AlternateView altView = CommonContent(sBody);
+            emailClientExPic oMail = new emailClientExPic(m_eSender);
+            bRet = oMail.sendShellMail(eUserDefined, sSubject, sBody, altView);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        return bRet;
+    }
+
+    private AlternateView CommonContent(string mBody)
+    {
+        mBody = mBody.Replace("@=LIMEMGR", "");
+        mBody = mBody.Replace("@=PRODSERVMGR", "");
+        mBody = mBody.Replace("@=GMPROD", "");
+        mBody = mBody.Replace("@=EEEE", AppConfiguration.siteHostName);
+        mBody = mBody.Replace("@=TTTT", DateTime.Now.ToLongDateString());
+
+        AlternateView altView = AlternateView.CreateAlternateViewFromString(mBody, null, MediaTypeNames.Text.Html);
+        LinkedResource pic = new LinkedResource(c_sLogoPath, MediaTypeNames.Image.Gif);
+        pic.ContentId = "Logo";
+        altView.LinkedResources.Add(pic);
+
+        return altView;
+    }
+
+}

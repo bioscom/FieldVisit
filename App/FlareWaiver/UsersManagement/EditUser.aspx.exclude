@@ -1,0 +1,47 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/siteMaster.master" AutoEventWireup="true" CodeFile="EditUser.aspx.cs" Inherits="UsersManagement_EditUser" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <table class="tMainBorder">
+        <tr>
+            <td class="cHeadTile" colspan="2">Edit User</td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label1" runat="server" Text="Name:"></asp:Label>
+            </td>
+            <td>
+                <asp:Label ID="lblFullName" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label2" runat="server" Text="User Role:"></asp:Label>
+                <asp:CompareValidator ID="CompareValidator1" runat="server"
+                    ControlToValidate="ddlUserRole" ErrorMessage="User Role is required"
+                    Operator="NotEqual" Type="Integer" ValueToCompare="-1">*</asp:CompareValidator>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlUserRole" runat="server" Width="200px">
+                    <asp:ListItem Value="-1">[Select User Role]</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click"
+                    Text="Submit" Width="100px" />
+                
+                <asp:Button ID="closeBtn" runat="server" OnClick="closeBtn_Click"
+                    Text="Close" ValidationGroup="xxxx" Width="100px" />
+            </td>
+        </tr>
+        </table>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+        ShowMessageBox="True" ShowSummary="False" />
+</asp:Content>
+

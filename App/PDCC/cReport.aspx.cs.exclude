@@ -1,0 +1,516 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Web.UI.DataVisualization.Charting;
+//using Microsoft.VisualBasic;
+
+public partial class App_PDCC_cReport : System.Web.UI.Page
+{
+    OpportunityCostHelper _OpportunityCostHelper = new OpportunityCostHelper();
+    decimal dPercRed = 0;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            try
+            {
+                _OpportunityCostHelper.FillMenu(XmlMenuDataSource, mnuTreeView);
+
+                List<int> iYears = _OpportunityCostHelper.lstYears();
+                ddlYear.Items.Add(new ListItem("Select Year", "-1"));
+                foreach (int iYear in iYears)
+                {
+                    ddlYear.Items.Add(iYear.ToString());
+                }
+
+                ddlYear.SelectedValue = DateTime.Today.Year.ToString();
+                dPercRed = decimal.Parse(txtPercRed.Text) / 100;
+
+                PlotGraphs(int.Parse(ddlYear.SelectedValue));                
+            }
+            catch (Exception ex)
+            {
+                appMonitor.logAppExceptions(ex);
+                System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+            }
+        }
+    }
+    private void PlotGraphs(int iYear)
+    {
+        OpexFectoImprovementActualPotential objOnShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByAssetYear(iYear, (int)ItemStatus.ItStatus.Onshore);
+        Charter(cSPDCReport, objOnShore, "SPDC PD", 400, 500);
+
+        OpexFectoImprovementActualPotential objOffShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByAssetYear(iYear, (int)ItemStatus.ItStatus.Offshore);
+        Charter(cSNEPCOReport, objOffShore, "SNEPCo PD", 400, 500);
+
+        OpexFectoImprovementActualPotential objOffShoreOnShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByYear(iYear);
+        Charter(cCombinedReporter, objOffShoreOnShore, "SPDC + SNEPCo PD", 600, 900);
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        dPercRed = decimal.Parse(txtPercRed.Text) / 100;
+        PlotGraphs(int.Parse(ddlYear.SelectedValue));
+    }
+    protected void mnuTreeView_SelectedNodeChanged(object sender, EventArgs e)
+    {
+        EventChanger();
+    }
+
+    private void Charter(PlaceHolder oPlaceHolder, OpexFectoImprovementActualPotential objData, string sChartTitle, int iHeight, int iWidth)
+    {
+        try
+        {
+            decimal CummVal = objData.dFecto + objData.dImprovement;
+
+            //create the chart ---------------------------- '
+            Chart myChart = new Chart();
+            oPlaceHolder.Controls.Add(myChart);
+
+            myChart.Height = Unit.Pixel(iHeight);
+            myChart.Width = Unit.Pixel(iWidth);
+
+            //myChart.Series[0]["PointWidth"] = "0.8";
+            myChart.Titles.Add(sChartTitle);
+
+            //create the ChartArea - needed to plot data onto '
+            ChartArea ca = new ChartArea();
+            ca.Name = "ChartArea1";
+            ca.AxisY.Title = "F($)mln";
+            ca.AxisX.Interval = 1;
+            myChart.ChartAreas.Add(ca);
+
+
+            //Plot "OPEX" data column from our datatable '
+            Series OpexSeries = new Series();
+            OpexSeries.Name = "OP" + (OpportunityCostHelper.iYear - 1).ToString().Remove(0, 2);
+            OpexSeries.ChartType = SeriesChartType.Column;
+            OpexSeries.Color = System.Drawing.Color.Brown;
+            OpexSeries.BorderWidth = 3;
+            OpexSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(OpexSeries);
+
+            DataPoint opex = new DataPoint();
+            opex.SetValueY(objData.dOpex); opex.AxisLabel = OpexSeries.Name;
+            OpexSeries.Points.Add(opex);
+
+
+            //Plot "FECTO" data column from our datatable '
+            Series FectoSeries = new Series();
+            FectoSeries.Name = "FEC T/O";
+            FectoSeries.ChartType = SeriesChartType.Column;
+            FectoSeries.Color = System.Drawing.Color.Navy;
+            FectoSeries.BorderWidth = 3;
+            FectoSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(FectoSeries);
+
+            DataPoint fecto = new DataPoint();
+            fecto.SetValueY(objData.dFecto); fecto.AxisLabel = FectoSeries.Name;
+            FectoSeries.Points.Add(fecto);
+
+
+            //Plot "IMPROVEMENT" data column from our datatable '
+            Series ImprovementSeries = new Series();
+            ImprovementSeries.Name = "Impr. Opp";
+            ImprovementSeries.ChartType = SeriesChartType.Column;
+            ImprovementSeries.Color = System.Drawing.Color.OrangeRed;
+            ImprovementSeries.BorderWidth = 3;
+            ImprovementSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(ImprovementSeries);
+
+            DataPoint improve = new DataPoint();
+            improve.SetValueY(objData.dImprovement); improve.AxisLabel = ImprovementSeries.Name;
+            ImprovementSeries.Points.Add(improve);
+
+            //Plot "CUMMULATIVE" data column from our datatable '
+            Series CummSeries = new Series();
+            CummSeries.Name = "Cumm";
+            CummSeries.ChartType = SeriesChartType.Column;
+            CummSeries.Color = System.Drawing.Color.Pink;
+            CummSeries.BorderWidth = 3;
+            CummSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(CummSeries);
+
+            DataPoint Cumm = new DataPoint();
+            Cumm.SetValueY(objData.dFecto + objData.dImprovement); Cumm.AxisLabel = CummSeries.Name;
+            CummSeries.Points.Add(Cumm);
+
+            //Plot "ACTSAVINGS" data column from our datatable '
+            Series ActualSeries = new Series();
+            ActualSeries.Name = "Actual";
+            ActualSeries.ChartType = SeriesChartType.Column;
+            ActualSeries.Color = System.Drawing.Color.Gray;
+            ActualSeries.BorderWidth = 3;
+            ActualSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(ActualSeries);
+
+            DataPoint Actual = new DataPoint();
+            Actual.SetValueY(objData.dActSavings); Actual.AxisLabel = ActualSeries.Name;
+            ActualSeries.Points.Add(Actual);
+
+            //Plot "POTSAVINGS" data column from our datatable '
+            Series PotentialSeries = new Series();
+            PotentialSeries.Name = "Red. Target";
+            PotentialSeries.ChartType = SeriesChartType.Column;
+            PotentialSeries.Color = System.Drawing.Color.Orange;
+            PotentialSeries.BorderWidth = 3;
+            PotentialSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(PotentialSeries);
+
+            DataPoint Potential = new DataPoint();
+            Potential.SetValueY(objData.dOpex * dPercRed); Potential.AxisLabel = PotentialSeries.Name;
+            PotentialSeries.Points.Add(Potential);
+
+
+            //Add a Legend
+            myChart.Legends.Add(new Legend("Legend1"));
+            OpexSeries.LegendText = OpexSeries.Name;
+            FectoSeries.LegendText = FectoSeries.Name;
+            ImprovementSeries.LegendText = ImprovementSeries.Name;
+            CummSeries.LegendText = CummSeries.Name;
+            ActualSeries.LegendText = ActualSeries.Name;
+            PotentialSeries.LegendText = PotentialSeries.Name;
+
+            //chart background colour
+            myChart.BackColor = System.Drawing.ColorTranslator.FromHtml("#eeeeee");
+
+            //chart background shadow
+            ca.ShadowOffset = 5;
+            ca.ShadowColor = System.Drawing.ColorTranslator.FromHtml("#aaaaaa");
+
+            //' chart background gradient
+            ca.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            ca.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#ddddee");
+            ca.BackGradientStyle = System.Web.UI.DataVisualization.Charting.GradientStyle.TopBottom;
+
+            //' format the chart gridlines
+            ca.AxisX.LabelStyle.Angle = -45;
+            ca.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            ca.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            ca.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            ca.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            ////apply gradient colours to OpexSeries column '
+            //OpexSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //OpexSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //OpexSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to FectoSeries column '
+            //FectoSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //FectoSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //FectoSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to ImprovementSeries column '
+            //ImprovementSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //ImprovementSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //ImprovementSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to CummSeries column '
+            //CummSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //CummSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //CummSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            myChart.DataBind();
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    private void ChartDrill(int iDept, PlaceHolder oPlaceHolder, OpexFectoImprovementActualPotential objData, string sChartTitle, int iHeight, int iWidth, string sDept)
+    {
+        try
+        {
+            decimal CummVal = objData.dFecto + objData.dImprovement;
+
+            //create the chart ---------------------------- '
+            Chart myChart = new Chart();
+            oPlaceHolder.Controls.Add(myChart);
+            myChart.Height = Unit.Pixel(iHeight);
+            myChart.Width = Unit.Pixel(iWidth);
+            //myChart.Series[0]["PointWidth"] = "0.8";
+            myChart.Titles.Add(sChartTitle + " (" + sDept + ")");
+
+            //create the ChartArea - needed to plot data onto '
+            ChartArea ca = new ChartArea();
+            ca.Name = "ChartArea1";
+            ca.AxisY.Title = "F($)mln";
+            //ca.AxisY2.Title = sDept;
+            ca.AxisX.Interval = 1;
+
+            ////Remove X-Axis Grid lines
+            //ca.AxisX.MajorGrid.LineWidth = 0;
+
+            ////Remove Y-Axis Grid lines
+            //ca.AxisY.MajorGrid.LineWidth = 0;
+
+            myChart.ChartAreas.Add(ca);
+
+
+            //Plot "OPEX" data column from our datatable '
+            Series OpexSeries = new Series();
+            OpexSeries.Name = "OP" + (DateTime.Now.Year - 1).ToString().Remove(0, 2);
+            OpexSeries.ChartType = SeriesChartType.Column;
+            OpexSeries.Color = System.Drawing.Color.Brown;
+            OpexSeries.BorderWidth = 3;
+            OpexSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(OpexSeries);
+
+            DataPoint opex = new DataPoint();
+            opex.SetValueY(objData.dOpex); opex.AxisLabel = OpexSeries.Name;
+            OpexSeries.Points.Add(opex);
+
+
+            //Plot "FECTO" data column from our datatable '
+            Series FectoSeries = new Series();
+            FectoSeries.Name = "FEC T/O";
+            FectoSeries.ChartType = SeriesChartType.Column;
+            FectoSeries.Color = System.Drawing.Color.Navy;
+            FectoSeries.BorderWidth = 3;
+            FectoSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(FectoSeries);
+
+            DataPoint fecto = new DataPoint();
+            fecto.SetValueY(objData.dFecto); fecto.AxisLabel = FectoSeries.Name;
+            FectoSeries.Points.Add(fecto);
+
+
+            //Plot "IMPROVEMENT" data column from our datatable '
+            Series ImprovementSeries = new Series();
+            ImprovementSeries.Name = "Impr. Opp";
+            ImprovementSeries.ChartType = SeriesChartType.Column;
+            ImprovementSeries.Color = System.Drawing.Color.OrangeRed;
+            ImprovementSeries.BorderWidth = 3;
+            ImprovementSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(ImprovementSeries);
+
+            DataPoint improve = new DataPoint();
+            improve.SetValueY(objData.dImprovement); improve.AxisLabel = ImprovementSeries.Name;
+            ImprovementSeries.Points.Add(improve);
+
+            //Plot "CUMMULATIVE" data column from our datatable '
+            Series CummSeries = new Series();
+            CummSeries.Name = "Cumm";
+            CummSeries.ChartType = SeriesChartType.Column;
+            CummSeries.Color = System.Drawing.Color.Pink;
+            CummSeries.BorderWidth = 3;
+            CummSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(CummSeries);
+
+            DataPoint Cumm = new DataPoint();
+            Cumm.SetValueY(objData.dFecto + objData.dImprovement); Cumm.AxisLabel = CummSeries.Name;
+            CummSeries.Points.Add(Cumm);
+
+            //Plot "ACTSAVINGS" data column from our datatable '
+            Series ActualSeries = new Series();
+            ActualSeries.Name = "Actual";
+            ActualSeries.ChartType = SeriesChartType.Column;
+            ActualSeries.Color = System.Drawing.Color.Gray;
+            ActualSeries.BorderWidth = 3;
+            ActualSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(ActualSeries);
+
+            DataPoint Actual = new DataPoint();
+            Actual.SetValueY(objData.dActSavings); Actual.AxisLabel = ActualSeries.Name;
+            ActualSeries.Points.Add(Actual);
+
+            //Plot "POTSAVINGS" data column from our datatable '
+            Series PotentialSeries = new Series();
+            PotentialSeries.Name = "Red. Target";
+            PotentialSeries.ChartType = SeriesChartType.Column;
+            PotentialSeries.Color = System.Drawing.Color.Orange;
+            PotentialSeries.BorderWidth = 3;
+            PotentialSeries.IsValueShownAsLabel = true;
+            myChart.Series.Add(PotentialSeries);
+
+            DataPoint Potential = new DataPoint();
+            Potential.SetValueY(objData.dOpex * dPercRed); Potential.AxisLabel = PotentialSeries.Name;
+            PotentialSeries.Points.Add(Potential);
+
+
+            //Add a Legend
+            myChart.Legends.Add(new Legend("Legend1"));
+            OpexSeries.LegendText = OpexSeries.Name;
+            FectoSeries.LegendText = FectoSeries.Name;
+            ImprovementSeries.LegendText = ImprovementSeries.Name;
+            CummSeries.LegendText = CummSeries.Name;
+            ActualSeries.LegendText = ActualSeries.Name;
+            PotentialSeries.LegendText = PotentialSeries.Name;
+
+            //chart background colour
+            myChart.BackColor = System.Drawing.ColorTranslator.FromHtml("#eeeeee");
+
+            //chart background shadow
+            ca.ShadowOffset = 5;
+            ca.ShadowColor = System.Drawing.ColorTranslator.FromHtml("#aaaaaa");
+
+            //' chart background gradient
+            ca.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            ca.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#ddddee");
+            ca.BackGradientStyle = System.Web.UI.DataVisualization.Charting.GradientStyle.TopBottom;
+
+            //' format the chart gridlines
+            ca.AxisX.LabelStyle.Angle = -45;
+            ca.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            ca.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            ca.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            ca.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            ////apply gradient colours to OpexSeries column '
+            //OpexSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //OpexSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //OpexSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to FectoSeries column '
+            //FectoSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //FectoSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //FectoSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to ImprovementSeries column '
+            //ImprovementSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //ImprovementSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //ImprovementSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            ////apply gradient colours to CummSeries column '
+            //CummSeries.BackGradientStyle = GradientStyle.TopBottom;
+            //CummSeries.Color = System.Drawing.ColorTranslator.FromHtml("#0066cc");
+            //CummSeries.BackSecondaryColor = System.Drawing.ColorTranslator.FromHtml("#00aadd");
+
+            myChart.DataBind();
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        PlotGraphs(int.Parse(ddlYear.SelectedValue));
+        _OpportunityCostHelper.FillMenu(XmlMenuDataSource, mnuTreeView);
+    }
+    //protected void mnuTreeView_TreeNodeCheckChanged(object sender, TreeNodeEventArgs e)
+    //{
+    //    if (mnuTreeView.CheckedNodes.Count > 0)
+    //    {
+    //        // Clear the message label.
+    //        lblNodeClicked.Text = "You selected: <br /><br />";
+
+    //        // Iterate through the CheckedNodes collection and display 
+    //        // the selected nodes.
+    //        foreach (TreeNode node in mnuTreeView.CheckedNodes)
+    //        {
+    //            lblNodeClicked.Text += node.Text + "<br />";
+    //        }
+    //    }
+    //    else
+    //    {
+    //        lblNodeClicked.Text = "No items selected.";
+    //    }
+    //}
+    //protected void mnuTreeView_TreeNodeCheckChanged(object sender, TreeNodeEventArgs e)
+    //{
+    //    EventChanger();
+    //}
+
+    private void EventChanger()
+    {
+        try
+        {
+            string sDepartment = mnuTreeView.SelectedNode.Parent.Text;
+            lblNodeClicked.Text = sDepartment;
+
+            //mnuTreeView.CheckedNodes.
+
+            int iDept = int.Parse(_OpportunityCostHelper.ObjGetOpportunityCostByOpportunity(mnuTreeView.SelectedNode.Value).iDept.ToString()); //The Parent value is the IDDEPARTMENT
+
+            OpexFectoImprovementActualPotential objOffShoreOnShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByYearDepartment(int.Parse(ddlYear.SelectedValue), iDept);
+            ChartDrill(iDept, cCombinedReporter, objOffShoreOnShore, "SPDC+SNEPCo PD", 600, 900, sDepartment);
+
+            OpexFectoImprovementActualPotential objOnShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByYearDepartmentAsset(int.Parse(ddlYear.SelectedValue), iDept, (int)ItemStatus.ItStatus.Onshore);
+            ChartDrill(iDept, cSPDCReport, objOnShore, "SPDC PD", 400, 500, sDepartment);
+
+            OpexFectoImprovementActualPotential objOffShore = _OpportunityCostHelper.ObjGetOpExFectoImprovementByYearDepartmentAsset(int.Parse(ddlYear.SelectedValue), iDept, (int)ItemStatus.ItStatus.Offshore);
+            ChartDrill(iDept, cSNEPCOReport, objOffShore, "SNEPCo PD", 400, 500, sDepartment);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    //private int iDepartment()
+    //{
+    //    int iDept = int.Parse(_OpportunityCostHelper.ObjGetOpportunityCostByOpportunity(mnuTreeView.SelectedNode.Value).iDept.ToString());
+    //    return iDept;
+    //}
+
+    //private void CallNodesSelector()
+    //{
+    //    TreeNodeCollection nodes = this.mnuTreeView.Nodes;
+    //    foreach (TreeNode TN in nodes)
+    //    {
+    //        if (TN.Checked)
+    //        {
+    //            int iDept = int.Parse(_OpportunityCostHelper.ObjGetOpportunityCostByOpportunity(TN.Value).iDept.ToString());
+    //        }
+
+    //        GetNodeRecursive(TN);
+    //    }
+    //}
+
+    //private void GetNodeRecursive(TreeNode treeNode)
+    //{
+    //    if (treeNode.Checked == true)
+    //    {
+    //        //Your Code Goes Here to perform any action on checked node
+
+    //        //treeNode.Text;
+    //    }
+    //    foreach (TreeNode tn in treeNode.ChildNodes)
+    //    {
+    //        GetNodeRecursive(tn);
+    //    }
+    //
+    //}
+
+
+    // Updates all child tree nodes recursively. 
+    //private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
+    //{
+    //    foreach (TreeNode node in treeNode.Nodes)
+    //    {
+    //        node.Checked = nodeChecked;
+    //        if (node.Nodes.Count > 0)
+    //        {
+    //            // If the current node has child nodes, call the CheckAllChildsNodes method recursively. 
+    //            this.CheckAllChildNodes(node, nodeChecked);
+    //        }
+    //    }
+    //}
+
+    //// NOTE   This code can be added to the BeforeCheck event handler instead of the AfterCheck event. 
+    //// After a tree node's Checked property is changed, all its child nodes are updated to the same value. 
+    //private void node_AfterCheck(object sender, TreeViewEventArgs e)
+    //{
+    //    // The code only executes if the user caused the checked state to change. 
+    //    if (e.Action != TreeViewAction.Unknown)
+    //    {
+    //        if (e.Node.Nodes.Count > 0)
+    //        {
+    //            /* Calls the CheckAllChildNodes method, passing in the current 
+    //            Checked value of the TreeNode whose checked state changed. */
+    //            this.CheckAllChildNodes(e.Node, e.Node.Checked);
+    //        }
+    //    }
+    //}
+}

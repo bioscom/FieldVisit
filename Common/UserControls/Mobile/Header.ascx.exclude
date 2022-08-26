@@ -1,0 +1,22 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Header.ascx.cs" Inherits="Common_UserControls_Mobile_Header" %>
+
+<div class="tm-header" id="header">
+
+    <span class="tm-primary">
+        <span class="tm-button tm-button-menu"><span class="tm-icon tm-icon-menu"></span></span>
+        <a href="<%= ResolveUrl("~/mobile.aspx") %>" class="tm-button tm-button-back"><span class="tm-icon tm-icon-back"></span></a>
+    </span>
+
+    <h1 class="tm-title"><%= Header %></h1>
+
+    <span class="tm-secondary">
+        <span class="tm-button tm-button-font-size">
+            <span class="tm-icon tm-icon-font-size"></span>
+            <span class="tm-icon tm-icon-font-size"></span>
+            <span class="tm-icon tm-arrow-down"></span>
+        </span>
+        <span class="tm-button tm-button-skinchooser">
+            <span class="tm-icon tm-icon-skinchooser"></span>
+        </span>
+    </span>
+</div>

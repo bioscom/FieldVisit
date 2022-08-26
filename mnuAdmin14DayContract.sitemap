@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  
+  <siteMapNode title="" description="">
+    
+    <siteMapNode title="Fourteen Day Contract" description="">
+      <siteMapNode url="~/App/Contract/Default.aspx" title="OP SUP 14 Day Contracts"  description="" />
+      <!--<siteMapNode url="~/App/Contract/listContracts.aspx" title="OP SUP 14 Day Contracts" description="" />-->
+      <siteMapNode url="~/App/Contract/Start14DayContract.aspx" title="Start 14 Day Contract"  description="" />
+    </siteMapNode>
+
+    <siteMapNode title="Data Setup" description="">
+      <siteMapNode url="~/App/Contract/Setup/KPIReporting.aspx" title="Set KPI Reporting Activities"  description="" />
+      <!--<siteMapNode url="~/App/Contract/Setup/KPIReporting.aspx" title="Assign Superintendent to Asset"  description="" />-->
+    </siteMapNode>
+
+  </siteMapNode>
+
+</siteMap>

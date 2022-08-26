@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SearchResultsService" CodeBehind="~/App_Code/QSFCommon/SearchResults.cs" %>

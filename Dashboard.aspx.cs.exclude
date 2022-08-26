@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class App_PDCC_Dashboard : aspnetPage
+{
+    readonly OpportunityCostHelper _opportunityCostHelper = new OpportunityCostHelper();
+    readonly Department _Department = new Department();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            //Summary: In case session expires, please relogin the user automatically.
+            if (string.IsNullOrEmpty(oSessnx.getOnlineUser.m_sUserName))
+            {
+                lblLoginUser.Text = System.Web.HttpContext.Current.User.Identity.Name;
+                lblLoginUser2.Text = System.Web.HttpContext.Current.User.Identity.Name;
+            }
+            else
+            {
+                lblLoginUser.Text = oSessnx.getOnlineUser.m_sFullName;
+                lblLoginUser2.Text = oSessnx.getOnlineUser.m_sFullName;
+            }
+
+            Chartting1.Init_Page(OpportunityCostHelper.iYear);
+            LoadGrid();
+        }
+    }
+
+    private void LoadGrid()
+    {
+        DataTable dt = _Department.dtGetPdccDeparments();
+
+        grdView.DataSource = dt;
+        grdView.DataBind();
+
+        LoadGridData();
+    }
+
+    private void LoadGridData()
+    {
+        try
+        {
+            foreach (GridViewRow grdRow in grdView.Rows)
+            {
+                Label lbDepartment = (Label)grdRow.FindControl("lbDepartment");
+                int iDeptId = int.Parse(lbDepartment.Attributes["IDDEPARTMENT"].ToString());
+
+                ASP.app_pdcc_usercontrol_charttingdata_ascx oCharttingData = (ASP.app_pdcc_usercontrol_charttingdata_ascx)grdRow.FindControl("CharttingData1");
+                oCharttingData.LoadDataByDepartment(OpportunityCostHelper.iYear, iDeptId);
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+    protected void grdView_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+
+    }
+    protected void grdView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+    }
+    protected void grdView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        
+    }
+}

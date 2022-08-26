@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
+    <siteMapNode url="" title="PD Costs Challenges"  description="">
+      <siteMapNode url="~/App/PDCC/OpportunityCostsChallenges.aspx" title="PD Cost Challenge"  description="" />
+      <siteMapNode url="~/App/PDCC/Create.aspx" title="Add PD Cost Challenge"  description="" />
+      <siteMapNode url="~/App/PDCC/iReport.aspx" title="Generate Report"  description="" />
+      <siteMapNode url="~/App/PDCC/cReport.aspx" title="PD Cost Performance Chart"  description="" />
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

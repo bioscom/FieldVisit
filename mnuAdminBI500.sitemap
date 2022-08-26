@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
+    <siteMapNode url="" title="Bright Ideas"  description="">
+      <!--<siteMapNode url="~/Default.aspx" title="Home Page"  description="" />-->
+      <siteMapNode url="~/App/BI500/AllBrightIdeas.aspx" title="Bright Ideas Register"  description="" />
+      <siteMapNode url="~/App/BI500/NewBizIntel.aspx" title="Bright Idea (Self)"  description="Raise bright ideas for self." />
+      <siteMapNode url="~/App/BI500/OnBehalf.aspx" title="Bright Idea (Onbehalf)"  description="Raise bright ideas for other staff." />
+      <siteMapNode url="~/App/BI500/MyBrightIdeas.aspx" title="My Bright Ideas"  description="" />
+      <siteMapNode url="~/App/BI500/ApprovalReview.aspx" title="Review/Approve Bright Ideas" description="" />
+
+      <siteMapNode url="~/App/BI500/Report/Default.aspx" title="View Report"  description="" />
+
+    </siteMapNode>
+    
+    <siteMapNode url="" title="Improvement Ideas"  description="">
+      <siteMapNode url="~/App/BI500/CostReductionIdea.aspx" title="Improvement Ideas Portal"  description="" />
+    </siteMapNode>
+    
+    <!--<siteMapNode title="User Management">
+      <siteMapNode url="~/App/BI500/UserManagement/ViewUsers.aspx" title="View Users"/>
+      <siteMapNode url="~/UserManagement.aspx" title="View Users"/>
+    </siteMapNode>-->
+
+    <siteMapNode title="Environment Setup">
+      <siteMapNode url="~/App/BI500/Setups.aspx" title="Business Organisation Structure"/>
+      <!--<siteMapNode url="~/App/BI500/BusinessUnitFocalPoint.aspx" title="Lean Focal Point"  description="" />-->
+      <siteMapNode url="~/App/BI500/BILeanReviwers.aspx" title="BI/Lean Reviewers"  description="" />
+      <siteMapNode url="~/App/BI500/CorporateReviewers.aspx" title="Corporate Reviewers"  description="" />
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

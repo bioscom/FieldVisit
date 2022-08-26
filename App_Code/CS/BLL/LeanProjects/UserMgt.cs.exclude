@@ -1,0 +1,1545 @@
+﻿using System;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.Common; using Oracle.ManagedDataAccess.Client;
+using System.Collections.Generic;
+using Microsoft.Security.Application;
+using System.Web;
+
+/// <summary>
+/// Summary description for UserMgt
+/// </summary>
+
+public class LeanappUsersHelper
+{
+    public LeanappUsersHelper()
+    {
+
+    }
+
+    public static string activeDirUser()
+    {
+        string sRet = "";
+        try
+        {
+            sRet = HttpContext.Current.User.Identity.Name;
+            int xPos = sRet.LastIndexOf("\\");
+            sRet = sRet.Substring(xPos + 1);
+            if (sRet.ToLower() == "bioscom")
+            {
+                sRet = "isaac.bejide-b";
+            }
+            sRet = sRet + emailClient.c_sShellMailExt;
+            sRet = sRet.ToLower();
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        return sRet;
+    }
+
+    public static string LoginIDNoDomain(string loginID)
+    {
+        if (loginID.IndexOf("\\") >= 0)
+        {
+            loginID = loginID.Substring(loginID.IndexOf("\\") + 1);
+        }
+        return loginID;
+    }
+
+    public void selectUsers(GridView grdView, DataTable dt, string SortExpression)
+    {
+        LoadGridViews LoadMe = new LoadGridViews();
+        LoadMe.LoadMyGridView(grdView, dt, SortExpression);
+    }
+
+    //public void SearchUser(GridView grdView, string SortExpression, string SearchCriteria)
+    //{
+    //    LoadGridViews LoadMe = new LoadGridViews();
+    //    LoadMe.LoadMyGridView(grdView, dtGetUserBySearch(Encoder.HtmlEncode(SearchCriteria.ToUpper())), SortExpression);
+    //}
+
+    //public static DataTable dtGetUserBySearch(string SearchCriteria)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.searchUser();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":SEARCHKEY";
+    //    param.Value = "%" + Encoder.HtmlEncode(SearchCriteria.ToUpper()) + "%";
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":sStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public DataTable dtGetUserBySearch(string SearchCriteria)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureFlareWaiver.searchUser();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":SEARCHKEY";
+    //    param.Value = "%" + Encoder.HtmlEncode(SearchCriteria) + "%";
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)UserRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static DataTable dtGetUsers()
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUsers();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    public DataTable dtGetUserByUserID(int iUserId)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureUserMgt.getUserByUserId();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":iUserId";
+        param.Value = iUserId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iStatus";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public DataTable dtGetUserByUserName(string sUserName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureUserMgt.getUserByUserName();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":sUserName";
+        param.Value = sUserName;
+        param.DbType = DbType.String;
+        param.Size = 500;
+        comm.Parameters.Add(param);
+
+        //param = comm.CreateParameter();
+        //param.ParameterName = ":iStatus";
+        //param.Value = (int)appUsersRoles.userStatus.activeUser;
+        //param.DbType = DbType.Int32;
+        //comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public DataTable dtGetUserByRole(int iRoleId)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureUserMgt.getUserByRoleId();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":ROLEID";
+        param.Value = iRoleId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public DataTable dtGetDeligatedUserByRole(int iRoleId)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.getDeligatedUserByRoleId();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":iRoleId";
+        param.Value = iRoleId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iStatus";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iDeligated";
+        param.Value = (int)appUsersRoles.eDeligation.Deligated;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public bool MakeDeligate(int iDeligated, int iUserId)
+    {
+        DataTable dt = new DataTable();
+
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.MakeDeligate();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":iDeligated";
+        param.Value = iDeligated;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iUserId";
+        param.Value = iUserId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        int result = -1;
+        try
+        {
+            result = GenericDataAccess.ExecuteNonQuery(comm);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return (result != -1);
+    }
+
+    public bool bRoutePendingRequestToNewDeligate(int iStatus, int iUserId, int iRoleId)
+    {
+        DataTable dt = new DataTable();
+
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.RouteRequestToNewDeligate();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":iStatus";
+        param.Value = iStatus;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iRoleId";
+        param.Value = iRoleId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iUserId";
+        param.Value = iUserId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        int result = -1;
+        try
+        {
+            result = GenericDataAccess.ExecuteNonQuery(comm);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return (result != -1);
+    }
+
+    public appUsers objGetUserByRole(int RoleId)
+    {
+        DataTable dt = dtGetUserByRole(RoleId);
+
+        appUsers thisUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            thisUser = new appUsers(dr);
+        }
+        return thisUser;
+    }
+
+    public appUsers objGetDeligatedUserByRole(int RoleId)
+    {
+        DataTable dt = dtGetDeligatedUserByRole(RoleId);
+
+        appUsers thisUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            thisUser = new appUsers(dr);
+        }
+        return thisUser;
+    }
+
+    public List<appUsers> lstGetUserByRole(int RoleId)
+    {
+        DataTable dt = dtGetUserByRole(RoleId);
+
+        List<appUsers> thisUser = new List<appUsers>(dt.Rows.Count);
+        foreach (DataRow dr in dt.Rows)
+        {
+            thisUser.Add(new appUsers(dr));
+        }
+        return thisUser;
+    }
+
+    public appUsers objGetUserByUserID(int UserID)
+    {
+        DataTable dt = dtGetUserByUserID(UserID);
+
+        appUsers thisUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            thisUser = new appUsers(dr);
+        }
+        return thisUser;
+    }
+
+    public static DataTable GetStaffFromCompleteStaffDetails(string lfName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.getUserFromIWH();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":FIRST_NAME";
+        param.Value = lfName;
+        param.DbType = DbType.String;
+        param.Size = 500;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":SURNAME";
+        param.Value = lfName;
+        param.DbType = DbType.String;
+        param.Size = 500;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static DataTable dtGetAppUser(string gidUserName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureUserMgt.getOnlineUser();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":UserName";
+        param.Value = gidUserName;
+        param.DbType = DbType.String;
+        param.Size = 200;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static DataTable dtGetAppUserByUserName(string UserName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureUserMgt.getUserByUserName();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":UserName";
+        param.Value = UserName;
+        param.DbType = DbType.String;
+        param.Size = 200;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetAppUser(string gidUserName)
+    {
+        DataTable dt = dtGetAppUser(gidUserName);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+
+    public static appUsers objGetAppUserByUserName(string UserName)
+    {
+        DataTable dt = dtGetAppUserByUserName(UserName);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+
+    //public static DataTable dtGetAppUserByName(string sName)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUserByName();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":sName";
+    //    param.Value = "%" + sName + "%";
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    public static appUsers objGetAppUserByName(string sName)
+    {
+        DataTable dt = dtGetAppUserByName(sName);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+
+    //public static List<appUsers> lstGetUsersByName(string sName)
+    //{
+    //    DataTable dt = dtGetAppUserByName(sName);
+    //    List<appUsers> result = new List<appUsers>(dt.Rows.Count);
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result.Add(new appUsers(dr));
+    //    }
+
+    //    return result;
+    //}
+
+    //public static bool CreateUserAccount(string sUserName, string sFullName, string sEmail, int iRole, string sRefInd, ref int iUserId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.CreateUserAccount();
+
+    //    iUserId = GetUserID();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":IDUSER";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":USERNAME";
+    //    param.Value = sUserName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":FULLNAME";
+    //    param.Value = sFullName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":ROLEID";
+    //    param.Value = iRole;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":REFIND";
+    //    param.Value = sRefInd;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    return (result != -1);
+    //}
+
+    //public static bool CreateUserAccount(string sUserName, string sFullName, string sEmail, int iRole, string sRefInd)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.CreateUserAccount();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":USERNAME";
+    //    param.Value = sUserName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":FULLNAME";
+    //    param.Value = sFullName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":ROLEID";
+    //    param.Value = iRole;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":REFIND";
+    //    param.Value = sRefInd;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    return (result != -1);
+    //}
+
+    //public static bool CreateUserAccountEx(string sUserName, string sFullName, string sEmail, int iRole, string sRefInd, string sPassword)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.CreateUserAccountEx();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":USERNAME";
+    //    param.Value = sUserName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":FULLNAME";
+    //    param.Value = sFullName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":ROLEID";
+    //    param.Value = iRole;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":REFIND";
+    //    param.Value = sRefInd;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = sPassword;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    return (result != -1);
+    //}
+
+    //public static bool CreateUserAccountEx(string sUserName, string sFullName, string sEmail, int iRole, string sRefInd, string sPassword, ref int iUserId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.CreateUserAccountEx();
+
+    //    iUserId = GetUserID();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":IDUSER";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":USERNAME";
+    //    param.Value = sUserName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":FULLNAME";
+    //    param.Value = sFullName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":ROLEID";
+    //    param.Value = iRole;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)UserRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":REFIND";
+    //    param.Value = sRefInd;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = sPassword;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    return (result != -1);
+    //}
+
+    private static int GetUserID()
+    {
+        int iUserId = 0;
+        try
+        {
+            DataTable dt = dtGetUserId();
+            iUserId = int.Parse(dt.Rows[0]["NEXTVAL"].ToString());
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+
+        return iUserId;
+    }
+
+    //TODO: There is work here ooooo.
+    private static DataTable dtGetUserId()
+    {
+        string sql = "SELECT FLARE_USERS_SEQ.NEXTVAL FROM DUAL";
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = sql;
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    /// TODO: There is work here ooooooo.....
+    public static appUsers UpdateUserAccountPswEx(string sEmail)
+    {
+        appUsers oappUsers = new appUsers();
+        //appUsersHelper oappUsersHelper = new appUsersHelper();
+
+        string NewPsw = Guid.NewGuid().ToString();
+
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.updateUserAccountPswEx();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":EMAIL";
+        param.Value = sEmail;
+        param.DbType = DbType.String;
+        param.Size = 500;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":PASSWORD";
+        param.Value = NewPsw;
+        param.DbType = DbType.String;
+        param.Size = 1000;
+        comm.Parameters.Add(param);
+
+        int result = -1;
+        try
+        {
+            result = GenericDataAccess.ExecuteNonQuery(comm);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        if (result != -1)
+        {
+            oappUsers = objGetUserByEmailAddress(sEmail);
+        }
+        return oappUsers;
+    }
+
+    //public static appUsers UpdateUserAccountPswEx(string sEmail)
+    //{
+    //    appUsers me = new appUsers();
+    //    string NewPsw = Guid.NewGuid().ToString();
+
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureUserMgt.updateUserAccountPswEx();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 500;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = NewPsw;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    if (result != -1)
+    //    {
+    //        me = objGetUserByEmailAddress(sEmail);
+    //    }
+    //    return me;
+    //}
+
+
+    public static DataTable dtGetUserByUserIdEx(string sUserName, string sPassword)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.getLoginUserAccountEx();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":USERNAME";
+        param.Value = sUserName;
+        param.DbType = DbType.String;
+        param.Size = 200;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":PASSWORD";
+        param.Value = sPassword;
+        param.DbType = DbType.String;
+        param.Size = 1000;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetUserByUserIdEx(string sUserName, string sPassword)
+    {
+        DataTable dt = dtGetUserByUserIdEx(sUserName, sPassword);
+
+        appUsers oappUsers = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            oappUsers = new appUsers(dr);
+        }
+        return oappUsers;
+    }
+
+    //public static appUsers objGetUserByUserIdEx(string sUserName, string sPassword)
+    //{
+    //    DataTable dt = dtGetUserByUserIdEx(sUserName, sPassword);
+
+    //    appUsers dpmisUser = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        dpmisUser = new appUsers(dr);
+    //    }
+    //    return dpmisUser;
+    //}
+
+    public static DataTable dtGetUserByGuidPswEx(string sPassword)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.getUserAccountByGuidPswEx();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":PASSWORD";
+        param.Value = sPassword;
+        param.DbType = DbType.String;
+        param.Size = 1000;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetUserByGuidPswEx(string sPassword)
+    {
+        DataTable dt = dtGetUserByGuidPswEx(sPassword);
+
+        appUsers oappUsers = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            oappUsers = new appUsers(dr);
+        }
+        return oappUsers;
+    }
+
+    public static bool ResetUserGuidAccountPswEx(string sPassword, string sEmail)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureFlareWaiver.updateUserAccountPswEx();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":EMAIL";
+        param.Value = sEmail;
+        param.DbType = DbType.String;
+        param.Size = 1000;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":PASSWORD";
+        param.Value = sPassword;
+        param.DbType = DbType.String;
+        param.Size = 1000;
+        comm.Parameters.Add(param);
+
+        int result = -1;
+        try
+        {
+            result = GenericDataAccess.ExecuteNonQuery(comm);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return (result != -1);
+    }
+
+    public static bool LoginToUserAccountEx(string sUserName, string sPassword)
+    {
+        bool found = false;
+
+        DataTable dt = dtGetUserByUserIdEx(sUserName, sPassword);
+        if (dt.Rows.Count > 0)
+        {
+            found = true;
+        }
+
+        return found;
+    }
+
+    //public static DataTable dtGetUserByEmailAddress(string sEmailAddress)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUserByEmailAddress();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":sEmail";
+    //    param.Value = sEmailAddress;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static appUsers objGetUserByEmailAddress(string sEmailAddress)
+    //{
+    //    DataTable dt = dtGetUserByEmailAddress(sEmailAddress);
+
+    //    appUsers result = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result = new appUsers(dr);
+    //    }
+    //    return result;
+    //}
+
+    public void GetUsersByRoleId(DropDownList ddlRole, appUsersRoles.userRole eRole)
+    {
+        ddlRole.Items.Add(new ListItem("Select " + appUsersRoles.userRoleDesc(eRole) + " to hand over requests", "-1"));
+        List<appUsers> oUsers = lstGetUserByRole((int)eRole);
+        foreach (appUsers oUser in oUsers)
+        {
+            ddlRole.Items.Add(new ListItem(oUser.m_sFullName, oUser.m_iUserId.ToString()));
+        }
+    }
+
+    //public static bool UpdateUser(int iUserId, int iRoleId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.UpdateUserAccount();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iUserId";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iRoleId";
+    //    param.Value = iRoleId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+
+    //    return (result != -1);
+    //}
+
+    //public static bool DeleteUser(int iUserId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.DeleteUserAccount();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iUserId";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.disabledMe;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+
+    //    return (result != -1);
+    //}
+
+    //public static DataTable dtGetApproversByRole(int iRoleId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getApproversByRole();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iRoleId";
+    //    param.Value = iRoleId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static List<appUsers> lstGetApproversByRole(int iRoleId)
+    //{
+    //    DataTable dt = dtGetApproversByRole(iRoleId);
+    //    List<appUsers> result = new List<appUsers>(dt.Rows.Count);
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result.Add(new appUsers(dr));
+    //    }
+
+    //    return result;
+    //}
+
+    //public static List<appUsers> lstGetUsers()
+    //{
+    //    DataTable dt = dtGetUsers();
+    //    List<appUsers> result = new List<appUsers>(dt.Rows.Count);
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result.Add(new appUsers(dr));
+    //    }
+
+    //    return result;
+    //}
+
+    //public List<appUsers> lstGetUsers()
+    //{
+    //    DataTable dt = dtGetUsers();
+
+    //    List<appUsers> thisUser = new List<appUsers>(dt.Rows.Count);
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        thisUser.Add(new appUsers(dr));
+    //    }
+    //    return thisUser;
+    //}
+
+
+    //===============================================================================
+
+
+
+    //public static DataTable dtGetUserByUserIdEx(string sUserName, string sPassword)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureUserMgt.getLoginUserAccountEx();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":USERNAME";
+    //    param.Value = sUserName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = sPassword;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+
+
+    //public static DataTable dtGetUserByGuidPswEx(string sPassword)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureUserMgt.getUserAccountByGuidPswEx();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = sPassword;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static appUsers objGetUserByGuidPswEx(string sPassword)
+    //{
+    //    DataTable dt = dtGetUserByGuidPswEx(sPassword);
+
+    //    appUsers dpmisUser = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        dpmisUser = new appUsers(dr);
+    //    }
+    //    return dpmisUser;
+    //}
+
+    //public static bool ResetUserGuidAccountPswEx(string sPassword, string sEmail)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureUserMgt.updateUserAccountPswEx();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmail;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":PASSWORD";
+    //    param.Value = sPassword;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    int result = -1;
+    //    try
+    //    {
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    return (result != -1);
+    //}
+
+    //public static bool LoginToUserAccountEx(string sUserName, string sPassword)
+    //{
+    //    bool found = false;
+
+    //    DataTable dt = dtGetUserByUserIdEx(sUserName, sPassword);
+    //    if (dt.Rows.Count > 0)
+    //    {
+    //        found = true;
+    //    }
+
+    //    return found;
+    //}
+
+    //public static bool editUserAccount(int iUserId, int iRole)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.updateUser();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":USERID";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":ROLEID";
+    //    param.Value = iRole;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    // result will represent the number of changed rows
+    //    int result = -1;
+    //    try
+    //    {
+    //        // execute the stored procedure
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    // result will be 1 in case of success
+    //    return (result != -1);
+    //}
+
+    //public static bool disableUserAccount(int iUserId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.disableUserAccount();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":USERID";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":STATUS";
+    //    param.Value = (int)appUsersRoles.userStatus.disabledMe;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    // result will represent the number of changed rows
+    //    int result = -1;
+    //    try
+    //    {
+    //        // execute the stored procedure
+    //        result = GenericDataAccess.ExecuteNonQuery(comm);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //    }
+    //    // result will be 1 in case of success
+    //    return (result != -1);
+    //}
+
+    //public static DataTable dtGetUserByUserId(int iUserId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUserByUserId();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iUserId";
+    //    param.Value = iUserId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static appUsers objGetUserByUserId(int iUserId)
+    //{
+    //    DataTable dt = dtGetUserByUserId(iUserId);
+
+    //    appUsers dpmisUser = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        dpmisUser = new appUsers(dr);
+    //    }
+    //    return dpmisUser;
+    //}
+
+    //public static DataTable dtGetUsersByRole(int iRoleId)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUsersByRole();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":iRoleId";
+    //    param.Value = iRoleId;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static DataTable dtGetUsersByName(string sName)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureLean.getUsersByName();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":sStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":sName";
+    //    param.Value = sName;
+    //    param.DbType = DbType.String;
+    //    param.Size = 200;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static DataTable dtGetUserByEmailAddress(string sEmailAddress)
+    //{
+    //    OracleCommand comm = GenericDataAccess.CreateCommand();
+    //    comm.CommandText = StoredProcedureUserMgt.getUserByEmailAddress();
+
+    //    OracleParameter param = comm.CreateParameter();
+    //    param.ParameterName = ":iStatus";
+    //    param.Value = (int)appUsersRoles.userStatus.activeUser;
+    //    param.DbType = DbType.Int32;
+    //    comm.Parameters.Add(param);
+
+    //    param = comm.CreateParameter();
+    //    param.ParameterName = ":EMAIL";
+    //    param.Value = sEmailAddress;
+    //    param.DbType = DbType.String;
+    //    param.Size = 1000;
+    //    comm.Parameters.Add(param);
+
+    //    return GenericDataAccess.ExecuteSelectCommand(comm);
+    //}
+
+    //public static appUsers objGetUserByEmailAddress(string sEmailAddress)
+    //{
+    //    DataTable dt = dtGetUserByEmailAddress(sEmailAddress);
+
+    //    appUsers result = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result = new appUsers(dr);
+    //    }
+    //    return result;
+    //}
+
+    //public static appUsers objGetUserByRole(int iRoleId)
+    //{
+    //    DataTable dt = dtGetUsersByRole(iRoleId);
+
+    //    appUsers result = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        result = new appUsers(dr);
+    //    }
+    //    return result;
+    //}
+
+    public static List<appUsers> lstGetOnlineUserByRole(int iRoleId)
+    {
+        DataTable dt = dtGetUsersByRole(iRoleId);
+        List<appUsers> result = new List<appUsers>(dt.Rows.Count);
+        foreach (DataRow dr in dt.Rows)
+        {
+            result.Add(new appUsers(dr));
+        }
+
+        return result;
+    }
+
+    public static List<appUsers> lstGetOnlineUsers()
+    {
+        DataTable dt = dtGetUsers();
+        List<appUsers> result = new List<appUsers>(dt.Rows.Count);
+        foreach (DataRow dr in dt.Rows)
+        {
+            result.Add(new appUsers(dr));
+        }
+
+        return result;
+    }
+
+    //public static appUsers objGetAppUser(string gidUserName)
+    //{
+    //    DataTable dt = dtGetAppUser(gidUserName);
+
+    //    appUsers currentUser = new appUsers();
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        currentUser = new appUsers(dr);
+    //    }
+    //    return currentUser;
+    //}
+
+    public static DataTable dtGetOnlineUserByUserId(int iUserId)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureLean.getUserByUserId();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":iUserId";
+        param.Value = iUserId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":iStatus";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetOnlineUserByUserId(int iUserId)
+    {
+        DataTable dt = dtGetOnlineUserByUserId(iUserId);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+
+    public static DataTable dtGetOnlineUserByRoleId(int iRoleId)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureLean.getUserByRoleId();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":ROLEID";
+        param.Value = iRoleId;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        param = comm.CreateParameter();
+        param.ParameterName = ":STATUS";
+        param.Value = (int)appUsersRoles.userStatus.activeUser;
+        param.DbType = DbType.Int32;
+        comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetOnlineUserByRoleId(int iRoleId)
+    {
+        DataTable dt = dtGetOnlineUserByRoleId(iRoleId);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+
+    public static DataTable dtGetOnlineUserByUserName(string sUserName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedureLean.getUserByUserName();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":UserName";
+        param.Value = sUserName;
+        param.DbType = DbType.String;
+        param.Size = 200;
+        comm.Parameters.Add(param);
+
+        //param = comm.CreateParameter();
+        //param.ParameterName = ":STATUS";
+        //param.Value = (int)appUsersRoles.userStatus.activeUser;
+        //param.DbType = DbType.Int32;
+        //comm.Parameters.Add(param);
+
+        return GenericDataAccess.ExecuteSelectCommand(comm);
+    }
+
+    public static appUsers objGetOnlineUserByUserName(string sUserName)
+    {
+        DataTable dt = dtGetOnlineUserByUserName(sUserName);
+
+        appUsers currentUser = new appUsers();
+        foreach (DataRow dr in dt.Rows)
+        {
+            currentUser = new appUsers(dr);
+        }
+        return currentUser;
+    }
+}

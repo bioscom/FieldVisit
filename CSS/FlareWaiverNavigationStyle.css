@@ -1,0 +1,156 @@
+﻿/*Menu */
+
+#menu 
+{
+	top: 3em;
+	width: 100%;
+	height: 35px;
+	margin-top:0.2em;
+	padding: 0;
+	background: #27343C;
+	/*background: #565F68 url(images/img.jpg) no-repeat left top;*/
+}
+
+#menu ul {
+	margin: 0;
+	padding-left: 1em;
+	list-style: none;
+	line-height: normal;
+	border-bottom: 1px solid Black;
+	height: 35px;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#menu li {
+	float: left;
+}
+
+#menu a {
+	display: block;
+	margin-top: 5px;
+	margin-right: 3px;
+	padding: 7px 10px 7px 10px;
+	background: #FFFFFF;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	border: none;
+}
+
+#menu a:hover, #menu .current_page_item a {
+}
+
+#menu a:hover {
+	text-decoration: underline;
+	background-color:#F93D00;
+	color:White;
+}
+
+#menu a:select {
+	text-decoration: underline;
+	background-color:#F93D00;
+	color:White;
+}
+
+
+
+
+
+
+/* Horizontal Navigation Bar*/
+
+ /*There is no required CSS for this plugin to work properly
+ but here is what is being used to style this demo*/
+.horizontal-nav {
+  background: #efefef;
+  border-radius: 6px;
+}
+.horizontal-nav ul {
+  background: #128F9A;
+  float: left;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #0e7079;
+}
+.horizontal-nav ul li {
+  float: left;
+  border-left: 1px solid #0e7079;
+}
+.horizontal-nav ul li:first-child {
+  border-left: 0 none;
+}
+.horizontal-nav ul li a {
+  display: block;
+  padding: 5px 20px;
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255, 0.25);
+  border-left: 1px solid rgba(255,255,255, 0.25);
+}
+.horizontal-nav ul li:first-child a {
+  border-left: 0 none;
+}
+.horizontal-nav ul li a:hover {
+  background: #12808a;
+}
+.horizontal-nav ul li:first-child a {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.horizontal-nav ul li:last-child a {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+
+/* New CSS for ASP:Menu control*/
+
+
+.level1
+{
+    color: White;
+    background-color: #f3ce3b;/*#FFCC66 #C2C5C8 #FFFFCC*/
+    font-variant: small-caps;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+	font: Garamond;
+}
+
+.level2
+{
+    color: black;
+    font-size: 13px;
+    background-color: #FFFFCC;
+}
+
+.level3
+{
+    color: black;
+    background-color: #FFFFCC;
+    font-size: small;
+}
+
+.hoverstylestatic
+{
+    background-color:#C2C5C8; 
+    Color:Black;
+    text-decoration:underline;
+}
+
+.hoverstyledynamic
+{
+    background-color: #C2C5C8; 
+    Color:Black;
+    text-decoration:underline;
+}
+
+.level4
+{
+    background-color: Gray !important;
+    color: White !important;
+    font-size: small;
+} 
+

@@ -1,0 +1,15 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MainHeader.ascx.cs" Inherits="Common_UserControls_MainHeader" %>
+
+<div id="header">
+	<div id="logo">
+		<a href="<%= ResolveUrl( "~/" ) %>" title="Telerik UI for ASP.NET AJAX" class="telerik-logo">
+			<asp:Image runat="server" ID="TelerikLogoImage" ImageUrl="~/Common/Images/telerik-logo.png" AlternateText="Telerik UI for ASP.NET AJAX"/>
+		</a>
+		<a href="http://www.telerik.com/support/whats-new/aspnet-ajax/release-history" class="current-version"><%=ProductVersion%></a>
+	</div>
+	<div class="nav-buttons">
+		<a id="about" href="http://www.telerik.com/products/aspnet-ajax.aspx" class="btn">About</a>
+		<a id="pricing" href="http://www.telerik.com/purchase/individual/aspnet-ajax.aspx" class="btn">Pricing</a>
+		<a id="get-ajax" href="http://www.telerik.com/products/aspnet-ajax/download.aspx" class="btn btn-primary">Try now</a>
+	</div>
+</div>

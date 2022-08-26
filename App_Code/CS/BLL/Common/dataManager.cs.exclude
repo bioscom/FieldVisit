@@ -1,0 +1,396 @@
+﻿using System;
+using System.Data;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.IO;
+using Microsoft.VisualBasic;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+
+public class dataManager
+{
+    kpiAccess okpiAccess = new kpiAccess();
+    corporatePriorityAccess oCorporatePriorityAccess = new corporatePriorityAccess();
+    kpiHeaderAccess okpiHeaderAccess = new kpiHeaderAccess();
+
+    public const short c_dbDefaultNumb = 0;
+    //private bool bDisposed = false;    //' Field to handle multiple calls to Dispose gracefully.        
+
+    //public const string c_dbDefaultText = "N=N?";
+    //public const string c_sItemSpliter = "__";
+    //public const byte c_xItemSplitex = 3;
+
+    public struct dbItemErrorList
+    {
+        public string sErrorList; //Errors Found
+        public int iItems; //No of Items found
+    }
+
+    private struct dbReMapItem
+    {
+        public string sItem;
+        public long lItem;
+    }
+
+    private List<dbReMapItem> getDbMasterData(List<object> MyList)
+    {
+        List<corporatePriority> priorities = oCorporatePriorityAccess.lstGetCorporatePriority();
+        List<dbReMapItem> oRet = new List<dbReMapItem>();
+        foreach (corporatePriority priority in priorities)
+        {
+            dbReMapItem eRet = new dbReMapItem();
+            eRet.lItem = priority.priorityId;
+            eRet.sItem = priority.priority;
+            oRet.Add(eRet);
+        }
+        return oRet;
+    }
+
+    private bool dataIsInvalid(object oData)
+    {
+        bool bRet = true;
+        try
+        {
+            if (oData != null)
+            {
+                if (oData.ToString().Trim() != "")
+                {
+                    bRet = false;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return bRet;
+    }
+
+    private bool isNotDbMasterData(List<string> oList, string sDatax)
+    {
+        bool bRet = true;
+        try
+        {
+            foreach (string xoList in oList)
+            {
+                if (xoList.Trim().ToUpper() == sDatax.Trim().ToUpper())
+                {
+                    bRet = false;
+                    break;
+                }
+            }
+            //if (oList.Exists(sFind => oList.Contains(sFind.ToUpper() = sDatax.ToUpper())))
+            //{
+            //    bRet = false;
+            //}
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return bRet;
+    }
+
+    private long getDbMasterId(List<dbReMapItem> oList, string sDatax)
+    {
+        long lRet = 0;
+        try
+        {
+            var isaac = oList.ToArray().Where(pac => pac.sItem == sDatax).FirstOrDefault();
+            lRet = isaac.lItem;
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return lRet;
+    }
+
+    public static string modifyDbStringEx(object oData)
+    {
+        string sRet = "";
+        try
+        {
+            if (oData != DBNull.Value)
+            {
+                sRet = oData.ToString();
+            }
+
+            if (sRet.Length == 0) sRet = "";
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return sRet;
+    }
+
+    public static string modifyDbStringEx(Object oData, string sDefault)
+    {
+        string sRet = sDefault;
+        try
+        {
+            if (oData != DBNull.Value)
+            {
+                if (oData != null)
+                {
+                    sRet = (String)oData;
+                }
+            }
+            if (sRet.Length == 0) sRet = sDefault;
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return sRet;
+    }
+
+    public static Nullable<Single> modifyXlsNumber(object oData)
+    {
+        Nullable<Single> gRet = null;
+        try
+        {
+            if (oData != DBNull.Value)
+            {
+                if (oData != null)
+                {
+                    if (Information.IsNumeric(oData))
+                    {
+                        gRet = Single.Parse(oData.ToString());
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return gRet;
+    }
+
+    public static bool testXlsNumberForNumeric(object oData)
+    {
+        bool gRet = true;
+        try
+        {
+            if (oData != DBNull.Value)
+            {
+                if (oData != null)
+                {
+                    if (!Information.IsNumeric(oData))
+                    {
+                        gRet = false;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return gRet;
+    }
+
+    public dbItemErrorList verifyOpexBulkLoad(string sFilePath, string sErrFile, string sErrorList)
+    {
+        dbItemErrorList myErrors = new dbItemErrorList();
+        int iRet = 0;
+        try
+        {
+            System.IO.FileInfo oExcelFile = new System.IO.FileInfo(sFilePath);
+            System.IO.StreamWriter oSw;
+            oSw = System.IO.File.AppendText(sErrFile);
+
+            ExcelPackage oPackage = new ExcelPackage(oExcelFile);
+            ExcelWorksheet oWs = oPackage.Workbook.Worksheets[1];
+            List<string> oError = new List<String>();
+
+            //List<string> oRetCorp = new List<string>();
+            //List<string> oRetHeader = new List<string>();
+
+            List<string> oCorpPriorityId = new List<string>();
+            List<corporatePriority> priorities = oCorporatePriorityAccess.lstGetCorporatePriority();
+            foreach (corporatePriority priority in priorities)
+            {
+                oCorpPriorityId.Add(priority.priority);
+            }
+            //oCorpPriorityId = oRetCorp;
+
+
+
+            List<string> oKpiHeaderId = new List<string>();
+            List<kpiHeader> headers = okpiHeaderAccess.lstGetKpiHeader();
+            foreach (kpiHeader header in headers)
+            {
+                oKpiHeaderId.Add(header.sKpiHeader);
+            }
+            //oKpiHeaderId = oRetHeader;
+
+            for (int xRow = 3; xRow <= oWs.Dimension.End.Row; xRow++)
+            {
+                iRet = iRet + 1;
+                try
+                {
+                    oError.Clear();
+
+                    //Corporate Priority
+                    if (dataIsInvalid(oWs.Cells[xRow, 1].Value))
+                    {
+                        oError.Add("Corporate Priority is Blank");
+                    }
+                    else
+                    {
+                        if (isNotDbMasterData(oCorpPriorityId, oWs.Cells[xRow, 1].Value.ToString()))
+                        {
+                            oError.Add("Corporate Priority '" + oWs.Cells[xRow, 1].Value.ToString() + "' does NOT exist in Database");
+                        }
+                    }
+
+                    //KPI Header
+                    if (dataIsInvalid(oWs.Cells[xRow, 2].Value))
+                    {
+                        oError.Add("KPI Header is Blank");
+                    }
+                    else
+                    {
+                        if (isNotDbMasterData(oKpiHeaderId, oWs.Cells[xRow, 2].Value.ToString()))
+                        {
+                            oError.Add("KPI Header '" + oWs.Cells[xRow, 2].Value.ToString() + "' does NOT exist in Database");
+                        }
+                    }
+                    if (dataIsInvalid(oWs.Cells[xRow, 3].Value)) { oError.Add("Key Performance Index is Blank"); }
+                    if (dataIsInvalid(oWs.Cells[xRow, 4].Value)) { oError.Add("Units is Blank"); }
+
+                    //Check if the data in each of the OSW and DW Target Cells are Numeric
+                    if (testXlsNumberForNumeric(oWs.Cells[xRow, 5].Value) != true) { oError.Add("BP Target OSW  value is Invalid!!!"); }
+                    if (testXlsNumberForNumeric(oWs.Cells[xRow, 6].Value) != true) { oError.Add("BP Target DW value is Invalid!!!"); }
+
+                    if (oError.Count > 0)
+                    {
+                        sErrorList = sErrorList + xRow.ToString() + "_";
+                        oSw.WriteLine("Error in Line " + xRow.ToString());
+
+                        foreach (string sItem in oError)
+                        {
+                            oSw.WriteLine("# :" + sItem);
+                        }
+
+                        oSw.WriteLine("**************Abort Error Line " + (xRow + 1));
+                        oSw.WriteLine("");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    appMonitor.logAppExceptions(ex);
+                    System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+                }
+            }
+
+            if (sErrorList == "!") sErrorList = "";
+
+            myErrors.iItems = iRet;
+            myErrors.sErrorList = sErrorList;
+
+            oSw.Flush();
+            oSw.Close();
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return myErrors;
+    }
+
+    public int saveBulkLoad(string sFilePath)
+    {
+        int iRet = 0; long xUpperBound; long lKpiHeaderId = 0; string sKpiHeaderId; string sCorpPriorityId; int iLevel = 0;
+        string sPerformanceIndex = ""; string sUnit = ""; Nullable<Single> sBPTargetOsw; Nullable<Single> sBPTargetDw;
+
+        try
+        {
+            FileInfo oExcelFile = new FileInfo(sFilePath);
+            ExcelPackage oPackage = new ExcelPackage(oExcelFile);
+            ExcelWorksheet oWs = oPackage.Workbook.Worksheets[1];
+
+            List<dbReMapItem> oRet = new List<dbReMapItem>();
+
+            List<dbReMapItem> oCorpPriorityId = new List<dbReMapItem>();
+            List<corporatePriority> priorities = oCorporatePriorityAccess.lstGetCorporatePriority();
+            foreach (corporatePriority priority in priorities)
+            {
+                dbReMapItem eRet = new dbReMapItem();
+                eRet.lItem = priority.priorityId;
+                eRet.sItem = priority.priority;
+                oRet.Add(eRet);
+            }
+            oCorpPriorityId = oRet;
+
+            oRet.Clear();
+
+            List<dbReMapItem> oKpiHeaderId = new List<dbReMapItem>();
+            List<kpiHeader> headers = okpiHeaderAccess.lstGetKpiHeader();
+            foreach (kpiHeader header in headers)
+            {
+                dbReMapItem eRet = new dbReMapItem();
+                eRet.lItem = header.iKpiHeaderId;
+                eRet.sItem = header.sKpiHeader;
+                oRet.Add(eRet);
+            }
+            oKpiHeaderId = oRet;
+
+            DataTable dt = new DataTable();
+            //dt = corporatePriorityAccess.dtGetCorporatePriorities();
+            dt = okpiHeaderAccess.dtGetKpiHeaders();
+            for (int xRow = 3; xRow <= oWs.Dimension.End.Row + 1; xRow++)
+            {
+                sCorpPriorityId = modifyDbStringEx(oWs.Cells[xRow, 1].Value, "");
+                sKpiHeaderId = modifyDbStringEx(oWs.Cells[xRow, 2].Value, "");
+                //if ((sCorpPriorityId.Length > 0) && (sKpiHeaderId.Length > 0))
+                if (sKpiHeaderId.Length > 0)
+                {
+                    DataRow[] oJvRow = null;
+                    lKpiHeaderId = getDbMasterId(oKpiHeaderId, sKpiHeaderId);
+                    //lCorpPriorityId = getDbMasterId(oCorpPriorityId, sCorpPriorityId);
+                    //oJvRow = dt.Select("CORPORATE_PRIORITY_PRIORITYID=" + lCorpPriorityId);
+                    oJvRow = dt.Select("KPI_HEADER_ID=" + lKpiHeaderId);
+                    if (oJvRow != null)
+                    {
+                        xUpperBound = oJvRow.GetUpperBound(0);
+                        if (xUpperBound >= 0)
+                        {
+                            if (oJvRow[xUpperBound] != null)
+                            {
+                                sPerformanceIndex = modifyDbStringEx(oWs.Cells[xRow, 3].Value.ToString());
+                                sUnit = modifyDbStringEx(oWs.Cells[xRow, 4].Value.ToString());
+                                sBPTargetOsw = modifyXlsNumber(oWs.Cells[xRow, 5].Value);
+                                sBPTargetDw = modifyXlsNumber(oWs.Cells[xRow, 6].Value);
+                                iLevel = int.Parse(modifyDbStringEx(oWs.Cells[xRow, 7].Value.ToString()));
+
+                                if (okpiAccess.insertKpiTargets(lKpiHeaderId, sPerformanceIndex, sUnit, sBPTargetOsw, sBPTargetDw, iLevel))
+                                {
+                                    iRet = iRet + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return iRet;
+    }
+}

@@ -1,0 +1,60 @@
+﻿using System;
+using System.Web.UI.WebControls;
+
+public partial class ChangeRole : System.Web.UI.Page
+{
+    appUsersHelper oappUsersHelper = new appUsersHelper();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            addRoleToDropDown(appUserRolesFlrWaiver.userRole.Administrator);
+            addRoleToDropDown(appUserRolesFlrWaiver.userRole.Initiator);
+            addRoleToDropDown(appUserRolesFlrWaiver.userRole.LineManager);
+            addRoleToDropDown(appUserRolesFlrWaiver.userRole.ProductionServicesManager);
+            addRoleToDropDown(appUserRolesFlrWaiver.userRole.GMProduction);
+
+            if (Request.QueryString["iUserId"] != null)
+            {
+                int iUserId = int.Parse(Request.QueryString["iUserId"].ToString());
+                appUsers oAppUser = oappUsersHelper.objGetUserByUserID(iUserId);
+                lblFullName.Text = oAppUser.m_sFullName;
+                userRoleDropDownList.SelectedValue = oAppUser.m_iRoleIdFlr.ToString();
+            }
+        }
+    }
+
+    private void addRoleToDropDown(appUserRolesFlrWaiver.userRole eRole)
+    {
+        try
+        {
+            ListItem oItem = new ListItem();
+            oItem.Text = appUserRolesFlrWaiver.userRoleDesc(eRole);
+            oItem.Value = ((int)eRole).ToString();
+            userRoleDropDownList.Items.Add(oItem);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    protected void saveButton_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["iUserId"] != null)
+        {
+            int iUserId = int.Parse(Request.QueryString["iUserId"].ToString());
+            appUsers oAppUser = oappUsersHelper.objGetUserByUserID(iUserId);
+
+            bool bRet = appUsersHelper.UpdateUser(iUserId, int.Parse(userRoleDropDownList.SelectedValue));
+            if (bRet)
+            {
+                Response.Redirect("~/App/FlareWaiver/UsersManagement/ViewUsers.aspx");
+            }
+            else
+            {
+                ajaxWebExtension.showJscriptAlert(Page, this, "Profile change was not successful, try again later!!!");
+            }
+        }
+    }
+}

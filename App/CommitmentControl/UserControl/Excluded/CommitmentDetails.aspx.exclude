@@ -1,0 +1,357 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CommitmentDetails.aspx.cs" Inherits="App_CommitmentControl_CommitmentDetails" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript">
+        function CloseAndRebind(args) {
+            GetRadWindow().BrowserWindow.refreshGrid(args);
+            GetRadWindow().close();
+        }
+
+        function GetRadWindow() {
+            var oWindow = null;
+            if (window.radWindow) oWindow = window.radWindow; //Will work in Moz in all cases, including clasic dialog
+            else if (window.frameElement.radWindow) oWindow = window.frameElement.radWindow; //IE (and Moz as well)
+
+            return oWindow;
+        }
+
+        function CancelEdit() {
+            GetRadWindow().close();
+        }
+    </script>
+    <link type="text/css" href="../../CSS/BongaCCStyleSheet.css" rel="stylesheet" media="screen" />
+    <style type="text/css">
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+        .RadInput_Default {
+            font: 12px "segoe ui",arial,sans-serif
+        }
+
+        .RadInput {
+            vertical-align: middle
+        }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+            .RadInput .riTextBox {
+                height: 17px
+            }
+
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager ID="Radscriptmanager1" runat="server"></telerik:RadScriptManager>
+        <table class="tMainBorder">
+            <tr>
+                <td>
+                    Detailed Description:<asp:RequiredFieldValidator ID="rfvEmployeeCode" ValidationGroup="Update" runat="server"
+                    ControlToValidate="txtActivity" ErrorMessage="Please Enter Activity Description"
+                    ToolTip="Please Enter Activity Description" SetFocusOnError="true" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtActivity" runat="server" Text='<%# Eval("DESCRIPTION") %>' TextMode="MultiLine" Width="450px" Height="120px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Quantity:<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="Update" runat="server"
+                    ControlToValidate="txtQty" ErrorMessage="Please Enter Quantity"
+                    ToolTip="Please Enter Quantity" SetFocusOnError="true" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </td>
+
+                <td>
+                    <%--<asp:TextBox ID="txtQty" Width="100px" runat="server" Text='<%# Eval("QUANTITY") %>'></asp:TextBox>--%>
+                    <telerik:RadNumericTextBox ID="txtQty" runat="server" DbValueFactor="1" Font-Size="12px"
+                        NumberFormat-DecimalDigits="2" Type="Number" Width="150px" LabelWidth="">
+                        <NegativeStyle Resize="None" />
+                        <EmptyMessageStyle Resize="None" />
+                        <ReadOnlyStyle Resize="None" />
+                        <FocusedStyle Resize="None" />
+                        <DisabledStyle Resize="None" />
+                        <InvalidStyle Resize="None" />
+                        <HoveredStyle Resize="None" />
+                        <EnabledStyle Resize="None" />
+                    </telerik:RadNumericTextBox>
+
+                    <%--<asp:TextBox ID="txtRate" Width="100px" runat="server" Text='<%# Eval("RATE") %>'></asp:TextBox>--%>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>Rate:<asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="Update" runat="server"
+                    ControlToValidate="txtRate" ErrorMessage="Please Enter Amount"
+                    ToolTip="Please Enter Amount" SetFocusOnError="true" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </td>
+
+                <td>
+                    <telerik:RadNumericTextBox ID="txtRate" runat="server" DbValueFactor="1" Font-Size="12px"
+                        NumberFormat-DecimalDigits="2" Type="Number" Width="150px" LabelWidth="">
+                        <NegativeStyle Resize="None" />
+                        <EmptyMessageStyle Resize="None" />
+                        <ReadOnlyStyle Resize="None" />
+                        <FocusedStyle Resize="None" />
+                        <DisabledStyle Resize="None" />
+                        <InvalidStyle Resize="None" />
+                        <HoveredStyle Resize="None" />
+                        <EnabledStyle Resize="None" />
+                    </telerik:RadNumericTextBox>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+
+                <td>
+                        <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" Width="100px" />
+
+                </td>
+
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

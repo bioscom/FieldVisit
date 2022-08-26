@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
+    <siteMapNode url="" title="PD Costs Challenges"  description="">
+      <siteMapNode url="~/App/PDCC/OpportunityCostsChallenges.aspx" title="PD Cost Challenge"  description="" />
+      <siteMapNode url="~/App/PDCC/Create.aspx" title="Add PD Cost Challenge"  description="" />
+      <siteMapNode url="~/App/PDCC/iReport.aspx" title="Generate Report"  description="" />
+      <siteMapNode url="~/App/PDCC/OpportunityCostsChallengesAuditTrail.aspx" title="Audit Trail"  description="" />
+    </siteMapNode>
+
+    <siteMapNode url="" title="Costs Reduction Summary"  description="">
+      <siteMapNode url="~/App/PDCC/ThreePartMonthlySumm.aspx" title="PD Overall Monthly Savings"  description="" />
+      <siteMapNode url="~/App/PDCC/PDOverAllSavings.aspx" title="PD Overall Savings"  description="" />
+      <siteMapNode url="~/App/PDCC/PDSummaryCostReductionList.aspx" title="Cost Reduction Report"  description="" />
+      
+      <siteMapNode url="~/App/PDCC/PDSummaryCostReduction.aspx" title="3 Parts Opportunities"  description="" />
+      <siteMapNode url="~/App/PDCC/PartsOpportunities.aspx" title="3 Parts Opportunities Report"  description="" />
+    </siteMapNode>
+
+    <siteMapNode title="User Management">
+      <siteMapNode url="~/App/PDCC/ViewUsers.aspx" title="Users List"/>
+      <siteMapNode url="~/App/PDCC/AssignDepartment.aspx" title="Map Focal Point to Asset"/>
+      <!--<siteMapNode url="~/App/Contract/UserManagement/AddC4CUsers.aspx" title="Add C4C User"/>-->
+    </siteMapNode>    
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsLeanProject" targetNamespace="http://tempuri.org/dsLeanProject.xsd" xmlns:mstns="http://tempuri.org/dsLeanProject.xsd" xmlns="http://tempuri.org/dsLeanProject.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProjectCharterTableAdapter" GeneratorDataComponentClassName="ProjectCharterTableAdapter" Name="ProjectCharter" UserDataComponentName="ProjectCharterTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        LEAN_PROJECTS.IDPROJECT, LEAN_PROJECTS.PROJECTCODE, LEAN_PROJECTS.TITLE, LEAN_PROJECTS.YYEAR, LEAN_PROJTYPE.IDTYPE, 
+                         LEAN_PROJTYPE.PROJTYPE, COMMON_DEPARTMENT.IDDEPARTMENT, COMMON_DEPARTMENT.DEPARTMENT, CPDMS_FUNCTIONS.FUNCTIONID, 
+                         CPDMS_FUNCTIONS."FUNCTION", LEAN_PROJECTS.FOCALPOINTID, SPONSOR.USERID, SPONSOR.FULLNAME, SPONSOR.EMAIL, 
+                         MANAGER.USERID AS MANAGERUSERID, MANAGER.FULLNAME AS MANAGERFULLNAME, MANAGER.EMAIL AS MANAGEREMAIL, 
+                         CHAMPION.USERID AS CHAMPIONUSERID, CHAMPION.FULLNAME AS CHAMPIONFULLNAME, CHAMPION.EMAIL AS CHAMPIONEMAIL, 
+                         COACH.USERID AS COACHUSERID, COACH.FULLNAME AS COACHFULLNAME, COACH.EMAIL AS COACHEMAIL, LEAN_PROJECTS.OPPORTUNITY, 
+                         LEAN_PROJECTS.BUZCASE, LEAN_PROJECTS.GOALS, LEAN_PROJECTS.INSCOPE, LEAN_PROJECTS.OUTSCOPE, LEAN_PROJECTS.POTENTIALBLOCKERS, 
+                         LEAN_PROJECTS.COMMENTS, LEAN_PROJECTS.CTREDUCTION, LEAN_PROJECTS.COSTREDUCTION, LEAN_PROJECTS.PRODUCTIONBARREL, 
+                         LEAN_PROJECTS.NUMBERRS, LEAN_PROJECTS.BENEFITS, LEAN_PROJECTS.POTENTIALBENFTCOMMENTS, LEAN_PROJECTS.IDENTIFYSD, 
+                         LEAN_PROJECTS.IDENTIFYED, LEAN_PROJECTS.ELIMINATESD, LEAN_PROJECTS.ELIMINATEED, LEAN_PROJECTS.SUSTAINSD, 
+                         LEAN_PROJECTS.SUSTAINED
+FROM            LEAN_PROJTYPE, COMMON_DEPARTMENT, CPDMS_FUNCTIONS, LEAN_PROJECTS LEFT OUTER JOIN
+                         LEAN_USERMGT SPONSOR ON SPONSOR.USERID = LEAN_PROJECTS.SPONSORID  LEFT OUTER JOIN
+                         LEAN_USERMGT CHAMPION ON CHAMPION.USERID = LEAN_PROJECTS.CHAMPIONID  LEFT OUTER JOIN
+                         LEAN_USERMGT MANAGER ON MANAGER.USERID = LEAN_PROJECTS.MANAGERID  LEFT OUTER JOIN
+                         LEAN_USERMGT COACH ON COACH.USERID = LEAN_PROJECTS.COACHID 
+WHERE        LEAN_PROJTYPE.IDTYPE = LEAN_PROJECTS.IDTYPE AND COMMON_DEPARTMENT.IDDEPARTMENT = LEAN_PROJECTS.IDDEPARTMENT AND 
+                         CPDMS_FUNCTIONS.FUNCTIONID = LEAN_PROJECTS.FUNCTIONID
+ORDER BY LEAN_PROJECTS.TITLE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDPROJECT" DataSetColumn="IDPROJECT" />
+              <Mapping SourceColumn="PROJECTCODE" DataSetColumn="PROJECTCODE" />
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+              <Mapping SourceColumn="YYEAR" DataSetColumn="YYEAR" />
+              <Mapping SourceColumn="IDTYPE" DataSetColumn="IDTYPE" />
+              <Mapping SourceColumn="PROJTYPE" DataSetColumn="PROJTYPE" />
+              <Mapping SourceColumn="IDDEPARTMENT" DataSetColumn="IDDEPARTMENT" />
+              <Mapping SourceColumn="DEPARTMENT" DataSetColumn="DEPARTMENT" />
+              <Mapping SourceColumn="FUNCTIONID" DataSetColumn="FUNCTIONID" />
+              <Mapping SourceColumn="FUNCTION" DataSetColumn="FUNCTION" />
+              <Mapping SourceColumn="FOCALPOINTID" DataSetColumn="FOCALPOINTID" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="MANAGERUSERID" DataSetColumn="MANAGERUSERID" />
+              <Mapping SourceColumn="MANAGERFULLNAME" DataSetColumn="MANAGERFULLNAME" />
+              <Mapping SourceColumn="MANAGEREMAIL" DataSetColumn="MANAGEREMAIL" />
+              <Mapping SourceColumn="CHAMPIONUSERID" DataSetColumn="CHAMPIONUSERID" />
+              <Mapping SourceColumn="CHAMPIONFULLNAME" DataSetColumn="CHAMPIONFULLNAME" />
+              <Mapping SourceColumn="CHAMPIONEMAIL" DataSetColumn="CHAMPIONEMAIL" />
+              <Mapping SourceColumn="COACHUSERID" DataSetColumn="COACHUSERID" />
+              <Mapping SourceColumn="COACHFULLNAME" DataSetColumn="COACHFULLNAME" />
+              <Mapping SourceColumn="COACHEMAIL" DataSetColumn="COACHEMAIL" />
+              <Mapping SourceColumn="OPPORTUNITY" DataSetColumn="OPPORTUNITY" />
+              <Mapping SourceColumn="BUZCASE" DataSetColumn="BUZCASE" />
+              <Mapping SourceColumn="GOALS" DataSetColumn="GOALS" />
+              <Mapping SourceColumn="INSCOPE" DataSetColumn="INSCOPE" />
+              <Mapping SourceColumn="OUTSCOPE" DataSetColumn="OUTSCOPE" />
+              <Mapping SourceColumn="POTENTIALBLOCKERS" DataSetColumn="POTENTIALBLOCKERS" />
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="CTREDUCTION" DataSetColumn="CTREDUCTION" />
+              <Mapping SourceColumn="COSTREDUCTION" DataSetColumn="COSTREDUCTION" />
+              <Mapping SourceColumn="PRODUCTIONBARREL" DataSetColumn="PRODUCTIONBARREL" />
+              <Mapping SourceColumn="NUMBERRS" DataSetColumn="NUMBERRS" />
+              <Mapping SourceColumn="BENEFITS" DataSetColumn="BENEFITS" />
+              <Mapping SourceColumn="POTENTIALBENFTCOMMENTS" DataSetColumn="POTENTIALBENFTCOMMENTS" />
+              <Mapping SourceColumn="IDENTIFYSD" DataSetColumn="IDENTIFYSD" />
+              <Mapping SourceColumn="IDENTIFYED" DataSetColumn="IDENTIFYED" />
+              <Mapping SourceColumn="ELIMINATESD" DataSetColumn="ELIMINATESD" />
+              <Mapping SourceColumn="ELIMINATEED" DataSetColumn="ELIMINATEED" />
+              <Mapping SourceColumn="SUSTAINSD" DataSetColumn="SUSTAINSD" />
+              <Mapping SourceColumn="SUSTAINED" DataSetColumn="SUSTAINED" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsLeanProject" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsLeanProject" msprop:Generator_DataSetName="dsLeanProject">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProjectCharter" msprop:Generator_TableClassName="ProjectCharterDataTable" msprop:Generator_TableVarName="tableProjectCharter" msprop:Generator_TablePropName="ProjectCharter" msprop:Generator_RowDeletingName="ProjectCharterRowDeleting" msprop:Generator_RowChangingName="ProjectCharterRowChanging" msprop:Generator_RowEvHandlerName="ProjectCharterRowChangeEventHandler" msprop:Generator_RowDeletedName="ProjectCharterRowDeleted" msprop:Generator_UserTableName="ProjectCharter" msprop:Generator_RowChangedName="ProjectCharterRowChanged" msprop:Generator_RowEvArgName="ProjectCharterRowChangeEvent" msprop:Generator_RowClassName="ProjectCharterRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDPROJECT" msprop:Generator_ColumnVarNameInTable="columnIDPROJECT" msprop:Generator_ColumnPropNameInRow="IDPROJECT" msprop:Generator_ColumnPropNameInTable="IDPROJECTColumn" msprop:Generator_UserColumnName="IDPROJECT" type="xs:decimal" />
+              <xs:element name="PROJECTCODE" msprop:Generator_ColumnVarNameInTable="columnPROJECTCODE" msprop:Generator_ColumnPropNameInRow="PROJECTCODE" msprop:Generator_ColumnPropNameInTable="PROJECTCODEColumn" msprop:Generator_UserColumnName="PROJECTCODE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TITLE" msprop:Generator_ColumnVarNameInTable="columnTITLE" msprop:Generator_ColumnPropNameInRow="TITLE" msprop:Generator_ColumnPropNameInTable="TITLEColumn" msprop:Generator_UserColumnName="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="YYEAR" msprop:Generator_ColumnVarNameInTable="columnYYEAR" msprop:Generator_ColumnPropNameInRow="YYEAR" msprop:Generator_ColumnPropNameInTable="YYEARColumn" msprop:Generator_UserColumnName="YYEAR" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDTYPE" msprop:Generator_ColumnVarNameInTable="columnIDTYPE" msprop:Generator_ColumnPropNameInRow="IDTYPE" msprop:Generator_ColumnPropNameInTable="IDTYPEColumn" msprop:Generator_UserColumnName="IDTYPE" type="xs:decimal" />
+              <xs:element name="PROJTYPE" msprop:Generator_ColumnVarNameInTable="columnPROJTYPE" msprop:Generator_ColumnPropNameInRow="PROJTYPE" msprop:Generator_ColumnPropNameInTable="PROJTYPEColumn" msprop:Generator_UserColumnName="PROJTYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDDEPARTMENT" msprop:Generator_ColumnVarNameInTable="columnIDDEPARTMENT" msprop:Generator_ColumnPropNameInRow="IDDEPARTMENT" msprop:Generator_ColumnPropNameInTable="IDDEPARTMENTColumn" msprop:Generator_UserColumnName="IDDEPARTMENT" type="xs:decimal" />
+              <xs:element name="DEPARTMENT" msprop:Generator_ColumnVarNameInTable="columnDEPARTMENT" msprop:Generator_ColumnPropNameInRow="DEPARTMENT" msprop:Generator_ColumnPropNameInTable="DEPARTMENTColumn" msprop:Generator_UserColumnName="DEPARTMENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FUNCTIONID" msprop:Generator_ColumnVarNameInTable="columnFUNCTIONID" msprop:Generator_ColumnPropNameInRow="FUNCTIONID" msprop:Generator_ColumnPropNameInTable="FUNCTIONIDColumn" msprop:Generator_UserColumnName="FUNCTIONID" type="xs:decimal" />
+              <xs:element name="FUNCTION" msprop:Generator_ColumnVarNameInTable="columnFUNCTION" msprop:Generator_ColumnPropNameInRow="FUNCTION" msprop:Generator_ColumnPropNameInTable="FUNCTIONColumn" msprop:Generator_UserColumnName="FUNCTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FOCALPOINTID" msprop:Generator_ColumnVarNameInTable="columnFOCALPOINTID" msprop:Generator_ColumnPropNameInRow="FOCALPOINTID" msprop:Generator_ColumnPropNameInTable="FOCALPOINTIDColumn" msprop:Generator_UserColumnName="FOCALPOINTID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MANAGERUSERID" msprop:Generator_ColumnVarNameInTable="columnMANAGERUSERID" msprop:Generator_ColumnPropNameInRow="MANAGERUSERID" msprop:Generator_ColumnPropNameInTable="MANAGERUSERIDColumn" msprop:Generator_UserColumnName="MANAGERUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MANAGERFULLNAME" msprop:Generator_ColumnVarNameInTable="columnMANAGERFULLNAME" msprop:Generator_ColumnPropNameInRow="MANAGERFULLNAME" msprop:Generator_ColumnPropNameInTable="MANAGERFULLNAMEColumn" msprop:Generator_UserColumnName="MANAGERFULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MANAGEREMAIL" msprop:Generator_ColumnVarNameInTable="columnMANAGEREMAIL" msprop:Generator_ColumnPropNameInRow="MANAGEREMAIL" msprop:Generator_ColumnPropNameInTable="MANAGEREMAILColumn" msprop:Generator_UserColumnName="MANAGEREMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHAMPIONUSERID" msprop:Generator_ColumnVarNameInTable="columnCHAMPIONUSERID" msprop:Generator_ColumnPropNameInRow="CHAMPIONUSERID" msprop:Generator_ColumnPropNameInTable="CHAMPIONUSERIDColumn" msprop:Generator_UserColumnName="CHAMPIONUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CHAMPIONFULLNAME" msprop:Generator_ColumnVarNameInTable="columnCHAMPIONFULLNAME" msprop:Generator_ColumnPropNameInRow="CHAMPIONFULLNAME" msprop:Generator_ColumnPropNameInTable="CHAMPIONFULLNAMEColumn" msprop:Generator_UserColumnName="CHAMPIONFULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHAMPIONEMAIL" msprop:Generator_ColumnVarNameInTable="columnCHAMPIONEMAIL" msprop:Generator_ColumnPropNameInRow="CHAMPIONEMAIL" msprop:Generator_ColumnPropNameInTable="CHAMPIONEMAILColumn" msprop:Generator_UserColumnName="CHAMPIONEMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COACHUSERID" msprop:Generator_ColumnVarNameInTable="columnCOACHUSERID" msprop:Generator_ColumnPropNameInRow="COACHUSERID" msprop:Generator_ColumnPropNameInTable="COACHUSERIDColumn" msprop:Generator_UserColumnName="COACHUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COACHFULLNAME" msprop:Generator_ColumnVarNameInTable="columnCOACHFULLNAME" msprop:Generator_ColumnPropNameInRow="COACHFULLNAME" msprop:Generator_ColumnPropNameInTable="COACHFULLNAMEColumn" msprop:Generator_UserColumnName="COACHFULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COACHEMAIL" msprop:Generator_ColumnVarNameInTable="columnCOACHEMAIL" msprop:Generator_ColumnPropNameInRow="COACHEMAIL" msprop:Generator_ColumnPropNameInTable="COACHEMAILColumn" msprop:Generator_UserColumnName="COACHEMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OPPORTUNITY" msprop:Generator_ColumnVarNameInTable="columnOPPORTUNITY" msprop:Generator_ColumnPropNameInRow="OPPORTUNITY" msprop:Generator_ColumnPropNameInTable="OPPORTUNITYColumn" msprop:Generator_UserColumnName="OPPORTUNITY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BUZCASE" msprop:Generator_ColumnVarNameInTable="columnBUZCASE" msprop:Generator_ColumnPropNameInRow="BUZCASE" msprop:Generator_ColumnPropNameInTable="BUZCASEColumn" msprop:Generator_UserColumnName="BUZCASE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GOALS" msprop:Generator_ColumnVarNameInTable="columnGOALS" msprop:Generator_ColumnPropNameInRow="GOALS" msprop:Generator_ColumnPropNameInTable="GOALSColumn" msprop:Generator_UserColumnName="GOALS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSCOPE" msprop:Generator_ColumnVarNameInTable="columnINSCOPE" msprop:Generator_ColumnPropNameInRow="INSCOPE" msprop:Generator_ColumnPropNameInTable="INSCOPEColumn" msprop:Generator_UserColumnName="INSCOPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OUTSCOPE" msprop:Generator_ColumnVarNameInTable="columnOUTSCOPE" msprop:Generator_ColumnPropNameInRow="OUTSCOPE" msprop:Generator_ColumnPropNameInTable="OUTSCOPEColumn" msprop:Generator_UserColumnName="OUTSCOPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POTENTIALBLOCKERS" msprop:Generator_ColumnVarNameInTable="columnPOTENTIALBLOCKERS" msprop:Generator_ColumnPropNameInRow="POTENTIALBLOCKERS" msprop:Generator_ColumnPropNameInTable="POTENTIALBLOCKERSColumn" msprop:Generator_UserColumnName="POTENTIALBLOCKERS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COMMENTS" msprop:Generator_ColumnVarNameInTable="columnCOMMENTS" msprop:Generator_ColumnPropNameInRow="COMMENTS" msprop:Generator_ColumnPropNameInTable="COMMENTSColumn" msprop:Generator_UserColumnName="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CTREDUCTION" msprop:Generator_ColumnVarNameInTable="columnCTREDUCTION" msprop:Generator_ColumnPropNameInRow="CTREDUCTION" msprop:Generator_ColumnPropNameInTable="CTREDUCTIONColumn" msprop:Generator_UserColumnName="CTREDUCTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COSTREDUCTION" msprop:Generator_ColumnVarNameInTable="columnCOSTREDUCTION" msprop:Generator_ColumnPropNameInRow="COSTREDUCTION" msprop:Generator_ColumnPropNameInTable="COSTREDUCTIONColumn" msprop:Generator_UserColumnName="COSTREDUCTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRODUCTIONBARREL" msprop:Generator_ColumnVarNameInTable="columnPRODUCTIONBARREL" msprop:Generator_ColumnPropNameInRow="PRODUCTIONBARREL" msprop:Generator_ColumnPropNameInTable="PRODUCTIONBARRELColumn" msprop:Generator_UserColumnName="PRODUCTIONBARREL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NUMBERRS" msprop:Generator_ColumnVarNameInTable="columnNUMBERRS" msprop:Generator_ColumnPropNameInRow="NUMBERRS" msprop:Generator_ColumnPropNameInTable="NUMBERRSColumn" msprop:Generator_UserColumnName="NUMBERRS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BENEFITS" msprop:Generator_ColumnVarNameInTable="columnBENEFITS" msprop:Generator_ColumnPropNameInRow="BENEFITS" msprop:Generator_ColumnPropNameInTable="BENEFITSColumn" msprop:Generator_UserColumnName="BENEFITS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POTENTIALBENFTCOMMENTS" msprop:Generator_ColumnVarNameInTable="columnPOTENTIALBENFTCOMMENTS" msprop:Generator_ColumnPropNameInRow="POTENTIALBENFTCOMMENTS" msprop:Generator_ColumnPropNameInTable="POTENTIALBENFTCOMMENTSColumn" msprop:Generator_UserColumnName="POTENTIALBENFTCOMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDENTIFYSD" msprop:Generator_ColumnVarNameInTable="columnIDENTIFYSD" msprop:Generator_ColumnPropNameInRow="IDENTIFYSD" msprop:Generator_ColumnPropNameInTable="IDENTIFYSDColumn" msprop:Generator_UserColumnName="IDENTIFYSD" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IDENTIFYED" msprop:Generator_ColumnVarNameInTable="columnIDENTIFYED" msprop:Generator_ColumnPropNameInRow="IDENTIFYED" msprop:Generator_ColumnPropNameInTable="IDENTIFYEDColumn" msprop:Generator_UserColumnName="IDENTIFYED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ELIMINATESD" msprop:Generator_ColumnVarNameInTable="columnELIMINATESD" msprop:Generator_ColumnPropNameInRow="ELIMINATESD" msprop:Generator_ColumnPropNameInTable="ELIMINATESDColumn" msprop:Generator_UserColumnName="ELIMINATESD" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ELIMINATEED" msprop:Generator_ColumnVarNameInTable="columnELIMINATEED" msprop:Generator_ColumnPropNameInRow="ELIMINATEED" msprop:Generator_ColumnPropNameInTable="ELIMINATEEDColumn" msprop:Generator_UserColumnName="ELIMINATEED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SUSTAINSD" msprop:Generator_ColumnVarNameInTable="columnSUSTAINSD" msprop:Generator_ColumnPropNameInRow="SUSTAINSD" msprop:Generator_ColumnPropNameInTable="SUSTAINSDColumn" msprop:Generator_UserColumnName="SUSTAINSD" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SUSTAINED" msprop:Generator_ColumnVarNameInTable="columnSUSTAINED" msprop:Generator_ColumnPropNameInRow="SUSTAINED" msprop:Generator_ColumnPropNameInTable="SUSTAINEDColumn" msprop:Generator_UserColumnName="SUSTAINED" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

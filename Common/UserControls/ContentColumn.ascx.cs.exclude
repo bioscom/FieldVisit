@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
+using Telerik.QuickStart;
+
+public partial class Common_UserControls_ContentColumn : System.Web.UI.UserControl
+{
+    #region Properties
+
+    public string Title
+    {
+        get;
+        set;
+    }
+
+    protected string CurrentLanguage
+    {
+        get
+        {
+            return (string)(Session[QSFConstants.NavigationLanguageLiteral] ?? "CS");
+        }
+    }
+
+    internal bool IsBeta
+    {
+        get
+        {
+            string value = ConfigurationManager.AppSettings.Get("IsBeta");
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+
+            return Convert.ToBoolean(value);
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void Render(HtmlTextWriter writer)
+    {
+        base.Render(writer);
+
+        if (CategoriesProvider.Instance.Categories.ContainsKey(Title))
+        {
+            RenderColumnContent(writer);
+        }
+        else
+        {
+            writer.RenderBeginTag(HtmlTextWriterTag.Div);
+            {
+                writer.Write(string.Format("No category with name {0} found", Title));
+            };
+            writer.RenderEndTag();
+        }
+    }
+
+    protected void RenderColumnContent(HtmlTextWriter writer)
+    {
+        writer.AddAttribute(HtmlTextWriterAttribute.Class, "group");
+        writer.RenderBeginTag(HtmlTextWriterTag.Div);
+        {
+            writer.RenderBeginTag(HtmlTextWriterTag.H3);
+            {
+                writer.Write(Title);
+            };
+            writer.RenderEndTag();
+
+            writer.RenderBeginTag(HtmlTextWriterTag.Ul);
+            {
+                foreach (string control in CategoriesProvider.Instance.Categories[Title])
+                {
+                    XmlNode controlNode = ExamplesProvider.Instance.CategoryList.SingleOrDefault(node => node.Attributes["text"].Value.IsEqualTo(control));
+
+                    writer.RenderBeginTag(HtmlTextWriterTag.Li);
+                    {
+                        writer.AddAttribute(HtmlTextWriterAttribute.Href, ResolveClientUrl(string.Format("~/{0}/default{1}.aspx", 
+                            controlNode.FirstChild.Attributes["path"].Value, CurrentLanguage).ToLowerInvariant()));
+                        writer.RenderBeginTag(HtmlTextWriterTag.A);
+                        {
+                            writer.Write(controlNode.Attributes["altText"] != null ? 
+                                controlNode.Attributes["altText"].Value : controlNode.Attributes["text"].Value);
+
+                            if (controlNode.Attributes["status"] != null && !IsBeta)
+                            {
+                                writer.AddAttribute(HtmlTextWriterAttribute.Class, string.Format("badge {0}", controlNode.Attributes["status"].Value.ToLower()));
+                                writer.RenderBeginTag(HtmlTextWriterTag.Span);
+                                {
+                                    writer.Write(controlNode.Attributes["status"].Value.ToLower());
+                                };
+                                writer.RenderEndTag();
+                            }
+
+                            if (IsBeta && controlNode.Attributes["betaHighlight"] != null && Convert.ToBoolean(controlNode.Attributes["betaHighlight"].Value))
+                            {
+                                writer.AddAttribute(HtmlTextWriterAttribute.Class, "highlight-star");
+                                writer.RenderBeginTag(HtmlTextWriterTag.Span);
+                                writer.RenderEndTag();
+                            }      
+                        };
+                        writer.RenderEndTag();
+                    };
+                    writer.RenderEndTag();
+                }
+            };
+            writer.RenderEndTag();
+        };
+        writer.RenderEndTag();
+    }
+
+    #endregion
+}

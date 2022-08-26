@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode title="Initiative Mngt Framework" description="Production Field Visit Activities Requests">
+      
+      <siteMapNode title="Application Configuration">
+        <siteMapNode url="~/App/ManHour/Forms/Setup/Default.aspx" title="Setup"/>
+        <siteMapNode url="~/App/ManHour/Forms/ViewUser.aspx" title="User Management"/>
+        <siteMapNode url="~/App/ManHour/Forms/BaseData.aspx" title="Base Data"/>
+      </siteMapNode>
+
+      <siteMapNode title="Initiatives">
+      <siteMapNode url="~/App/ManHour/taskPage.aspx" title="My Initiatives"/>
+        <siteMapNode url="~/App/ManHour/Forms/Analysis.aspx" title="Initiative/Staff Utilisation"/>
+      </siteMapNode>
+   
+      <!--<siteMapNode title="Impact on Assets">
+        <siteMapNode url="~/App/ManHour/Forms/AssetImpact1.aspx" title="View One"/>
+        <siteMapNode url="~/App/ManHour/Forms/AssetImpact2.aspx" title="View Two"/>
+        <siteMapNode url="~/App/ManHour/Forms/AssetImpact3.aspx" title="View Three"/>
+      </siteMapNode>-->
+
+    <siteMapNode title="User Management">
+      <siteMapNode url="~/App/ManHour/UserManagement/ViewUsers.aspx" title="Users List"/>
+      <siteMapNode url="~/App/ManHour/UserManagement/AddUser.aspx" title="Add new User"/>
+      <!--<siteMapNode url="~/App/Contract/UserManagement/AddC4CUsers.aspx" title="Add C4C User"/>-->
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

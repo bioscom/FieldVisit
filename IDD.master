@@ -1,0 +1,210 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="IDD.master.cs" Inherits="IDD" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<%--User controls--%>
+<%@ Register Src="~/App/PDCC/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="~/UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc3" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Electronic Integrity Due Diligence</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
+
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="~/css/menuStyle.css" rel="stylesheet" type="text/css" media="screen" />
+    <link type="text/css" href="~/css/BongaCCStyleSheet.css" rel="stylesheet" media="screen" />
+</head>
+<%--<telerik:RadClientDataSource runat="server" ID="RadClientDataSource1">
+        <DataSource>
+            <WebServiceDataSourceSettings ServiceType="OData">
+                <Select Url="Products" DataType="JSON" ></Select>
+            </WebServiceDataSourceSettings>
+        </DataSource>
+        <Schema DataName="d.results"></Schema>
+    </telerik:RadClientDataSource>--%>
+
+<script type="text/javascript">
+
+    (function (global) {
+        var telerikDemo = global.telerikDemo = {};
+        telerikDemo.OnClientClicking = function (sender, args) {
+            var $ = $telerik.$;
+
+            if (!sender.get_autoPostBack()) {
+                var label = $(".demo-label")[0];
+                label.innerHTML = "<span>Client-Side Click: <strong>" + sender.get_text() + "</strong> was clicked.</span>";
+            }
+
+            if (sender.get_navigateUrl() && sender.get_buttonType() == Telerik.Web.UI.RadButtonType.LinkButton) {
+                var url = sender.get_navigateUrl()
+                radopen(url, url);
+                args.set_cancel(true);
+            }
+        };
+    })(window);
+
+</script>
+
+<script type="text/javascript">
+
+    (function (global, undefined) {
+        var widthTextBox, heightTextBox, leftTextBox, topTextBox;
+
+        function widthTextBox_load(sender, args) {
+            widthTextBox = sender;
+        }
+        function heightTextBox_load(sender, args) {
+            heightTextBox = sender;
+        }
+        function leftTextBox_load(sender, args) {
+            leftTextBox = sender;
+        }
+        function topTextBox_load(sender, args) {
+            topTextBox = sender;
+        }
+
+        function openRadWin() {
+            var wndw = radopen("MakeRequestNew.aspx", "Create", 950, 600);
+            wndw.SetTitle("Request For Integrity Due Diligence"); 
+            wndw.set_visibleStatusbar(false);
+            wndw.Center();
+        }
+
+        global.openRadWin = openRadWin;
+        global.widthTextBox_load = widthTextBox_load;
+        global.heightTextBox_load = heightTextBox_load;
+        global.leftTextBox_load = leftTextBox_load;
+        global.topTextBox_load = topTextBox_load;
+    })(window);
+
+</script>
+
+<body class="qsf-body demo-page">
+    <form id="form2" runat="server">
+
+        <telerik:RadScriptManager ID="QsfScriptManager" runat="server"></telerik:RadScriptManager>
+        <telerik:RadWindowManager RenderMode="Lightweight" ID="RadWindowManager1" runat="server" EnableShadow="true"></telerik:RadWindowManager>
+
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/App/IDD/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <%--<asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
+                </div>
+            </div>
+
+            <div id="navigation">
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <div class="xFChild">
+                    <table>
+                        <tr>
+                            <td>
+                                <telerik:RadButton RenderMode="Lightweight" runat="server" AutoPostBack="false" OnClientClicked="openRadWin" ForeColor="Red" Font-Bold="true" Text="Request For IDD" />
+                                <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                                </asp:SiteMapPath>
+
+                            </td>
+                            <td>
+                                <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" CssClass="mainMenu" runat="server" ShowToggleHandle="true">
+                                    <Items>
+                                        <telerik:RadMenuItem Text="Vendor IDD Management" NavigateUrl="App/IDD/Default.aspx" />
+                                        <telerik:RadMenuItem Text="Data Management" NavigateUrl="App/IDD/Index.aspx" EnableImageSprite="true" CssClass="icon-sofa" />
+                                        
+                                        <telerik:RadMenuItem Text="My Requests">
+                                            <GroupSettings Width="300px" />
+                                            <Items>
+                                                <telerik:RadMenuItem Text="My Integrity Due Diligence Requests" NavigateUrl="App/IDD/Initiators.aspx" />
+                                                <telerik:RadMenuItem Text="Requests Pending My Action" NavigateUrl="App/IDD/Analyst.aspx" />
+                                            </Items>
+                                        </telerik:RadMenuItem>
+
+                                        <telerik:RadMenuItem Text="Reporting">
+                                            <GroupSettings Width="200px" />
+                                            <Items>
+                                                <telerik:RadMenuItem Text="Vendors Status Report" NavigateUrl="App/IDD/Vendors.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                                                <telerik:RadMenuItem Text="Expired IDD Report" NavigateUrl="App/IDD/ExpiredRequests.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                                            </Items>
+                                        </telerik:RadMenuItem>
+                                    </Items>
+                                </telerik:RadMenu>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="xChild">
+                    <%--<b style="color:red; font:bold">Renew Vendor Request:</b>
+                    <telerik:RadComboBox ID="ddlVendor" runat="server" AutoPostBack="True" ValidationGroup="vali" EmptyMessage="Enter Vendor name for renewal..." Skin="Office2010Silver" Width="400px" DropDownWidth="600" EnableLoadOnDemand="true" Filter="Contains" Font-Size="10pt" Height="200" HighlightTemplatedItems="true" OnItemsRequested="ddlVendor_ItemsRequested" OnSelectedIndexChanged="ddlVendor_SelectedIndexChanged" RenderMode="Lightweight">
+                        <HeaderTemplate>
+                            <table cellpadding="0" cellspacing="0" style="width: 550px; font-size: 9pt">
+                                <tr>
+                                    <td style="width: 240px;">Registered Name</td>
+                                    <td style="width: 220px;">Email Address</td>
+                                    <td style="width: 90px;">Phone No</td>
+                                </tr>
+                            </table>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <table cellpadding="0" cellspacing="0" style="width: 550px; font-size: 9pt">
+                                <tr>
+                                    <td style="width: 240px;"><%# DataBinder.Eval(Container, "Text")%></td>
+                                    <td style="width: 220px;"><%# DataBinder.Eval(Container, "Attributes['EMAILADDRESS']")%></td>
+                                    <td style="width: 90px;"><%# DataBinder.Eval(Container, "Attributes['TELEPHONENO']")%></td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </telerik:RadComboBox>--%>
+                    <%--<a id="dpeBackLink" href="javascript:history.back()">
+                    <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>--%>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <%--<div style="float: left; width: 15%; height: 650px">
+                <div class="btn-wrapper">
+                    <telerik:RadButton RenderMode="Lightweight" ID="btnIcons" Width="200px" runat="server" OnClick="btn_Click" OnClientClicking="telerikDemo.OnClientClicking"
+                        Text="Data manager" GroupName="GroupName1">
+                        <Icon PrimaryIconCssClass="rbNext" SecondaryIconCssClass="rbPrevious" />
+                    </telerik:RadButton>
+
+                </div>
+                <asp:ContentPlaceHolder ID="HistoryContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>--%>
+                <%--<div style="overflow: auto; float: left; margin-left: 0.5em; margin-right: 0.5em; width: 100%">--%>
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <span style="float: left; vertical-align: top">SCiN - Integrity Due Diligence</span>
+            <span style="float: right; vertical-align: top">Copyright © 2017 Business Improvement and Production Excellence</span>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿.AspNet-TreeView {
+    width: 200px;
+    border-top: solid 1px #DDD;
+}
+ 
+.AspNet-TreeView ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+
+}
+ 
+.AspNet-TreeView-Leaf {
+    border-bottom: solid 1px #DDD;
+    background: url(../../images/structure/node-dot.gif) 8px 9px no-repeat;  
+}
+ 
+.AspNet-TreeView-Root {
+    border-bottom: solid 1px #DDD; 
+    position: relative;
+    width: 200px;
+}
+ 
+.AspNet-TreeView-Root a {
+    display: block;
+    width: 170px;
+    margin-left: 20px;
+    padding: 5px 5px 5px 5px; 
+}
+ 
+.AspNet-TreeView-Selected {
+    background: #F6F6F6 url(../../images/structure/arrow-right.gif) 8px 9px no-repeat;
+}
+ 
+.AspNet-TreeView-Expand {
+	padding: 6px 4px 5px 4px;
+	height: 0px !important;
+	background: url(../../images/structure/node-plus.gif) 0px 0px no-repeat;
+	cursor: pointer;
+	position: absolute;
+	font-size: 1px;
+	top: 9px;
+	left: 8px;
+}
+
+.AspNet-TreeView-Collapse {
+	padding: 6px 4px 5px 4px;
+	height: 0px !important;
+	background: url(../../images/structure/node-minus.gif) 0px 0px no-repeat;
+	cursor: pointer;
+	position: absolute;
+	font-size: 1px;
+	top: 9px;
+	left: 8px;
+}
+ 
+.AspNet-TreeView-Show li {
+      border-top: solid 1px #DDD;
+      background-position: 28px 9px;
+}
+ 
+.AspNet-TreeView-Hide {
+    display: none;
+}
+ 
+.AspNet-TreeView ul li ul li {
+    text-indent: 20px;
+    border-bottom: none;
+    font-size: 11px;
+}

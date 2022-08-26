@@ -1,0 +1,132 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PriceTracker.master.cs" Inherits="MasterPages_PriceTracker" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<%--<%@ Register Src="../App/PDCC/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="../UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc3" %>
+
+<%@ Register Src="~/App/Prices/UserControl/oPerformanceGraphs.ascx" TagPrefix="uc2" TagName="oPerformanceGraphs" %>
+<%@ Register Src="~/App/Prices/UserControl/oPerformanceByHub.ascx" TagPrefix="uc2" TagName="oPerformanceByHub" %>
+<%@ Register Src="../App/Prices/UserControl/oBCostSavings.ascx" TagName="oCostSaving" TagPrefix="uc6" %>--%>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Service/Material Cost Red Flag</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="../css/menuStyle.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/CostReduction.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Script/fieldVisit.js" lang="javascript" type="text/javascript"></script>
+    <%--<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="../Scripts/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>--%>
+</head>
+
+<script type="text/javascript">
+
+    (function (global) {
+        var telerikDemo = global.telerikDemo = {};
+        telerikDemo.OnClientClicking = function (sender, args) {
+            var $ = $telerik.$;
+
+            if (!sender.get_autoPostBack()) {
+                var label = $(".demo-label")[0];
+                label.innerHTML = "<span>Client-Side Click: <strong>" + sender.get_text() + "</strong> was clicked.</span>";
+            }
+
+            if (sender.get_navigateUrl() && sender.get_buttonType() == Telerik.Web.UI.RadButtonType.LinkButton) {
+                var url = sender.get_navigateUrl()
+                radopen(url, url);
+                args.set_cancel(true);
+            }
+        };
+    })(window);
+
+</script>
+
+
+<body>
+    <form id="form2" runat="server">
+        <telerik:RadScriptManager ID="QsfScriptManager" runat="server"></telerik:RadScriptManager>
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/App/Prices/PriceCheckList.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <%--<asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
+                </div>
+            </div>
+            <div id="navigation">
+                
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <%--<div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>--%>
+                <div class="xChild">
+                    <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" CssClass="mainMenu" runat="server" Skin="Office2010Silver" ShowToggleHandle="true">
+                        <Items>
+                            <telerik:RadMenuItem Text="Home Page" NavigateUrl="../App/Prices/Default.aspx" />
+                            <telerik:RadMenuItem Text="Performance Dashboard" NavigateUrl="../App/Prices/DashBoard.aspx" />
+                            <telerik:RadMenuItem Text="View Request Reviewers" NavigateUrl="../App/Prices/Reviewers.aspx" />
+                            <telerik:RadMenuItem Text="SAP Pricing Report" NavigateUrl="../App/Prices/Findings.aspx" />
+                            <%--<telerik:RadMenuItem Text="Site Management">
+                                <GroupSettings Width="200px" />
+                                <Items>
+                                    <telerik:RadMenuItem Text="Data Management" NavigateUrl="App/IDD/Index.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
+                                    <telerik:RadMenuItem Text="Vendors Status Report" NavigateUrl="App/IDD/Vendors.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                                </Items>
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem Text="Requests Pending My Action" NavigateUrl="App/IDD/Analyst.aspx" />--%>
+                        </Items>
+                    </telerik:RadMenu>
+                    <%--<a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>--%>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <%--<div class="master_contentplaceholder_SideMenu">
+                    <asp:ContentPlaceHolder ID="MenuContentContentPlaceHolder" runat="server">
+                        <uc2:adminMenu ID="adminMenu1" runat="server" />
+                        <br />
+                        <uc3:supportContact ID="supportContact1" runat="server" />
+                    </asp:ContentPlaceHolder>
+                </div>--%>
+
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <span style="float: left; vertical-align: top">Production Directorate - Service/Material Cost Red Flag</span>
+            <span style="float: right; vertical-align: top">Copyright © 2016 Competitiveness and Business Improvement</span>
+        </div>
+    </form>
+</body>
+</html>
+

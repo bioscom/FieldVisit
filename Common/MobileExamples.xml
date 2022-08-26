@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<examples Type="controls">
+    <category text="AutoCompleteBox" >
+        <example path="AutoCompleteBox/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Barcode" >
+        <example path="Barcode/Mobile-Examples/Overview" name="overview" />
+    </category>   
+    <category text="Button" >
+        <example path="Button/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="PushButton" altText="Push Button" >
+        <example path="PushButton/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="LinkButton" altText="Link Button" >
+        <example path="LinkButton/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="ImageButton" altText="Image Button" >
+        <example path="ImageButton/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Calendar" >
+        <example path="Calendar/Mobile-Examples/Overview" name="overview"/>
+    </category>
+		<category text="CheckBox" >
+			<example path="CheckBox/Mobile-Examples/Overview" name="overview"/>
+		</category>	
+		<category text="CheckBoxList" >
+			<example path="CheckBoxList/Mobile-Examples/Overview" name="overview"/>
+		</category>
+    <category text="ComboBox" >
+        <example path="ComboBox/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="DataForm" altText="Data Form" >
+        <example path="DataForm/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="DataPager" altText="Data Pager" >
+        <example path="DataPager/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Dock" >
+        <example path="Dock/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="DropDownList" >
+        <example path="DropDownList/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="DropDownTree" >
+        <example path="DropDownTree/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Editor" >
+        <example path="Editor/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="FileExplorer" altText="File Explorer" >
+        <example path="FileExplorer/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Filter" >
+        <example path="Filter/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="FormDecorator" altText="Form Decorator" >
+        <example path="FormDecorator/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Gantt" >
+        <example path="Gantt/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Grid" >
+        <example path="Grid/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="ImageGallery" altText="Image Gallery" >
+        <example path="Image-Gallery/Mobile-Examples/Overview" name="overview"/>
+    </category>
+        <category text="ImageEditor" altText="Image Editor" >
+            <example path="ImageEditor/Mobile-Examples/Overview" name="overview"/>
+        </category>
+    <category text="TextBox" >
+        <example path="Input/Mobile-Examples/Overview" name="overview"/>
+    </category>	
+    <category text="LightBox" >
+        <example path="LightBox/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="ListBox" >
+        <example path="ListBox/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="ListView" >
+        <example path="ListView/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Map" altText="Map">
+        <example path="Map/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="MediaPlayer" altText="Media Player" >
+        <example path="Media-Player/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Menu" >
+        <example path="Menu/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Navigation" >
+    <example path="Navigation/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Notification" >
+        <example path="Notification/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="OrgChart" altText="Org Chart" >
+        <example path="OrgChart/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="PanelBar" >
+        <example path="Panelbar/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="ProgressBar" >
+        <example path="Progress-Bar/Mobile-Examples/Overview" name="overview" />
+    </category>
+		<category text="RadioButtonList" >
+			<example path="RadioButtonList/Mobile-Examples/Overview" name="overview"/>
+		</category>
+    <category text="Rotator" >
+        <example path="Rotator/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Scheduler" >
+        <example path="Scheduler/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="SearchBox" >
+        <example path="SearchBox/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="SiteMap" >
+        <example path="SiteMap/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Slider" >
+        <example path="Slider/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Splitter" >
+        <example path="Splitter/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="SocialShare" >
+        <example path="SocialShare/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="TabStrip" altText="Tab Strip" >
+        <example path="TabStrip/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="TagCloud" >
+        <example path="TagCloud/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Ticker" >
+        <example path="Ticker/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="TileList" >
+        <example path="TileList/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="ToolBar" >
+        <example path="ToolBar/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="ToolTip" >
+        <example path="ToolTip/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="TreeList" >
+        <example path="TreeList/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="TreeMap">
+        <example path="TreeMap/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="TreeView" >
+        <example path="TreeView/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="AsyncUpload" altText="Upload (Async)" >
+        <example path="AsyncUpload/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="CloudUpload" altText="Upload (Cloud)" >
+        <example path="Cloud-Upload/Mobile-Examples/Overview" name="overview"/>
+    </category>
+    <category text="Window" >
+        <example path="Window/Mobile-Examples/Overview" name="overview" />
+    </category>
+    <category text="Wizard" >
+        <example path="Wizard/Mobile-Examples/Overview" name="overview" />
+    </category>
+</examples>

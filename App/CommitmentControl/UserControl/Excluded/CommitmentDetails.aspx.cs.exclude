@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class App_CommitmentControl_CommitmentDetails : System.Web.UI.Page
+{
+    ActivityDetailsMgt dtlMgt = new ActivityDetailsMgt();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        long lCommitmentId = 0; long lDetailsId = 0;
+        if (Request.QueryString["lCommitmentId"] == null)
+        {
+            lDetailsId = long.Parse(Request.QueryString["lDetailsId"].ToString());
+            Update(lDetailsId);
+        }
+        else
+        {
+            lCommitmentId = long.Parse(Request.QueryString["lCommitmentId"].ToString());
+            Insert(lCommitmentId);
+        }
+    }
+
+    public bool Insert(long lCommitmentId)
+    {
+        bool bRet = false;
+        try
+        {
+            ActivityDetails o = new ActivityDetails();
+
+            o.m_lCommitmentId = lCommitmentId;
+            o.m_sDescription = txtActivity.Text;
+            o.m_dRate = string.IsNullOrEmpty(txtRate.Text) ? 0 : decimal.Parse(txtRate.Text);
+            o.m_dQuantity = string.IsNullOrEmpty(txtQty.Text) ? 0 : decimal.Parse(txtQty.Text);
+
+            bRet = dtlMgt.Insert(o);
+
+            if (bRet) ClientScript.RegisterStartupScript(Page.GetType(), "mykey", "CloseAndRebind();", true);
+            else { ajaxWebExtension.showJscriptAlertCx(Page, this, "Not submitted. Try again later!!! "); }           
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+            appMonitor.logAppExceptions(ex);
+        }
+        return bRet;
+    }
+
+    public bool Update(long lDetailsId)
+    {
+        bool bRet = false;
+        try
+        {
+            ActivityDetails o = new ActivityDetails();
+
+            o.m_lDetailsId = lDetailsId;
+            o.m_sDescription = txtActivity.Text;
+            o.m_dRate = string.IsNullOrEmpty(txtRate.Text) ? 0 : decimal.Parse(txtRate.Text);
+            o.m_dQuantity = string.IsNullOrEmpty(txtQty.Text) ? 0 : decimal.Parse(txtQty.Text);
+
+            bRet = dtlMgt.Update(o);
+
+            if (bRet) ClientScript.RegisterStartupScript(Page.GetType(), "mykey", "CloseAndRebind();", true);
+            else { ajaxWebExtension.showJscriptAlertCx(Page, this, "Not Updated. Try again later!!! "); }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+            appMonitor.logAppExceptions(ex);
+        }
+        return bRet;
+    }
+
+    private void Retrieve(long lDetailsId)
+    {
+        ActivityDetails o = dtlMgt.objGetActivityDetailsById(lDetailsId);
+        txtActivity.Text = o.m_sDescription;
+        txtRate.Text = o.m_dRate.ToString();
+        txtQty.Text = o.m_dQuantity.ToString();
+    }
+}

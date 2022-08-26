@@ -1,0 +1,200 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class UserControls_oUpdateActivity : aspnetUserControl
+{
+    mDynamicGridViewMethods MyMethod = new mDynamicGridViewMethods();
+    PriorityHelper oCorporatePriorityAccess = new PriorityHelper();
+    //kpiAccess okpiAccess = new kpiAccess();
+
+    private DataTable Table = new DataTable();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //if (ddlCorpPriority.SelectedValue != "-1")
+        //{
+            CreateTemplatedGridView();
+        //}
+    }
+
+    public void initPage(int iUserId, string sFullName)
+    {
+        //iUserIdHF.Value = iUserId.ToString();
+        //sFullNameHF.Value = sFullName;
+
+        int noOfWorkDays = (okpiAccess.retriveNoOfWorkDays() - DateTime.Today.Day);
+        if (noOfWorkDays >= 0)
+        {
+            if (DateTime.Now.Month == 1)
+            {
+                lblMonth.Text = StoredProcedure.mMonth().Trim();
+                lblYear.Text = (DateTime.Now.Year - 1).ToString();
+            }
+            else
+            {
+                lblMonth.Text = StoredProcedure.mMonth().Trim();
+                lblYear.Text = DateTime.Now.Year.ToString();
+            }
+
+            List<Priority> priorities = oCorporatePriorityAccess.lstGetUserAssignedCorporatePriorities(iUserId);
+            foreach (Priority priority in priorities)
+            {
+                ddlCorpPriority.Items.Add(new ListItem(priority.priority, priority.priorityId.ToString()));
+            }
+        }
+        else
+        {
+            ajaxWebExtension.showJscriptAlert(Page, this, "Your workdays window to update your performance KPI have expired, contact the system administrator.");
+        }
+
+        if (ddlCorpPriority.SelectedValue != "-1")
+        {
+            CreateTemplatedGridView();
+        }
+    }
+
+    protected void ddlCorpPriority_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CreateTemplatedGridView();
+    }
+
+    void CreateTemplatedGridView()
+    {
+        if (DateTime.Today.Month == 1)
+        {
+            Table = okpiAccess.dtGetOswPerformanceByYear(int.Parse(ddlCorpPriority.SelectedValue), DateTime.Today.Year - 1);
+        }
+        else
+        {
+            Table = okpiAccess.dtGetOswPerformanceByYear(int.Parse(ddlCorpPriority.SelectedValue), DateTime.Today.Year);
+        }
+
+        //Call tableManipulator to change the headers of the datatable
+        Table = okpiAccess.tableManipulator(Table);
+
+        TableGridView.Columns.Clear();
+
+        TemplateField BtnTmpField = new TemplateField();// add templated fields to the GridView
+        //DataKey KPIID = new DataKey();
+
+        BtnTmpField.ItemTemplate = new mDynamicGridView(ListItemType.Item, "...", "Command");
+        BtnTmpField.HeaderTemplate = new mDynamicGridView(ListItemType.Header, "...", "Command");
+        BtnTmpField.EditItemTemplate = new mDynamicGridView(ListItemType.EditItem, "...", "Command");
+
+        TableGridView.Columns.Add(BtnTmpField);
+
+        for (int i = 1; i < Table.Columns.Count; i++) //By Starting i=1 and not i=0, we remove the ID of the Row from user's view
+        {
+            TemplateField ItemTmpField = new TemplateField();
+            ItemTmpField.HeaderTemplate = new mDynamicGridView(ListItemType.Header, Table.Columns[i].ColumnName, Table.Columns[i].DataType.Name);// create HeaderTemplate           
+            ItemTmpField.ItemTemplate = new mDynamicGridView(ListItemType.Item, Table.Columns[i].ColumnName, Table.Columns[i].DataType.Name);// create ItemTemplate           
+            ItemTmpField.EditItemTemplate = new mDynamicGridView(ListItemType.EditItem, Table.Columns[i].ColumnName, Table.Columns[i].DataType.Name);//create EditItemTemplate
+
+            // then add to the GridView
+            TableGridView.Columns.Add(ItemTmpField);
+        }
+
+        TableGridView.DataSource = Table;
+        TableGridView.DataBind();
+
+        if (Table.Rows.Count == 0)
+        {
+            mssgLabel.Text = "No Record found. The KPI data for the year " + DateTime.Today.Year + " is not yet loaded.";
+        }
+    }
+
+    protected void TableGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        CreateTemplatedGridView();
+        TableGridView.PageIndex = e.NewPageIndex;
+        TableGridView.DataBind();
+    }
+
+    protected void TableGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        TableGridView.EditIndex = -1;
+        TableGridView.DataBind();
+        Session["SelectedRowIndex"] = -1;
+    }
+
+    protected void TableGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+
+    protected void TableGridView_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        try
+        {
+            TableGridView.EditIndex = e.NewEditIndex;
+            TableGridView.DataBind();
+            Session["SelectedRowIndex"] = e.NewEditIndex;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());   
+        }
+    }
+
+    protected void TableGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        try
+        {
+            int iKpiId = 0;
+
+            Nullable<Single> Plan = 0; Nullable<Single> Actual = 0;
+            Nullable<Single> FYLE = 0; string Remarks = "";
+
+            GridViewRow row = TableGridView.Rows[e.RowIndex];
+            for (int i = 0; i < Table.Columns.Count; i++)
+            {
+                if ((Table.Columns[i].ColumnName) == "KPI_KPIID")
+                {
+                    iKpiId = Convert.ToInt32(Table.Rows[row.DataItemIndex]["KPI_KPIID"].ToString());
+                }
+
+                if ((Table.Columns[i].ColumnName) == "YTD Plan")
+                {
+                    if (string.IsNullOrEmpty(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text)) Plan = null;
+                    else Plan = Convert.ToSingle(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text);
+                }
+
+                if ((Table.Columns[i].ColumnName) == "YTD Actual")
+                {
+                    if (string.IsNullOrEmpty(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text)) Actual = null;
+                    else Actual = Convert.ToSingle(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text);
+                }
+
+                if ((Table.Columns[i].ColumnName) == "FYLE")
+                {
+                    if (string.IsNullOrEmpty(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text)) FYLE = null;
+                    else FYLE = Convert.ToSingle(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text);
+                }
+
+                if ((Table.Columns[i].ColumnName) == "Remarks")
+                {
+                    if (string.IsNullOrEmpty(((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text)) Remarks = "";
+                    else Remarks = ((TextBox)row.FindControl(Table.Columns[i].ColumnName)).Text;
+                }
+            }
+
+            okpiAccess.updateOswPerformance(iKpiId, Plan, Actual, FYLE, Remarks, sFullNameHF.Value);
+            AuditTrailMgt oAuditTrailMgt = new AuditTrailMgt();
+            oAuditTrailMgt.OswAuditTrailInsert(iKpiId, oSessnx.getOnlineUser.m_iUserId, Plan, Actual, FYLE, Remarks);
+
+            TableGridView.EditIndex = -1;
+            CreateTemplatedGridView();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    protected void EPPriorityDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CreateTemplatedGridView();
+    }
+}

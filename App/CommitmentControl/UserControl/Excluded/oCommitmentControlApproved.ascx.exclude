@@ -1,0 +1,337 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="oCommitmentControlApproved.ascx.cs" Inherits="App_BONGACCP_UserControl_oCommitmentControlApproved" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/activityDescription.ascx" TagPrefix="app" TagName="activityDescription" %>
+
+<%@ Reference VirtualPath="~/App/CommitmentControl/UserControl/activityDescription.ascx" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/DetailView2.ascx" TagPrefix="app" TagName="DetailView2" %>
+
+<asp:GridView ID="grdGridView" runat="server" AllowPaging="True"
+    AutoGenerateColumns="False" OnLoad="grdGridView_Load"
+    OnPageIndexChanging="grdGridView_PageIndexChanging"
+    OnRowCommand="grdGridView_RowCommand"
+    OnSelectedIndexChanged="grdGridView_SelectedIndexChanged" PageSize="15"
+    Width="100%">
+    <Columns>
+
+        <asp:TemplateField>
+            <ItemTemplate>
+                <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            <ItemStyle Width="15px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="">
+            <ItemTemplate>
+                <asp:LinkButton ID="DetailsLinkButton" runat="server" OnClick="lnkDetails_Click" ValidationGroup="Xpx" CommandArgument="<%# Container.DisplayIndex %>"
+                    COMMITMENTID='<%# DataBinder.Eval(Container.DataItem, "COMMITMENTID") %>'>View Details</asp:LinkButton>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField HeaderText="">
+            <ItemTemplate>
+                <asp:LinkButton ID="UpdateLinkButton" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="Xpx" CommandArgument="<%# Container.DisplayIndex %>"
+                    COMMITMENTID='<%# DataBinder.Eval(Container.DataItem, "COMMITMENTID") %>'>Update</asp:LinkButton>
+            </ItemTemplate>
+            <ItemStyle Width="20px" />
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="BCC No" SortExpression="COMITMNTNO">
+            <ItemTemplate>
+                <asp:Label ID="lblBCCNo" runat="server"
+                    Text='<%# DataBinder.Eval(Container.DataItem, "COMITMNTNO") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="50px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Title">
+            <ItemTemplate>
+                <asp:Label ID="lblTitle" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TITLE") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="350px" />
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField HeaderText="Cost Object">
+            <ItemTemplate>
+                <asp:Label ID="lblCostObject" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "COSTOBJECT") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="130px" />
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="Purchasing Group">
+            <HeaderTemplate>
+                Purchasing Group
+                <asp:DropDownList ID="ddlPurchasingGroup" runat="server" Width="100px" OnSelectedIndexChanged="PurchasingGroupChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblPurchasingGroup" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "GROUPNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="50px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Team:
+                <asp:DropDownList ID="ddlTeam" runat="server" Width="100px" OnSelectedIndexChanged="TeamChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="labelTeam" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TEAMNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Initiator">
+            <ItemTemplate>
+                <asp:Label ID="lblInitiator" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "INITIATORFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Approval Decision:
+                <asp:DropDownList ID="ddlApprovalDecision" runat="server" Width="150px" OnSelectedIndexChanged="ApprovalDecisionChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblApprovalDecision" runat="server" ForeColor='<%# System.Drawing.Color.FromName(Eval("COLORCODE").ToString()) %>' Font-Bold="true" Text='<%# DataBinder.Eval(Container.DataItem, "DECISION") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField>
+            <HeaderTemplate>
+                Focal Point:
+                <asp:DropDownList ID="ddlFocalPoint" runat="server" Width="100px" OnSelectedIndexChanged="FocalPointChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblFocalPoint" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "FOCALPOINTFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Sponsor
+                <asp:DropDownList ID="ddlSponsor" runat="server" Width="100px" OnSelectedIndexChanged="SponsorChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblSponsor" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SPONSORFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Cost Break Down">
+            <ItemTemplate>
+                <app:activityDescription runat="server" ID="activityDescription1" />
+            </ItemTemplate>
+            <ItemStyle Width="400px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Checked By?
+                <asp:DropDownList ID="ddlCheckedBy" runat="server" Width="100px" OnSelectedIndexChanged="CheckedByChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblCheckedBy" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "CHECKEDBYFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                PR Requestor:
+                <asp:DropDownList ID="ddlPRRequestor" runat="server" Width="100px" OnSelectedIndexChanged="PRRequestorChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblPRRequestor" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "REQUESTORFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                PR Approver:
+                <asp:DropDownList ID="ddlPRApprover" runat="server" Width="100px" OnSelectedIndexChanged="PRApproverChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblPRApprover" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "APPROVERFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Planned/Emmergency:
+                <asp:DropDownList ID="ddlPlanned" runat="server" Width="100px" OnSelectedIndexChanged="PlannedChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblPlanned" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TYPE") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                New or Represented:
+                <asp:DropDownList ID="ddlStatus" runat="server" Width="150px" OnSelectedIndexChanged="StatusChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "STATUS") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <%-- <asp:TemplateField HeaderText="Activity Period">
+            <ItemTemplate>
+                <asp:Label ID="lblPeriod" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PERIOD") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Business Justification">
+            <ItemTemplate>
+                <asp:Label ID="lblJustification" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "JUSTIFICATION") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="250px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Regrets/Implacation of Non Approval">
+            <ItemTemplate>
+                <asp:Label ID="lblThreat" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "THREAT") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="250px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Contract/Procurement Vehicle:
+                <asp:DropDownList ID="ddlVehicle" runat="server" Width="100px" OnSelectedIndexChanged="VehicleChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblVehicle" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "VEHICLENAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Contract No & Vendor">
+            <ItemTemplate>
+                <asp:Label ID="lblContractNo" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "CONTRACTNOVENDOR") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="PR Number">
+            <ItemTemplate>
+                <asp:Label ID="lblPRNumber" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PRNUMBER") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="PR Value (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblPRValue" runat="server" Text='<%# Eval("PRVALUE","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField HeaderText="PO Number">
+            <ItemTemplate>
+                <asp:Label ID="lblPONumber" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PONUMBER") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="PO Value (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblPOValue" runat="server" Text='<%# Eval("POVALUE","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Commitment (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblCommitment" runat="server" Text='<%# Eval("COMMITMENT","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="PO/PR Variance (%)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblVariance" runat="server"></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField HeaderText="Approval Decision Comments">
+            <ItemTemplate>
+                <asp:Label ID="lblComments" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "APPROVALCOMMENT") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="Savings($)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblSavings" runat="server" Text='<%# Eval("SAVINGS","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+
+<div id="modalDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 600px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bonga Commitment Control</h4>
+            </div>
+            <div class="modal-body" style="height: 550px; overflow: auto">
+                <app:DetailView2 runat="server" ID="DetailViewReport" />
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

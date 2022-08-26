@@ -1,0 +1,5 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Footer.ascx.cs" Inherits="Common_UserControls_Mobile_Footer" %>
+
+<div class="tm-footer" id="footer">
+    <a href="<%= NavigateUrl %>">Go to the desktop version of the demos to browse the complete set of features and controls</a>
+</div>

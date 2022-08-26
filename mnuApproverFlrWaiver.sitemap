@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="Gas Flare Waiver"  description="">
+    <siteMapNode url="" title="Gas Flare Waiver" description="">
+      
+      <siteMapNode url="~/App/FlareWaiver/GasFlarePending.aspx" title="Pending Requests"  description="" />
+      <siteMapNode url="~/App/FlareWaiver/GasFlareApproved.aspx?Mdx=Aprd" title="Approved Requests"  description="" />
+      <siteMapNode url="~/App/FlareWaiver/GasFlareRejected.aspx?Mdx=Rjct" title="Rejected Requests"  description="" />
+      <siteMapNode url="~/App/FlareWaiver/GasFlareCancelled.aspx?Mdx=Cncl" title="Cancelled Requests"  description="" />
+      <siteMapNode url="~/App/FlareWaiver/Reports/rptReport.aspx" title="Waiver Request Report"  description="" />
+
+      <siteMapNode url="~/App/FlareWaiver/Help.aspx" title="Help Guide" description="" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

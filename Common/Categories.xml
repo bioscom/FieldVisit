@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<categories>
+  <category name="Data Management">
+    <control name="ClientDataSource"/>
+    <control name="DataForm"/>
+    <control name="DataPager"/>
+    <control name="Filter"/>
+    <control name="Grid"/>
+    <control name="ListBox"/>
+    <control name="ListView"/>
+    <control name="ODataDataSource"/>
+    <control name="PivotGrid"/>
+    <control name="SpreadSheet"/>
+    <control name="TreeList"/>
+  </category>
+  <category name="Scheduling">
+    <control name="Calendar"/>
+    <control name="DatePicker"/>
+    <control name="DateTimePicker"/>
+    <control name="Gantt"/>
+    <control name="MonthYearPicker"/>
+    <control name="Scheduler"/>
+    <control name="TimePicker"/>
+  </category>
+  <category name="Theming">
+    <control name="FormDecorator"/>
+  </category>
+  <category name="Interactivity &amp; UX">
+    <control name="ProgressArea"/>
+    <control name="ProgressBar"/>
+    <control name="PersistenceFramework"/>
+  </category>
+  <category name="Layout">
+    <control name="Dock"/>
+    <control name="Notification"/>
+    <control name="PageLayout"/>
+    <control name="Splitter"/>
+    <control name="ToolTip"/>
+    <control name="TileList"/>
+    <control name="Window"/>
+    <control name="Wizard"/>
+  </category>
+  <category name="Media">
+    <control name="ImageGallery"/>
+    <control name="LightBox"/>
+    <control name="MediaPlayer"/>
+  </category>
+  <category name="Editors">
+    <control name="AutoCompleteBox"/>
+    <control name="ColorPicker"/>
+    <control name="ComboBox"/>
+    <control name="DateInput"/>
+    <control name="DropDownList"/>
+    <control name="DropDownTree"/>
+    <control name="Editor"/>
+    <control name="ImageEditor"/>
+    <control name="InputManager"/>
+    <control name="Label"/>
+    <control name="MaskedTextBox"/>
+    <control name="NumericTextBox"/>
+    <control name="Slider"/>
+    <control name="TextBox"/>
+  </category>
+  <category name="Data Visualization">
+    <control name="Barcode"/>
+    <control name="BinaryImage"/>
+    <control name="HtmlChart"/>
+    <control name="Gauge"/>
+    <control name="Rotator"/>    
+    <control name="Ticker"/>
+  </category>
+  <category name="Diagrams &amp; Maps">
+    <control name="Diagram"/>
+    <control name="OrgChart"/>
+    <control name="Map"/>
+    <control name="TreeMap"/>
+  </category>
+  <category name="AJAX">
+    <control name="AjaxLoadingPanel"/>
+    <control name="AjaxManager"/>
+    <control name="AjaxPanel"/>
+    <control name="XmlHttpPanel"/>
+  </category>
+  <category name="Navigation">
+    <control name="Button"/>
+    <control name="CheckBox"/>
+    <control name="CheckBoxList"/>
+    <control name="ImageButton"/>
+    <control name="LinkButton"/>
+    <control name="Menu"/>
+    <control name="Navigation"/>
+    <control name="PanelBar"/>
+    <control name="PushButton"/>
+    <control name="RadioButtonList"/>
+    <control name="RibbonBar"/>
+    <control name="SearchBox"/>
+    <control name="SiteMap"/>
+    <control name="TabStrip"/>
+    <control name="ToggleButton"/>
+    <control name="ToolBar"/>
+    <control name="TreeView"/>
+  </category>
+  <category name="File Upload &amp; Management">
+    <control name="ClientExportManager"/>
+    <control name="FileExplorer"/>
+    <control name="PdfProcessing"/>
+    <control name="SpreadProcessing"/>
+    <control name="AsyncUpload"/>
+    <control name="CloudUpload"/>
+    <control name="WordsProcessing"/>
+    <control name="ZipLibrary"/>
+  </category>
+  <category name="Spell Checking">
+    <control name="Spell"/>
+  </category>
+  <category name="Social">
+    <control name="Captcha"/>
+    <control name="Rating"/>
+    <control name="SocialShare"/>
+    <control name="TagCloud"/>
+  </category>
+</categories>

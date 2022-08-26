@@ -1,0 +1,50 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/LeanMasterPage.master" AutoEventWireup="true" CodeFile="EditUser.aspx.cs" Inherits="App_Lean_EditUser" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    <p>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <table style="width: 600px" class="tMainBorder">
+        <tr>
+            <td class="cHeadTile" colspan="2">
+                <asp:Label ID="Label13" runat="server" Font-Bold="True" ForeColor="#003366" Text="Edit User"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" style="width: 150px">
+                <asp:Label ID="Label2" runat="server" Text="User Name:"></asp:Label>
+            </td>
+            <td>
+                <asp:Label ID="lblFullname" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label14" runat="server" Text="Role:"></asp:Label>
+                <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="userRoleDropDownList"
+                    ErrorMessage="Select user's role." Type="Integer" ValueToCompare="-1" Operator="NotEqual"
+                    ValidationGroup="NewUser">*</asp:CompareValidator>
+            </td>
+            <td>
+                <asp:DropDownList ID="userRoleDropDownList" runat="server" Width="300px">
+                    <asp:ListItem Value="-1">[Select Role]</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <asp:Button ID="saveButton" runat="server" OnClick="saveButton_Click" Text="Submit"
+                    ToolTip="Click to submit this form" Width="100px" ValidationGroup="NewUser" />
+                &nbsp;
+                <asp:Button ID="closeButton" runat="server" OnClick="closeButton_Click" Text="Close"
+                    ValidationGroup="xxxx" />
+            </td>
+        </tr>
+    </table>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True"
+                    ShowSummary="False" ValidationGroup="NewUser" />
+</asp:Content>
+

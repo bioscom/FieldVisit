@@ -1,0 +1,78 @@
+<style type="text/css">
+
+#s4-leftpanel 
+{
+display:none;
+}
+
+.s4-ca 
+{
+margin-left:0px;
+}
+
+
+.ms-wpselectlink
+{
+Display:none;
+}
+
+
+.ms-WPHeader{
+				background-color:#FFEAA0 !important;
+
+}
+
+
+
+.ms-HoverCellInActive
+{
+Display:none;
+}
+
+.ms-WPHeaderTdSelection
+{
+Display:none;
+}
+
+.ms-WPHeaderTdMenu
+{
+Display:none;
+}
+
+
+.s4-wpcell
+    {
+        border-bottom: 1px solid #bdbdbd;
+        border-left: 1px solid #bdbdbd;
+        border-top: 1px solid #bdbdbd; 
+        border-right: 1px solid #bdbdbd;
+    }
+
+#MSOZoneCell_WebPartWPQ21 .s4-wpTopTable, 
+#MSOZoneCell_WebPartWPQ18 .s4-wpTopTable,
+#MSOZoneCell_WebPartWPQ23 .s4-wpTopTable, 
+
+#MSOZoneCell_WebPartWPQ17 .s4-wpTopTable,
+#MSOZoneCell_WebPartWPQ12 .s4-wpTopTable,
+#MSOZoneCell_WebPartWPQ24 .s4-wpTopTable,
+#MSOZoneCell_WebPartWPQ19 .s4-wpTopTable,
+#MSOZoneCell_WebPartWPQ19 .s4-wpcell-plain,
+#MSOZoneCell_WebPartWPQ20 .s4-wpcell-plain
+{
+        border-bottom: 1px solid #bdbdbd;
+        border-left: 1px solid #bdbdbd;
+        border-top: 1px solid #bdbdbd; 
+        border-right: 1px solid #bdbdbd;
+    }
+
+.ms-wpTdSpace{
+				background-color:#ffeaa0;
+}
+
+.s4-ribbonrowhidetitle {
+	display: none;
+} 
+
+ 
+
+</style>  

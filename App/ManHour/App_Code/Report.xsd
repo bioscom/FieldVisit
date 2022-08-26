@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Report" targetNamespace="http://tempuri.org/Report.xsd" xmlns:mstns="http://tempuri.org/Report.xsd" xmlns="http://tempuri.org/Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="manhrConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="manhrConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.manhrConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BusinessInitiativeTableAdapter" GeneratorDataComponentClassName="BusinessInitiativeTableAdapter" Name="BusinessInitiative" UserDataComponentName="BusinessInitiativeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_INITIATIVE.IDINITIATIVE, MANHR_INITIATIVE.BUS_CASE, MANHR_INITIATIVE."SCOPE", MANHR_INITIATIVE.SUCCESS_FACTOR, 
+                         MANHR_INITIATIVE.OBJECTIVES, MANHR_INITIATIVE.DELIVERABLES, MANHR_INITIATIVE.TEAM_MEMBER, MANHR_INITIATIVE.BENEFITS, 
+                         MANHR_INITIATIVE.INITMEASURES, MANHR_INITIATIVE.DATE_SUBMITTED, MANHR_INITIATIVE.TITLE, COMMON_OU.IDOU, COMMON_OU.OU, 
+                         CPDMS_FUNCTIONS.FUNCTIONID, CPDMS_FUNCTIONS."FUNCTION", MANHR_INITIATIVE.STATUS, MANHR_INITIATIVE.KEYACTIVITIES, 
+                         MANHR_INITIATIVE.PIXNAME, INITIATOR.FULLNAME, INITIATOR.EMAIL, INITIATOR.USERID
+FROM            MANHR_INITIATIVE, CPDMS_FUNCTIONS, COMMON_OU, PROD_USERMGT INITIATOR
+WHERE        MANHR_INITIATIVE.FUNCTIONID = CPDMS_FUNCTIONS.FUNCTIONID AND MANHR_INITIATIVE.IDOU = COMMON_OU.IDOU AND 
+                         MANHR_INITIATIVE.USERID = INITIATOR.USERID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="BUS_CASE" DataSetColumn="BUS_CASE" />
+              <Mapping SourceColumn="SCOPE" DataSetColumn="SCOPE" />
+              <Mapping SourceColumn="SUCCESS_FACTOR" DataSetColumn="SUCCESS_FACTOR" />
+              <Mapping SourceColumn="OBJECTIVES" DataSetColumn="OBJECTIVES" />
+              <Mapping SourceColumn="DELIVERABLES" DataSetColumn="DELIVERABLES" />
+              <Mapping SourceColumn="TEAM_MEMBER" DataSetColumn="TEAM_MEMBER" />
+              <Mapping SourceColumn="BENEFITS" DataSetColumn="BENEFITS" />
+              <Mapping SourceColumn="DATE_SUBMITTED" DataSetColumn="DATE_SUBMITTED" />
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="OU" DataSetColumn="OU" />
+              <Mapping SourceColumn="FUNCTION" DataSetColumn="FUNCTION" />
+              <Mapping SourceColumn="KEYACTIVITIES" DataSetColumn="KEYACTIVITIES" />
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="INITMEASURES" DataSetColumn="INITMEASURES" />
+              <Mapping SourceColumn="IDOU" DataSetColumn="IDOU" />
+              <Mapping SourceColumn="FUNCTIONID" DataSetColumn="FUNCTIONID" />
+              <Mapping SourceColumn="PIXNAME" DataSetColumn="PIXNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BaseDataTableAdapter" GeneratorDataComponentClassName="BaseDataTableAdapter" Name="BaseData" UserDataComponentName="BaseDataTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_BASEDATA.IDBASE, MANHR_BASEDATA.NOOFPERSONNEL, MANHR_BASEDATA.BASELOADMNT, MANHR_DISCIPLINES.IDDISCIPLINE, 
+                         MANHR_DISCIPLINES.DISCIPLINE, MANHR_DISCIPLINES.DESCRIPTION
+FROM            MANHR_BASEDATA, MANHR_DISCIPLINES
+WHERE        MANHR_BASEDATA.IDDISCIPLINE = MANHR_DISCIPLINES.IDDISCIPLINE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDBASE" DataSetColumn="IDBASE" />
+              <Mapping SourceColumn="NOOFPERSONNEL" DataSetColumn="NOOFPERSONNEL" />
+              <Mapping SourceColumn="BASELOADMNT" DataSetColumn="BASELOADMNT" />
+              <Mapping SourceColumn="IDDISCIPLINE" DataSetColumn="IDDISCIPLINE" />
+              <Mapping SourceColumn="DISCIPLINE" DataSetColumn="DISCIPLINE" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ImpactedAreaTableAdapter" GeneratorDataComponentClassName="ImpactedAreaTableAdapter" Name="ImpactedArea" UserDataComponentName="ImpactedAreaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_INITIATIVE.IDINITIATIVE, PROD_FACILITIES.FACILITIES
+FROM            MANHR_INIT_DIST_FACILITIES, MANHR_INITIATIVE, PROD_FACILITIES
+WHERE        MANHR_INIT_DIST_FACILITIES.IDINITIATIVE = MANHR_INITIATIVE.IDINITIATIVE AND 
+                         MANHR_INIT_DIST_FACILITIES.ID_FACILITIES = PROD_FACILITIES.ID_FACILITIES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="FACILITIES" DataSetColumn="FACILITIES" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ImpactedAreaDistrictsTableAdapter" GeneratorDataComponentClassName="ImpactedAreaDistrictsTableAdapter" Name="ImpactedAreaDistricts" UserDataComponentName="ImpactedAreaDistrictsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT PROD_DISTRICT.DISTRICT, MANHR_INITIATIVE.IDINITIATIVE, PROD_FACILITIES.FACILITIES
+FROM            MANHR_INIT_DIST_FACILITIES, MANHR_INITIATIVE, PROD_FACILITIES, PROD_DISTRICT
+WHERE        MANHR_INIT_DIST_FACILITIES.IDINITIATIVE = MANHR_INITIATIVE.IDINITIATIVE AND 
+                         MANHR_INIT_DIST_FACILITIES.ID_FACILITIES = PROD_FACILITIES.ID_FACILITIES AND PROD_FACILITIES.ID_DISTRICT = PROD_DISTRICT.ID_DISTRICT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="FACILITIES" DataSetColumn="FACILITIES" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ResourceUtilisationTableAdapter" GeneratorDataComponentClassName="ResourceUtilisationTableAdapter" Name="ResourceUtilisation" UserDataComponentName="ResourceUtilisationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_RESOURCEUTIL.IDRESOURCE, MANHR_RESOURCEUTIL.NOOFSTAFF, MANHR_RESOURCEUTIL.STAFFHRUTIL, MANHR_RESOURCEUTIL.MAXWRHR, 
+                         MANHR_DISCIPLINES.IDDISCIPLINE, MANHR_DISCIPLINES.DISCIPLINE, MANHR_DISCIPLINES.DESCRIPTION, MANHR_INITIATIVE.IDINITIATIVE, 
+                         MANHR_INITIATIVE.TITLE
+FROM            MANHR_INITIATIVE, MANHR_RESOURCEUTIL, MANHR_DISCIPLINES
+WHERE        MANHR_INITIATIVE.IDINITIATIVE = MANHR_RESOURCEUTIL.IDINITIATIVE (+) AND MANHR_DISCIPLINES.IDDISCIPLINE = MANHR_RESOURCEUTIL.IDDISCIPLINE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDRESOURCE" DataSetColumn="IDRESOURCE" />
+              <Mapping SourceColumn="NOOFSTAFF" DataSetColumn="NOOFSTAFF" />
+              <Mapping SourceColumn="STAFFHRUTIL" DataSetColumn="STAFFHRUTIL" />
+              <Mapping SourceColumn="MAXWRHR" DataSetColumn="MAXWRHR" />
+              <Mapping SourceColumn="IDDISCIPLINE" DataSetColumn="IDDISCIPLINE" />
+              <Mapping SourceColumn="DISCIPLINE" DataSetColumn="DISCIPLINE" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ImpactOnAssetTwoTableAdapter" GeneratorDataComponentClassName="ImpactOnAssetTwoTableAdapter" Name="ImpactOnAssetTwo" UserDataComponentName="ImpactOnAssetTwoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_INITIATIVE.TITLE, TO_CHAR(TO_DATE(MANHR_INITIATIVE.DATE_SUBMITTED, 'DD-MON-YY'), 'YYYY') AS YYEAR, PROD_FACILITIES.FACILITIES, 
+                         PROD_DISTRICT.DISTRICT, COMMON_OU.OU
+FROM            MANHR_INITIATIVE, MANHR_INIT_DIST_FACILITIES, PROD_FACILITIES, PROD_DISTRICT, COMMON_OU
+WHERE        MANHR_INITIATIVE.IDINITIATIVE = MANHR_INIT_DIST_FACILITIES.IDINITIATIVE (+) AND 
+                         PROD_FACILITIES.ID_FACILITIES = MANHR_INIT_DIST_FACILITIES.ID_FACILITIES AND PROD_DISTRICT.ID_DISTRICT = PROD_FACILITIES.ID_DISTRICT AND 
+                         COMMON_OU.IDOU = MANHR_INITIATIVE.IDOU</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+              <Mapping SourceColumn="YYEAR" DataSetColumn="YYEAR" />
+              <Mapping SourceColumn="FACILITIES" DataSetColumn="FACILITIES" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="OU" DataSetColumn="OU" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProjectStatusTableAdapter" Name="ProjectStatus">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MANHR_PROJSTATUS.IDSTATUS, MANHR_PROJSTATUS.STATUS, MANHR_PROJSTATUS.LEC, MANHR_PROJSTATUS.CHALLENGES, 
+                         MANHR_PROJSTATUS.COMMENTS, MANHR_INITIATIVE.TITLE, MANHR_INITIATIVE.IDINITIATIVE
+FROM            MANHR_PROJSTATUS, MANHR_INITIATIVE
+WHERE        MANHR_PROJSTATUS.IDINITIATIVE = MANHR_INITIATIVE.IDINITIATIVE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDSTATUS" DataSetColumn="IDSTATUS" />
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="LEC" DataSetColumn="LEC" />
+              <Mapping SourceColumn="CHALLENGES" DataSetColumn="CHALLENGES" />
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProjectMilestoneTableAdapter" Name="ProjectMilestone">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectName="RPI.MANHR_PROJMILESTONES" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM "MANHR_PROJMILESTONES" WHERE (("IDMILESTONE" = :Original_IDMILESTONE))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="Original_IDMILESTONE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDMILESTONE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO "MANHR_PROJMILESTONES" ("IDMILESTONE", "IDINITIATIVE", "MILESTONES", "STATUS", "TARGET_DATE", "REMARKS") VALUES (:IDMILESTONE, :IDINITIATIVE, :MILESTONES, :STATUS, :TARGET_DATE, :REMARKS)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="IDMILESTONE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDMILESTONE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="IDINITIATIVE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDINITIATIVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="MILESTONES" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MILESTONES" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="STATUS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="TARGET_DATE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TARGET_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IDMILESTONE, IDINITIATIVE, MILESTONES, STATUS, TARGET_DATE, REMARKS
+FROM            MANHR_PROJMILESTONES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE "MANHR_PROJMILESTONES" SET "IDMILESTONE" = :IDMILESTONE, "IDINITIATIVE" = :IDINITIATIVE, "MILESTONES" = :MILESTONES, "STATUS" = :STATUS, "TARGET_DATE" = :TARGET_DATE, "REMARKS" = :REMARKS WHERE (("IDMILESTONE" = :Original_IDMILESTONE))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="IDMILESTONE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDMILESTONE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="IDINITIATIVE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDINITIATIVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="MILESTONES" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MILESTONES" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="STATUS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="TARGET_DATE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TARGET_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="VarNumeric" Direction="Input" ParameterName="Original_IDMILESTONE" Precision="0" ProviderType="Number" Scale="0" Size="0" SourceColumn="IDMILESTONE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDMILESTONE" DataSetColumn="IDMILESTONE" />
+              <Mapping SourceColumn="IDINITIATIVE" DataSetColumn="IDINITIATIVE" />
+              <Mapping SourceColumn="MILESTONES" DataSetColumn="MILESTONES" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="TARGET_DATE" DataSetColumn="TARGET_DATE" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Report" msprop:Generator_DataSetName="Report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BusinessInitiative" msprop:Generator_TableClassName="BusinessInitiativeDataTable" msprop:Generator_TableVarName="tableBusinessInitiative" msprop:Generator_TablePropName="BusinessInitiative" msprop:Generator_RowDeletingName="BusinessInitiativeRowDeleting" msprop:Generator_RowChangingName="BusinessInitiativeRowChanging" msprop:Generator_RowEvHandlerName="BusinessInitiativeRowChangeEventHandler" msprop:Generator_RowDeletedName="BusinessInitiativeRowDeleted" msprop:Generator_UserTableName="BusinessInitiative" msprop:Generator_RowChangedName="BusinessInitiativeRowChanged" msprop:Generator_RowEvArgName="BusinessInitiativeRowChangeEvent" msprop:Generator_RowClassName="BusinessInitiativeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BUS_CASE" msprop:Generator_ColumnVarNameInTable="columnBUS_CASE" msprop:Generator_ColumnPropNameInRow="BUS_CASE" msprop:Generator_ColumnPropNameInTable="BUS_CASEColumn" msprop:Generator_UserColumnName="BUS_CASE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SCOPE" msprop:Generator_ColumnVarNameInTable="columnSCOPE" msprop:Generator_ColumnPropNameInRow="SCOPE" msprop:Generator_ColumnPropNameInTable="SCOPEColumn" msprop:Generator_UserColumnName="SCOPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SUCCESS_FACTOR" msprop:Generator_ColumnVarNameInTable="columnSUCCESS_FACTOR" msprop:Generator_ColumnPropNameInRow="SUCCESS_FACTOR" msprop:Generator_ColumnPropNameInTable="SUCCESS_FACTORColumn" msprop:Generator_UserColumnName="SUCCESS_FACTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OBJECTIVES" msprop:Generator_ColumnVarNameInTable="columnOBJECTIVES" msprop:Generator_ColumnPropNameInRow="OBJECTIVES" msprop:Generator_ColumnPropNameInTable="OBJECTIVESColumn" msprop:Generator_UserColumnName="OBJECTIVES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DELIVERABLES" msprop:Generator_ColumnVarNameInTable="columnDELIVERABLES" msprop:Generator_ColumnPropNameInRow="DELIVERABLES" msprop:Generator_ColumnPropNameInTable="DELIVERABLESColumn" msprop:Generator_UserColumnName="DELIVERABLES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TEAM_MEMBER" msprop:Generator_ColumnVarNameInTable="columnTEAM_MEMBER" msprop:Generator_ColumnPropNameInRow="TEAM_MEMBER" msprop:Generator_ColumnPropNameInTable="TEAM_MEMBERColumn" msprop:Generator_UserColumnName="TEAM_MEMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BENEFITS" msprop:Generator_ColumnVarNameInTable="columnBENEFITS" msprop:Generator_ColumnPropNameInRow="BENEFITS" msprop:Generator_ColumnPropNameInTable="BENEFITSColumn" msprop:Generator_UserColumnName="BENEFITS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE_SUBMITTED" msprop:Generator_ColumnVarNameInTable="columnDATE_SUBMITTED" msprop:Generator_ColumnPropNameInRow="DATE_SUBMITTED" msprop:Generator_ColumnPropNameInTable="DATE_SUBMITTEDColumn" msprop:Generator_UserColumnName="DATE_SUBMITTED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TITLE" msprop:Generator_ColumnVarNameInTable="columnTITLE" msprop:Generator_ColumnPropNameInRow="TITLE" msprop:Generator_ColumnPropNameInTable="TITLEColumn" msprop:Generator_UserColumnName="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" />
+              <xs:element name="OU" msprop:Generator_ColumnVarNameInTable="columnOU" msprop:Generator_ColumnPropNameInRow="OU" msprop:Generator_ColumnPropNameInTable="OUColumn" msprop:Generator_UserColumnName="OU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FUNCTION" msprop:Generator_ColumnVarNameInTable="columnFunction" msprop:Generator_ColumnPropNameInRow="FUNCTION" msprop:Generator_ColumnPropNameInTable="FunctionColumn" msprop:Generator_UserColumnName="FUNCTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KEYACTIVITIES" msprop:Generator_ColumnVarNameInTable="columnKEYACTIVITIES" msprop:Generator_ColumnPropNameInRow="KEYACTIVITIES" msprop:Generator_ColumnPropNameInTable="KEYACTIVITIESColumn" msprop:Generator_UserColumnName="KEYACTIVITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDINITIATIVE" msprop:Generator_ColumnVarNameInTable="columnIDINITIATIVE" msprop:Generator_ColumnPropNameInRow="IDINITIATIVE" msprop:Generator_ColumnPropNameInTable="IDINITIATIVEColumn" msprop:Generator_UserColumnName="IDINITIATIVE" type="xs:decimal" />
+              <xs:element name="INITMEASURES" msprop:Generator_ColumnVarNameInTable="columnINITMEASURES" msprop:Generator_ColumnPropNameInRow="INITMEASURES" msprop:Generator_ColumnPropNameInTable="INITMEASURESColumn" msprop:Generator_UserColumnName="INITMEASURES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDOU" msprop:Generator_ColumnVarNameInTable="columnIDOU" msprop:Generator_ColumnPropNameInRow="IDOU" msprop:Generator_ColumnPropNameInTable="IDOUColumn" msprop:Generator_UserColumnName="IDOU" type="xs:decimal" />
+              <xs:element name="FUNCTIONID" msprop:Generator_ColumnVarNameInTable="columnFUNCTIONID" msprop:Generator_ColumnPropNameInRow="FUNCTIONID" msprop:Generator_ColumnPropNameInTable="FUNCTIONIDColumn" msprop:Generator_UserColumnName="FUNCTIONID" type="xs:decimal" />
+              <xs:element name="PIXNAME" msprop:Generator_ColumnVarNameInTable="columnPIXNAME" msprop:Generator_ColumnPropNameInRow="PIXNAME" msprop:Generator_ColumnPropNameInTable="PIXNAMEColumn" msprop:Generator_UserColumnName="PIXNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaseData" msprop:Generator_TableClassName="BaseDataDataTable" msprop:Generator_TableVarName="tableBaseData" msprop:Generator_RowChangedName="BaseDataRowChanged" msprop:Generator_TablePropName="BaseData" msprop:Generator_RowDeletingName="BaseDataRowDeleting" msprop:Generator_RowChangingName="BaseDataRowChanging" msprop:Generator_RowEvHandlerName="BaseDataRowChangeEventHandler" msprop:Generator_RowDeletedName="BaseDataRowDeleted" msprop:Generator_RowClassName="BaseDataRow" msprop:Generator_UserTableName="BaseData" msprop:Generator_RowEvArgName="BaseDataRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDBASE" msprop:Generator_ColumnVarNameInTable="columnIDBASE" msprop:Generator_ColumnPropNameInRow="IDBASE" msprop:Generator_ColumnPropNameInTable="IDBASEColumn" msprop:Generator_UserColumnName="IDBASE" type="xs:decimal" />
+              <xs:element name="NOOFPERSONNEL" msprop:Generator_ColumnVarNameInTable="columnNOOFPERSONNEL" msprop:Generator_ColumnPropNameInRow="NOOFPERSONNEL" msprop:Generator_ColumnPropNameInTable="NOOFPERSONNELColumn" msprop:Generator_UserColumnName="NOOFPERSONNEL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BASELOADMNT" msprop:Generator_ColumnVarNameInTable="columnBASELOADMNT" msprop:Generator_ColumnPropNameInRow="BASELOADMNT" msprop:Generator_ColumnPropNameInTable="BASELOADMNTColumn" msprop:Generator_UserColumnName="BASELOADMNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDDISCIPLINE" msprop:Generator_ColumnVarNameInTable="columnIDDISCIPLINE" msprop:Generator_ColumnPropNameInRow="IDDISCIPLINE" msprop:Generator_ColumnPropNameInTable="IDDISCIPLINEColumn" msprop:Generator_UserColumnName="IDDISCIPLINE" type="xs:decimal" />
+              <xs:element name="DISCIPLINE" msprop:Generator_ColumnVarNameInTable="columnDISCIPLINE" msprop:Generator_ColumnPropNameInRow="DISCIPLINE" msprop:Generator_ColumnPropNameInTable="DISCIPLINEColumn" msprop:Generator_UserColumnName="DISCIPLINE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ImpactedArea" msprop:Generator_TableClassName="ImpactedAreaDataTable" msprop:Generator_TableVarName="tableImpactedArea" msprop:Generator_TablePropName="ImpactedArea" msprop:Generator_RowDeletingName="ImpactedAreaRowDeleting" msprop:Generator_RowChangingName="ImpactedAreaRowChanging" msprop:Generator_RowEvHandlerName="ImpactedAreaRowChangeEventHandler" msprop:Generator_RowDeletedName="ImpactedAreaRowDeleted" msprop:Generator_UserTableName="ImpactedArea" msprop:Generator_RowChangedName="ImpactedAreaRowChanged" msprop:Generator_RowEvArgName="ImpactedAreaRowChangeEvent" msprop:Generator_RowClassName="ImpactedAreaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDINITIATIVE" msprop:Generator_ColumnVarNameInTable="columnIDINITIATIVE" msprop:Generator_ColumnPropNameInRow="IDINITIATIVE" msprop:Generator_ColumnPropNameInTable="IDINITIATIVEColumn" msprop:Generator_UserColumnName="IDINITIATIVE" type="xs:decimal" />
+              <xs:element name="FACILITIES" msprop:Generator_ColumnVarNameInTable="columnFACILITIES" msprop:Generator_ColumnPropNameInRow="FACILITIES" msprop:Generator_ColumnPropNameInTable="FACILITIESColumn" msprop:Generator_UserColumnName="FACILITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ImpactedAreaDistricts" msprop:Generator_TableClassName="ImpactedAreaDistrictsDataTable" msprop:Generator_TableVarName="tableImpactedAreaDistricts" msprop:Generator_TablePropName="ImpactedAreaDistricts" msprop:Generator_RowDeletingName="ImpactedAreaDistrictsRowDeleting" msprop:Generator_RowChangingName="ImpactedAreaDistrictsRowChanging" msprop:Generator_RowEvHandlerName="ImpactedAreaDistrictsRowChangeEventHandler" msprop:Generator_RowDeletedName="ImpactedAreaDistrictsRowDeleted" msprop:Generator_UserTableName="ImpactedAreaDistricts" msprop:Generator_RowChangedName="ImpactedAreaDistrictsRowChanged" msprop:Generator_RowEvArgName="ImpactedAreaDistrictsRowChangeEvent" msprop:Generator_RowClassName="ImpactedAreaDistrictsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDINITIATIVE" msprop:Generator_ColumnVarNameInTable="columnIDINITIATIVE" msprop:Generator_ColumnPropNameInRow="IDINITIATIVE" msprop:Generator_ColumnPropNameInTable="IDINITIATIVEColumn" msprop:Generator_UserColumnName="IDINITIATIVE" type="xs:decimal" />
+              <xs:element name="FACILITIES" msprop:Generator_ColumnVarNameInTable="columnFACILITIES" msprop:Generator_ColumnPropNameInRow="FACILITIES" msprop:Generator_ColumnPropNameInTable="FACILITIESColumn" msprop:Generator_UserColumnName="FACILITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ResourceUtilisation" msprop:Generator_TableClassName="ResourceUtilisationDataTable" msprop:Generator_TableVarName="tableResourceUtilisation" msprop:Generator_TablePropName="ResourceUtilisation" msprop:Generator_RowDeletingName="ResourceUtilisationRowDeleting" msprop:Generator_RowChangingName="ResourceUtilisationRowChanging" msprop:Generator_RowEvHandlerName="ResourceUtilisationRowChangeEventHandler" msprop:Generator_RowDeletedName="ResourceUtilisationRowDeleted" msprop:Generator_UserTableName="ResourceUtilisation" msprop:Generator_RowChangedName="ResourceUtilisationRowChanged" msprop:Generator_RowEvArgName="ResourceUtilisationRowChangeEvent" msprop:Generator_RowClassName="ResourceUtilisationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDRESOURCE" msprop:Generator_ColumnVarNameInTable="columnIDRESOURCE" msprop:Generator_ColumnPropNameInRow="IDRESOURCE" msprop:Generator_ColumnPropNameInTable="IDRESOURCEColumn" msprop:Generator_UserColumnName="IDRESOURCE" type="xs:decimal" />
+              <xs:element name="NOOFSTAFF" msprop:Generator_ColumnVarNameInTable="columnNOOFSTAFF" msprop:Generator_ColumnPropNameInRow="NOOFSTAFF" msprop:Generator_ColumnPropNameInTable="NOOFSTAFFColumn" msprop:Generator_UserColumnName="NOOFSTAFF" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STAFFHRUTIL" msprop:Generator_ColumnVarNameInTable="columnSTAFFHRUTIL" msprop:Generator_ColumnPropNameInRow="STAFFHRUTIL" msprop:Generator_ColumnPropNameInTable="STAFFHRUTILColumn" msprop:Generator_UserColumnName="STAFFHRUTIL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MAXWRHR" msprop:Generator_ColumnVarNameInTable="columnMAXWRHR" msprop:Generator_ColumnPropNameInRow="MAXWRHR" msprop:Generator_ColumnPropNameInTable="MAXWRHRColumn" msprop:Generator_UserColumnName="MAXWRHR" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDDISCIPLINE" msprop:Generator_ColumnVarNameInTable="columnIDDISCIPLINE" msprop:Generator_ColumnPropNameInRow="IDDISCIPLINE" msprop:Generator_ColumnPropNameInTable="IDDISCIPLINEColumn" msprop:Generator_UserColumnName="IDDISCIPLINE" type="xs:decimal" />
+              <xs:element name="DISCIPLINE" msprop:Generator_ColumnVarNameInTable="columnDISCIPLINE" msprop:Generator_ColumnPropNameInRow="DISCIPLINE" msprop:Generator_ColumnPropNameInTable="DISCIPLINEColumn" msprop:Generator_UserColumnName="DISCIPLINE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDINITIATIVE" msprop:Generator_ColumnVarNameInTable="columnIDINITIATIVE" msprop:Generator_ColumnPropNameInRow="IDINITIATIVE" msprop:Generator_ColumnPropNameInTable="IDINITIATIVEColumn" msprop:Generator_UserColumnName="IDINITIATIVE" type="xs:decimal" />
+              <xs:element name="TITLE" msprop:Generator_ColumnVarNameInTable="columnTITLE" msprop:Generator_ColumnPropNameInRow="TITLE" msprop:Generator_ColumnPropNameInTable="TITLEColumn" msprop:Generator_UserColumnName="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ImpactOnAssetTwo" msprop:Generator_TableClassName="ImpactOnAssetTwoDataTable" msprop:Generator_TableVarName="tableImpactOnAssetTwo" msprop:Generator_TablePropName="ImpactOnAssetTwo" msprop:Generator_RowDeletingName="ImpactOnAssetTwoRowDeleting" msprop:Generator_RowChangingName="ImpactOnAssetTwoRowChanging" msprop:Generator_RowEvHandlerName="ImpactOnAssetTwoRowChangeEventHandler" msprop:Generator_RowDeletedName="ImpactOnAssetTwoRowDeleted" msprop:Generator_UserTableName="ImpactOnAssetTwo" msprop:Generator_RowChangedName="ImpactOnAssetTwoRowChanged" msprop:Generator_RowEvArgName="ImpactOnAssetTwoRowChangeEvent" msprop:Generator_RowClassName="ImpactOnAssetTwoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TITLE" msprop:Generator_ColumnVarNameInTable="columnTITLE" msprop:Generator_ColumnPropNameInRow="TITLE" msprop:Generator_ColumnPropNameInTable="TITLEColumn" msprop:Generator_UserColumnName="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="YYEAR" msprop:Generator_ColumnVarNameInTable="columnYYEAR" msprop:Generator_ColumnPropNameInRow="YYEAR" msprop:Generator_ColumnPropNameInTable="YYEARColumn" msprop:Generator_UserColumnName="YYEAR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FACILITIES" msprop:Generator_ColumnVarNameInTable="columnFACILITIES" msprop:Generator_ColumnPropNameInRow="FACILITIES" msprop:Generator_ColumnPropNameInTable="FACILITIESColumn" msprop:Generator_UserColumnName="FACILITIES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OU" msprop:Generator_ColumnVarNameInTable="columnOU" msprop:Generator_ColumnPropNameInRow="OU" msprop:Generator_ColumnPropNameInTable="OUColumn" msprop:Generator_UserColumnName="OU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectStatus">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDSTATUS" type="xs:decimal" />
+              <xs:element name="IDINITIATIVE" type="xs:decimal" />
+              <xs:element name="STATUS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LEC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHALLENGES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectMilestone">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDMILESTONE" type="xs:decimal" />
+              <xs:element name="IDINITIATIVE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MILESTONES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TARGET_DATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BusinessInitiative" />
+      <xs:field xpath="mstns:IDINITIATIVE" />
+      <xs:field xpath="mstns:IDOU" />
+      <xs:field xpath="mstns:FUNCTIONID" />
+      <xs:field xpath="mstns:USERID" />
+    </xs:unique>
+    <xs:unique name="BaseData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BaseData" />
+      <xs:field xpath="mstns:IDBASE" />
+      <xs:field xpath="mstns:IDDISCIPLINE" />
+    </xs:unique>
+    <xs:unique name="ResourceUtilisation_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ResourceUtilisation" />
+      <xs:field xpath="mstns:IDRESOURCE" />
+      <xs:field xpath="mstns:IDDISCIPLINE" />
+      <xs:field xpath="mstns:IDINITIATIVE" />
+    </xs:unique>
+    <xs:unique name="ProjectStatus_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProjectStatus" />
+      <xs:field xpath="mstns:IDSTATUS" />
+    </xs:unique>
+    <xs:unique name="ProjectMilestone_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProjectMilestone" />
+      <xs:field xpath="mstns:IDMILESTONE" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode title="Production" description="Production Field Visit Activities Requests">
+
+    <siteMapNode title="Admininstrator's Privilege">
+      <!--<siteMapNode url="~/App/FieldVisit/Forms/Setup/Default.aspx" title="Application Configuration"/>-->
+      <siteMapNode url="~/App/FieldVisit/Forms/FieldVisit/fieldVisitRequestStatus.aspx" title="Field Visit Requests Status"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECRequestStatus.aspx" title="PEC Requests Status"/>
+
+      <siteMapNode title="User Management">
+        <siteMapNode url="~/App/FieldVisit/Forms/ViewUser.aspx" title="Users List"/>
+        <siteMapNode url="~/App/FieldVisit/Forms/AddUser.aspx" title="Add new User"/>
+        <siteMapNode url="~/App/FieldVisit/Forms/AddC4CUsers.aspx" title="Add C4C User"/>
+      </siteMapNode>
+    </siteMapNode>
+
+    <siteMapNode title="Request Forms">
+      <siteMapNode title="Field Visit Request Form" url="~/App/FieldVisit/Forms/FieldVisit/activityForm.aspx" />
+      <siteMapNode title="PEC Request Form" url="~/App/FieldVisit/Forms/PEC/PECForm.aspx" />
+      <siteMapNode title="IAP Change Control Request" url="http://sww.scin.cpdms.shell.com/iap" />
+      <siteMapNode title="Locate Request" url="~/App/FieldVisit/Forms/FieldVisit/eSearch.aspx"/>
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

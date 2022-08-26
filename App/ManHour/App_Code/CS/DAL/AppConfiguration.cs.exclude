@@ -1,0 +1,260 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Configuration;
+
+public static class AppConfiguration
+{
+    // Caches the connection string
+    private static string dbConnectionString;
+    private static string dbProviderName;
+
+    // Store the name of application
+    private readonly static string smtpHost;
+    private readonly static string bpPlanYear;
+    private readonly static string appNameId;
+
+    private readonly static string adminName;
+    private readonly static string adminEmail;
+    private readonly static string adminUserName;
+    private readonly static string adminExt;
+
+    private readonly static string prodAdminName;
+    private readonly static string prodAdminEmail;
+    private readonly static string prodAdminUserName;
+    private readonly static string prodAdminExt;
+
+    private readonly static string prodSupportName;
+    private readonly static string prodSupportEmail;
+    private readonly static string prodSupportUserName;
+    private readonly static string prodSupportExt;
+
+    private readonly static string siteName;
+    private readonly static string siteHostName;
+    private readonly static string copyRight;
+    private readonly static string footerInfo;
+    private static bool bccAdmin;
+    
+    private readonly static string informationWareHouse;
+
+    private static string adminMenu;
+    private static string userMenu;
+
+    private static string dbLink;
+
+    static AppConfiguration()
+    {
+        dbConnectionString = ConfigurationManager.ConnectionStrings["manhrConnectionString"].ConnectionString;
+        dbProviderName = ConfigurationManager.ConnectionStrings["manhrConnectionString"].ProviderName;
+        //smtpHost = ConfigurationManager.AppSettings["cpdms.smtpHost"]; 
+        smtpHost = ConfigurationManager.AppSettings["MailServer"];
+        bpPlanYear = ConfigurationManager.AppSettings["opex.bpPlanYear"];
+        appNameId = ConfigurationManager.AppSettings["appNameId"];
+
+        adminName = ConfigurationManager.AppSettings["cpdms.adminName"];
+        adminEmail = ConfigurationManager.AppSettings["cpdms.AdminMail"];
+        adminUserName = ConfigurationManager.AppSettings["cpdms.AdminUserName"];
+        adminExt = ConfigurationManager.AppSettings["cpdms.AdminExt"];
+        bccAdmin = bool.Parse(ConfigurationManager.AppSettings["cpdms.BccAdmin"]);
+
+        prodAdminName = ConfigurationManager.AppSettings["production.adminName"];
+        prodAdminEmail = ConfigurationManager.AppSettings["production.AdminMail"];
+        prodAdminUserName = ConfigurationManager.AppSettings["production.AdminUserName"];
+        prodAdminExt = ConfigurationManager.AppSettings["production.AdminExt"];
+
+        prodSupportName = ConfigurationManager.AppSettings["production.SupportName"];
+        prodSupportEmail = ConfigurationManager.AppSettings["production.SupportMail"];
+        prodSupportUserName = ConfigurationManager.AppSettings["production.SupportUserName"];
+        prodSupportExt = ConfigurationManager.AppSettings["production.SupportExt"];
+        
+        siteName = ConfigurationManager.AppSettings["SiteName"];
+        siteHostName = ConfigurationManager.AppSettings["siteHostName"];
+
+        copyRight = ConfigurationManager.AppSettings["CopyRight"];
+        footerInfo = ConfigurationManager.AppSettings["footerInfo"];
+
+        informationWareHouse = ConfigurationManager.AppSettings["IWH"];
+
+        adminMenu = ConfigurationManager.AppSettings["AdminMenu"];
+        userMenu = ConfigurationManager.AppSettings["UserMenu"];
+
+        dbLink = ConfigurationManager.AppSettings["DBLINK"];
+    }
+    // Returns the connection string for the CPDMS database
+    public static string DbConnectionString
+    {
+        get { return AppConfiguration.dbConnectionString; }
+    }
+
+    public static bool BccAdmin
+    {
+        get { return AppConfiguration.bccAdmin; }
+    }
+
+    public static string DbProviderName
+    {
+        get { return dbProviderName; }
+    }
+
+    public static string SmtpHost
+    {
+        get { return AppConfiguration.smtpHost; }
+    }
+
+    public static string SiteName
+    {
+        get { return AppConfiguration.siteName; }
+    }
+
+    public static string siteHostName
+    {
+        get { return AppConfiguration.siteHostName; }
+    }
+
+    public static string BpPlanYear
+    {
+        get { return AppConfiguration.bpPlanYear; }
+    }
+
+    public static string AppNameId
+    {
+        get { return AppConfiguration.appNameId; }
+    }
+
+    public static string adminName
+    {
+        get { return AppConfiguration.adminName; }
+    }
+
+    public static string AdminUserName
+    {
+        get { return AppConfiguration.adminUserName; }
+    }
+
+    public static string adminEmail
+    {
+        get { return AppConfiguration.adminEmail; }
+    }
+
+    public static string AdminExt
+    {
+        get { return AppConfiguration.adminExt; }
+    }
+
+    public static string prodAdminName
+    {
+        get { return AppConfiguration.prodAdminName; }
+    }
+
+    public static string ProdAdminUserName
+    {
+        get { return AppConfiguration.prodAdminUserName; }
+    }
+
+    public static string prodAdminEmail
+    {
+        get { return AppConfiguration.prodAdminEmail; }
+    }
+
+    public static string ProdAdminExt
+    {
+        get { return AppConfiguration.prodAdminExt; }
+    }
+
+    public static string prodSupportName
+    {
+        get { return AppConfiguration.prodSupportName; }
+    }
+
+    public static string prodSupportEmail
+    {
+        get { return AppConfiguration.prodSupportEmail; }
+    }
+
+    public static string ProdSupportUserName
+    {
+        get { return AppConfiguration.prodSupportUserName; }
+    }
+
+    public static string ProdSupportExt
+    {
+        get { return AppConfiguration.prodSupportExt; }
+    }
+    
+    // Returns the address of the mail server
+    public static string MailServer
+    {
+        get
+        {
+            return ConfigurationManager.AppSettings["MailServer"];
+        }
+    }
+
+    // Send error log emails?
+    public static bool EnableErrorLogEmail
+    {
+        get
+        {
+            return bool.Parse(ConfigurationManager.AppSettings["EnableErrorLogEmail"]);
+        }
+    }
+
+    // Returns the email address where to send error reports
+    public static string ErrorLogEmail
+    {
+        get
+        {
+            return ConfigurationManager.AppSettings["ErrorLogEmail"];
+        }
+    }
+
+    public static string CopyRight
+    {
+        get
+        {
+            return copyRight;
+        }
+    }
+
+    public static string FooterInfo
+    {
+        get
+        {
+            return footerInfo;
+        }
+    }
+
+    public static string InformationWareHouse
+    {
+        get
+        {
+            return informationWareHouse;
+        }
+    }
+
+
+
+    public static string AdminMenu
+    {
+        get
+        {
+            return adminMenu;
+        }
+    }
+
+    public static string UserMenu
+    {
+        get
+        {
+            return userMenu;
+        }
+    }
+
+    public static string DbLink
+    {
+        get
+        {
+            return dbLink;
+        }
+    }
+}

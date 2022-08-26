@@ -1,0 +1,30 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/siteMaster.master" AutoEventWireup="true" CodeFile="Report.aspx.cs" Inherits="Report_Report" %>
+
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headId" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <table class="tSubGray" style="width: 98%">
+        <tr>
+            <td class="cHeadTile">Man Hour Report</td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <asp:Panel ID="rptViewPanel" runat="server">
+                    <rsweb:ReportViewer ID="rptViewer" runat="server" bordercolor="Black" 
+                                borderstyle="Solid" borderwidth="1px" font-names="Verdana" font-size="8pt" 
+                                height="900px" width="100%" zoommode="Percent">
+                    </rsweb:ReportViewer>
+                </asp:Panel>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
+

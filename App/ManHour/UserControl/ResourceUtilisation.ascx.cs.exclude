@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class UserControl_ResourceUtilisation : aspnetUserControl
+{
+    public void Init_Control(long lInitiativeId)
+    {
+        lInitiativeHF.Value = lInitiativeId.ToString();
+        Retrieve_Master(long.Parse(lInitiativeHF.Value));
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        
+    }
+
+    public void Retrieve_Master(long lInitiativeId)
+    {
+        MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+        MasterGridView.DataSource = oMastResourceUtil.dtGetMasterResourceUtilisationByInitiative(lInitiativeId);
+        MasterGridView.DataBind();
+
+        ResourceUtilisation oResourceUtil = new ResourceUtilisation();
+        foreach (GridViewRow grdRow in MasterGridView.Rows)
+        {
+            long lMasterId = Convert.ToInt64(MasterGridView.DataKeys[grdRow.RowIndex].Values[0].ToString());
+
+            UserControl_DetailResourceUtilisation DetailResourceUtil = (UserControl_DetailResourceUtilisation)grdRow.FindControl("DetailResourceUtilisation1");
+            DetailResourceUtil.Init_Control(lMasterId);
+        }
+    }
+
+    protected void MasterGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+
+    }
+
+    protected void MasterGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.Equals("Insert"))
+        {
+            long lInitiativeId = long.Parse(lInitiativeHF.Value);
+
+            MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+            string sInitiative = Convert.ToString(((TextBox)MasterGridView.FooterRow.FindControl("txtInitiative")).Text);
+
+            oMastResourceUtil.CreateMasterResourceUtilisation(lInitiativeId, sInitiative);
+
+            GridViewRow row = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
+
+            //UserControl_DetailResourceUtilisation DetailResourceUtil = (UserControl_DetailResourceUtilisation)row.FindControl("DetailResourceUtilisation1");
+            //HiddenField lMasterHF = (HiddenField)DetailResourceUtil.FindControl("lMasterHF");
+            
+            //long lMasterId = Convert.ToInt64(MasterGridView.DataKeys[row.RowIndex].Values[0].ToString());
+
+            //lMasterHF.Value = lMasterId.ToString();
+
+            Retrieve_Master(lInitiativeId);
+        }
+
+        if (e.CommandName.Equals("emptyInsert"))
+        {
+            long lInitiativeId = long.Parse(lInitiativeHF.Value);
+
+            GridViewRow emptyRow = MasterGridView.Controls[0].Controls[0] as GridViewRow;
+
+            MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+            string sInitiative = Convert.ToString(((TextBox)emptyRow.FindControl("txtInitiative")).Text);
+
+            oMastResourceUtil.CreateMasterResourceUtilisation(lInitiativeId, sInitiative);
+
+            //GridViewRow row = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
+
+            //UserControl_DetailResourceUtilisation DetailResourceUtil = (UserControl_DetailResourceUtilisation)row.FindControl("DetailResourceUtilisation1");
+            //HiddenField lMasterHF = (HiddenField)DetailResourceUtil.FindControl("lMasterHF");
+
+            //long lMasterId = Convert.ToInt64(MasterGridView.DataKeys[row.RowIndex].Values[0].ToString());
+
+            //lMasterHF.Value = lMasterId.ToString();
+
+            Retrieve_Master(lInitiativeId);
+        }
+    }
+
+    protected void MasterGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        long lInitiativeId = long.Parse(lInitiativeHF.Value);
+        MasterGridView.EditIndex = -1;
+        Retrieve_Master(lInitiativeId);
+    }
+
+    protected void MasterGridView_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        long lInitiativeId = long.Parse(lInitiativeHF.Value);
+        MasterGridView.EditIndex = e.NewEditIndex;
+        Retrieve_Master(lInitiativeId);
+
+        long lResourceId = Convert.ToInt64(MasterGridView.DataKeys[e.NewEditIndex].Values[0].ToString());
+        MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+        //ResourceUtilisation ThisResourceUtil = oResourceUtil.objGetResourceUtilisationByResourceId(lResourceId);
+    }
+    protected void MasterGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        long lInitiativeId = long.Parse(lInitiativeHF.Value);
+
+        MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+
+        long lMasterId = Convert.ToInt64(MasterGridView.DataKeys[e.RowIndex].Values[0].ToString());
+        string sInitiative = Convert.ToString(((TextBox)MasterGridView.Rows[e.RowIndex].FindControl("txtInitiative")).Text);
+
+        oMastResourceUtil.UpdateMasterResourceUtilisation(lMasterId, sInitiative);
+
+        MasterGridView.EditIndex = -1;
+        Retrieve_Master(lInitiativeId);
+    }
+
+    protected void MasterGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        //TODO: Handle the delete function for this
+        long lInitiativeId = long.Parse(lInitiativeHF.Value);
+        long lMasterId = Convert.ToInt64(MasterGridView.DataKeys[e.RowIndex].Values[0].ToString());
+
+        //Delete the child records first
+        ResourceUtilisation oResourceUtil = new ResourceUtilisation();
+        oResourceUtil.deleteInitiativeDetailsByInitiativeId(lMasterId);
+
+        //Delete the Master record
+        MasterResourceUtilisation oMastResourceUtil = new MasterResourceUtilisation();
+        oMastResourceUtil.deleteInitiativeId(lMasterId);
+
+        Retrieve_Master(lInitiativeId);
+    }
+}

@@ -1,0 +1,80 @@
+Error in Line 2
+# :Function 'Review existing contractor documentation process and advise actions for improvement' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 3
+
+Error in Line 3
+# :Function 'Collate all required documents & review for standardization & integration' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 4
+
+Error in Line 4
+# :Function 'F2F approval and delegation of authority' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 5
+
+Error in Line 5
+# :Function 'Engage all stakeholders for reasons of non-inclusion of GETIM option in GLMS' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 6
+
+Error in Line 6
+# :Function 'Do trend analysis to find out how much request received for specific equipment' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 7
+
+Error in Line 7
+# :Function 'Conduct a deep dive on the option for procuring serviceable equipment' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 8
+
+Error in Line 8
+# :Function 'Secure dedicated GSA for SPDC swamp emergency operation' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 9
+
+Error in Line 9
+# :Function 'Expedite cash payment for GSA services through Emergency Response Team' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 10
+
+Error in Line 10
+# :Function 'Notify GSAs of poor equipment maintenance' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 11
+
+Error in Line 11
+# :Function 'Expedite cash payment for GSA services through Emergency Response Team' does NOT exist in Database
+# :Process LT Unit 'Production' does NOT exist in Database
+# :Process VAT Unit is Blank
+# :Waste Category is Blank
+# :Process LT value is Invalid!!!
+**************Abort Error Line 12
+

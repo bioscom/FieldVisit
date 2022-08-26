@@ -1,0 +1,11 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Footer.ascx.cs" Inherits="Common_UserControls_Footer" %>
+<div id="footer">
+	<ul class="nav nav-simple">
+		<li><a href="http://www.telerik.com/home/terms-of-use" title="Terms of Use">Terms of Use</a></li>
+		<li><a href="http://www.telerik.com/company/product-improvement-program" title="Product Improvement Program">Product Improvement Program</a></li>
+		<li><a href="http://www.telerik.com/company/offices" title="Contact Telerik">Contact Us</a></li>
+	</ul>
+	<div class="copyrights">
+		<p>Copyright &copy; <%=DateTime.Now.Year.ToString() %>, Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.</p>
+	</div>
+</div>

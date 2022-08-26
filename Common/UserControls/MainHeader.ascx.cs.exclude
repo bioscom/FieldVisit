@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+//using Telerik.QuickStart;
+using Telerik.Web.UI;
+
+public partial class Common_UserControls_MainHeader : System.Web.UI.UserControl
+{
+    #region Fields
+
+    private readonly string script = "(function() { document.getElementById('get-ajax').style.display = 'none'; })();";
+
+    #endregion
+
+    #region Properties
+
+    public string ProductVersion
+    {
+        get
+        {
+            Assembly controlAssembly = typeof(RadWebControl).Assembly;
+            Version version = controlAssembly.GetName().Version;
+            int quarter = version.Minor;
+            int versionYear = version.Major;
+            int year = versionYear;
+            int date = version.Build;
+            int month = date / 100;
+            if (month > 12)
+            {
+                year++;
+                month %= 12;
+            }
+            return string.Format("Q{0} {1}", quarter, versionYear);
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        if (Request.IsLocal)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(), "hideButton", script, true);
+        }
+    }
+
+    #endregion
+}

@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Report" targetNamespace="http://tempuri.org/Report.xsd" xmlns:mstns="http://tempuri.org/Report.xsd" xmlns="http://tempuri.org/Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FlareWaiverRequestTableAdapter" GeneratorDataComponentClassName="FlareWaiverRequestTableAdapter" Name="FlareWaiverRequest" UserDataComponentName="FlareWaiverRequestTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FLARE_REQUEST.IDREQUEST, FLARE_CATEGORY.IDCATEGORY, FLARE_CATEGORY.CATEGORY, FLARE_REQUEST.REQUESTNO, FLARE_REQUEST.DATE_CREATED, FLARE_REQUEST.STATUS, 
+                  FLARE_REQUEST.START_DATE, FLARE_REQUEST.START_TIME, FLARE_REQUEST.END_DATE, FLARE_REQUEST.END_TIME, FLARE_REQUEST.FLAREVOL, FLARE_REQUEST.OILPROD, FLARE_REQUEST.REASON, 
+                  FLARE_REQUEST.JUSTIFICATION, FLARE_REQUEST.POSTEVENT, FLARE_REQUEST.WORKORDER, FLARE_REQUEST.IDGMAPPROVAL, FLARE_REQUEST.DATE_APPROVED, FLARE_REQUEST.NEW_END_DATE, 
+                  PROD_USERMGT.USERID, PROD_USERMGT.FULLNAME, PROD_USERMGT.EMAIL
+FROM     FLARE_REQUEST, FLARE_CATEGORY, PROD_USERMGT
+WHERE  FLARE_CATEGORY.IDCATEGORY = FLARE_REQUEST.IDCATEGORY AND PROD_USERMGT.USERID = FLARE_REQUEST.IDUSER</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+              <Mapping SourceColumn="CATEGORY" DataSetColumn="CATEGORY" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="REQUESTNO" DataSetColumn="REQUESTNO" />
+              <Mapping SourceColumn="DATE_CREATED" DataSetColumn="DATE_CREATED" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="START_DATE" DataSetColumn="START_DATE" />
+              <Mapping SourceColumn="START_TIME" DataSetColumn="START_TIME" />
+              <Mapping SourceColumn="END_DATE" DataSetColumn="END_DATE" />
+              <Mapping SourceColumn="END_TIME" DataSetColumn="END_TIME" />
+              <Mapping SourceColumn="FLAREVOL" DataSetColumn="FLAREVOL" />
+              <Mapping SourceColumn="OILPROD" DataSetColumn="OILPROD" />
+              <Mapping SourceColumn="REASON" DataSetColumn="REASON" />
+              <Mapping SourceColumn="JUSTIFICATION" DataSetColumn="JUSTIFICATION" />
+              <Mapping SourceColumn="POSTEVENT" DataSetColumn="POSTEVENT" />
+              <Mapping SourceColumn="IDCATEGORY" DataSetColumn="IDCATEGORY" />
+              <Mapping SourceColumn="WORKORDER" DataSetColumn="WORKORDER" />
+              <Mapping SourceColumn="IDGMAPPROVAL" DataSetColumn="IDGMAPPROVAL" />
+              <Mapping SourceColumn="DATE_APPROVED" DataSetColumn="DATE_APPROVED" />
+              <Mapping SourceColumn="NEW_END_DATE" DataSetColumn="NEW_END_DATE" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ApproversTableAdapter" GeneratorDataComponentClassName="ApproversTableAdapter" Name="Approvers" UserDataComponentName="ApproversTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        FLARE_APPROVAL.IDAPPROVAL, FLARE_APPROVAL.STAND, FLARE_APPROVAL.DATE_RECEIVED, FLARE_APPROVAL.DATE_REVIEWED, 
+                         FLARE_APPROVAL.COMMENTS, FLARE_APPROVAL.IDREQUEST, PROD_USERMGT.USERID, PROD_USERMGT.USERNAME, PROD_USERMGT.EMAIL, 
+                         PROD_USERMGT.FULLNAME, PROD_USERMGT.STATUS, PROD_USERMGT.ROLEIDFLR, PROD_USERMGT.DELIGATED, PROD_USERMGT."PASSWORD", 
+                         PROD_USERMGT.REFIND
+FROM            FLARE_APPROVAL, PROD_USERMGT
+WHERE        FLARE_APPROVAL.IDUSER = PROD_USERMGT.USERID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDAPPROVAL" DataSetColumn="IDAPPROVAL" />
+              <Mapping SourceColumn="STAND" DataSetColumn="STAND" />
+              <Mapping SourceColumn="DATE_RECEIVED" DataSetColumn="DATE_RECEIVED" />
+              <Mapping SourceColumn="DATE_REVIEWED" DataSetColumn="DATE_REVIEWED" />
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+              <Mapping SourceColumn="USERNAME" DataSetColumn="USERNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="DELIGATED" DataSetColumn="DELIGATED" />
+              <Mapping SourceColumn="PASSWORD" DataSetColumn="PASSWORD" />
+              <Mapping SourceColumn="REFIND" DataSetColumn="REFIND" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="ROLEIDFLR" DataSetColumn="ROLEIDFLR" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FlareRequestFacilitiesTableAdapter" Name="FlareRequestFacilities">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FLARE_FACILITIES.IDFACILITY, FLARE_FACILITIES.FACILITY, FLARE_REQUEST.IDREQUEST
+FROM     FLARE_REQUEST, FLARE_REQUEST_FACILITIES, FLARE_FACILITIES
+WHERE  FLARE_REQUEST.IDREQUEST = FLARE_REQUEST_FACILITIES.IDREQUEST AND FLARE_REQUEST_FACILITIES.IDFACILITY = FLARE_FACILITIES.IDFACILITY</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDFACILITY" DataSetColumn="IDFACILITY" />
+              <Mapping SourceColumn="FACILITY" DataSetColumn="FACILITY" />
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Report" msprop:Generator_UserDSName="Report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FlareWaiverRequest" msprop:Generator_TableClassName="FlareWaiverRequestDataTable" msprop:Generator_TableVarName="tableFlareWaiverRequest" msprop:Generator_RowChangedName="FlareWaiverRequestRowChanged" msprop:Generator_TablePropName="FlareWaiverRequest" msprop:Generator_RowDeletingName="FlareWaiverRequestRowDeleting" msprop:Generator_RowChangingName="FlareWaiverRequestRowChanging" msprop:Generator_RowEvHandlerName="FlareWaiverRequestRowChangeEventHandler" msprop:Generator_RowDeletedName="FlareWaiverRequestRowDeleted" msprop:Generator_RowClassName="FlareWaiverRequestRow" msprop:Generator_UserTableName="FlareWaiverRequest" msprop:Generator_RowEvArgName="FlareWaiverRequestRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDREQUEST" msprop:Generator_ColumnVarNameInTable="columnIDREQUEST" msprop:Generator_ColumnPropNameInRow="IDREQUEST" msprop:Generator_ColumnPropNameInTable="IDREQUESTColumn" msprop:Generator_UserColumnName="IDREQUEST" type="xs:decimal" />
+              <xs:element name="CATEGORY" msprop:Generator_ColumnVarNameInTable="columnCATEGORY" msprop:Generator_ColumnPropNameInRow="CATEGORY" msprop:Generator_ColumnPropNameInTable="CATEGORYColumn" msprop:Generator_UserColumnName="CATEGORY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REQUESTNO" msprop:Generator_ColumnVarNameInTable="columnREQUESTNO" msprop:Generator_ColumnPropNameInRow="REQUESTNO" msprop:Generator_ColumnPropNameInTable="REQUESTNOColumn" msprop:Generator_UserColumnName="REQUESTNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE_CREATED" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATED" msprop:Generator_ColumnPropNameInRow="DATE_CREATED" msprop:Generator_ColumnPropNameInTable="DATE_CREATEDColumn" msprop:Generator_UserColumnName="DATE_CREATED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="START_DATE" msprop:Generator_ColumnVarNameInTable="columnSTART_DATE" msprop:Generator_ColumnPropNameInRow="START_DATE" msprop:Generator_ColumnPropNameInTable="START_DATEColumn" msprop:Generator_UserColumnName="START_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="START_TIME" msprop:Generator_ColumnVarNameInTable="columnSTART_TIME" msprop:Generator_ColumnPropNameInRow="START_TIME" msprop:Generator_ColumnPropNameInTable="START_TIMEColumn" msprop:Generator_UserColumnName="START_TIME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="END_DATE" msprop:Generator_ColumnVarNameInTable="columnEND_DATE" msprop:Generator_ColumnPropNameInRow="END_DATE" msprop:Generator_ColumnPropNameInTable="END_DATEColumn" msprop:Generator_UserColumnName="END_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="END_TIME" msprop:Generator_ColumnVarNameInTable="columnEND_TIME" msprop:Generator_ColumnPropNameInRow="END_TIME" msprop:Generator_ColumnPropNameInTable="END_TIMEColumn" msprop:Generator_UserColumnName="END_TIME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FLAREVOL" msprop:Generator_ColumnVarNameInTable="columnFLAREVOL" msprop:Generator_ColumnPropNameInRow="FLAREVOL" msprop:Generator_ColumnPropNameInTable="FLAREVOLColumn" msprop:Generator_UserColumnName="FLAREVOL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OILPROD" msprop:Generator_ColumnVarNameInTable="columnOILPROD" msprop:Generator_ColumnPropNameInRow="OILPROD" msprop:Generator_ColumnPropNameInTable="OILPRODColumn" msprop:Generator_UserColumnName="OILPROD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="REASON" msprop:Generator_ColumnVarNameInTable="columnREASON" msprop:Generator_ColumnPropNameInRow="REASON" msprop:Generator_ColumnPropNameInTable="REASONColumn" msprop:Generator_UserColumnName="REASON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JUSTIFICATION" msprop:Generator_ColumnVarNameInTable="columnJUSTIFICATION" msprop:Generator_ColumnPropNameInRow="JUSTIFICATION" msprop:Generator_ColumnPropNameInTable="JUSTIFICATIONColumn" msprop:Generator_UserColumnName="JUSTIFICATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POSTEVENT" msprop:Generator_ColumnVarNameInTable="columnPOSTEVENT" msprop:Generator_ColumnPropNameInRow="POSTEVENT" msprop:Generator_ColumnPropNameInTable="POSTEVENTColumn" msprop:Generator_UserColumnName="POSTEVENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDCATEGORY" type="xs:decimal" />
+              <xs:element name="WORKORDER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDGMAPPROVAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DATE_APPROVED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NEW_END_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USERID" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Approvers" msprop:Generator_TableClassName="ApproversDataTable" msprop:Generator_TableVarName="tableApprovers" msprop:Generator_TablePropName="Approvers" msprop:Generator_RowDeletingName="ApproversRowDeleting" msprop:Generator_RowChangingName="ApproversRowChanging" msprop:Generator_RowEvHandlerName="ApproversRowChangeEventHandler" msprop:Generator_RowDeletedName="ApproversRowDeleted" msprop:Generator_UserTableName="Approvers" msprop:Generator_RowChangedName="ApproversRowChanged" msprop:Generator_RowEvArgName="ApproversRowChangeEvent" msprop:Generator_RowClassName="ApproversRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDAPPROVAL" msprop:Generator_ColumnVarNameInTable="columnIDAPPROVAL" msprop:Generator_ColumnPropNameInRow="IDAPPROVAL" msprop:Generator_ColumnPropNameInTable="IDAPPROVALColumn" msprop:Generator_UserColumnName="IDAPPROVAL" type="xs:decimal" />
+              <xs:element name="STAND" msprop:Generator_ColumnVarNameInTable="columnSTAND" msprop:Generator_ColumnPropNameInRow="STAND" msprop:Generator_ColumnPropNameInTable="STANDColumn" msprop:Generator_UserColumnName="STAND" type="xs:decimal" />
+              <xs:element name="DATE_RECEIVED" msprop:Generator_ColumnVarNameInTable="columnDATE_RECEIVED" msprop:Generator_ColumnPropNameInRow="DATE_RECEIVED" msprop:Generator_ColumnPropNameInTable="DATE_RECEIVEDColumn" msprop:Generator_UserColumnName="DATE_RECEIVED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATE_REVIEWED" msprop:Generator_ColumnVarNameInTable="columnDATE_REVIEWED" msprop:Generator_ColumnPropNameInRow="DATE_REVIEWED" msprop:Generator_ColumnPropNameInTable="DATE_REVIEWEDColumn" msprop:Generator_UserColumnName="DATE_REVIEWED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="COMMENTS" msprop:Generator_ColumnVarNameInTable="columnCOMMENTS" msprop:Generator_ColumnPropNameInRow="COMMENTS" msprop:Generator_ColumnPropNameInTable="COMMENTSColumn" msprop:Generator_UserColumnName="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDREQUEST" msprop:Generator_ColumnVarNameInTable="columnIDREQUEST" msprop:Generator_ColumnPropNameInRow="IDREQUEST" msprop:Generator_ColumnPropNameInTable="IDREQUESTColumn" msprop:Generator_UserColumnName="IDREQUEST" type="xs:decimal" />
+              <xs:element name="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" msprop:Generator_UserColumnName="USERNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DELIGATED" msprop:Generator_ColumnVarNameInTable="columnDELIGATED" msprop:Generator_ColumnPropNameInRow="DELIGATED" msprop:Generator_ColumnPropNameInTable="DELIGATEDColumn" msprop:Generator_UserColumnName="DELIGATED" type="xs:decimal" />
+              <xs:element name="PASSWORD" msprop:Generator_ColumnVarNameInTable="columnPASSWORD" msprop:Generator_ColumnPropNameInRow="PASSWORD" msprop:Generator_ColumnPropNameInTable="PASSWORDColumn" msprop:Generator_UserColumnName="PASSWORD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REFIND" msprop:Generator_ColumnVarNameInTable="columnREFIND" msprop:Generator_ColumnPropNameInRow="REFIND" msprop:Generator_ColumnPropNameInTable="REFINDColumn" msprop:Generator_UserColumnName="REFIND" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERID" type="xs:decimal" />
+              <xs:element name="ROLEIDFLR" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FlareRequestFacilities">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDFACILITY" type="xs:decimal" />
+              <xs:element name="FACILITY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDREQUEST" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FlareWaiverRequest" />
+      <xs:field xpath="mstns:IDREQUEST" />
+    </xs:unique>
+    <xs:unique name="Approvers_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Approvers" />
+      <xs:field xpath="mstns:IDAPPROVAL" />
+      <xs:field xpath="mstns:USERID" />
+    </xs:unique>
+    <xs:unique name="FlareRequestFacilities_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FlareRequestFacilities" />
+      <xs:field xpath="mstns:IDFACILITY" />
+      <xs:field xpath="mstns:IDREQUEST" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,89 @@
+﻿using System;
+
+public partial class UserControl_TimePicker : System.Web.UI.UserControl
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    public int iHour
+    {
+        get { return int.Parse(drpHr.SelectedValue); }
+        set { drpHr.SelectedValue = iHour.ToString(); }
+    }
+
+    public int iMinute
+    {
+        get
+        {
+            return int.Parse(drpMin.SelectedValue);
+        }
+        set
+        {
+            drpMin.SelectedValue = iMinute.ToString();
+        }
+    }
+
+    public string sAmPm
+    {
+        get
+        {
+            return drpAmPm.SelectedItem.Text;
+        }
+        set
+        {
+            drpAmPm.SelectedItem.Text = value;
+        }
+    }
+
+    //public string SelectedDate
+    //{
+    //    get
+    //    {
+    //        DateTime dt = new DateTime();
+    //        try
+    //        {
+    //            if (txtDate.Text != "")
+    //            {
+    //                string[] PF = txtDate.Text.Split('-');
+    //                dt = new DateTime(int.Parse(PF[2]), int.Parse(PF[1]), int.Parse(PF[0]));
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            appMonitor.logAppExceptions(ex);
+    //            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //        }
+    //        return ((txtDate.Text == "") ? DateTime.Today.Date.ToString() : dt.Date.ToString());
+    //    }
+    //}
+
+    //public DateTime DateSelectedDate
+    //{
+    //    get
+    //    {
+    //        DateTime dt = new DateTime();
+    //        try
+    //        {
+    //            if (txtDate.Text != "")
+    //            {
+    //                string[] PF = txtDate.Text.Split('-');
+    //                dt = new DateTime(int.Parse(PF[2]), int.Parse(PF[1]), int.Parse(PF[0]));
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            appMonitor.logAppExceptions(ex);
+    //            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+    //        }
+    //        return ((txtDate.Text == "") ? DateTime.Today.Date : dt.Date);
+    //    }
+    //}
+
+    //public void setDate(string sDate)
+    //{
+    //    //txtDate.Text = sDate;
+    //}
+
+}

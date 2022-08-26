@@ -1,0 +1,224 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
+using Telerik.Web.UI;
+using Telerik.QuickStart;
+
+public partial class Common_UserControls_LeftNavigation : System.Web.UI.UserControl
+{
+    #region Fields
+
+    private readonly Dictionary<string, string> _webParts = new Dictionary<string, string>() { 
+        { "Editor", "http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Content-Editor-Web-Part-using-RadEditor.aspx"}, 
+        { "Grid", "http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Single-List-Binding.aspx"}, 
+        { "Scheduler", "http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/RadScheduler-and-Exchange.aspx"}, 
+        { "ListView", "http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Telerik-SPRadListView-Web-Part.aspx"}, 
+    };
+
+    #endregion
+
+    #region Properties
+
+    public QSFMasterPage Master
+    {
+        get
+        {
+            return Page.Master as QSFMasterPage;
+        }
+    }
+
+    public Dictionary<string, string> WebParts
+    {
+        get
+        {
+            return _webParts;
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+
+        if (!Page.IsPostBack)
+        {
+            InitializeNavigation();
+            InitializeControlDemos();
+            SelectCurrentDemo();
+        }
+    }
+
+    public void InitializeNavigation()
+    {
+        foreach (string category in CategoriesProvider.Instance.Categories.Keys)
+        {
+            RadTreeNode categoryNode = new RadTreeNode()
+            {
+                CssClass = QSFConstants.ClassNames.ControlsCategory,
+                Expanded = true,
+                Text = category
+            };
+
+            CategoryControls.Nodes.Add(categoryNode);
+
+            List<string> controlsPerCategory = CategoriesProvider.Instance.Categories[category];
+
+            foreach (string control in controlsPerCategory)
+            {
+                XmlNode controlNode = ExamplesProvider.Instance.CategoryList.SingleOrDefault(node => node.Attributes["text"].Value.IsEqualTo(control));
+
+                categoryNode.Nodes.Add(new RadTreeNode()
+                {
+                    Text = controlNode.Attributes["altText"] != null ? controlNode.Attributes["altText"].Value : controlNode.Attributes["text"].Value,
+                    NavigateUrl = string.Format("~/{0}/Default{1}.aspx", controlNode.FirstChild.Attributes["path"].Value, Master.CurrentLanguage).ToLowerInvariant(),
+                    CssClass = controlNode.Attributes["status"] != null ? controlNode.Attributes["status"].Value.ToLower() : String.Empty
+                });
+            }
+        }
+
+        RadTreeNode webPartsNode = new RadTreeNode 
+        {
+            CssClass = QSFConstants.ClassNames.ControlsCategory,
+            Text = "SharePoint Web Parts",
+            Expanded = true
+        };
+
+        foreach (string webPart in WebParts.Keys)
+        {
+            webPartsNode.Nodes.Add(new RadTreeNode()
+            {
+                Text = webPart,
+                NavigateUrl = WebParts[webPart]
+            });
+        }
+
+        CategoryControls.Nodes.Add(webPartsNode);
+    }
+
+    public void InitializeControlDemos()
+    {
+        XmlNode rootNode = ExamplesProvider.Instance.CategoryList
+            .Find(node => node.Attributes["text"].Value.IsEqualTo(Master.ControlName));
+
+        RadTreeNode controlNameNode = ControlDemos.Nodes[0];
+
+        if (rootNode != null)
+        {
+            controlNameNode.Text = rootNode.Attributes["altText"] != null ? rootNode.Attributes["altText"].Value : 
+                rootNode.Attributes["text"].Value;
+
+            PopulateExamples(rootNode, controlNameNode.Nodes);
+
+            if (WebParts.ContainsKey(Master.OriginalControlName))
+            {
+                controlNameNode.Nodes.Add(new RadTreeNode()
+                {
+                    Text = "SharePoint Web Part",
+                    NavigateUrl = WebParts[Master.OriginalControlName]
+                });
+            }
+        }
+    }
+
+    public void PopulateExamples(XmlNode parentNode, RadTreeNodeCollection nodesCollection)
+    {
+        foreach (XmlNode node in parentNode.SelectNodes("example[not(@private)]|category[not(@private)]"))
+        {
+            RadTreeNode treeNode = new RadTreeNode();
+
+            treeNode.Text = node.Attributes["name"] != null ? node.Attributes["name"].Value.ToString() :
+                node.Attributes["text"].Value.ToString();
+            treeNode.NavigateUrl = node.Attributes["path"] != null ? string.Format("~/{0}/default{1}.aspx{2}",
+                node.Attributes["path"].Value, Master.CurrentLanguage, node.Attributes["product"] != null ? "?product=" + node.Attributes["product"].Value : string.Empty).ToLower() :
+                string.Empty;
+
+            if (node.Attributes["status"] != null && node.Attributes["status"].Value == QSFConstants.ClassNames.IsNew)
+            {
+                treeNode.CssClass = QSFConstants.ClassNames.IsNew;
+                if (node.ParentNode != null && node.ParentNode.Attributes["text"] != null &&
+                    node.ParentNode.Attributes["text"].Value.IsEqualTo("what's new"))
+                {
+                    string param = "isNew=true";
+                    if (!treeNode.NavigateUrl.Contains("?product="))
+                    {
+                        param = string.Format("?{0}", param);
+                    }
+                    else
+                    {
+                        param = string.Format("&{0}", param);
+                    }
+
+                    treeNode.NavigateUrl += param;
+                }
+            }
+
+            if (node.Attributes["status"] != null && node.Attributes["status"].Value == QSFConstants.ClassNames.isUpdated)
+            {
+                treeNode.CssClass = QSFConstants.ClassNames.isUpdated;
+            }
+
+            nodesCollection.Add(treeNode);
+
+            if (node.Name.IsEqualTo("category"))
+            {
+                if (treeNode.Level > 1)
+                {
+                    treeNode.Expanded = true;
+
+                    if (treeNode.CssClass.IsEmpty())
+                    {
+                        treeNode.CssClass = QSFConstants.ClassNames.DemoCategory;
+                    }
+                    else
+                    {
+                        string.Format("{0} {1}", treeNode.CssClass, QSFConstants.ClassNames.DemoCategory);
+                    }
+                }
+
+                PopulateExamples(node, treeNode.Nodes);
+            }
+        }
+    }
+
+    public void SelectCurrentDemo()
+    {
+        string localPath = Request.Url.LocalPath;
+        string generatedPath = string.Format("{0}?product={1}", localPath, Master.ControlName.ToLower());
+
+        if (Request.QueryString["isNew"] != null)
+        {
+            if (Request.QueryString["product"] == null)
+            {
+                localPath = string.Format("{0}?isNew=true", localPath);
+            }
+            else
+            {
+                localPath = string.Format("{0}&isNew=true", generatedPath);
+            }
+        }
+
+        RadTreeNode demo = ControlDemos.FindNodeByUrl(localPath) ?? ControlDemos.FindNodeByUrl(generatedPath) ?? 
+            ControlDemos.FindNodeByUrl(Request.Url.LocalPath);
+
+        if (demo != null)
+        {
+            demo.Selected = true;
+            demo = demo.ParentNode;
+
+            while (demo != null)
+            {
+                demo.Expanded = true;
+                demo = demo.ParentNode;
+            }
+        }
+    }
+
+    #endregion
+}

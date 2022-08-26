@@ -1,0 +1,15 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="oUpdateActivity.ascx.cs" Inherits="UserControls_oUpdateActivity" %>
+
+
+<asp:GridView ID="TableGridView" runat="server" AutoGenerateColumns="False"
+    DataKeyNames="KPI_KPIID"
+    OnRowEditing="TableGridView_RowEditing"
+    OnRowCancelingEdit="TableGridView_RowCancelingEdit"
+    OnRowDeleting="TableGridView_RowDeleting"
+    OnRowUpdating="TableGridView_RowUpdating"
+    OnPageIndexChanging="TableGridView_PageIndexChanging"
+    PageSize="50" Width="100%" AllowPaging="True">
+</asp:GridView>
+
+
+

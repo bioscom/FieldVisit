@@ -1,0 +1,64 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddUser.ascx.cs" Inherits="UserControl_AddUser" %>
+<%@ Register Src="~/UserControls/userFinder/Search4User.ascx" TagName="Search4User" TagPrefix="ectr" %>
+
+    <table class="tMainBorder">
+        <tr>
+            <td class="cHeadTile" colspan="2">Add New Users</td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label1" runat="server" Text="User Name:"></asp:Label>
+                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                    ErrorMessage="User Name is required" ControlToValidate="txtUserName">*</asp:RequiredFieldValidator>--%>
+            </td>
+            <td>
+                <ectr:Search4User ID="Search4User1" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label2" runat="server" Text="User Role:"></asp:Label>
+                <asp:CompareValidator ID="CompareValidator1" runat="server"
+                    ErrorMessage="User Role is required" ControlToValidate="ddlUserRole"
+                    Operator="NotEqual" Type="Integer" ValueToCompare="-1" ValidationGroup="addUser">*</asp:CompareValidator>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlUserRole" runat="server" Width="200px">
+                    <asp:ListItem Value="-1">[Select User Role]</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label4" runat="server" Text="Affiliate:"></asp:Label>
+                <asp:CompareValidator ID="CompareValidator2" runat="server"
+                    ErrorMessage="Affiliate is required" ControlToValidate="ddlAffiliates"
+                    Operator="NotEqual" Type="Integer" ValueToCompare="-1" ValidationGroup="addUser">*</asp:CompareValidator>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlAffiliates" runat="server" Width="300px">
+                    <asp:ListItem Value="-1">[Select Affiliate]</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label3" runat="server" Text="Phone Ext.:"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtPhoneExt" runat="server" Width="200px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click"
+                    Text="Submit" Width="100px" ValidationGroup="addUser" />
+                <asp:Button ID="btnReset" runat="server" Text="Reset" ValidationGroup="xxxxaddUser" Width="100px" />
+                
+            </td>
+        </tr>
+    </table>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+        ShowMessageBox="True" ShowSummary="False" ValidationGroup="addUser" />
+

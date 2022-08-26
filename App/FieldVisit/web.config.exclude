@@ -1,0 +1,127 @@
+﻿<?xml version="1.0"?>
+<!-- 
+    Note: As an alternative to hand editing this file you can use the 
+    web admin tool to configure settings for your application. Use
+    the Website->Asp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in 
+    machine.config.comments usually located in 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 
+-->
+<configuration>
+  <appSettings>
+    <add key="MailServer" value="spdc-smtp1.africa-me.shell.com"/>
+    <add key="MailUsername" value="mail username "/>
+    <add key="MailPassword" value="mail password"/>
+    <add key="MailFrom" value="isaac.bejide@shell.com"/>
+    <add key="EnableErrorLogEmail" value="true"/>
+    <add key="ErrorLogEmail" value="isaac.bejide@shell.com"/>
+    <add key="SiteName" value="SEPCiN(Offshore/Onshore Asset) PEC and Field Visit Request Form"/>
+    <add key="DevelopmentEnvironment" value="phc-v-01010"/>
+    <add key="siteHostName" value="http://sww.scin.cpdms.shell.com/pec"/>
+    <add key="cpdms.adminName" value="Isaac Bejide"/>
+    <add key="cpdms.AdminMail" value="isaac.bejide@shell.com"/>
+    <add key="cpdms.AdminExt" value="ext. 24772"/>
+    <add key="cpdms.AdminUserName" value="NGIBE6"/>
+    <add key="cpdms.BccAdmin" value="True"/>
+    <add key="production.adminName" value="Tobin Kalada"/>
+    <add key="production.AdminMail" value="kalada.tobin@shell.com"/>
+    <add key="production.AdminExt" value="ext. 42548"/>
+    <add key="production.AdminUserName" value="WAKTO1"/>
+    <add key="production.SupportName" value="Jacob Ogogo"/>
+    <add key="production.SupportMail" value="jacob.ogogo@shell.com"/>
+    <add key="production.SupportExt" value="ext. 21592"/>
+    <add key="production.SupportUserName" value="WAJOG6"/>
+    <!--<add key="IWH" value="COMPLETE_STAFF_DETAILS"/>-->
+    <add key="IWH" value="COMPLETE_STAFF_DETAILS@IWH_LINK.WORLD"/>
+    <add key="DBLINK" value="@CPDMS_DLINK"/>
+    <add key="AdminMenu" value="adminProvider"/>
+    <add key="UserMenu" value="userProvider"/>
+    <add key="configurationMenu" value="configurationProvider"/>
+    <add key="appNameId" value="Facility Field Visit"/>
+    <add key="CopyRight" value="Copyright © 2012 Production Site Visit"/>
+    <add key="footerInfo" value="PEC - Field Visit Management System"/>
+  </appSettings>
+  <connectionStrings>
+    <add name="productionConnectionString" connectionString="Data Source=bioscom;Persist Security Info=True;User ID=production;Password=prod; Unicode=True" providerName="System.Data.OracleClient" />
+    <!--<add name="productionConnectionString" connectionString="user id=PEC_PROD;password=PeC7cpdm;data source= BUSAPP_P.WORLD" providerName="System.Data.OracleClient"/>
+    <add name="productionConnectionString" connectionString="user id=production;password=prod;data source= test10.world" providerName="System.Data.OracleClient"/>-->
+  </connectionStrings>
+  <system.web>
+    <!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+        -->
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"/>
+        <add assembly="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"/>
+        <add assembly="Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Data.OracleClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="Microsoft.Build.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+      </assemblies>
+      <buildProviders>
+        <add extension=".rdlc" type="Microsoft.Reporting.RdlBuildProvider, Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
+      </buildProviders>
+    </compilation>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        -->
+    <authentication mode="Windows">
+      <forms loginUrl="Default.aspx?Msg=nLg" name="authOpex" timeout="180" path="/" defaultUrl="taskPage.aspx?Msg=sWb" slidingExpiration="true"/>
+    </authentication>
+    <authorization>
+      <deny users="?"/>
+      <allow users="*"/>
+    </authorization>
+    <sessionState cookieName="cookField" mode="InProc" timeout="180"/>
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+ -->
+    <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+      <error statusCode="403" redirect="NoAccess.htm"/>
+      <error statusCode="404" redirect="FileNotFound.htm"/>
+    </customErrors>
+    <siteMap defaultProvider="adminProvider">
+      <providers>
+        <clear/>
+        <add name="userProvider" type="System.Web.XmlSiteMapProvider" siteMapFile="user.sitemap"/>
+        <add name="adminProvider" type="System.Web.XmlSiteMapProvider" siteMapFile="admin.sitemap"/>
+        <add name="configurationProvider" type="System.Web.XmlSiteMapProvider" siteMapFile="configuration.sitemap"/>
+      </providers>
+    </siteMap>
+    <pages styleSheetTheme="DataWebControls" enableEventValidation="true" viewStateEncryptionMode="Always" controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+      <controls>
+        <add tagPrefix="uc1" tagName="Search4User" src="~/UserControl/userFinder/Search4User.ascx"/>
+      </controls>
+    </pages>
+    <httpHandlers>
+      <add path="Reserved.ReportViewerWebControl.axd" verb="*" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" validate="false"/>
+    </httpHandlers>
+  </system.web>
+  <!-- 
+        The system.webServer section is required for running ASP.NET AJAX under Internet
+        Information Services 7.0.  It is not necessary for previous version of IIS.
+    -->
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false"/>
+    <handlers>
+      <add name="ReportViewerWebControlHandler" preCondition="integratedMode" verb="*" path="Reserved.ReportViewerWebControl.axd" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
+    </handlers>
+  </system.webServer>
+  <system.net>
+    <mailSettings>
+      <smtp deliveryMethod="SpecifiedPickupDirectory">
+        <specifiedPickupDirectory pickupDirectoryLocation="E:\Mails\FieldVisitMails"/>
+      </smtp>
+    </mailSettings>
+  </system.net>
+</configuration>

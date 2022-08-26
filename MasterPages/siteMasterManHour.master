@@ -1,0 +1,166 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="siteMasterManHour.master.cs" Inherits="MasterPages_siteMaster" %>
+
+<%@ Register Src="~/App/ManHour/UserControl/userHelpGuide.ascx" TagName="userHelpGuide" TagPrefix="uc3" %>
+<%@ Register Src="~/UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc4" %>
+<%@ Register Src="~/App/ManHour/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc5" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head" runat="server">
+    <title>Business Initiative</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/menuStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+
+    <script lang="javascript" type="text/javascript">
+        function toggleFade() {
+            var behavior = $find('ctl00_SampleContent_MyAccordion_AccordionExtender');
+            if (behavior) {
+                behavior.set_FadeTransitions(!behavior.get_FadeTransitions());
+            }
+        }
+
+        function changeAutoSize() {
+            var behavior = $find('ctl00_SampleContent_MyAccordion_AccordionExtender');
+            var ctrl = $get('autosize');
+            if (behavior) {
+                var size = 'None';
+                switch (ctrl.selectedIndex) {
+                    case 0:
+                        behavior.get_element().style.height = 'auto';
+                        size = Sys.Extended.UI.AutoSize.None;
+                        break;
+                    case 1:
+                        behavior.get_element().style.height = '400px';
+                        size = Sys.Extended.UI.AutoSize.Limit;
+                        break;
+                    case 2:
+                        behavior.get_element().style.height = '400px';
+                        size = Sys.Extended.UI.AutoSize.Fill;
+                        break;
+                }
+                behavior.set_AutoSize(size);
+            }
+            if (document.focus) {
+                document.focus();
+            }
+        }
+    </script>
+
+
+    <%--<script language="javascript" type="text/javascript" src="../JavaScript/fieldVisit.js"></script>
+    <script language="javascript" type="text/javascript" src="../JavaScript/fieldVisit.js"></script>
+    <script language="javascript" type="text/javascript" src="../JavaScript/formValidator.js"></script>--%>
+</head>
+<body>
+    <form id="form2" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top:0.5em; position: absolute;" />
+                
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
+                </div>
+            </div>
+            <div id="navigation">
+                <div class="firstChild">
+                    <ajaxToolkit:ToolkitScriptManager ID="smtAjaxManager" runat="Server" CombineScripts="false" EnablePartialRendering="true" />
+                </div>
+                <div class="child" style="vertical-align: top">
+                    <div>
+                        <div style="float: left">
+                            <asp:Label ID="Label1" runat="server" Text="Enter Request No:" ForeColor="Black"></asp:Label>
+                        </div>
+                        <div style="float: left">
+                            <asp:TextBox ID="txtFlarewaiverNum" runat="server" ToolTip="Enter Flare waiver request number" Width="200px"></asp:TextBox>
+                        </div>
+                        <div style="float: left">
+                            <asp:ImageButton ID="searchButton" runat="server" ImageUrl="~/Images/gosearch.gif" OnClick="searchButton_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <div class="master_contentplaceholder_SideMenu">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
+                        <ContentTemplate>
+                            <ajaxToolkit:Accordion ID="MyAccordion" runat="server" SelectedIndex="-1"
+                                HeaderCssClass="accordionHeader" HeaderSelectedCssClass="accordionHeaderSelected"
+                                ContentCssClass="accordionContent" FadeTransitions="false" FramesPerSecond="40"
+                                TransitionDuration="250" AutoSize="None" RequireOpenedPane="False" SuppressHeaderPostbacks="true" Width="98%">
+                                <Panes>
+                                    <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
+                                        <Header><a href=".." class="accordionLink">+ Collapse Menu</a></Header>
+                                        <Content>
+                                            <uc5:adminMenu ID="adminMenu1" runat="server" />
+                                        </Content>
+                                    </ajaxToolkit:AccordionPane>
+
+                                </Panes>
+                            </ajaxToolkit:Accordion>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+                    <ajaxToolkit:UpdatePanelAnimationExtender ID="UpdatePanel1_UpdatePanelAnimationExtender" runat="server" Enabled="True" TargetControlID="UpdatePanel1">
+                    </ajaxToolkit:UpdatePanelAnimationExtender>
+
+                    <asp:UpdateProgress ID="upgAjaxBloc" runat="server" DisplayAfter="100" Visible="true" DynamicLayout="true">
+                        <ProgressTemplate>
+                            <div id="IMGDIV" align="center" valign="middle" runat="server" style="position: absolute; visibility: visible; left: 50%; top: 70%; vertical-align: middle; border-color: #FFFFFF; background-color: #FFFFFF;">
+                                <asp:Image ID="imgAjaxWait" runat="server" ImageUrl="~/Images/ajaxRoller.gif" />
+                            </div>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolderCol" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <br />
+                    <uc4:supportContact ID="supportContact1" runat="server" />
+                </div>
+
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <span style="float: left; vertical-align: top">Prodcution Services - Initiative Management Framework</span>
+            <span style="float: right; vertical-align: top">Copyright © 2012 SEPCiN Production Business Improvement</span>
+        </div>
+
+    </form>
+</body>
+</html>

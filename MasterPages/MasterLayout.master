@@ -1,0 +1,95 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterLayout.master.cs" Inherits="MasterPages_MasterLayout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/Styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/menuStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+            <table style="width: 100%">
+                <tr>
+                    <td colspan="2">
+                        <div id="header">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+
+                            <div class="title">
+                                <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                            </div>
+                            <div class="breadcrumb">
+                                Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                                <br />
+                                <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                                &nbsp;|
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="navigation1">
+                        </div>
+                        <div id="navigation2">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="navigation3">
+                            <div class="xFChild">
+                                <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                                </asp:SiteMapPath>
+                            </div>
+                            <div class="xChild">
+                                <a id="dpeBackLink" href="javascript:history.back()">
+                                    <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+                            <div id="navigationM">
+                                <asp:TreeView ID="mnuTreeView" runat="server" ImageSet="Arrows" Width="200px" DataSourceID="configSiteMapDS">
+                                    <ParentNodeStyle Font-Bold="False" />
+                                    <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                                    <SelectedNodeStyle Font-Underline="True" HorizontalPadding="0px" VerticalPadding="0px"
+                                        ForeColor="#5555DD" />
+                                    <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="5px"
+                                        NodeSpacing="0px" VerticalPadding="0px" />
+                                </asp:TreeView>
+                                <asp:SiteMapDataSource ID="configSiteMapDS" runat="server" SiteMapProvider="configurationProvider" />
+                            </div>
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td style="width: 79%">
+                        <asp:ContentPlaceHolder ID="rightColumn" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="footer">
+                            <span style="float: left; vertical-align: top">Prodcution Services - Facility Field Visit</span>
+                            <span style="float: right; vertical-align: top">Copyright © 2012 SEPCiN Production Business Improvement </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

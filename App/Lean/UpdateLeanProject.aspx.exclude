@@ -1,0 +1,143 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/LeanMasterPage.master" AutoEventWireup="true" CodeFile="UpdateLeanProject.aspx.cs" Inherits="App_Lean_Addproject" %>
+
+<%@ Register Src="../../UserControls/dateControl.ascx" TagName="dateControl" TagPrefix="uc2" %>
+
+<%@ Register Src="UserControl/statusSelectorControl.ascx" TagName="statusSelectorControl" TagPrefix="uc3" %>
+
+<%@ Register Src="../../UserControls/userFinder/Search4User.ascx" TagName="Search4User" TagPrefix="uc4" %>
+
+<%@ Register Src="UserControl/oLeanProjectDetails.ascx" TagName="oLeanProjectDetails" TagPrefix="uc5" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <center>
+
+    <table class="tMainBorder" style="width: 70%">
+        <tr>
+            <td colspan="2" class="cHeadTile">Update Lean Projects</td>
+        </tr>
+        <tr>
+            <td>
+                <asp:DropDownList ID="ddlYear" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
+                    <asp:ListItem Value="-1">Select Year...</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlProjects" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProjects_SelectedIndexChanged" Width="500px">
+                    <asp:ListItem Value="-1">Select Project</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+    </table>
+    <table class="tMainBorder" style="width: 70%">
+
+        <tr>
+            <td style="width: 60%">
+                <uc5:oLeanProjectDetails ID="oLeanProjectDetails1" runat="server" />
+            </td>
+            <td>
+                <table class="tMainBorder" style="width: 350px">
+                    <tr>
+                        <td class="cHeadTile" colspan="2">Identify</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label9" runat="server" Text="Sign off Charters:"></asp:Label>
+                        </td>
+                        <td style="width: 150px">
+                            <uc3:statusSelectorControl ID="ddlSignOff" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label10" runat="server" Text="SIPOC/VOC:"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlSIPOC" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label11" runat="server" Text="Process Walk:"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlProcessWalk" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label12" runat="server" Text="VSM &amp; Validation:"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlVSM" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="tMainBorder" style="width: 350px">
+                    <tr>
+                        <td class="cHeadTile" colspan="2">Eliminate</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label15" runat="server" Text="Kaizen:"></asp:Label>
+                        </td>
+                        <td style="width: 150px">
+                            <uc3:statusSelectorControl ID="ddlKaizen" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label16" runat="server" Text="DRB Tollgate:"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlDRBTollGate" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label17" runat="server" Text="Pilot Implementation/JDIs/QW"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlPilot" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="tMainBorder" style="width: 350px">
+                    <tr>
+                        <td class="cHeadTile" colspan="2">Sustain</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label13" runat="server" Text="SOP/Visual Measures:"></asp:Label>
+                        </td>
+                        <td style="width: 150px">
+                            <uc3:statusSelectorControl ID="ddlSOP" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label14" runat="server" Text="Hand Over:"></asp:Label>
+                        </td>
+                        <td>
+                            <uc3:statusSelectorControl ID="ddlHandOver" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                &nbsp;</td>
+            <td>
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="100px" OnClick="btnSubmit_Click" />
+                &nbsp;<asp:Button ID="btnClose" runat="server" Text="Close" Width="100px" OnClick="btnClose_Click" />
+            </td>
+        </tr>
+    </table>
+
+    </center>
+</asp:Content>
+

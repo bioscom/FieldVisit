@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Microsoft.Security.Application;
+
+public partial class App_Lean_EditUser : aspnetPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        bool bRet = false;
+        try
+        {
+            string[] sPageAccess = { appUsersLeanRoles.userRole.Administrator.ToString() };
+            appUsersLeanRoles oAccess = new appUsersLeanRoles();
+            bRet = oAccess.grantPageAccess(sPageAccess, (appUsersLeanRoles.userRole)this.oSessnx.getOnlineUser.m_eUserRoleLean);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        if (!bRet) Response.Redirect("~/Profiles/pageDenied.aspx");
+
+        if (!IsPostBack)
+        {
+            addRoleToDropDown(appUsersLeanRoles.userRole.Administrator);
+            addRoleToDropDown(appUsersLeanRoles.userRole.CorporateManager);
+            addRoleToDropDown(appUsersLeanRoles.userRole.LeanCoach);
+
+            if (Request.QueryString["UserId"] != null)
+            {
+                int iUserId = int.Parse(Encoder.HtmlEncode(Request.QueryString["UserId"].ToString()));
+                lblFullname.Text = LeanappUsersHelper.objGetOnlineUserByUserId(iUserId).m_sFullName;
+                userRoleDropDownList.SelectedValue = LeanappUsersHelper.objGetOnlineUserByUserId(iUserId).m_iRoleIdLean.ToString();
+            }
+        }        
+    }
+
+    private void addRoleToDropDown(appUsersLeanRoles.userRole eRole)
+    {
+        try
+        {
+            ListItem oItem = new ListItem();
+            oItem.Text = appUsersLeanRoles.userRoleDesc(eRole);
+            oItem.Value = ((int)eRole).ToString();
+            userRoleDropDownList.Items.Add(oItem);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+    protected void closeButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/App/Lean/UserMgt.aspx");
+    }
+    protected void saveButton_Click(object sender, EventArgs e)
+    {
+        appUsers oUsers = new appUsers();
+        try
+        {
+            if (Request.QueryString["UserId"] != null)
+            {
+                int iUserId = int.Parse(Request.QueryString["UserId"].ToString());
+
+                bool success = LeanappUsersHelper.editUserAccount(iUserId, int.Parse(userRoleDropDownList.SelectedValue));
+                if (success == true)
+                {
+                    ajaxWebExtension.showJscriptAlert(Page, this, "User profile successfully updated.");
+                }
+            }
+            else
+            {
+                ajaxWebExtension.showJscriptAlert(Page, this, "User not successfully updated, please try again later.");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+}

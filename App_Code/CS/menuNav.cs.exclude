@@ -1,0 +1,400 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+/// <summary>
+/// Summary description for menuNav
+/// </summary>
+public class menuNav
+{
+    protected const string c_sBreakItem = "BreakItem";
+    protected const string c_sTopItemLook = "TopItemLook";
+    protected const string c_sRiteArrowGif = "n_menuRiteArrow.gif";
+
+    public menuNav()
+    {
+        //
+        // 
+        //
+    }
+
+    protected appUsersRoles.userRole m_eRole;
+    protected ComponentArt.Web.UI.Menu m_oMenu;
+
+    public menuNav(appUsersRoles.userRole _eRole)
+    {
+        try
+        {
+            m_eRole = _eRole;
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    public void buildUserMenu(ComponentArt.Web.UI.Menu oMenu)
+    {
+        m_oMenu = oMenu;
+        initappUsersMenu();
+        initAppOpexsMenu();
+        initAppConfigMenu();
+    }
+
+    private void initappUsersMenu()
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            oRoot.Text = "Users Management";
+            oRoot.LookId = c_sTopItemLook;
+
+            initMenuSubUsers(oRoot);
+            //Call initMenuSubUserOpex(oRoot)
+            //If grantPageAccess(appUsers.userRole.admin) Then initMenuChildItem(oRoot, "Change Corporate Account User", "~/Profiles/editCorporateAcct.aspx")
+
+            initMenuChildAddMe(oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initAppOpexsMenu()
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+
+            oRoot.Text = "Performance Data Management";
+            oRoot.LookId = c_sTopItemLook;
+
+            initMenuSubBpOpex(oRoot);
+            initMenuSubReport(oRoot);
+            //'Call initMenuSubExcRate(oRoot)
+
+            initMenuChildAddMe(oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initAppConfigMenu()
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            oRoot.Text = "System Data Setup";
+            oRoot.LookId = c_sTopItemLook;
+
+           ComponentArt.Web.UI.MenuItem oSub_1  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_1, "Manage Corporate Priorities");
+            if (grantPageAccess(appUsersRoles.userRole.admin))
+                initMenuChildItem(oSub_1, "Add New Corporate Priority", "~/AdminInterface/Setup/addCorporatePriorities.aspx");
+
+            //'Call initMenuChildLine(oRoot)            
+            initMenuChildItem(oSub_1, "Search Corporate Priorities", "~/AdminInterface/Setup/viewCorporatePriorities.aspx");
+            initMenuChildItem(oSub_1, "View Corporate Priorities", "~/AdminInterface/Setup/viewCorporatePriorities.aspx");
+            initMenuChildAddMe(oRoot, oSub_1);
+
+            ComponentArt.Web.UI.MenuItem oSub_2  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_2, "KPI Header/Group");
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oSub_2, "Add New KPI Header/Group", "~/AdminInterface/Setup/addKpiHeaders.aspx");
+            //Call initMenuChildLine(oRoot)
+            initMenuChildItem(oSub_2, "View KPI Header/Group", "~/AdminInterface/Setup/viewKpiHeaders.aspx");
+            //'initMenuChildItem(oSub_2, "View Cost Elements by Description", "~/Configs/viewListCostElementDesc.aspx")
+            initMenuChildAddMe(oRoot, oSub_2);
+
+            ComponentArt.Web.UI.MenuItem oSub_3  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_3, "KPI Bulk Upload");
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oSub_3, "Bulk Load KPI", "~/AdminInterface/Setup/kpiBulkUpload.aspx");
+            //'Call initMenuChildLine(oRoot)
+            initMenuChildItem(oSub_3, "Add New KPI", "~/AdminInterface/Setup/addKpis.aspx");
+            initMenuChildItem(oSub_3, "View KPIs", "~/AdminInterface/Setup/viewKpis.aspx");
+            initMenuChildAddMe(oRoot, oSub_3);
+
+            ComponentArt.Web.UI.MenuItem oSub_4  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_4, "BP Year Targets Management");
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oSub_4, "Update BP Year Targets", "~/AdminInterface/updateKpiTargets.aspx");
+            //'Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_4, "View Devcom Group", "~/Configs/viewListDevcom.aspx")
+            initMenuChildAddMe(oRoot, oSub_4);
+
+            ComponentArt.Web.UI.MenuItem oSub_5  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_5, "Key Performance Index Mapping");
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oSub_5, "View KPI Mapping", "~/AdminInterface/Setup/viewKpiFocalPointMapping.aspx");
+            //'Call initMenuChildLine(oRoot)
+            initMenuChildItem(oSub_5, "Map KPI to Focal Points", "~/AdminInterface/Setup/mapKpiToFocalPoint.aspx");
+            initMenuChildItem(oSub_5, "Map KPI to DNLT Owners", "~/AdminInterface/Setup/mapKpiToDnltOwner.aspx");
+            initMenuChildAddMe(oRoot, oSub_5);
+
+            ComponentArt.Web.UI.MenuItem oSub_6  = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_6, "Setup Work days Window");
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oSub_6, "Change Workdays", "~/AdminInterface/Setup/workDays.aspx");
+            //'Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_6, "View OPEX Asset Type", "~/Configs/viewListAsset.aspx")
+            initMenuChildAddMe(oRoot, oSub_6);
+
+            //ComponentArt.Web.UI.MenuItem oSub_7  = new ComponentArt.Web.UI.MenuItem();
+            //initMenuRootItem(oSub_7, "Weekly Highlight");
+            //if (grantPageAccess(appUsers.userRole.admin)) initMenuChildItem(oSub_7, "Group Area Mapping", "~/AdminInterface/Setup/areaGroupMap.aspx");
+            ////'Call initMenuChildLine(oRoot)
+            ////'initMenuChildItem(oSub_6, "View OPEX Asset Type", "~/Configs/viewListAsset.aspx")
+            //initMenuChildAddMe(oRoot, oSub_7);
+
+
+           initMenuChildAddMe(oRoot);
+        }
+        catch(Exception ex)
+            {
+            appMonitor.logAppExceptions(ex);
+            }
+    }
+
+    private void initMenuSubUsers(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oRoot, "User Account Management");
+
+            if (grantPageAccess(appUsersRoles.userRole.focalPoint)) initMenuChildItem(oRoot, "Create New User Account", "~/AdminInterface/Setup/addUsers.aspx");
+            initMenuChildItem(oRoot, "Application Members List", "~/AdminInterface/Setup/viewUsers.aspx");
+            //''Call initMenuChildLine(oRoot)
+
+            //'Dim oSub_1 As New ComponentArt.Web.UI.MenuItem
+            //'Call initMenuRootItem(oSub_1, "My Application Account")
+            //'initMenuChildItem(oSub_1, "My Account Information", "~/Profiles/infoAppUser.aspx")
+            //'initMenuChildItem(oSub_1, "Update My Account Details", "~/Profiles/editAppUser.aspx")
+            //'Call initMenuChildAddMe(oRoot, oSub_1)
+
+            //''If grantPageAccess(appUsers.userRole.focalPoint) Then
+            //''    Dim oSub_3 As New ComponentArt.Web.UI.MenuItem
+            //''    Call initMenuRootItem(oSub_3, "Manage User Accounts")
+            //''    initMenuChildItem(oSub_3, "Change User Status", "~/Profiles/editAppStatus.aspx")
+            //''    If grantPageAccess(appUsers.userRole.admin) Then initMenuChildItem(oSub_3, "Change User Function", "~/Profiles/editUserFunc.aspx")
+            //''    initMenuChildItem(oSub_3, "Change User Access Role", "~/Profiles/editUserRole.aspx")
+            //''    Call initMenuChildAddMe(oRoot, oSub_3)
+            //''End If
+
+            initMenuChildAddMe(oMenu, oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initMenuSubUserOpex(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oRoot, "User OPEX Re-assignment");
+
+            if (grantPageAccess(appUsersRoles.userRole.focalPoint)) initMenuChildItem(oRoot, "Add New OPEX Assignment", "~/Profiles/addOpexAssign.aspx");
+            if (grantPageAccess(appUsersRoles.userRole.focalPoint)) initMenuChildItem(oRoot, "Remove OPEX Assignment", "~/Profiles/delOpexAssign.aspx");
+            //'Call initMenuChildLine(oRoot)
+            initMenuChildItem(oRoot, "View OPEX Assignment List", "~/Profiles/listOpexAssign.aspx");
+            initMenuChildAddMe(oMenu, oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initMenuSubBpOpex(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            //'TODO: check these codes very well
+            //'Call initMenuRootItem(oRoot, "JV OPEX " & opexSettings.bpPlanYearDesc & " Data")
+            initMenuRootItem(oRoot, "Dev PMiS Data");
+
+            if (grantPageAccess(appUsersRoles.userRole.focalPoint)) initMenuChildItem(oRoot, "Update Monthly Key Performance Index", "~/userInterface/monthlyKpiUpdate.aspx");
+            if (grantPageAccess(appUsersRoles.userRole.focalPoint)) initMenuChildItem(oRoot, "Update Monthly Key Achievements and Lowlights", "~/UserInterface/kpiNarrative.aspx");
+            //'initMenuChildItem(oRoot, "Search Cost Element(s) Entries", "~/Planning/findOpexItem.aspx")
+            //'initMenuChildItem(oRoot, "Un-Phased Cost Element(s)", "~/Planning/listOpexItemOnEdit.aspx?Idx=xPh")
+            //''Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oRoot, "Bulk Load Cost Element(s)", "~/Planning/axBulkOpexProductn.aspx")
+            //''Call initMenuChildLine(oRoot)
+
+            //'Dim oSub_1 As New ComponentArt.Web.UI.MenuItem
+            //'Call initMenuRootItem(oSub_1, "My Cost Element Tools")
+            //'initMenuChildItem(oSub_1, "Edit Cost Element Entries", "~/Planning/listOpexItemOnEdit.aspx")
+            //'initMenuChildItem(oSub_1, "Search/Edit Cost Element Entry", "~/Planning/findOpexItem.aspx")
+            //''Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_1, "View SAP Cost Center Entries", "~/Planning/listUserSapCostObj.aspx")
+            //''Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_1, "Delete Cost Element(s)", "~/Planning/delOpexItem.aspx")
+            //'initMenuChildItem(oSub_1, "Bulk DELETE Cost Element(s)", "~/Planning/delOpexItemBk.aspx")
+            //'Call initMenuChildAddMe(oRoot, oSub_1)
+
+            //'Dim oSub_2 As New ComponentArt.Web.UI.MenuItem
+            //'Call initMenuRootItem(oSub_2, "Previous Year Data Migration")
+            //'initMenuChildItem(oSub_2, "Download Previous Year Data", "~/Planning/dropPrevYearOpexItem.aspx")
+            //'initMenuChildItem(oSub_2, "Bulk Load Previous Year Data", "~/Planning/loadPrevYearOpexItem.aspx")
+            //''Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_2, "Download Previous Nine Year Data", "~/Planning/dropAllYearOpexItem.aspx")
+            //'initMenuChildItem(oSub_2, "Bulk Load Previous Nine Year Data", "~/Planning/loadAllYearOpexItem.aspx")
+            //''Call initMenuChildLine(oRoot)
+            //'initMenuChildItem(oSub_2, "Cascade Previous Year Data", "~/Planning/editPrevYearOpexItem.aspx")
+            //'Call initMenuChildAddMe(oRoot, oSub_2)
+
+            initMenuChildAddMe(oMenu, oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initMenuSubReport(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oRoot, "Generate Reports");
+
+            ComponentArt.Web.UI.MenuItem oSub_1 = new ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oSub_1, "Report Parameter Definition");
+            initMenuChildItem(oSub_1, "Setup Report Parameters", "~/AdminInterface/Setup/commonFields.aspx");
+            initMenuChildItem(oSub_1, "YTD Monthly Report", "~/Report/monthlyDnltRpt.aspx");
+            //'Call initMenuChildLine(oRoot)
+            initMenuChildItem(oSub_1, "YTD Quarterly Report", "~/Report/quarterlyRpt.aspx");
+            initMenuChildItem(oSub_1, "UIG Performance Summary", "~/Report/performanceSummary.aspx");
+            initMenuChildAddMe(oRoot, oSub_1);
+
+            initMenuChildItem(oRoot, "View Performance Charts", "~/Charts.aspx");
+
+            initMenuChildAddMe(oMenu, oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    private void initMenuSubExcRate(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oRoot = new global::ComponentArt.Web.UI.MenuItem();
+            initMenuRootItem(oRoot, "Current Exchange Rate");
+
+            if (grantPageAccess(appUsersRoles.userRole.admin)) initMenuChildItem(oRoot, "Modify Current Exchange Rate", "~/Planning/editExchangeRate.aspx");
+            initMenuChildItem(oRoot, "View Current Exchange Rate", "~/Planning/viewExchangeRate.aspx");
+
+            initMenuChildAddMe(oMenu, oRoot);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    protected void initMenuRootItem(ComponentArt.Web.UI.MenuItem oRoot, string sText)
+    {
+        try
+        {
+            oRoot.Text = sText;
+            oRoot.Look.RightIconUrl = c_sRiteArrowGif;
+            oRoot.Look.RightIconWidth = 20;
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    protected void initMenuChildItem(ComponentArt.Web.UI.MenuItem oMenu, string sText, string sUrl)
+    {
+        try
+        {
+            ComponentArt.Web.UI.MenuItem oItem = new ComponentArt.Web.UI.MenuItem();
+            oItem.Text = sText;
+            oItem.NavigateUrl = sUrl;
+            oMenu.Items.Add(oItem);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    protected void initMenuChildLine(ComponentArt.Web.UI.MenuItem oMenu)
+    {
+        try
+        {
+            if (oMenu.Items.Count > 0)
+            {
+                if (oMenu.Items[oMenu.Items.Count - 1].LookId != c_sBreakItem)
+                {
+                    ComponentArt.Web.UI.MenuItem oLine = new global::ComponentArt.Web.UI.MenuItem();
+                    oLine.LookId = c_sBreakItem;
+                    oMenu.Items.Add(oLine);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    protected void initMenuChildAddMe(ComponentArt.Web.UI.MenuItem oMenu, ComponentArt.Web.UI.MenuItem oChild)
+    {
+        try
+        {
+            if (oChild.Items.Count > 0)
+            {
+                if (oChild.Items[oChild.Items.Count - 1].LookId == c_sBreakItem)
+                    oChild.Items.RemoveAt(oChild.Items.Count - 1);
+                oMenu.Items.Add(oChild);
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    protected void initMenuChildAddMe(ComponentArt.Web.UI.MenuItem oChild)
+    {
+        try
+        {
+            if (oChild.Items.Count > 0)
+            {
+                if (oChild.Items[oChild.Items.Count - 1].LookId == c_sBreakItem)
+                    oChild.Items.RemoveAt(oChild.Items.Count - 1);
+                m_oMenu.Items.Add(oChild);
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+    }
+
+    public bool grantPageAccess(appUsersRoles.userRole eRequired)
+    {
+        bool bRet = false;
+        try
+        {
+            if (m_eRole <= eRequired)
+                bRet = true;
+
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+        }
+        return bRet;
+    }
+}

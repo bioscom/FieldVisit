@@ -1,0 +1,265 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="BongaCCP.master.cs" Inherits="BongaCCP" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<%--User controls--%>
+<%--<%@ Register Src="~/App/PDCC/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="~/UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc3" %>--%>
+<%@ Register Src="~/App/CommitmentControl/UserControl/oSavingsStatistics.ascx" TagPrefix="uc2" TagName="oSavingsStatistics" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/oDataExportMgr.ascx" TagPrefix="uc2" TagName="oDataExportMgr" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/oSearch.ascx" TagPrefix="uc2" TagName="oSearch" %>
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Commitment Control</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
+
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="~/css/menuStyle.css" rel="stylesheet" type="text/css" media="screen" />
+    <link type="text/css" href="~/css/BongaCCStyleSheet.css" rel="stylesheet" media="screen" />
+    <script language="javascript" type="text/javascript">
+
+        (function (global, undefined) {
+            var widthTextBox, heightTextBox, leftTextBox, topTextBox;
+
+            function widthTextBox_load(sender, args) {
+                widthTextBox = sender;
+            }
+            function heightTextBox_load(sender, args) {
+                heightTextBox = sender;
+            }
+            function leftTextBox_load(sender, args) {
+                leftTextBox = sender;
+            }
+            function topTextBox_load(sender, args) {
+                topTextBox = sender;
+            }
+
+            function openRadWin() {
+                var wndw = radopen("InputEdit.aspx", "AddRequest", 1100, 500);
+                wndw.SetTitle("Commitment Control Form");
+                wndw.set_visibleStatusbar(false);
+                wndw.Center();
+            }
+
+            global.openRadWin = openRadWin;
+            global.widthTextBox_load = widthTextBox_load;
+            global.heightTextBox_load = heightTextBox_load;
+            global.leftTextBox_load = leftTextBox_load;
+            global.topTextBox_load = topTextBox_load;
+        })(window);
+
+    </script>
+
+    <style type="text/css">
+        .header1 {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        html .t-container-fluid,
+        html .t-row-wrap > .t-row {
+            max-width: none;
+            max-height: none;
+        }
+
+        .menu {
+            background-color: #E8EAEC;
+        }
+
+        .header3 {
+            background: linear-gradient(#FDFEFE, #F0F2F4) repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .content {
+        }
+
+        .article2 {
+            background-color: #EEF1F3;
+        }
+
+        .footer {
+            background-color: black;
+        }
+
+        html,
+        body,
+        form {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            min-height: 100%;
+            position: relative;
+        }
+
+        .allContent {
+            padding-top: 40px;
+            padding-bottom: 84px; /* Height of the footer */
+        }
+
+        .colSideBar {
+            margin: 0px 0;
+            /*padding: 5px 5px;*/
+            margin-top: 50px;
+        }
+
+        .col {
+            float: left;
+            /*margin-left: 0.1em;
+            margin: 5px 0;
+            padding: 5px 5px;
+           margin-top:180px;*/
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form2" runat="server">
+        <telerik:RadScriptManager ID="QsfScriptManager" runat="server"></telerik:RadScriptManager>
+
+        <telerik:RadWindowManager RenderMode="Lightweight" ID="mnuRadWindowManager" runat="server" EnableShadow="true">
+            <Windows>
+                <telerik:RadWindow RenderMode="Lightweight" ID="Commitment" runat="server" ShowContentDuringLoad="false" Width="400px" EnableShadow="true" Modal="true"
+                    Height="400px" Title="Commitment Control Form" Behaviors="Default">
+                </telerik:RadWindow>
+            </Windows>
+        </telerik:RadWindowManager>
+
+        <telerik:RadPageLayout runat="server" ID="PageLayoutMaster" HtmlTag="None" GridType="Fluid" ShowGrid="true">
+            <Rows>
+                <telerik:LayoutRow RowType="Generic" CssClass="container">
+                    <Rows>
+                        <telerik:LayoutRow RowType="Generic" CssClass="allContent">
+                            <Rows>
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="header1" WrapperHtmlTag="Div">
+                                    <Content>
+
+                                        <div id="header">
+                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+
+                                            <div class="title">
+                                                <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                                            </div>
+                                            <div class="breadcrumb">
+                                                Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/App/CommitmentControl/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                                                <br />
+                                                <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                                                &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                                                <br />
+                                                <%--<asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
+                                            </div>
+                                        </div>
+
+                                        <div id="navigation">
+                                            <div class="firstChild">
+                                                <telerik:RadButton RenderMode="Lightweight" runat="server" ForeColor="Red" Font-Bold="true" AutoPostBack="false" OnClientClicked="openRadWin" Text="Submit Commitment" />
+                                            </div>
+                                            <div class="child">
+                                                <asp:HyperLink ID="hplnkFinanceDirectors" runat="server" NavigateUrl="~/App/CommitmentControl/FinanceDirecors.aspx">View Finance Directors</asp:HyperLink>
+                                            </div>
+                                        </div>
+                                        <div id="navigation1">
+                                        </div>
+                                        <div id="navigation2">
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div style="width:100%">
+                                            <div style="margin: 0 auto">
+                                                <uc2:oSearch runat="server" ID="oSearch" />
+                                            </div>
+                                        </div>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="menu">
+                                    <Content>
+                                        <div style="height: 130px">
+                                        </div>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="content" WrapperHtmlTag="Div" HtmlTag="None">
+                                    <Content>
+                                        <telerik:RadPageLayout runat="server" ID="PageLayoutConent" HtmlTag="None" GridType="Fluid">
+                                            <Rows>
+                                                <telerik:LayoutRow RowType="Container" WrapperCssClass="article1" WrapperHtmlTag="Div">
+                                                    <Columns>
+
+                                                        <telerik:LayoutColumn Span="12">
+
+                                                            <div style="padding: 5px 1px;">
+                                                                <table style="width: 100%">
+                                                                    <tr>
+                                                                        <td style="vertical-align: top">
+                                                                            <div style="overflow: auto">
+                                                                                <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                                                                                </asp:ContentPlaceHolder>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 250px; vertical-align: top">
+                                                                            <telerik:RadTabStrip RenderMode="Lightweight" runat="server" Skin="Silk" ID="RadStrpRight" Align="Left" AutoPostBack="true" MultiPageID="RadMultiPage1" SelectedIndex="0">
+                                                                                <Tabs>
+                                                                                    <telerik:RadTab Text="Filter"></telerik:RadTab>
+                                                                                    <telerik:RadTab Text="Statistics"></telerik:RadTab>
+                                                                                </Tabs>
+                                                                            </telerik:RadTabStrip>
+
+                                                                            <telerik:RadMultiPage runat="server" ID="RadMultiPage1" SelectedIndex="0">
+                                                                                <telerik:RadPageView runat="server" ID="RadPageView1">
+                                                                                    <uc2:oDataExportMgr runat="server" ID="oDataExportMgr" />
+                                                                                </telerik:RadPageView>
+                                                                                <telerik:RadPageView runat="server" ID="RadPageView2">
+                                                                                    <uc2:oSavingsStatistics runat="server" ID="oSavingsStatistics" />
+                                                                                </telerik:RadPageView>
+                                                                            </telerik:RadMultiPage>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+
+                                                        </telerik:LayoutColumn>
+
+                                                    </Columns>
+                                                </telerik:LayoutRow>
+                                            </Rows>
+                                        </telerik:RadPageLayout>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                            </Rows>
+                        </telerik:LayoutRow>
+
+                        <telerik:LayoutRow RowType="Container" WrapperCssClass="footer" WrapperHtmlTag="Div">
+                            <Content>
+
+                                <div id="footer">
+                                    <span style="float: left; vertical-align: top">SCiN - Commitment Control</span>
+                                    <span style="float: right; vertical-align: top">Copyright © 2016 Business Improvement and Production Excellence</span>
+                                </div>
+                            </Content>
+                        </telerik:LayoutRow>
+                    </Rows>
+                </telerik:LayoutRow>
+            </Rows>
+        </telerik:RadPageLayout>
+    </form>
+</body>
+</html>

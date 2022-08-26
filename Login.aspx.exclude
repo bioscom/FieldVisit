@@ -1,0 +1,71 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/init.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+
+<%@ Register src="UserControls/supportContact.ascx" tagname="supportContact" tagprefix="uc2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <table style="margin-top: 5em; margin-left: 5em; margin-bottom: 5em; width: 450px">
+        <tr>
+            <td>
+                <asp:Panel ID="msgPanel" runat="server">
+                    <table class="tSubGray" style="width: 450px">
+                        <tr>
+                            <td style="width: 27px; vertical-align: middle">
+                                <asp:Image ID="mssgImg" runat="server" Width="25px" Height="25px" />
+                            </td>
+                            <td style="vertical-align: middle; text-align: center; background-color: #ff99cc">
+                                <asp:Label ID="mssgLabel" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+
+                <table class="tSubGray" style="width: 450px; " cellpadding="7">
+                    <tr>
+                        <td class="cHeadTile" colspan="2">
+                            Login</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; width: 100px">
+                            <asp:Label ID="Label1" runat="server" Text="User Name:"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserName" ErrorMessage="Username is required">*</asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtUserName" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+                            <asp:Label ID="Label2" runat="server" Text="Password:"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required">*</asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
+                            &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/LForgotPsw.aspx">Forgot Password?</asp:HyperLink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 75px">
+                                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" Width="70px" />
+                                    </td>
+                                    <td style="vertical-align: middle">or
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/LRegister.aspx">Register</asp:HyperLink>
+                                    </td>
+                                </tr>
+                            </table>
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
+                        </td>
+                    </tr>
+                    </table>
+                <center>
+                    <uc2:supportContact ID="supportContact1" runat="server" />
+                </center>
+                
+            </td>
+        </tr>
+    </table>
+</asp:Content>

@@ -1,0 +1,42 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SeeAlso.ascx.cs" Inherits="Common_UserControls_SeeAlso" %>
+
+<div id="see-also" class="panel">
+    <div class="panel-body columns columns-border">
+
+        <div class="col col-narrow">
+            <h4>Support &amp; Learning Resources</h4>
+            <ul class="clean-list" runat="server">
+                <asp:PlaceHolder ID="ResourcesPlaceHolder" runat="server"></asp:PlaceHolder>
+            </ul>
+        </div>
+
+        <div class="col col-narrow">
+            <h4>Find Assistance</h4>
+            <ul class="clean-list">
+                <li>
+                    <a href="http://www.telerik.com/account/support-tickets/available-support-list.aspx">Submit a support ticket</a><br />
+                    <small class="text-mute">if you have an active license or trial</small>
+                </li>
+                <li>
+                    <a href="http://www.telerik.com/forums/aspnet-ajax">Post in the forum</a><br />
+                    <small class="text-mute">if you don't have access to support</small>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col col-narrow">
+            <h4>Help Us Improve</h4>
+            <p>Was this example helpful?</p>
+            <telerik:RadAjaxPanel ID="RatingPanel" runat="server">
+                <asp:RadioButtonList ID="Rating" runat="server"
+                    AutoPostBack="true"
+                    RepeatLayout="Flow" RepeatDirection="Horizontal"
+                    OnSelectedIndexChanged="Rating_SelectedIndexChanged">
+                    <asp:ListItem Text="Yes" Selected="False" Value="UpVotes" />
+                    <asp:ListItem Text="No" Selected="False" Value="DownVotes" />
+                </asp:RadioButtonList>
+            </telerik:RadAjaxPanel>
+        </div>
+
+    </div>
+</div>

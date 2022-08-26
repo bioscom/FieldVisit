@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
+    <siteMapNode url="" title="BI 500"  description="">
+      <!--<siteMapNode url="~/Default.aspx" title="Home Page"  description="" />-->
+      <siteMapNode url="~/App/BI500/NewBizIntel.aspx" title="Bright Idea (Self)"  description="" />
+      <siteMapNode url="~/App/BI500/OnBehalf.aspx" title="Bright Idea (Onbehalf)"  description="" />
+      <siteMapNode url="~/App/BI500/MyBrightIdeas.aspx" title="My Bright Ideas"  description="" />
+      <siteMapNode url="~/App/BI500/ApprovalReview.aspx" title="Review/Approve Bright Ideas" description="" />
+
+      <siteMapNode url="~/App/BI500/Report/Default.aspx" title="View Report"  description="" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

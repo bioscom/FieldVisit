@@ -1,0 +1,47 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="CodeViewer.ascx.cs" Inherits="Common_UserControls_CodeViewer" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<div class="panel tab-panel" id="demo-source">
+    <script type="text/javascript">
+        //<![CDATA[
+        var qsfViewSourceService = '<%= ResolveUrl("~/Common/Services/CodeViewer.asmx") %>';
+        var qsfInstructionsPage = '<%=ResolveUrl("~/Common/QSFInstructions/Instructions.html")%>';
+        //]]>
+    </script>
+    <a id="isolate-demo" href="javascript:void(0);"><span class="icon icon-more"></span>Isolate this demo as a stand-alone application</a>
+    <telerik:RadTabStrip runat="server" ID="ActionButtons" Skin="Qsf" CssClass="tabs"
+        EnableEmbeddedSkins="false" EnableEmbeddedBaseStylesheet="false" CausesValidation="false"
+        OnClientLoad="actionButtons_OnClientLoad" OnClientTabSelected="actionButtons_OnClientTabSelected">
+        <Tabs>
+            <telerik:RadTab Text="About this demo" Selected="true" />
+            <telerik:RadTab Text="C#" Value="cs" />
+            <telerik:RadTab Text="VB" Value="vb" />
+        </Tabs>
+    </telerik:RadTabStrip>
+
+	<div id="about-demo-wrapper">
+		<div class="panel-body">
+			<qsf:MessageBox runat="server" ID="LocalDemoMessageBox" Visible="false" Type="Mute" Icon="Folder">
+				<p><%= DemoPath.ToLower() %></p>
+			</qsf:MessageBox>
+			<asp:PlaceHolder runat="server" ID="AboutThisDemo" />
+		</div>
+	</div>
+
+	<div id="code-viewer-wrapper">
+
+		<telerik:RadToolBar runat="server" ID="ToolBarDemoSource" Skin="Qsf" CssClass="toolbar"
+			OnClientButtonClicked="toolBarDemoSource_onClientButtonClicking"
+			EnableEmbeddedBaseStylesheet="false" EnableEmbeddedSkins="false"
+			EnableRoundedCorners="false" EnableShadows="false">
+			<CollapseAnimation Type="None" />
+			<ExpandAnimation Type="None" />
+		</telerik:RadToolBar>
+
+		<div class="panel-body" id="code-listing">
+			<asp:PlaceHolder runat="server" id="CodeListings" />
+		</div>
+
+	</div>
+
+</div>

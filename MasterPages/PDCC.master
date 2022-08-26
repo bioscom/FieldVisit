@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PDCC.master.cs" Inherits="MasterPages_PDCC" %>
+
+<%@ Register Src="../App/PDCC/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="../UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc3" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Business Initiative</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/menuStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top:0.5em; position: absolute;" />
+                
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/App/PDCC/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <%--<asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
+                </div>
+            </div>
+            <div id="navigation">
+                <div class="firstChild">
+                    <ajaxToolkit:ToolkitScriptManager ID="smtAjaxManager" runat="Server" EnablePartialRendering="true" ScriptMode="Release" />
+                </div>
+                <div class="child" style="vertical-align: top">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label1" Font-Size="95%" runat="server" Text="Enter ID No/Opportunity:"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="txtIdNo" runat="server" ToolTip="Enter ID Number" Width="200px"></asp:TextBox></td>
+                            <td>
+                                <asp:ImageButton ID="searchButton" runat="server" ImageUrl="~/Images/gosearch.gif" OnClick="searchButton_Click" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <div class="master_contentplaceholder_SideMenu">
+                    <asp:ContentPlaceHolder ID="MenuContentContentPlaceHolder" runat="server">
+                        <uc2:adminMenu ID="adminMenu1" runat="server" />
+                        <br />
+                        <uc3:supportContact ID="supportContact1" runat="server" />
+                    </asp:ContentPlaceHolder>
+                </div>
+                
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+            <asp:UpdateProgress ID="upgAjaxBloc" runat="server" DisplayAfter="100" Visible="true" DynamicLayout="true">
+                <ProgressTemplate>
+                    <div id="IMGDIV" align="center" valign="middle" runat="server" style="position: absolute; visibility: visible; left: 50%; top: 70%; vertical-align: middle; border-color: #FFFFFF; background-color: #FFFFFF;">
+                        <asp:Image ID="imgAjaxWait" runat="server" ImageUrl="~/Images/ajaxRoller.gif" />
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+        </div>
+        <div id="footer">
+            <span style="float: left; vertical-align: top">Production - Cost Challenge</span>
+            <span style="float: right; vertical-align: top">Copyright © 2015 SEPCiN Competitiveness and Business Improvement</span>
+        </div>
+    </form>
+</body>
+</html>

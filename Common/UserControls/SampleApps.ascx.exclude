@@ -1,0 +1,64 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SampleApps.ascx.cs" Inherits="Common_UserControls_SampleApps" %>
+<div id="sample-apps">
+
+    <h2>Theme Builder</h2>
+    <ul class="theme-builder">
+        <li>
+            <a href="http://themebuilder.telerik.com/">
+                <asp:Image ID="Image8" runat="server" AlternateText="Sales sample app" ImageUrl="~/Common/Images/theme-builder.png" />
+                <span>Create new themes with just a few clicks. Use an original, customized Telerik theme or а Bootstrap theme as base.</span>
+            </a>
+        </li>
+    </ul>
+    <h2>Sample Applications</h2>
+    <ul>
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/salesdashboard/">
+                <asp:Image ID="Image4" runat="server" AlternateText="Sales sample app" ImageUrl="~/Common/Images/SampleApps/sales.png" />
+                <span>Enable monitoring of sales KPIs with Chart, Grid, ListView, and more</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/imagegallery/">
+                <asp:Image ID="Image3" runat="server" AlternateText="tripxpert sample app" ImageUrl="~/Common/Images/SampleApps/tripxpert.png" />
+                <span>Build responsive apps with ImageGallery, LightBox, ImageEditor, Map and more</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/responsive-web-design-aspnet/default.aspx">
+                <asp:Image ID="Image1" runat="server" AlternateText="responsive sample app" ImageUrl="~/Common/Images/SampleApps/responsive.png" />
+                <span>Learn about and test the mobile capabilities of Telerik controls</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/sample-applications/olympic-games/">
+                <asp:Image ID="Image2" runat="server" AlternateText="chart sample app" ImageUrl="~/Common/Images/SampleApps/chart.png" />
+                <span>Learn how to integrate data controls like PivotGrid, Charts and Gauges</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/sample-applications/diagram-app/">
+                <asp:Image ID="Image0" runat="server" AlternateText="diagram sample app" ImageUrl="~/Common/Images/SampleApps/diagram.png" />
+                <span>Check the Telerik Diagram features and its integration with other controls</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/carrental/">
+                <asp:Image ID="Image5" runat="server" AlternateText="rentacar sample app" ImageUrl="~/Common/Images/SampleApps/carrental.png" />
+                <span>Learn how to integrate and localize controls like Calendar, Tab, Grid and more</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="http://demos.telerik.com/aspnet-ajax/webmail/">
+                <asp:Image ID="Image7" runat="server" AlternateText="web mail sample app" ImageUrl="~/Common/Images/SampleApps/webmail.png" />
+                <span>Create Outlook-inspired apps with Grid, Scheduler, Menu and more</span>
+            </a>
+        </li>
+    </ul>
+</div>

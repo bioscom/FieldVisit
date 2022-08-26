@@ -1,0 +1,14 @@
+﻿using System;
+using System.Linq;
+using Telerik.QuickStart;
+
+public partial class Common_UserControls_HeadTag : System.Web.UI.UserControl
+{
+    public string Description
+    {
+        get
+        {
+            return (Page.Master as QSFMasterPage).DemoDescription;
+        }
+    }
+}

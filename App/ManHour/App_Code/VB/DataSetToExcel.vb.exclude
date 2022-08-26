@@ -1,0 +1,243 @@
+'Class to convert a dataset to an html stream which can be used to display the dataset
+'in MS Excel
+'The Convert method is overloaded three times as follows
+' 1)  Default to 1st table in dataset
+' 2)  Pass an index to tell us which table in the dataset to use
+' 3)  Pass a table name to tell us which table in the dataset to use
+
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports iTextSharp.text.html
+
+Public Class DataSetToExcel
+
+    Public Shared Sub Convert(ByVal dt As System.Data.DataTable, ByVal response As System.Web.HttpResponse)
+        'first let's clean up the response.object
+        response.Clear()
+        response.Charset = ""
+        'set the response mime type for excel
+        response.ContentType = "application/vnd.ms-excel"
+
+        'create a string writer
+        Dim stringWrite As New System.IO.StringWriter
+        'create an htmltextwriter which uses the stringwriter
+        Dim htmlWrite As New System.Web.UI.HtmlTextWriter(stringWrite)
+        'instantiate a datagrid
+        Dim dg As New System.Web.UI.WebControls.DataGrid
+        'set the datagrid datasource to the dataset passed in
+        dg.DataSource = dt
+        'bind the datagrid
+        dg.DataBind()
+        'tell the datagrid to render itself to our htmltextwriter
+        dg.RenderControl(htmlWrite)
+        'all that's left is to output the html
+        response.Write(stringWrite.ToString)
+        response.End()
+    End Sub
+
+    Public Shared Sub Convert(ByVal dt As System.Data.DataTable, ByVal TableIndex As Integer, ByVal response As System.Web.HttpResponse)
+        'lets make sure a table actually exists at the passed in value
+        'if it is not call the base method
+        If TableIndex > dt.Rows.Count - 1 Then
+            Convert(dt, response)
+        End If
+        'we've got a good table so
+        'let's clean up the response.object
+        response.Clear()
+        response.Charset = ""
+        'set the response mime type for excel
+        response.ContentType = "application/vnd.ms-excel"
+        'create a string writer
+        Dim stringWrite As New System.IO.StringWriter
+        'create an htmltextwriter which uses the stringwriter
+        Dim htmlWrite As New System.Web.UI.HtmlTextWriter(stringWrite)
+        'instantiate a datagrid
+        Dim dg As New System.Web.UI.WebControls.DataGrid
+        'set the datagrid datasource to the dataset passed in
+        dg.DataSource = dt
+        'bind the datagrid
+        dg.DataBind()
+        'tell the datagrid to render itself to our htmltextwriter
+        dg.RenderControl(htmlWrite)
+        'all that's left is to output the html
+        response.Write(stringWrite.ToString)
+        response.End()
+    End Sub
+
+    Public Shared Sub Convert(ByVal dt As System.Data.DataTable, ByVal TableName As String, ByVal response As System.Web.HttpResponse)
+        'let's make sure the table name exists
+        'if it does not then call the default method
+        If dt Is Nothing Then
+            Convert(dt, response)
+        End If
+        'we've got a good table so
+        'let's clean up the response.object
+        response.Clear()
+        response.Charset = ""
+        'set the response mime type for excel
+        response.ContentType = "application/vnd.ms-excel"
+
+        'create a string writer
+        Dim stringWrite As New System.IO.StringWriter
+        'create an htmltextwriter which uses the stringwriter
+        Dim htmlWrite As New System.Web.UI.HtmlTextWriter(stringWrite)
+        'instantiate a datagrid
+        Dim dg As New System.Web.UI.WebControls.DataGrid
+        'set the datagrid datasource to the dataset passed in
+        dg.DataSource = dt
+        'bind the datagrid
+        dg.DataBind()
+        'tell the datagrid to render itself to our htmltextwriter
+        dg.RenderControl(htmlWrite)
+        'all that's left is to output the html
+        response.Write(stringWrite.ToString)
+        response.End()
+    End Sub
+
+End Class
+
+
+Public Class Export
+
+
+    ''' This provides a simple way to convert a DataTable to an HTML file. 
+    ''' </summary> 
+    ''' <param name="targetTable">This the table to convert.</param> 
+    ''' <returns>This is the HTML output, which can saved as a file.</returns> 
+    Public Shared Function ConvertToHtmlFile(ByVal dt As System.Data.DataTable) As String
+        Dim myHtmlFile As String = ""
+
+        If (dt Is Nothing) Then
+            Throw New System.ArgumentNullException("dt")
+        Else
+            'Continue. 
+        End If
+
+        'Get a worker object. 
+        Dim myBuilder As System.Text.StringBuilder = New System.Text.StringBuilder()
+
+        'Open tags and write the top portion. 
+        myBuilder.Append("<html xmlns='http://www.w3.org/1999/xhtml'>")
+        myBuilder.Append("<head>")
+        myBuilder.Append("<title>")
+        myBuilder.Append("Page-")
+        myBuilder.Append(Guid.NewGuid().ToString())
+        myBuilder.Append("</title>")
+        myBuilder.Append("</head>")
+        myBuilder.Append("<body>")
+        myBuilder.Append("<table border='1px' cellpadding='5' cellspacing='0' ")
+        myBuilder.Append("style='border: solid 1px Silver; font-size: x-small;'>")
+
+        'Add the headings row. 
+
+        myBuilder.Append("<tr align='left' valign='top'>")
+
+        For Each myColumn As System.Data.DataColumn In dt.Columns
+            myBuilder.Append("<td align='left' valign='top'>")
+            myBuilder.Append(myColumn.ColumnName)
+            myBuilder.Append("</td>")
+        Next myColumn
+
+        myBuilder.Append("</tr>")
+
+
+        'Add the data rows. 
+        For Each myRow As System.Data.DataRow In dt.Rows
+            myBuilder.Append("<tr align='left' valign='top'>")
+
+            For Each myColumn As System.Data.DataColumn In dt.Columns
+                myBuilder.Append("<td align='left' valign='top'>")
+                myBuilder.Append(myRow(myColumn.ColumnName).ToString())
+                myBuilder.Append("</td>")
+            Next myColumn
+
+
+            myBuilder.Append("</tr>")
+        Next myRow
+
+        'Close tags. 
+        myBuilder.Append("</table>")
+        myBuilder.Append("</body>")
+        myBuilder.Append("</html>")
+
+        'Get the string for return. 
+        myHtmlFile = myBuilder.ToString()
+
+        Return myHtmlFile
+    End Function
+
+
+    Public Shared Sub ExportToPDF(ByVal dt As System.Data.DataTable, ByVal response As System.Web.HttpResponse, sbHtml As System.Text.StringBuilder)
+
+        'Create a dummy GridView 
+        Dim grdView As System.Web.UI.WebControls.GridView = New GridView()
+        grdView.AllowPaging = False
+        grdView.DataSource = sbHtml 'dt
+        grdView.DataBind()
+
+        response.ContentType = "application/pdf"
+        response.AddHeader("content-disposition", "attachment;filename=Reports.pdf")
+        response.Cache.SetCacheability(HttpCacheability.NoCache)
+        Dim sw As System.IO.StringWriter = New System.IO.StringWriter()
+        Dim hw As System.Web.UI.HtmlTextWriter = New HtmlTextWriter(sw)
+        grdView.RenderControl(hw)
+        Dim sr As System.IO.StringReader = New System.IO.StringReader(sw.ToString())
+
+        Dim pdfDoc As Document = New Document(PageSize.A3.Rotate, 10.0F, 10.0F, 10.0F, 30.0F)
+
+        Dim bfTimes As BaseFont = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, False)
+        Dim times As Font = New Font(bfTimes, 22, Font.BOLD, BaseColor.BLACK)
+
+        Dim htmlparser As simpleparser.HTMLWorker = New simpleparser.HTMLWorker(pdfDoc)
+        Dim pdfWriter As PdfWriter = pdfWriter.GetInstance(pdfDoc, response.OutputStream)
+
+
+        'create an instance of your PDFpage class. This is the class we generated above.
+        Dim page As iTextSharp.text.pdf.PdfPage = iTextSharp.text.pdf.PdfPage()
+
+        'set the PageEvent of the pdfWriter instance to the instance of our PDFPage class
+        ''pdfWriter.PageEvent = page
+
+
+        pdfDoc.Open()
+
+        'Add Image
+        Dim imagePath As String = HttpContext.Current.Server.MapPath("Images")
+        Try
+            Dim gif As Image = Image.GetInstance(imagePath & "/logo.gif")
+            Dim Para As Paragraph = New Paragraph("Business Plan Data Management System Report: PPS Codes", times)
+
+            Dim table As PdfPTable = New PdfPTable(2)
+            Dim widths As Single() = New Single() {1.0F, 6.0F}
+            table.SetWidths(widths)
+            table.HorizontalAlignment = 0
+            table.SpacingBefore = 20.0F
+            table.SpacingAfter = 20.0F
+
+            Dim cell1 As PdfPCell = New PdfPCell()
+            Dim cell2 As PdfPCell = New PdfPCell()
+
+            cell1.Border = 0
+            cell2.Border = 0
+
+            cell2.VerticalAlignment = Element.ALIGN_CENTER
+
+            cell1.AddElement(gif)
+            cell2.AddElement(Para)
+
+            table.AddCell(cell1) 'col 1 row 1
+            table.AddCell(cell2) 'col 2 row 1
+            pdfDoc.Add(table)
+        Catch ex As Exception
+            'MessageBox.Show("")
+        End Try
+
+        htmlparser.Parse(sr)
+        pdfDoc.Close()
+
+        response.Write(pdfDoc)
+        response.End()
+    End Sub
+
+
+End Class

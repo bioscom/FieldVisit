@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Contract14Day" targetNamespace="http://tempuri.org/Contract14Day.xsd" xmlns:mstns="http://tempuri.org/Contract14Day.xsd" xmlns="http://tempuri.org/Contract14Day.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LeadershipReportTableAdapter" GeneratorDataComponentClassName="LeadershipReportTableAdapter" Name="LeadershipReport" UserDataComponentName="LeadershipReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PROD_ASSET.IDASSET, PROD_ASSET.ASSETS, PROD_ASSET.LOCATION, PROD_DISTRICT.ID_DISTRICT, PROD_DISTRICT.DISTRICT, 
+                         CONTRACT_LESSONS.IDLESSONS, CONTRACT_LESSONS.WHAT, CONTRACT_LESSONS.WHY, CONTRACT_LESSONS.CONSEQUENCES, 
+                         CONTRACT_LESSONS.START_DATE, CONTRACT_PRIORITY.IDPRIORITY, CONTRACT_PRIORITY.PRIORITY, CONTRACT_PRIORITY.ISECTION, 
+                         PROD_USERMGT.FULLNAME, PROD_USERMGT.EMAIL
+FROM            CONTRACT_LESSONS, CONTRACT_PRIORITY, PROD_DISTRICT, PROD_USERMGT, PROD_ASSET
+WHERE        CONTRACT_PRIORITY.IDPRIORITY = CONTRACT_LESSONS.IDPRIORITY AND PROD_DISTRICT.ID_DISTRICT = CONTRACT_LESSONS.ID_DISTRICT AND 
+                         PROD_USERMGT.USERID = CONTRACT_LESSONS.USERID AND PROD_ASSET.IDASSET = PROD_DISTRICT.IDASSET</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDASSET" DataSetColumn="IDASSET" />
+              <Mapping SourceColumn="ASSETS" DataSetColumn="ASSETS" />
+              <Mapping SourceColumn="LOCATION" DataSetColumn="LOCATION" />
+              <Mapping SourceColumn="ID_DISTRICT" DataSetColumn="ID_DISTRICT" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="IDLESSONS" DataSetColumn="IDLESSONS" />
+              <Mapping SourceColumn="WHAT" DataSetColumn="WHAT" />
+              <Mapping SourceColumn="WHY" DataSetColumn="WHY" />
+              <Mapping SourceColumn="CONSEQUENCES" DataSetColumn="CONSEQUENCES" />
+              <Mapping SourceColumn="START_DATE" DataSetColumn="START_DATE" />
+              <Mapping SourceColumn="IDPRIORITY" DataSetColumn="IDPRIORITY" />
+              <Mapping SourceColumn="PRIORITY" DataSetColumn="PRIORITY" />
+              <Mapping SourceColumn="ISECTION" DataSetColumn="ISECTION" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Contract14Day" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Contract14Day" msprop:Generator_UserDSName="Contract14Day">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LeadershipReport" msprop:Generator_TableClassName="LeadershipReportDataTable" msprop:Generator_TableVarName="tableLeadershipReport" msprop:Generator_RowChangedName="LeadershipReportRowChanged" msprop:Generator_TablePropName="LeadershipReport" msprop:Generator_RowDeletingName="LeadershipReportRowDeleting" msprop:Generator_RowChangingName="LeadershipReportRowChanging" msprop:Generator_RowEvHandlerName="LeadershipReportRowChangeEventHandler" msprop:Generator_RowDeletedName="LeadershipReportRowDeleted" msprop:Generator_RowClassName="LeadershipReportRow" msprop:Generator_UserTableName="LeadershipReport" msprop:Generator_RowEvArgName="LeadershipReportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDASSET" msprop:Generator_ColumnVarNameInTable="columnIDASSET" msprop:Generator_ColumnPropNameInRow="IDASSET" msprop:Generator_ColumnPropNameInTable="IDASSETColumn" msprop:Generator_UserColumnName="IDASSET" type="xs:decimal" />
+              <xs:element name="ASSETS" msprop:Generator_ColumnVarNameInTable="columnASSETS" msprop:Generator_ColumnPropNameInRow="ASSETS" msprop:Generator_ColumnPropNameInTable="ASSETSColumn" msprop:Generator_UserColumnName="ASSETS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_DISTRICT" msprop:Generator_ColumnVarNameInTable="columnID_DISTRICT" msprop:Generator_ColumnPropNameInRow="ID_DISTRICT" msprop:Generator_ColumnPropNameInTable="ID_DISTRICTColumn" msprop:Generator_UserColumnName="ID_DISTRICT" type="xs:decimal" />
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDLESSONS" msprop:Generator_ColumnVarNameInTable="columnIDLESSONS" msprop:Generator_ColumnPropNameInRow="IDLESSONS" msprop:Generator_ColumnPropNameInTable="IDLESSONSColumn" msprop:Generator_UserColumnName="IDLESSONS" type="xs:decimal" />
+              <xs:element name="WHAT" msprop:Generator_ColumnVarNameInTable="columnWHAT" msprop:Generator_ColumnPropNameInRow="WHAT" msprop:Generator_ColumnPropNameInTable="WHATColumn" msprop:Generator_UserColumnName="WHAT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WHY" msprop:Generator_ColumnVarNameInTable="columnWHY" msprop:Generator_ColumnPropNameInRow="WHY" msprop:Generator_ColumnPropNameInTable="WHYColumn" msprop:Generator_UserColumnName="WHY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CONSEQUENCES" msprop:Generator_ColumnVarNameInTable="columnCONSEQUENCES" msprop:Generator_ColumnPropNameInRow="CONSEQUENCES" msprop:Generator_ColumnPropNameInTable="CONSEQUENCESColumn" msprop:Generator_UserColumnName="CONSEQUENCES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="START_DATE" msprop:Generator_ColumnVarNameInTable="columnSTART_DATE" msprop:Generator_ColumnPropNameInRow="START_DATE" msprop:Generator_ColumnPropNameInTable="START_DATEColumn" msprop:Generator_UserColumnName="START_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IDPRIORITY" msprop:Generator_ColumnVarNameInTable="columnIDPRIORITY" msprop:Generator_ColumnPropNameInRow="IDPRIORITY" msprop:Generator_ColumnPropNameInTable="IDPRIORITYColumn" msprop:Generator_UserColumnName="IDPRIORITY" type="xs:decimal" />
+              <xs:element name="PRIORITY" msprop:Generator_ColumnVarNameInTable="columnPRIORITY" msprop:Generator_ColumnPropNameInRow="PRIORITY" msprop:Generator_ColumnPropNameInTable="PRIORITYColumn" msprop:Generator_UserColumnName="PRIORITY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISECTION" msprop:Generator_ColumnVarNameInTable="columnISECTION" msprop:Generator_ColumnPropNameInRow="ISECTION" msprop:Generator_ColumnPropNameInTable="ISECTIONColumn" msprop:Generator_UserColumnName="ISECTION" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LeadershipReport" />
+      <xs:field xpath="mstns:IDASSET" />
+      <xs:field xpath="mstns:ID_DISTRICT" />
+      <xs:field xpath="mstns:IDLESSONS" />
+      <xs:field xpath="mstns:IDPRIORITY" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

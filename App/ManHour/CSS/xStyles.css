@@ -1,0 +1,667 @@
+﻿/* Overall Page #FFFFFF;*/
+
+body 
+{
+	margin-left:auto;
+    margin-right:auto;
+    margin-top:0;
+	padding:0;
+	height:100%;
+	padding-bottom:0;
+	background-color:#FFFFFF;
+	color: Silver;
+	font-family: Arial, Helvetica, sans-serif;
+	font: Garamond;
+	font-size:10pt;   
+    width:98%; 
+}
+
+#container 
+{
+	height:80%;
+	width:98%;
+	position:fixed;
+}
+
+/******************************************************* Header Section ******************************************************/
+
+#header {
+	width: 100%;
+	height: 75px;
+	margin: 0;
+	color: WHITE;
+	background-color: transparent;
+}
+
+#header .title {
+	font: 150% Arial, Helvetica, Georgia, "Times New Roman", Times, serif;
+	color: #D42E12;
+	float: left;
+	margin-top: 1.2em;
+	margin-left: 4.0em;
+	font-weight:bold;
+	width:400px;
+}
+
+#header .message 
+{
+	font: 80% "Times New Roman", Helvetica, Georgia, Arial, Times, serif;
+	font-weight:bold;
+	color:Red;
+	background-color:transparent;
+	float: left;
+	margin-right: 2em;
+	margin-top: 0.4em;
+	margin-left: 25.0em;
+}
+
+#header .breadcrumb {
+	color: #003366;
+	background-color: transparent;
+	float: right;
+	margin-right: 1em;
+	margin-top: 1.5em;
+	font-weight:normal;
+    font-style: normal;
+    font-variant: normal;
+    font-size: 85%;
+    line-height: normal;
+    font-family: Arial, Helvetica, Georgia, "Times New Roman", Times, serif;
+    text-align:right;
+}
+
+/*#header a:link, a:visited  {
+	color:Yellow;
+	color:Yellow;
+}*/
+
+/******************************************************** Navigation Section ************************************************/
+
+#navigation {
+	top: 6em;
+	float:left;
+	border:solid 1px gray;
+	width:100%;
+}
+
+#navigation .firstChild {
+	float:left;
+	border-right:solid 1px gray;
+}
+
+#navigation .child {
+	float:right;
+	width:350px; 
+}
+
+#navigation1 {
+	top: 6em;
+	float:left;
+	border-left:solid 1px gray;
+    border-right:solid 1px gray;
+	border-top:solid 1px gray;
+	background-color:gold;
+	width:100%;
+	height:30px;
+	/*background: url('../images/bg_p1.gif') repeat-x left top;*/
+}
+
+#navigation2 {
+	top: 6em;
+	float:left;
+    border-left:solid 1px gray;
+    border-right:solid 1px gray;
+    border-bottom:solid 1px gray;
+	background-color:#D42E12;
+	width:100%;
+	height:7px;
+}
+
+#navigation3 
+{
+    margin-top:0.2em;
+	top: 6em;
+	float:left;
+    border:solid 1px gray;
+    background-color:#F5F5F5;
+	width:100%;
+	height:25px;
+}
+
+#navigation3 .xFChild
+{
+    float:left;
+    vertical-align:middle;
+	width:650px; 
+	color:#003366;
+	font-size:11pt
+}
+
+#navigation3 .xChild
+{
+    float:right;
+	width:44px; 
+	font-size:12px;
+}
+
+/************************************************************ Body Section/Content Section ******************************************************/
+
+#master_content
+{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:3px;
+	width: 100%;
+	font-size: 100%;
+    height:90%;
+}
+
+#master_content .master_contentplaceholder_LeftSideMenu
+{
+	width: 21%;
+	float:left;
+	height:97%;
+	overflow:auto;
+    border: 1px solid gray;
+}
+
+#master_content .master_contentplaceholder
+{
+    width: 77%;
+    float:right;
+	margin-left:3px;
+    height:97%;
+	overflow:auto;
+    border: 1px solid gray;
+}
+
+#master_content .master_contentplaceholder_RightSideMenu
+{
+	width: 15%;
+	float:right;
+	height:97%;
+	overflow:auto;
+    border: 1px solid gray;
+    margin-left:0.5em;
+}
+
+#master_content2
+{
+    margin-top:0.2em;
+    float:left;
+	width: 99%;
+	font-size: 100%;
+    height:90%;
+}
+
+#master_content2 .master_contentplaceholder2
+{
+	line-height: 1.5em;
+	overflow:auto;
+	width: 82%;
+	float:left;
+	margin-left:10px;
+	border: 1px solid gray;
+    height:97%;
+}
+
+#master_content2 .LeftSideMenu
+{
+	width: 16%;
+	float:left;
+	height:97%;
+	overflow:auto;
+    border: 1px solid gray;
+}
+
+/************************************************************ Footer Section ************************************************************/
+
+#footer 
+{
+    position:fixed;
+	width:100%;
+	height:30px;
+	bottom:0px;
+	color:Black;
+	margin-bottom:0px;
+	border-top: 1px solid silver;
+	border-bottom: 1px dotted silver;
+	background: url('../images/p_SilverBg.png') left top;
+	float:left;
+	font-size:small;
+	vertical-align:middle;
+    left: 0px;
+}
+		
+#footer p 
+{
+		margin:0;
+		padding:10px;
+}
+	
+
+/************************************************************ Data Web Control ************************************************************/
+
+.DataWebControlStyle
+{
+    font-size: 100%;
+    line-height:1.125em;
+}
+
+a:link, a:visited  {
+	color: #003366;
+}
+
+.HeaderStyle
+{
+    font-weight:normal;
+    text-align:center;
+    font-size:9px;
+}
+
+.AlternatingRowStyle
+{
+    background-color: #FFFFFF; 
+    color:black;
+    vertical-align:middle;
+    /*font-size:12px;*/
+}
+
+.RowStyle
+{
+    background-color:#FFFF99; 
+    color:black;
+    vertical-align:middle;
+    /*font-size:12px;*/
+}
+
+.SelectedRowStyle
+{
+	background-color:Yellow;
+}
+
+.EditRowStyle
+{
+	background-color:Yellow;
+}
+
+.PagerRowStyle
+{
+    background: url('../images/hdrbg_p3.gif') repeat-x;
+	text-align:left;
+}
+
+.gRepeatItemPlate
+{
+	font-size: 9px;
+	background: #F5F5F5;
+	color: #000000;
+	font-family: Verdana;
+	vertical-align: middle;
+	text-align: left;
+}
+.gRepeatAlterPlate
+{
+	font-size: 9px;
+	background:#FFFFFF;
+	color: #343434;
+	font-family: Verdana;
+	text-align: left;
+}
+
+/********************************************************   Tables CSS  *************************************************************/
+  table  
+  {
+	border-collapse:collapse;
+	color: black;
+  }
+
+  table td
+        {
+			vertical-align:top;
+			text-align:left;
+            border:0px;
+            font-size:8pt;
+			/*margin-left: 80px;	*/
+        }  
+
+
+.tMainBorder
+{
+    border:solid 1px gray;
+	padding: 0px;
+	background-color :#FFFFFF;
+    margin :3px;
+	width: 565px;
+	font: 95%  Arial, Verdana,Helvetica, Georgia, "Times New Roman", Times, serif;
+}
+
+.tMainBorder td
+{
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:5px;
+    margin-left: 80px;
+	vertical-align:top;
+	text-align:left;
+}  
+		
+		
+
+
+/******************************************************** New CSS Findings ********************************************************/
+
+.cPageTile{
+	vertical-align:middle;
+    font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cPageTileLeft{
+	vertical-align:middle;
+	text-align:left;
+    font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cPageTileRite{
+	vertical-align:middle;
+	text-align:right;
+    font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cHeadTile{
+	vertical-align:middle;
+    font-size: 13px;
+	font-weight: bold;
+	font-family:Arial;
+	color:#003366;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cHeadTileRite{
+	vertical-align:middle;
+	text-align:right;
+    font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cHeadTileLeft{
+	vertical-align:middle;
+	text-align:left;
+    font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cHeadTileCenta{
+	vertical-align:middle;
+    text-align :center;
+	font-size: 12px;
+	font-weight: bold;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cFootTile{
+	vertical-align:middle;
+    font-size: 12px;
+	font-family:Arial;
+	color:White;
+	background: url('../images/hdrbg_p3.gif') repeat-x;
+}
+.cFootTileRite{
+	vertical-align:middle;
+	text-align:right;
+    font-size: 12px;
+	font-family:Arial;
+	color:White;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+.cFootTileLeft{
+	vertical-align:middle;
+	text-align:left;
+    font-size: 12px;
+	font-family:Arial;
+	color:White;
+	background: url('../images/hdrbg_p3.gif') repeat-x;
+}
+.cFootTileCenta{
+	vertical-align:middle;
+    text-align :center;
+	font-size: 12px;
+	font-family:Arial;
+	color:White;
+	background: url('../images/hdrbg_p3.gif') repeat-x;
+}
+.cTextBoldLeft{
+    font-size :13px;
+    color:#0066CC ;
+    font-family :Tahoma ;
+    font-weight: bold;
+    vertical-align:top ;
+    text-align :left ;
+}
+.fTileBold16{
+    font-family :Arial ;
+    font-size :16px ;
+    font-weight :bold ;
+    color:White ;
+    text-align :center ;
+}
+.fTileBold16{
+    font-family :Arial ;
+    font-size :16px ;
+    font-weight :bold ;
+    color:White ;
+    text-align :center ;
+}
+.fTileBold12{
+    font-family :Arial ;
+    font-size :12px ;
+    font-weight :bold ;
+    color:White ;
+    text-align :center ;
+}
+.fTileNormal12{
+    font-family :Arial ;
+    font-size :12px ;
+    font-weight:normal ;
+    color:White ;
+    text-align :center ;
+}
+.tSubFree{
+       width: 100%; 
+       padding :0px;
+}
+.tSubFreeReport{
+       width: 100%; 
+       padding :20px
+}
+.tSubWhite{
+    width :100%;
+    background-color :#FFFFFF ;
+    border-color : #1F4078;
+    border-right:  #1F4078 2px solid;
+    border-top:  #1F4078 2px solid; 
+    border-left:  #1F4078 2px solid;
+    border-bottom:  #1F4078 2px solid;
+    color : #1F4078
+}
+.cTextCenta{
+    font-size :12px;
+    color:#1F4078 ;
+    font-family :Tahoma   ;
+    vertical-align :top ;
+    text-align :center ;
+}
+.cHeadCenta{
+    font-weight: bold;
+    font-size: 12px; 
+    vertical-align: middle; 
+    color: white;
+    font-family: Arial; 
+    background-color: #1F4078; 
+    text-align:center
+}
+
+.tSubGray
+{
+	width: 98%;
+	background-color: #FFFFFF;
+	border-color: #999966;
+	border-right: #999966 1px solid;
+	border-top: #999966 1px solid;
+	border-left: #999966 1px solid;
+	border-bottom: #999966 1px solid;
+	color: #000000;
+	margin-bottom: 0.5em;	
+}
+
+.tSubGrayLeftSideItem
+{
+	width: 93%;
+	background-color: #FFFFFF;
+	border-color: #999966;
+	border-right: #999966 1px solid;
+	border-top: #999966 1px solid;
+	border-left: #999966 1px solid;
+	border-bottom: #999966 1px solid;
+	color: #000000;
+	margin-bottom:0.5em;
+}
+
+.cHeadLeft
+{
+	background-color: #FFFF6A;
+	vertical-align: middle;
+	text-align: left;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana;
+	color: #343434;
+	background: url('../images/p_tileHeader.gif') repeat-x;
+}
+        
+.cTextLeft
+{
+	font-size: 11px;
+	color: #343434;
+	font-family: Verdana;
+	vertical-align: top;
+	text-align: left;
+}
+
+/*********************************************************  Modal Popup *********************************************************/
+
+.modalBackground {
+	background-color:Gray;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+}
+
+.modalPopup {
+	background-color:#ffffdd;
+	border-width:3px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+	width:250px;
+}
+
+.modalPopup p {
+    padding: 5px;
+}
+
+
+/********************************************************************* Others *********************************************************************/
+
+input 
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+}
+
+.inputBox
+{
+    padding: 1px 1px;
+    border: 1px solid #415473;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+.button
+{	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	width:100px;
+	text-align: center;
+    background-color:Silver;
+    border:solid 1px black;
+    font-size:9pt;
+}
+
+.label
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-variant: normal;
+	color:black;
+}
+
+.Warning
+{
+	color: Red;
+	font-style:normal;
+	font-weight:bold;
+	font-size:100%
+}
+
+.ReportViewer
+{
+	max-height:500px;
+	max-width:700px;
+}
+
+
+
+/*AutoComplete flyout */
+.autocomplete_completionListElement
+{
+    margin : 0px!important ;
+    background-color : inherit ;
+    color : windowtext ;
+    border : buttonshadow ;
+    border-width : 1px ;
+    border-style : solid ;
+    cursor :all-scroll;
+    overflow : auto ;
+    height : 200px ;
+    font-family : Tahoma ;
+    font-size : small ;
+    text-align : left ;
+    list-style-type : none ;
+    }
+/* AutoComplete highlighted item */
+.autocomplete_highlightedListItem
+   {
+    background-color : #ffff99 ;
+    color : black ;
+    padding : 1px ;
+    }
+
+    /* AutoComplete item */
+.autocomplete_listItem
+    {
+    background-color : window ;
+    color : windowtext ;
+    padding : 1px ;
+   }

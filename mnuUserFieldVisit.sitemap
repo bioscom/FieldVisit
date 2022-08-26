@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    
+      <siteMapNode title="Production" description="Production Field Visit Activities Requests">
+        <siteMapNode title="Field Visit/PEC Requests">
+          <siteMapNode title="Field Visit Request Form" url="~/App/FieldVisit/Forms/FieldVisit/activityForm.aspx" />
+          <siteMapNode title="Plan Execution Criteria Request Form" url="~/App/FieldVisit/Forms/PEC/PECForm.aspx" />
+          <siteMapNode title="My Requests" url="~/App/FieldVisit/Forms/MyRequets.aspx" />
+          <siteMapNode title="Requests Approved in My Facilities" url="~/App/FieldVisit/Forms/FieldVisit/RequestsApprovedInMyLocations.aspx" />
+          <siteMapNode title="Locate Request" url="~/App/FieldVisit/Forms/FieldVisit/eSearch.aspx"/>
+        </siteMapNode>
+
+        <siteMapNode title="Requests For My Approval">
+          <siteMapNode title="Field Visit Requests Pending My Approval" url="~/App/FieldVisit/Forms/FieldVisit/Approvers/oPendingFieldVisitRequest.aspx" />
+          <siteMapNode title="PEC Requests Pending My Approval" url="~/App/FieldVisit/Forms/PEC/Approval/Pending.aspx" />
+          <siteMapNode title="Approved Field Visit Requests " url="~/App/FieldVisit/Forms/FieldVisit/Approvers/oApprovedFieldVisitRequest.aspx" />
+          <siteMapNode title="Approved PEC Requests " url="~/App/FieldVisit/Forms/PEC/Approval/Approved.aspx" />
+        </siteMapNode>
+      </siteMapNode>
+</siteMap>

@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="siteMasterFieldVisit.master.cs" Inherits="MasterPages_siteMasterFieldVisit" %>
+
+<%@ Register Src="~/App/FieldVisit/UserControl/userHelpGuide.ascx" TagName="userHelpGuide" TagPrefix="uc3" %>
+<%@ Register Src="~/UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc4" %>
+<%@ Register Src="~/App/FieldVisit/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc5" %>
+
+<%@ Register Src="../App/FieldVisit/UserControl/Counters/myRequestsHistory.ascx" TagName="myRequestsHistory" TagPrefix="uc2" %>
+<%@ Register Src="../App/FieldVisit/UserControl/Counters/myApprovedRequestsHistory.ascx" TagName="myApprovedRequestsHistory" TagPrefix="uc3" %>
+<%@ Register Src="../App/FieldVisit/UserControl/Counters/MyRequests.ascx" TagName="MyRequests" TagPrefix="uc4" %>
+<%@ Register Src="../App/FieldVisit/UserControl/Counters/OthersRequest.ascx" TagName="OthersRequest" TagPrefix="uc5" %>
+<%@ Register Src="../App/FieldVisit/UserControl/Counters/SuperIntendentCounter.ascx" TagName="SuperIntendentCounter" TagPrefix="uc6" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head" runat="server">
+    <title>Field Visit</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/stylesFieldVisit.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/menuStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+            $(window).on('resize', function () {
+                $('#col1, #col3').css('width', ($('body').width() - $('#col2').width()) / 2);
+            }).trigger('resize');
+        });
+    </script>--%>
+</head>
+<body>
+    <form id="form2" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top:0.5em; position: absolute;" />
+
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
+                </div>
+            </div>
+
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width:200px">
+                            <div class="col1">
+                                <uc5:adminMenu ID="adminMenu1" runat="server" />
+                                <br/>
+                                <uc4:supportContact ID="supportContact1" runat="server" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col2">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </td>
+                        <td style="width:200px">
+                            <div class="col3">
+                                <uc2:myRequestsHistory ID="myRequestsHistory1" runat="server" />
+                                <uc3:myApprovedRequestsHistory ID="myApprovedRequestsHistory1" runat="server" />
+                                <uc6:SuperIntendentCounter ID="SuperIntendentCounter1" runat="server" />
+                                <uc4:MyRequests ID="MyRequests1" runat="server" />
+                                <uc5:OthersRequest ID="OthersRequest1" runat="server" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="footer">
+            <span style="float: left; vertical-align: top">
+                <asp:Label ID="lblInfo" runat="server" Text=""></asp:Label></span>
+            <span style="float: right; vertical-align: top">
+                <asp:Label ID="lblCopyRight" runat="server" Text=""></asp:Label></span>
+        </div>
+    </form>
+</body>
+</html>

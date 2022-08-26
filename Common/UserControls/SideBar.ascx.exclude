@@ -1,0 +1,13 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SideBar.ascx.cs" Inherits="Common_UserControls_SideBar" %>
+<%@ Register Src="~/Common/UserControls/DemoSearch.ascx" TagPrefix="qsf" TagName="DemoSearch" %>
+<%@ Register Src="~/Common/UserControls/LeftNavigation.ascx" TagPrefix="qsf" TagName="LeftNavigation" %>
+
+<div class="sb" id="sidebar">
+
+	<span class="toggler" id="sidebar-toggler"><span class="icon icon-sandwich">Toggle sidebar</span></span>
+
+	<qsf:DemoSearch runat="server" ID="DemoSearch1" />
+
+	<qsf:LeftNavigation runat="server" ID="LeftNavigation" />
+
+</div>

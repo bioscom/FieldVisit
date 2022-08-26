@@ -1,0 +1,23 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" %>
+
+<div id="about" class="tm-drawer tm-drawer-left">
+
+    <header class="tm-header" id="logo"></header>
+
+    <div class="product-links">
+        <ul>
+            <li><a href="http://www.telerik.com/products/aspnet-ajax.aspx">Product Overview</a></li>
+            <li><a href="http://www.telerik.com/purchase/individual/aspnet-ajax.aspx">Pricing</a></li>
+            <li><a href="http://www.telerik.com/products/aspnet-ajax/download.aspx">Try Now</a></li>
+        </ul>
+    </div>
+
+    <div class="quick-links">
+        <ul>
+            <li><a href="http://www.telerik.com/company/terms-of-use">Terms of Use</a></li>
+            <li><a href="http://www.telerik.com/company/product-improvement-program">Product Improvement Program</a></li>
+            <li><a href="http://www.telerik.com/company/offices">Contact Us</a></li>
+        </ul>
+    </div>
+
+</div>

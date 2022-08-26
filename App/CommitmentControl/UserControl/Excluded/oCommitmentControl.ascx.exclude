@@ -1,0 +1,241 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="oCommitmentControl.ascx.cs" Inherits="App_BONGACCP_UserControl_oCommitmentControl" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/activityDescription.ascx" TagPrefix="app" TagName="activityDescription" %>
+
+<%@ Reference VirtualPath="~/App/CommitmentControl/UserControl/activityDescription.ascx" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/DetailView.ascx" TagPrefix="app" TagName="DetailView" %>
+<%@ Register Src="~/App/CommitmentControl/UserControl/InputUpdateCommitment.ascx" TagPrefix="app" TagName="InputUpdateCommitment" %>
+
+<%--Search:
+<asp:TextBox ID="txtSearch" runat="server" />
+<hr />--%>
+
+<div style="float: right">
+    <asp:LinkButton ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="+ Add New" ValidationGroup="yyy" />
+</div>
+
+<asp:GridView ID="grdGridView" runat="server" AllowPaging="True" RowStyle-Wrap="true"
+    AutoGenerateColumns="False" OnLoad="grdGridView_Load"
+    OnPageIndexChanging="grdGridView_PageIndexChanging"
+    OnRowCommand="grdGridView_RowCommand"
+    OnSelectedIndexChanged="grdGridView_SelectedIndexChanged" PageSize="15"
+    Width="100%">
+    <Columns>
+
+        <asp:TemplateField>
+            <ItemTemplate>
+                <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            <ItemStyle Width="15px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="...">
+            <ItemTemplate>
+                <asp:LinkButton ID="DetailsLinkButton" runat="server" OnClick="lnkDetails_Click" ValidationGroup="Xpx" CommandArgument="<%# Container.DisplayIndex %>"
+                    COMMITMENTID='<%# DataBinder.Eval(Container.DataItem, "COMMITMENTID") %>'>Details...</asp:LinkButton>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="...">
+            <ItemTemplate>
+                <asp:LinkButton ID="UpdateLinkButton" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="Xpx" CommandArgument="<%# Container.DisplayIndex %>"
+                    COMMITMENTID='<%# DataBinder.Eval(Container.DataItem, "COMMITMENTID") %>'>Update</asp:LinkButton>
+            </ItemTemplate>
+            <ItemStyle Width="20px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="BCC No" SortExpression="COMITMNTNO">
+            <ItemTemplate>
+                <asp:Label ID="lblBCCNo" runat="server"
+                    Text='<%# DataBinder.Eval(Container.DataItem, "COMITMNTNO") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="50px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Title">
+            <ItemTemplate>
+                <asp:Label ID="lblTitle" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TITLE") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="350px" />
+        </asp:TemplateField>
+
+        <%--<asp:TemplateField HeaderText="Cost Object">
+            <ItemTemplate>
+                <asp:Label ID="lblCostObject" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "COSTOBJECT") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="130px" />
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="Pur. Group">
+            <HeaderTemplate>
+                Pur. Group
+                <asp:DropDownList ID="ddlPurchasingGroup" runat="server" Width="100px" OnSelectedIndexChanged="PurchasingGroupChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblPurchasingGroup" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "GROUPNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="50px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Team:
+                <asp:DropDownList ID="ddlTeam" runat="server" Width="100px" OnSelectedIndexChanged="TeamChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="labelTeam" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TEAMNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Initiator">
+            <ItemTemplate>
+                <asp:Label ID="lblInitiator" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "INITIATORFULLNAME") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                Approval Decision:
+                <asp:DropDownList ID="ddlApprovalDecision" runat="server" Width="150px" OnSelectedIndexChanged="ApprovalDecisionChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblApprovalDecision" runat="server" ForeColor='<%# System.Drawing.Color.FromName(Eval("COLORCODE").ToString()) %>' Font-Bold="true" Text='<%# DataBinder.Eval(Container.DataItem, "DECISION") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField>
+            <HeaderTemplate>
+                New or Represented:
+                <asp:DropDownList ID="ddlStatus" runat="server" Width="150px" OnSelectedIndexChanged="StatusChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="ALL" Value="ALL"></asp:ListItem>
+                </asp:DropDownList>
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "STATUS") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle Width="150px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="PR Value (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblPRValue" runat="server" Text='<%# Eval("PRVALUE","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="PO Value (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblPOValue" runat="server" Text='<%# Eval("POVALUE","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Commitment (F$)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblCommitment" runat="server" Text='<%# Eval("COMMITMENT","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="PO/PR Variance (%)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblVariance" runat="server"></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Savings($)">
+            <ItemTemplate>
+                <div style="text-align: right">
+                    <asp:Label ID="lblSavings" runat="server" Text='<%# Eval("SAVINGS","{0:N2}") %>'></asp:Label>
+                </div>
+            </ItemTemplate>
+            <ItemStyle Width="100px" />
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+
+<div id="modalDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 70%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bonga Commitment Control</h4>
+            </div>
+            <div class="modal-body" style="height: 550px; overflow: auto">
+
+                <div style="float: left">
+                    <app:DetailView runat="server" ID="DetailView1" />
+                </div>
+                <div style="float: left; margin-left: 1.5em">
+                    <asp:Panel ID="Isaac" runat="server" Visible="false">
+                        <app:DetailView runat="server" ID="DetailView2" />
+                    </asp:Panel>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div id="modalInputUpdate" class="modal fade">
+    <div class="modal-dialog" style="width: 47%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bonga Commitment Control</h4>
+            </div>
+            <div class="modal-body" style="height: 550px; overflow: auto">
+                <app:InputUpdateCommitment runat="server" ID="InputUpdateCommitment1" />
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div id="AddNew" class="modal fade">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bonga Commitment Control</h4>
+            </div>
+            <div class="modal-body" style="height: 550px; overflow: auto">
+                <app:InputUpdateCommitment runat="server" ID="InputUpdateCommitment2" />
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

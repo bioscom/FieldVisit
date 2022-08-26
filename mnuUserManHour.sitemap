@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    
+      <siteMapNode title="Production" description="Production Field Visit Activities Requests">
+       
+        <siteMapNode title="Field Visit Requests">
+          <siteMapNode title="Field Visit Request Form" url="~/Forms/FPEC/activityForm.aspx" />
+          <siteMapNode title="PEC Request Form" url="~/Forms/SEPCiN/PECForm.aspx" />          
+        </siteMapNode>
+        
+      </siteMapNode>  
+</siteMap>

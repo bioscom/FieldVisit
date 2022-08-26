@@ -1,0 +1,382 @@
+﻿/* Overall Page #FFFFFF;*/
+
+body 
+{
+	margin:0;
+	padding:0;
+	height:100%;
+	padding-bottom:0;
+	background-color:#FFFFFF;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+    font: Arial, Helvetica, Georgia, Garamond, "Times New Roman", Times, serif;
+	font-size:9pt;
+}
+
+#headercontainer 
+{
+	width:98%;
+    top:0px;
+    margin: 0em 0.5em 0em 0.5em; /* Top Right Bottom Left position:fixed;*/
+    background-color:white;
+}
+
+
+
+/******************************************************* Header Section ******************************************************/
+
+#container 
+{
+	height:83%;
+	width:100%;
+	position:fixed;
+    float:none;
+    top: 0px;
+    left: 0px;
+}
+
+#header {
+	width:              100%;
+	height:             70px;
+	margin:             0;
+	color:              WHITE;
+	background-color:   transparent;
+    font-size:          12pt;
+}
+
+#header .title {
+	font: 110% Arial, Helvetica, Georgia, "Times New Roman", Times, serif;
+	color: #D42E12;
+	float: left;
+	margin-top: 1.0em;
+	margin-left: 4.8em;
+	font-weight:bold;
+}
+
+#header .message 
+{
+	font: 80% "Times New Roman", Helvetica, Georgia, Arial, Times, serif;
+	font-weight:bold;
+	color:Red;
+	background-color:transparent;
+	float: left;
+	margin-right: 2em;
+	margin-top: 0.4em;
+	margin-left: 25.0em;
+}
+
+#header .breadcrumb {
+	color: #003366;
+	background-color: transparent;
+	float: right;
+	text-align:right;
+	margin-right: 0.5em;
+	margin-top: 0.2em;
+	font-weight:normal;
+	width:430px;
+    font-style: normal;
+    font-variant: normal;
+    font-size: 70%;
+    line-height: normal;
+    font-family: Arial, Helvetica, Georgia, "Times New Roman", Times, serif;
+}
+
+
+/******************************************************** Navigation Section ************************************************/
+
+#navigation {
+	top: 6em;
+	float:left;
+	border:solid 1px gray;
+	width:100%;
+}
+
+#navigation .firstChild {
+	float:left;
+	border-right:solid 1px gray;
+}
+
+#navigation .child {
+	float:right;
+	width:150px; 
+}
+
+#navigation1 {
+	top: 6em;
+	float:left;
+	border-left:solid 1px gray;
+    border-right:solid 1px gray;
+	border-top:0px;
+	background-color:gold;
+	width:100%;
+	height:30px;
+}
+
+#navigation2 {
+	top: 6em;
+	float:left;
+    border-left:solid 1px gray;
+    border-right:solid 1px gray;
+    border-bottom:solid 1px gray;
+	background-color:#D42E12;
+	width:100%;
+	height:7px;
+}
+
+#navigation3 
+{
+    margin-top:0.2em;
+	top: 6em;
+	float:left;
+    border:solid 1px gray;
+    background-color:#F5F5F5;
+	width:100%;
+	height:30px;
+}
+
+#navigation3 .xFChild
+{
+    float:left;
+	color:#003366;
+	font-size:9pt;
+}
+
+#navigation3 .xChild
+{
+    float:right;
+	/*width:44px; 
+	font-size:12px;*/
+}
+
+
+#master_content
+{
+    margin-top:     0.2em;
+    float:          left;
+    width:          100%;
+    height:         100%;
+    font-family:    Verdana, Arial, Helvetica, sans-serif;
+    /*font-size:      90%;*/
+    
+}
+
+#master_content .master_contentplaceholder
+{
+    line-height:    1.5em;
+    overflow:       auto;
+    margin:         0.2em 0.5em 2.0em 0em; /* Top Right Bottom Left */
+    border-bottom:  1px solid gray;
+    height:         96%;
+    overflow:       auto;
+    
+}
+
+#content
+{
+    margin-top:     0.2em;
+    float:          left;
+    width:          100%;
+    height:         100%;
+    font-family:    Verdana, Arial, Helvetica, sans-serif;
+    /*font-size:      90%;*/
+    
+}
+
+
+/************************************************************ Footer Section ************************************************************/
+
+#footer 
+{
+	position:fixed;
+	width:100%;
+	height:30px;
+	bottom:0px;
+	color:Black;
+	margin-bottom:0px;
+	border-top: 1px solid silver;
+	border-bottom: 1px dotted silver;
+	background: url('../images/p_SilverBg.png') left top;
+	float:left;
+	font-size:small;
+	vertical-align:middle;
+    left: 0px;
+}
+		
+#footer p 
+{
+		margin:0;
+		padding:10px;
+}
+	
+
+/************************************************************ Data Web Control ************************************************************/
+
+.DataWebControlStyle
+{
+    font-size: 100%;
+    line-height:1.125em;
+}
+
+a:link, a:visited  {
+	color: #003366;
+}
+
+.HeaderStyle
+{
+    font-weight:normal;
+    text-align:center;
+    font-size:11px;
+}
+
+.AlternatingRowStyle
+{
+    background-color: #FFFFFF; 
+    color:black;
+    vertical-align:middle;
+    font-size:11px;
+}
+
+.RowStyle
+{
+    background-color:#FFFF99; 
+    color:black;
+    vertical-align:middle;
+    font-size:11px;
+}
+
+.SelectedRowStyle
+{
+	background-color:Yellow;
+}
+
+.EditRowStyle
+{
+	background-color:Yellow;
+}
+
+.PagerRowStyle
+{
+    background: url('../images/hdrbg_p3.gif') repeat-x;
+	text-align:left;
+}
+
+
+
+
+/** Customize demo canvas */
+
+#example .demo-container {
+
+    padding: 150px 120px 60px 40px;
+
+    width: 570px;
+
+    height: 250px;
+
+    background: transparent url("Images/background.jpg") 0 0 no-repeat;
+
+}
+
+
+/** Order configurator */
+
+.demo-container .order-conf {
+
+    float: left;
+
+}
+
+.demo-container .order-conf ul {
+
+    margin: 0 0 15px 0;
+
+    padding: 0;
+
+    list-style: none;
+
+}
+
+.demo-container .order-conf li {
+
+    margin-bottom: 15px;
+
+}
+
+.demo-container div.order-conf .rcbLabel {
+
+    width: 112px;
+
+    display: inline-block;
+
+}
+
+.demo-container .order-conf .validator {
+
+    color: #880000;
+
+    font-weight: bold;
+
+}
+
+.demo-container .order-conf .buttons {
+
+    margin: 30px 0 0 0;
+
+    text-align: right;
+
+}
+
+
+/** Order summary */
+
+.demo-container .order-summary {
+
+    width: 220px;
+
+    float: right;
+
+}
+
+.demo-container .order-summary tbody th {
+
+    color:#5a5a5a;
+
+    text-align: right;
+
+    vertical-align: top;
+
+}
+
+.demo-container .order-summary tbody td {
+
+    padding-left: 10px;
+
+    width: 140px;
+
+    text-align: left;
+
+    vertical-align: top;
+
+}
+
+.demo-container .order-summary .price-row th,
+
+.demo-container .order-summary .price-row td {
+
+    color: #f00;
+
+}
+
+ 
+
+ 
+
+/** Customize the combo */
+
+div.RadComboBoxDropDown .rcbScroll {
+
+    overflow-x: hidden;
+
+}
+
+

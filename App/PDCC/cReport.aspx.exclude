@@ -1,0 +1,84 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/PDCC.master" AutoEventWireup="true" CodeFile="cReport.aspx.cs" Inherits="App_PDCC_cReport" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headId" runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
+
+    <div>
+        <div style="float: left; width: 20%; height: 500px; background-color: #ddf; border-right: solid 1px gray; overflow: auto">
+            <asp:TreeView ID="mnuTreeView" runat="server" DataSourceID="XmlMenuDataSource" ExpandDepth="0" ImageSet="Arrows" OnSelectedNodeChanged="mnuTreeView_SelectedNodeChanged" ShowCheckBoxes="All" ShowLines="True">
+                <ParentNodeStyle Font-Bold="False" />
+                <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                <DataBindings>
+                    <asp:TreeNodeBinding DataMember="MenuItem" TextField="TITLE" />
+                </DataBindings>
+            </asp:TreeView>
+            <asp:XmlDataSource ID="XmlMenuDataSource" runat="server" EnableCaching="False" TransformFile="~/CSS/TransformXSLT.xslt" XPath="MenuItems/MenuItem" />
+            
+        </div>
+        <div style="float: left; width: 78%">
+            <table class="tMainBorder" style="width: 100%">
+                <tr>
+                    <td class="cHeadTile" colspan="2">PD OPEX Reduction Cost Performance</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left" colspan="2">
+                        <div style="float: left">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="10pt" Text="Choose Year to Report:"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList ID="ddlYear" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" Width="200px">
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td>Enter % Reduction:<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPercRed" ErrorMessage="Please enter % Reduction">*</asp:RequiredFieldValidator>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtPercRed" runat="server" Width="50px">25</asp:TextBox>
+                                    </td>
+                                    <td>
+                                        <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        &nbsp;<%--<asp:Button ID="btnClose" runat="server" Text="Close" Width="100px" OnClick="btnClose_Click" />--%>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left" colspan="2">
+                        <hr />
+                    </td>
+                    </tr>
+                <tr>
+                    <td style="text-align: left" colspan="2">
+                        <asp:Panel ID="pnlView" runat="server">
+                            <asp:Label ID="lblNodeClicked" runat="server" Font-Bold="True" Font-Size="9pt"></asp:Label>
+                        </asp:Panel>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left">
+                        <asp:PlaceHolder ID="cSPDCReport" runat="server"></asp:PlaceHolder>
+                    </td>
+                    <td style="text-align: left">
+                        <asp:PlaceHolder ID="cSNEPCOReport" runat="server"></asp:PlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left" colspan="2">
+                        <center>
+                            <asp:PlaceHolder ID="cCombinedReporter" runat="server"></asp:PlaceHolder>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" />
+    </div>
+</asp:Content>
+

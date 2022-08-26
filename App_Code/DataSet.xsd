@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="productionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="productionConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.productionConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BI500_REQUESTTableAdapter" GeneratorDataComponentClassName="BI500_REQUESTTableAdapter" Name="BI500_REQUEST" UserDataComponentName="BI500_REQUESTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="productionConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        BI500_REQUEST.IDREQUEST, BI500_REQUEST.USERID, BI500_REQUEST.IDBUZUNIT, BI500_REQUEST.TITLE, BI500_REQUEST.CHAMPIONUSERID, 
+                         BI500_REQUEST.SPONSORUSERID, BI500_REQUEST.BUS_CASE, BI500_REQUEST.IDIMPACTEDAREA, BI500_REQUEST.FOCALPOINTUSERID, 
+                         BI500_REQUEST.DATE_COMPLETION, BI500_REQUEST.DATE_SUBMITTED, BI500_REQUEST.OPPORTUNITYSTMT, BI500_REQUEST.TEAM_MEMBER, 
+                         BI500_REQUEST.STATUS, PROJCHAP.USERID AS EXPR1, PROJCHAP.FULLNAME, PROJCHAP.EMAIL, PROJSPON.USERID AS EXPR2, 
+                         PROJSPON.FULLNAME AS EXPR3, PROJSPON.EMAIL AS EXPR4, PROJFPON.USERID AS EXPR5, PROJFPON.FULLNAME AS EXPR6, 
+                         PROJFPON.EMAIL AS EXPR7, PROJMGR.USERID AS EXPR8, PROJMGR.FULLNAME AS EXPR9, PROJMGR.EMAIL AS EXPR10
+FROM            BI500_REQUEST, PROD_USERMGT PROJMGR, PROD_USERMGT PROJCHAP, PROD_USERMGT PROJSPON, PROD_USERMGT PROJFPON
+WHERE        BI500_REQUEST.FOCALPOINTUSERID = PROJMGR.USERID AND BI500_REQUEST.CHAMPIONUSERID = PROJCHAP.USERID AND 
+                         BI500_REQUEST.SPONSORUSERID = PROJSPON.USERID AND BI500_REQUEST.FOCALPOINTUSERID = PROJFPON.USERID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+              <Mapping SourceColumn="USERID" DataSetColumn="USERID" />
+              <Mapping SourceColumn="IDBUZUNIT" DataSetColumn="IDBUZUNIT" />
+              <Mapping SourceColumn="TITLE" DataSetColumn="TITLE" />
+              <Mapping SourceColumn="CHAMPIONUSERID" DataSetColumn="CHAMPIONUSERID" />
+              <Mapping SourceColumn="SPONSORUSERID" DataSetColumn="SPONSORUSERID" />
+              <Mapping SourceColumn="BUS_CASE" DataSetColumn="BUS_CASE" />
+              <Mapping SourceColumn="IDIMPACTEDAREA" DataSetColumn="IDIMPACTEDAREA" />
+              <Mapping SourceColumn="FOCALPOINTUSERID" DataSetColumn="FOCALPOINTUSERID" />
+              <Mapping SourceColumn="DATE_COMPLETION" DataSetColumn="DATE_COMPLETION" />
+              <Mapping SourceColumn="DATE_SUBMITTED" DataSetColumn="DATE_SUBMITTED" />
+              <Mapping SourceColumn="OPPORTUNITYSTMT" DataSetColumn="OPPORTUNITYSTMT" />
+              <Mapping SourceColumn="TEAM_MEMBER" DataSetColumn="TEAM_MEMBER" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="EXPR1" DataSetColumn="EXPR1" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="EXPR2" DataSetColumn="EXPR2" />
+              <Mapping SourceColumn="EXPR3" DataSetColumn="EXPR3" />
+              <Mapping SourceColumn="EXPR4" DataSetColumn="EXPR4" />
+              <Mapping SourceColumn="EXPR5" DataSetColumn="EXPR5" />
+              <Mapping SourceColumn="EXPR6" DataSetColumn="EXPR6" />
+              <Mapping SourceColumn="EXPR7" DataSetColumn="EXPR7" />
+              <Mapping SourceColumn="EXPR8" DataSetColumn="EXPR8" />
+              <Mapping SourceColumn="EXPR9" DataSetColumn="EXPR9" />
+              <Mapping SourceColumn="EXPR10" DataSetColumn="EXPR10" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DataSet" msprop:Generator_UserDSName="DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BI500_REQUEST" msprop:Generator_TableClassName="BI500_REQUESTDataTable" msprop:Generator_TableVarName="tableBI500_REQUEST" msprop:Generator_TablePropName="BI500_REQUEST" msprop:Generator_RowDeletingName="BI500_REQUESTRowDeleting" msprop:Generator_RowChangingName="BI500_REQUESTRowChanging" msprop:Generator_RowEvHandlerName="BI500_REQUESTRowChangeEventHandler" msprop:Generator_RowDeletedName="BI500_REQUESTRowDeleted" msprop:Generator_UserTableName="BI500_REQUEST" msprop:Generator_RowChangedName="BI500_REQUESTRowChanged" msprop:Generator_RowEvArgName="BI500_REQUESTRowChangeEvent" msprop:Generator_RowClassName="BI500_REQUESTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDREQUEST" msprop:Generator_ColumnVarNameInTable="columnIDREQUEST" msprop:Generator_ColumnPropNameInRow="IDREQUEST" msprop:Generator_ColumnPropNameInTable="IDREQUESTColumn" msprop:Generator_UserColumnName="IDREQUEST" type="xs:decimal" />
+              <xs:element name="USERID" msprop:Generator_ColumnVarNameInTable="columnUSERID" msprop:Generator_ColumnPropNameInRow="USERID" msprop:Generator_ColumnPropNameInTable="USERIDColumn" msprop:Generator_UserColumnName="USERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDBUZUNIT" msprop:Generator_ColumnVarNameInTable="columnIDBUZUNIT" msprop:Generator_ColumnPropNameInRow="IDBUZUNIT" msprop:Generator_ColumnPropNameInTable="IDBUZUNITColumn" msprop:Generator_UserColumnName="IDBUZUNIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TITLE" msprop:Generator_ColumnVarNameInTable="columnTITLE" msprop:Generator_ColumnPropNameInRow="TITLE" msprop:Generator_ColumnPropNameInTable="TITLEColumn" msprop:Generator_UserColumnName="TITLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHAMPIONUSERID" msprop:Generator_ColumnVarNameInTable="columnCHAMPIONUSERID" msprop:Generator_ColumnPropNameInRow="CHAMPIONUSERID" msprop:Generator_ColumnPropNameInTable="CHAMPIONUSERIDColumn" msprop:Generator_UserColumnName="CHAMPIONUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SPONSORUSERID" msprop:Generator_ColumnVarNameInTable="columnSPONSORUSERID" msprop:Generator_ColumnPropNameInRow="SPONSORUSERID" msprop:Generator_ColumnPropNameInTable="SPONSORUSERIDColumn" msprop:Generator_UserColumnName="SPONSORUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BUS_CASE" msprop:Generator_ColumnVarNameInTable="columnBUS_CASE" msprop:Generator_ColumnPropNameInRow="BUS_CASE" msprop:Generator_ColumnPropNameInTable="BUS_CASEColumn" msprop:Generator_UserColumnName="BUS_CASE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDIMPACTEDAREA" msprop:Generator_ColumnVarNameInTable="columnIDIMPACTEDAREA" msprop:Generator_ColumnPropNameInRow="IDIMPACTEDAREA" msprop:Generator_ColumnPropNameInTable="IDIMPACTEDAREAColumn" msprop:Generator_UserColumnName="IDIMPACTEDAREA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FOCALPOINTUSERID" msprop:Generator_ColumnVarNameInTable="columnFOCALPOINTUSERID" msprop:Generator_ColumnPropNameInRow="FOCALPOINTUSERID" msprop:Generator_ColumnPropNameInTable="FOCALPOINTUSERIDColumn" msprop:Generator_UserColumnName="FOCALPOINTUSERID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DATE_COMPLETION" msprop:Generator_ColumnVarNameInTable="columnDATE_COMPLETION" msprop:Generator_ColumnPropNameInRow="DATE_COMPLETION" msprop:Generator_ColumnPropNameInTable="DATE_COMPLETIONColumn" msprop:Generator_UserColumnName="DATE_COMPLETION" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATE_SUBMITTED" msprop:Generator_ColumnVarNameInTable="columnDATE_SUBMITTED" msprop:Generator_ColumnPropNameInRow="DATE_SUBMITTED" msprop:Generator_ColumnPropNameInTable="DATE_SUBMITTEDColumn" msprop:Generator_UserColumnName="DATE_SUBMITTED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OPPORTUNITYSTMT" msprop:Generator_ColumnVarNameInTable="columnOPPORTUNITYSTMT" msprop:Generator_ColumnPropNameInRow="OPPORTUNITYSTMT" msprop:Generator_ColumnPropNameInTable="OPPORTUNITYSTMTColumn" msprop:Generator_UserColumnName="OPPORTUNITYSTMT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TEAM_MEMBER" msprop:Generator_ColumnVarNameInTable="columnTEAM_MEMBER" msprop:Generator_ColumnPropNameInRow="TEAM_MEMBER" msprop:Generator_ColumnPropNameInTable="TEAM_MEMBERColumn" msprop:Generator_UserColumnName="TEAM_MEMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EXPR1" msprop:Generator_ColumnVarNameInTable="columnEXPR1" msprop:Generator_ColumnPropNameInRow="EXPR1" msprop:Generator_ColumnPropNameInTable="EXPR1Column" msprop:Generator_UserColumnName="EXPR1" type="xs:decimal" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR2" msprop:Generator_ColumnVarNameInTable="columnEXPR2" msprop:Generator_ColumnPropNameInRow="EXPR2" msprop:Generator_ColumnPropNameInTable="EXPR2Column" msprop:Generator_UserColumnName="EXPR2" type="xs:decimal" />
+              <xs:element name="EXPR3" msprop:Generator_ColumnVarNameInTable="columnEXPR3" msprop:Generator_ColumnPropNameInRow="EXPR3" msprop:Generator_ColumnPropNameInTable="EXPR3Column" msprop:Generator_UserColumnName="EXPR3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR4" msprop:Generator_ColumnVarNameInTable="columnEXPR4" msprop:Generator_ColumnPropNameInRow="EXPR4" msprop:Generator_ColumnPropNameInTable="EXPR4Column" msprop:Generator_UserColumnName="EXPR4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR5" msprop:Generator_ColumnVarNameInTable="columnEXPR5" msprop:Generator_ColumnPropNameInRow="EXPR5" msprop:Generator_ColumnPropNameInTable="EXPR5Column" msprop:Generator_UserColumnName="EXPR5" type="xs:decimal" />
+              <xs:element name="EXPR6" msprop:Generator_ColumnVarNameInTable="columnEXPR6" msprop:Generator_ColumnPropNameInRow="EXPR6" msprop:Generator_ColumnPropNameInTable="EXPR6Column" msprop:Generator_UserColumnName="EXPR6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR7" msprop:Generator_ColumnVarNameInTable="columnEXPR7" msprop:Generator_ColumnPropNameInRow="EXPR7" msprop:Generator_ColumnPropNameInTable="EXPR7Column" msprop:Generator_UserColumnName="EXPR7" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR8" msprop:Generator_ColumnVarNameInTable="columnEXPR8" msprop:Generator_ColumnPropNameInRow="EXPR8" msprop:Generator_ColumnPropNameInTable="EXPR8Column" msprop:Generator_UserColumnName="EXPR8" type="xs:decimal" />
+              <xs:element name="EXPR9" msprop:Generator_ColumnVarNameInTable="columnEXPR9" msprop:Generator_ColumnPropNameInRow="EXPR9" msprop:Generator_ColumnPropNameInTable="EXPR9Column" msprop:Generator_UserColumnName="EXPR9" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXPR10" msprop:Generator_ColumnVarNameInTable="columnEXPR10" msprop:Generator_ColumnPropNameInRow="EXPR10" msprop:Generator_ColumnPropNameInTable="EXPR10Column" msprop:Generator_UserColumnName="EXPR10" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BI500_REQUEST" />
+      <xs:field xpath="mstns:IDREQUEST" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

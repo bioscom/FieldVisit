@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CostReduction.master.cs" Inherits="MasterPages_CostReduction" %>
+
+<%@ Register Src="../App/BI500/UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="../UserControls/supportContact.ascx" TagName="supportContact" TagPrefix="uc3" %>
+
+<%@ Register Src="../UserControls/LoggedOnStat.ascx" TagName="LoggedOnStat" TagPrefix="uc4" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Improvement Ideas Portal</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <%--<link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />--%>
+    <link href="../css/CostReduction.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/menuStyle.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+    <script lang="javascript" type="text/javascript" src="../Script/formValidator.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+                <div class="title" style="margin-left: 7.5em; text-align: center">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red" Font-Bold="True" Font-Size="X-Large"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/App/BI500/MyBrightIdeas.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;| 
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <asp:Label ID="loggedInLabel" runat="server" Text="Logged in as:" ForeColor="Red" Font-Bold="true"></asp:Label>&nbsp;
+                    <asp:Label ID="lblRole" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
+                </div>
+            </div>
+            <div id="navigation">
+                <div class="firstChild">
+                    <uc4:LoggedOnStat ID="LoggedOnStat1" runat="server" />
+                </div>
+                <div class="child">
+                </div>
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+
+                <div class="master_contentplaceholder_SideMenu">
+                   <asp:ContentPlaceHolder ID="MenuContentContentPlaceHolder" runat="server">
+                        <uc2:adminMenu ID="adminMenu1" runat="server" />
+                        <br />
+                        <uc3:supportContact ID="supportContact1" runat="server" />
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <span style="float: left; vertical-align: top">SCiN Bright Ideas</span>
+            <span style="float: right; vertical-align: top">Copyright © 2014-2016 Competitiveness and Business Improvement</span>
+        </div>
+        <%--<asp:SiteMapDataSource ID="SMDS" runat="server" ShowStartingNode="false" />--%>
+
+    </form>
+</body>
+</html>
+

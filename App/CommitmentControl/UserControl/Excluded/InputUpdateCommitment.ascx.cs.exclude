@@ -1,0 +1,240 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class App_BONGACCP_UserControl_InputUpdateCommitment : aspnetUserControl
+{
+    DataTable dt = new DataTable();
+
+    CommitmentsMgt oMgt = new CommitmentsMgt();
+    ActivityDetailsMgt dtlMgt = new ActivityDetailsMgt();
+    
+    ApprovalDecisionMgt oApproval = new ApprovalDecisionMgt();
+    ContractProcurementVehicleMgt oVehicle = new ContractProcurementVehicleMgt();
+    RequestStatusMgt oStatus = new RequestStatusMgt();
+    PlannedEmmergencyMgt oPlanned = new PlannedEmmergencyMgt();
+    PurchasingGroupMgt oPurchasing = new PurchasingGroupMgt();
+    TeamMgt oTeam = new TeamMgt();
+    appUsersHelper oUser = new appUsersHelper();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void ValidateNumeric()
+    {
+        //txtSavings.Attributes.Add("onkeypress", "return isMoneyNumbKey(event,'" + txtSavings.ClientID + "');");
+        txtCommitment.Attributes.Add("onkeypress", "return isMoneyNumbKey(event,'" + txtCommitment.ClientID + "');");
+        txtPOValue.Attributes.Add("onkeypress", "return isMoneyNumbKey(event,'" + txtPOValue.ClientID + "');");
+        txtPRValue.Attributes.Add("onkeypress", "return isMoneyNumbKey(event,'" + txtPRValue.ClientID + "');");
+    }
+
+    private void LoadControls()
+    {
+        //Load all dropdownlist controls
+
+        //List<ApprovalDecision> oLst = oApproval.lstGetApprovalDecisions();
+        //foreach (var listItem in oLst.Select(r => new ListItem(r.m_sDecision, r.m_iApprovalId.ToString())))
+        //    ddlApprovalDecision.Items.Add(listItem);
+
+        List<ContractProcurementVehicle> olstVhcl = oVehicle.lstGetContractProcurementVehicle();
+        foreach (var listItem in olstVhcl.Select(r => new ListItem(r.m_sName, r.m_iVehicleId.ToString())))
+            ddlVehicle.Items.Add(listItem);
+
+        List<RequestStatus> olstStatus = oStatus.lstGetRequestStatus();
+        foreach (var listItem in olstStatus.Select(r => new ListItem(r.m_sStatus, r.m_iStatusId.ToString())))
+            ddlStatus.Items.Add(listItem);
+
+        List<PlannedEmmergency> olstPlanned = oPlanned.lstGetPlannedEmmergency();
+        foreach (var listItem in olstPlanned.Select(r => new ListItem(r.m_sType, r.m_iTypeId.ToString())))
+            ddlPlannedEmmergency.Items.Add(listItem);
+
+        List<PurchasingGroup> olstGroup = oPurchasing.lstGetPurchasingGroup();
+        foreach (var listItem in olstGroup.Select(r => new ListItem(r.m_sName, r.m_iGroupId.ToString())))
+            ddlPurchaseGroup.Items.Add(listItem);
+
+        List<Team> olstTeam = oTeam.lstGetTeam();
+        foreach (var listItem in olstTeam.Select(r => new ListItem(r.m_sTeam, r.m_iTeamId.ToString())))
+            ddlteam.Items.Add(listItem);
+    }
+
+    public void Page_Init()
+    {
+        try
+        {
+            ValidateNumeric();
+            LoadControls();
+
+            // Enable all Users control
+            sponsor.initUserInfo("Find Sponsor by First Name or Last Name", 200);
+            checkedby.initUserInfo("Find Quantity/Duration Checkedby by First Name or Last Name", 200);
+            requestor.initUserInfo("Find PR Requestor by First Name or Last Name", 200);
+            approver.initUserInfo("Find PR Approver by First Name or Last Name", 200);
+            focalpoint.initUserInfo("Find Focal Point by First Name or Last Name", 200);
+
+            InputUpdateCommitmentDetails1.LoadDetails(-1); //Initialis the Details Control
+
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    private void Save(Commitments o)
+    {
+        var oHlp = new appUsersHelper();
+        long lCommitmentId = 0; string sCommitmentNumber = "";
+        bool bRet = oMgt.Insert(o, ref lCommitmentId, ref sCommitmentNumber);
+        if (bRet)
+        {
+            CommitmentHF.Value = lCommitmentId.ToString();
+
+            //Update Bonga_Auto table to the latest value
+            oMgt.UpdateBongaAutoNumberGenerator(lCommitmentId);
+
+            //Call to insert all the Detail Description of Activity Rows
+            bRet = InputUpdateCommitmentDetails1.SaveDetails(lCommitmentId);
+            if (bRet)
+            {
+                //Set to Update Mode.
+                InputUpdateCommitmentDetails1.Visible = false;
+                InputUpdateCommitmentDetailsUpdt1.LoadDetails(lCommitmentId);
+
+                //Send Mail
+                var oSendMail = new SendMailBonga(oSessnx.getOnlineUser.structUserIdx);
+                var focalPoint = oHlp.objGetUserByUserID(o.m_iFocalPointId);
+                oSendMail.ForwardCommitmentToFocalPoint(o, focalPoint.structUserIdx, oMgt.CommitmentReviewers(o));
+
+                ajaxWebExtension.showJscriptAlertCx(Page, this, "Transaction successul.");
+            }
+        }
+        else
+        {
+            ajaxWebExtension.showJscriptAlertCx(Page, this, "Transaction not successul, try again later.");
+        }
+    }
+
+    private void Update(Commitments o)
+    {
+        o.m_lCommitmentId = long.Parse(CommitmentHF.Value);
+
+        bool bRet = oMgt.Update(o);
+        if (bRet) { ajaxWebExtension.showJscriptAlertCx(Page, this, "Transaction successul."); }
+        else { ajaxWebExtension.showJscriptAlertCx(Page, this, "Transaction not successul, try again later."); }
+    }
+
+    public void Retrieve(long lCommitmentId)
+    {
+        try
+        {
+            CommitmentHF.Value = lCommitmentId.ToString();
+
+            Commitments o = oMgt.objGetCommitmentById(lCommitmentId);
+
+            LoadControls();
+            sponsor.editMode();
+            requestor.editMode();
+            checkedby.editMode();
+            approver.editMode();
+            focalpoint.editMode();
+
+            appUsers oSponsor = oUser.objGetUserByUserID(o.m_iSponsorId);
+            appUsers oRequestor = oUser.objGetUserByUserID(o.m_iRequestorId);
+            appUsers oCheckedBy = oUser.objGetUserByUserID(o.m_iCheckedById);
+            appUsers oApprover = oUser.objGetUserByUserID(o.m_iApproverId);
+            appUsers oFocalPoint = oUser.objGetUserByUserID(o.m_iFocalPointId);
+
+            sponsor.thisDropDownList.Items.Add(new ListItem(oSponsor.m_sFullName, oSponsor.m_iUserId.ToString()));
+            sponsor.thisDropDownList.SelectedValue = o.m_iSponsorId.ToString();
+
+            requestor.thisDropDownList.Items.Add(new ListItem(oRequestor.m_sFullName, oRequestor.m_iUserId.ToString()));
+            requestor.thisDropDownList.SelectedValue = o.m_iRequestorId.ToString();
+
+            checkedby.thisDropDownList.Items.Add(new ListItem(oCheckedBy.m_sFullName, oCheckedBy.m_iUserId.ToString()));
+            checkedby.thisDropDownList.SelectedValue = o.m_iCheckedById.ToString();
+
+            approver.thisDropDownList.Items.Add(new ListItem(oApprover.m_sFullName, oApprover.m_iUserId.ToString()));
+            approver.thisDropDownList.SelectedValue = o.m_iApproverId.ToString();
+
+            focalpoint.thisDropDownList.Items.Add(new ListItem(oFocalPoint.m_sFullName, oFocalPoint.m_iUserId.ToString()));
+            focalpoint.thisDropDownList.SelectedValue = o.m_iFocalPointId.ToString();
+
+
+            ddlPurchaseGroup.SelectedValue = o.m_iGroupId.ToString();
+            ddlteam.SelectedValue = o.m_iTeamId.ToString();
+            ddlPlannedEmmergency.SelectedValue = o.m_iTypeId.ToString();
+            ddlStatus.SelectedValue = o.m_iStatusId.ToString();
+            ddlVehicle.SelectedValue = o.m_iVehicleId.ToString();
+            //ddlApprovalDecision.SelectedValue = o.m_iApprovalId.ToString();
+
+            txtTitle.Text = o.m_sTitle;
+            txtCostObject.Text = o.m_sCostObject;
+            //DateFrom.Text = dateRoutine.dateShort2(o.m_tActivityPeriod, "/");
+            //datePeriod.setDate(dateRoutine.dateShort2(o.m_tActivityPeriod, "/"));
+            txtJustification.Text = o.m_sJustification;
+            txtThreat.Text = o.m_sThreat;
+            txtContractNo.Text = o.m_sContractNumberVendor;
+            txtPRNumber.Text = o.m_sPRNumber;
+            txtPRValue.Text = o.m_dPRValue.ToString();
+            txtPONumber.Text = o.m_sPONumber;
+            txtPOValue.Text = o.m_dPOValue.ToString();
+            txtCommitment.Text = o.m_dCommitment.ToString();
+            lblPOPRVariance.Text = o.m_dVariance;
+            //txtDecisionComments.Text = o.m_sApprovalComments;
+            //txtSavings.Text = o.m_dSavings.ToString();
+
+            //Set to Update Mode
+            InputUpdateCommitmentDetails1.Visible = false;
+            InputUpdateCommitmentDetailsUpdt1.LoadDetails(lCommitmentId);
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        Commitments o = new Commitments();
+
+        o.m_sCostObject = txtCostObject.Text;
+        o.m_sTitle = txtTitle.Text;
+
+        o.m_tPeriodFrom = DateFrom.SelectedDate; //datePeriod.dtSelectedDate;
+        o.m_tPeriodTo = DateTo.SelectedDate;
+        o.m_sJustification = txtJustification.Text;
+        o.m_sThreat = txtThreat.Text;
+        o.m_sContractNumberVendor = txtContractNo.Text;
+        o.m_sPRNumber = txtPRNumber.Text;
+        o.m_dPRValue = decimal.Parse(txtPRValue.Text);
+        o.m_sPONumber = txtPONumber.Text;
+        o.m_dPOValue = decimal.Parse(txtPOValue.Text);
+        o.m_dCommitment = decimal.Parse(txtCommitment.Text);
+        //o.m_sApprovalComments = txtDecisionComments.Text;
+        //o.m_dSavings = decimal.Parse(txtSavings.Text);
+
+        o.m_iSponsorId = int.Parse(sponsor.thisDropDownList.SelectedValue);
+        o.m_iCheckedById = int.Parse(checkedby.thisDropDownList.SelectedValue);
+        o.m_iApproverId = int.Parse(approver.thisDropDownList.SelectedValue);
+        o.m_iRequestorId = int.Parse(requestor.thisDropDownList.SelectedValue);
+        o.m_iFocalPointId = int.Parse(focalpoint.thisDropDownList.SelectedValue);
+        o.m_iInitiatorId = oSessnx.getOnlineUser.m_iUserId;
+
+        o.m_iGroupId = int.Parse(ddlPurchaseGroup.SelectedValue);
+        o.m_iTeamId = int.Parse(ddlteam.SelectedValue);
+        o.m_iTypeId = int.Parse(ddlPlannedEmmergency.SelectedValue);
+        o.m_iStatusId = int.Parse(ddlStatus.SelectedValue);
+        o.m_iVehicleId = int.Parse(ddlVehicle.SelectedValue);
+        //o.m_iApprovalId = int.Parse(ddlApprovalDecision.SelectedValue);
+
+        if (string.IsNullOrEmpty(CommitmentHF.Value)) Save(o); else Update(o);
+    }
+}

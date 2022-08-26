@@ -1,0 +1,426 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class App_BONGACCP_UserControl_oCommitmentControlRejected : aspnetUserControl
+{
+    CommitmentsMgt oMgt = new CommitmentsMgt();
+    appUsersHelper oappUsersHelper = new appUsersHelper();
+
+    ActivityDetailsMgt oDtls = new ActivityDetailsMgt();
+
+    ApprovalDecisionMgt oApproval = new ApprovalDecisionMgt();
+    ContractProcurementVehicleMgt oVehicle = new ContractProcurementVehicleMgt();
+    RequestStatusMgt oStatus = new RequestStatusMgt();
+    PlannedEmmergencyMgt oPlanned = new PlannedEmmergencyMgt();
+    PurchasingGroupMgt oPurchasing = new PurchasingGroupMgt();
+    TeamMgt oTeam = new TeamMgt();
+
+    private enum EuserType
+    {
+        Sponsor = 1,
+        CheckedBy = 2,
+        PRRequestor = 3,
+        PRApprover = 4,
+        FocalPoint = 5,
+    };
+
+
+    public void Page_Init()
+    {
+        if (oSessnx.getOnlineUser.m_iRoleIdBI == (int) appUsersRoles.userRole.admin)
+        {
+            //btnReminderMail.Enabled = true;
+        }
+        else
+        {
+            //btnReminderMail.Enabled = false;
+        }
+
+        ViewState["CostObjectFilter"] = "ALL";
+        ViewState["PurchasingGroupFilter"] = "ALL";
+        ViewState["TeamFilter"] = "ALL";
+        ViewState["SponsorFilter"] = "ALL";
+        ViewState["CheckedByFilter"] = "ALL";
+        ViewState["PRRequestorFilter"] = "ALL";
+        ViewState["PRApproverFilter"] = "ALL";
+        ViewState["FocalPointFilter"] = "ALL";
+        ViewState["PlannedFilter"] = "ALL";
+        ViewState["StatusFilter"] = "ALL";
+        ViewState["VehicleFilter"] = "ALL";
+        ViewState["ApprovalDecisionFilter"] = "ALL";
+
+        LoadCommitments();
+    }
+
+    #region ================================== Onselected Change Events ==================================
+
+    protected void CostObjectChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["CostObjectFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void PurchasingGroupChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["PurchasingGroupFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void TeamChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["TeamFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+
+    }
+
+    protected void SponsorChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["SponsorFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void CheckedByChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["CheckedByFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void PRRequestorChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["PRRequestorFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void PRApproverChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["PRApproverFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void FocalPointChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["FocalPointFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void PlannedChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["PlannedFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void StatusChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["StatusFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void VehicleChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["VehicleFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    protected void ApprovalDecisionChanged(object sender, EventArgs e)
+    {
+        DropDownList ddl = (DropDownList) sender;
+        ViewState["ApprovalDecisionFilter"] = ddl.SelectedValue;
+        this.LoadCommitments();
+    }
+
+    #endregion
+
+    public void LoadCommitments()
+    {
+        string sCostObjectFilter = ViewState["CostObjectFilter"].ToString();
+        string sPurchasingGroupFilter = ViewState["PurchasingGroupFilter"].ToString();
+        string sTeamFilter = ViewState["TeamFilter"].ToString();
+        string sSponsorFilter = ViewState["SponsorFilter"].ToString();
+        string sCheckedByFilter = ViewState["CheckedByFilter"].ToString();
+        string sPRRequestorFilter = ViewState["PRRequestorFilter"].ToString();
+        string sPRApproverFilter = ViewState["PRApproverFilter"].ToString();
+        string sFocalPointFilter = ViewState["FocalPointFilter"].ToString();
+        string sPlannedFilter = ViewState["PlannedFilter"].ToString();
+        string sStatusFilter = ViewState["StatusFilter"].ToString();
+        string sVehicleFilter = ViewState["VehicleFilter"].ToString();
+        string sApprovalDecisionFilter = ViewState["ApprovalDecisionFilter"].ToString();
+
+        DataTable dt = oMgt.dtGetCommitmentsAssignedToMeRejected(oSessnx.getOnlineUser.m_iUserId);  //oBI500RequestHelper.dtGetPendingImprovementIdeas(sInitiativeLeadFilter, sTeamFilter, sInitiatorFilter, sFocalPointFilter, sChampionFilter, sSponsorFilter, sBenefitFilter, sStatusFilter, sStageGateFilter);
+
+        grdGridView.DataSource = dt;
+        grdGridView.DataBind();
+
+        if (dt.Rows.Count > 0) BindFilters(dt);
+           
+        //LoadDetails();
+    }
+
+
+    private void BindFilters(DataTable dt)
+    {
+        List<Commitments> oLst = oMgt.lstCommitments(dt);
+
+        //DropDownList ddlCostObject = (DropDownList) grdGridView.HeaderRow.FindControl("ddlCostObject");
+        DropDownList ddlPurchasingGroup = (DropDownList) grdGridView.HeaderRow.FindControl("ddlPurchasingGroup");
+        DropDownList ddlTeam = (DropDownList) grdGridView.HeaderRow.FindControl("ddlTeam");
+        //DropDownList ddlSponsor = (DropDownList) grdGridView.HeaderRow.FindControl("ddlSponsor");
+        //DropDownList ddlCheckedBy = (DropDownList) grdGridView.HeaderRow.FindControl("ddlCheckedBy");
+        //DropDownList ddlPRRequestor = (DropDownList) grdGridView.HeaderRow.FindControl("ddlPRRequestor");
+        //DropDownList ddlPRApprover = (DropDownList) grdGridView.HeaderRow.FindControl("ddlPRApprover");
+        //DropDownList ddlFocalPoint = (DropDownList) grdGridView.HeaderRow.FindControl("ddlFocalPoint");
+        //DropDownList ddlPlanned = (DropDownList) grdGridView.HeaderRow.FindControl("ddlPlanned");
+
+        DropDownList ddlStatus = (DropDownList) grdGridView.HeaderRow.FindControl("ddlStatus");
+        //DropDownList ddlVehicle = (DropDownList) grdGridView.HeaderRow.FindControl("ddlVehicle");
+        DropDownList ddlApprovalDecision = (DropDownList) grdGridView.HeaderRow.FindControl("ddlApprovalDecision");
+
+        this.BindApprovalDecisionList(ddlApprovalDecision);
+        //this.BindCostObjectList(ddlCostObject);
+        //this.BindPlannedList(ddlPlanned);
+        this.BindPurchasingGroupList(ddlPurchasingGroup);
+        this.BindStatusList(ddlStatus);
+        this.BindTeamList(ddlTeam);
+        //this.BindVehicleList(ddlVehicle);
+
+        //this.BindSponsorList(ddlSponsor, oLst);
+        //this.BindCheckedByList(ddlCheckedBy, oLst);
+        //this.BindFocalPointList(ddlFocalPoint, oLst);
+        //this.BindPRApproverList(ddlPRApprover, oLst);
+        //this.BindPRRequestorList(ddlPRRequestor, oLst);
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    #region ================================== Gridview Commands ====================================
+
+    protected void grdGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdGridView.PageIndex = e.NewPageIndex;
+        LoadCommitments();
+        //MPE.Hide();
+    }
+
+    protected void grdGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+    }
+
+    protected void grdGridView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void grdGridView_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    #endregion
+
+
+    #region ================================== Filtering the gridview ====================================
+
+    #region ================================== Binding to the drop down list ==================================
+
+    private void BindCostObjectList(DropDownList ddlCostObject) { }
+    private void BindPurchasingGroupList(DropDownList ddlPurchasingGroup)
+    {
+        List<PurchasingGroup> olstGroup = oPurchasing.lstGetPurchasingGroup();
+        foreach (var listItem in olstGroup.Select(r => new ListItem(r.m_sName, r.m_iGroupId.ToString())))
+            ddlPurchasingGroup.Items.Add(listItem);
+    }
+    private void BindTeamList(DropDownList ddlTeam)
+    {
+        List<Team> olstTeam = oTeam.lstGetTeam();
+        foreach (var listItem in olstTeam.Select(r => new ListItem(r.m_sTeam, r.m_iTeamId.ToString())))
+            ddlTeam.Items.Add(listItem);
+    }
+
+    private List<appUsers> SortedUserListByType(List<Commitments> oLst, EuserType t)
+    {
+        //Sort the list and remove duplicates
+        List<int> iHolder = new List<int>();
+        iHolder.Add(0);
+        List<appUsers> usr = new List<appUsers>();
+        foreach (Commitments o in oLst)
+        {
+            if (t == EuserType.CheckedBy)
+            {
+                if (!iHolder.Contains(o.eCheckedBy.m_iUserId))
+                {
+                    usr.Add(oappUsersHelper.objGetUserByUserID(o.eCheckedBy.m_iUserId));
+                }
+                iHolder.Add(o.eCheckedBy.m_iUserId);
+            }
+            else if (t == EuserType.FocalPoint)
+            {
+                if (!iHolder.Contains(o.eFocalPoint.m_iUserId))
+                {
+                    usr.Add(oappUsersHelper.objGetUserByUserID(o.eFocalPoint.m_iUserId));
+                }
+                iHolder.Add(o.eFocalPoint.m_iUserId);
+            }
+            else if (t == EuserType.PRApprover)
+            {
+                if (!iHolder.Contains(o.eApprover.m_iUserId))
+                {
+                    usr.Add(oappUsersHelper.objGetUserByUserID(o.eApprover.m_iUserId));
+                }
+                iHolder.Add(o.eApprover.m_iUserId);
+            }
+            else if (t == EuserType.PRRequestor)
+            {
+                if (!iHolder.Contains(o.eRequestor.m_iUserId))
+                {
+                    usr.Add(oappUsersHelper.objGetUserByUserID(o.eRequestor.m_iUserId));
+                }
+                iHolder.Add(o.eRequestor.m_iUserId);
+            }
+            else if (t == EuserType.Sponsor)
+            {
+                if (!iHolder.Contains(o.eSponsor.m_iUserId))
+                {
+                    usr.Add(oappUsersHelper.objGetUserByUserID(o.eSponsor.m_iUserId));
+                }
+                iHolder.Add(o.eSponsor.m_iUserId);
+            }
+        }
+
+        return usr;
+    }
+    private void BindSponsorList(DropDownList ddl, List<Commitments> oLst)
+    {
+        List<appUsers> usr = SortedUserListByType(oLst, EuserType.Sponsor);
+
+        foreach (var listItem in usr.Select(r => new ListItem(r.m_sFullName, r.m_iUserId.ToString())))
+            ddl.Items.Add(listItem);
+        ddl.Items.FindByValue(ViewState["SponsorFilter"].ToString()).Selected = true;
+    }
+    private void BindCheckedByList(DropDownList ddl, List<Commitments> oLst)
+    {
+        List<appUsers> usr = SortedUserListByType(oLst, EuserType.CheckedBy);
+
+        foreach (var listItem in usr.Select(r => new ListItem(r.m_sFullName, r.m_iUserId.ToString())))
+            ddl.Items.Add(listItem);
+        ddl.Items.FindByValue(ViewState["CheckedByFilter"].ToString()).Selected = true;
+    }
+    private void BindPRRequestorList(DropDownList ddl, List<Commitments> oLst)
+    {
+        List<appUsers> usr = SortedUserListByType(oLst, EuserType.PRRequestor);
+
+        foreach (var listItem in usr.Select(r => new ListItem(r.m_sFullName, r.m_iUserId.ToString())))
+            ddl.Items.Add(listItem);
+        ddl.Items.FindByValue(ViewState["PRRequestorFilter"].ToString()).Selected = true;
+    }
+    private void BindPRApproverList(DropDownList ddl, List<Commitments> oLst)
+    {
+        List<appUsers> usr = SortedUserListByType(oLst, EuserType.PRApprover);
+
+        foreach (var listItem in usr.Select(r => new ListItem(r.m_sFullName, r.m_iUserId.ToString())))
+            ddl.Items.Add(listItem);
+        ddl.Items.FindByValue(ViewState["PRApproverFilter"].ToString()).Selected = true;
+    }
+    private void BindFocalPointList(DropDownList ddl, List<Commitments> oLst)
+    {
+        List<appUsers> usr = SortedUserListByType(oLst, EuserType.FocalPoint);
+
+        foreach (var listItem in usr.Select(r => new ListItem(r.m_sFullName, r.m_iUserId.ToString())))
+            ddl.Items.Add(listItem);
+        ddl.Items.FindByValue(ViewState["FocalPointFilter"].ToString()).Selected = true;
+    }
+    private void BindPlannedList(DropDownList ddlPlanned)
+    {
+        List<PlannedEmmergency> olstPlanned = oPlanned.lstGetPlannedEmmergency();
+        foreach (var listItem in olstPlanned.Select(r => new ListItem(r.m_sType, r.m_iTypeId.ToString())))
+            ddlPlanned.Items.Add(listItem);
+    }
+    private void BindStatusList(DropDownList ddlStatus)
+    {
+        List<RequestStatus> olstStatus = oStatus.lstGetRequestStatus();
+        foreach (var listItem in olstStatus.Select(r => new ListItem(r.m_sStatus, r.m_iStatusId.ToString())))
+            ddlStatus.Items.Add(listItem);
+    }
+    private void BindVehicleList(DropDownList ddlVehicle)
+    {
+        List<ContractProcurementVehicle> olstVhcl = oVehicle.lstGetContractProcurementVehicle();
+        foreach (var listItem in olstVhcl.Select(r => new ListItem(r.m_sName, r.m_iVehicleId.ToString())))
+            ddlVehicle.Items.Add(listItem);
+    }
+    private void BindApprovalDecisionList(DropDownList ddlApprovalDecision)
+    {
+        List<ApprovalDecision> oLst = oApproval.lstGetApprovalDecisions();
+        foreach (var listItem in oLst.Select(r => new ListItem(r.m_sDecision, r.m_iApprovalId.ToString())))
+            ddlApprovalDecision.Items.Add(listItem);
+    }
+
+    #endregion
+
+    #endregion
+
+    protected void lnkUpdate_Click(object sender, EventArgs e)
+    {
+        using (GridViewRow row = (GridViewRow) ((LinkButton) sender).Parent.Parent)
+        {
+            LinkButton UpdateLinkButton = (LinkButton) row.FindControl("UpdateLinkButton");
+            long lId = long.Parse(UpdateLinkButton.Attributes["COMMITMENTID"].ToString());
+
+            ///TODO: Please update the list of Approval Decision into Enumeration list.
+            oMgt.RepresentForReview(lId, 41); //Where 41 = TBD
+
+            Page_Init();
+
+            ajaxWebExtension.showJscriptAlertCx(Page, this, "Commitment successfully sent for re presentaion!!!");
+
+            //Response.Redirect("~/App/CommitmentControl/Default.aspx?Id=" + lId);
+        }
+    }
+
+    protected void lnkDetails_Click(object sender, EventArgs e)
+    {
+        using (GridViewRow row = (GridViewRow) ((LinkButton) sender).Parent.Parent)
+        {
+            LinkButton DetailsLinkButton = (LinkButton) row.FindControl("DetailsLinkButton");
+            long lId = long.Parse(DetailsLinkButton.Attributes["COMMITMENTID"].ToString());
+
+            DetailViewReport.Retrieve(lId);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalDetails();", true);
+        }
+    }
+
+    private void LoadDetails()
+    {
+        foreach (GridViewRow grdRow in grdGridView.Rows)
+        {
+            LinkButton DetailsLinkButton = (LinkButton) grdRow.FindControl("DetailsLinkButton");
+            long lCommitmentId = long.Parse(DetailsLinkButton.Attributes["COMMITMENTID"].ToString());
+
+            ASP.app_bongaccp_usercontrol_activitydescription_ascx detailsGrdView = (ASP.app_bongaccp_usercontrol_activitydescription_ascx) grdRow.FindControl("activityDescription1");
+            detailsGrdView.LoadDetails(lCommitmentId);
+
+            ////GridView detailsGrdView = (GridView) grdRow.FindControl("activityDescription1");
+            //LinkButton UpdateLinkButton = (LinkButton) grdRow.FindControl("UpdateLinkButton");
+            //long lCommitmentId = long.Parse(UpdateLinkButton.Attributes["COMMITMENTID"].ToString());
+
+            //ASP.app_bongaccp_usercontrol_activitydescription_ascx detailsGrdView = (ASP.app_bongaccp_usercontrol_activitydescription_ascx) grdRow.FindControl("activityDescription1");
+            //detailsGrdView.LoadDetails(lCommitmentId);
+        }
+    }
+}

@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="configuration.master.cs" Inherits="MasterPages_configuration" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head" runat="server">
+    <title>Field Visit</title>
+    <asp:ContentPlaceHolder ID="headId" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+
+</head>
+<body>
+    <form id="form2" runat="server">
+        <telerik:RadScriptManager ID="QsfScriptManager" runat="server"></telerik:RadScriptManager>
+        <div id="container">
+
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;|
+                            <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                </div>
+            </div>
+
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <div class="master_contentplaceholder_SideMenu">
+                    <div id="navigationM">
+                        <ul>
+                            <asp:Repeater runat="server" ID="menu" DataSourceID="configSMap" EnableViewState="False">
+                                <ItemTemplate>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
+                                        <asp:Repeater ID="Repeater1" runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
+                                            <HeaderTemplate>
+                                                <ul>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <li>
+                                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
+                                                    <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
+                                                        <HeaderTemplate>
+                                                            <ul>
+                                                        </HeaderTemplate>
+                                                        <ItemTemplate>
+                                                            <li>
+                                                                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
+                                                            </li>
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            </ul>
+                                                        </FooterTemplate>
+                                                    </asp:Repeater>
+                                                </li>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                </ul>
+                                            </FooterTemplate>
+                                        </asp:Repeater>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+
+<%--                        <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" CssClass="mainMenu" runat="server" Flow="Vertical" ShowToggleHandle="True" DataSourceID="configSMap"></telerik:RadMenu>--%>
+                        <asp:SiteMapDataSource ID="configSMap" runat="server" SiteMapProvider="configurationProviderFieldVisit" ShowStartingNode="False" />
+                    </div>
+                </div>
+
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="rightColumn" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="footer">
+                <span style="float: left; vertical-align: top">
+                    <asp:Label ID="lblInfo" runat="server" Text=""></asp:Label></span>
+                <span style="float: right; vertical-align: top">
+                    <asp:Label ID="lblCopyRight" runat="server" Text=""></asp:Label></span>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

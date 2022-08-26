@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Telerik.Web.UI;
+
+public partial class Common_UserControls_NotificationBar : System.Web.UI.UserControl
+{
+    protected void Page_Init(object sender, EventArgs e)
+    {
+
+        var showBetaBanner = ConfigurationManager.AppSettings["Telerik.QSF.BetaBanner"] ?? "false";
+        var showWebinarBanner = ConfigurationManager.AppSettings["Telerik.QSF.WebinarBanner"] ?? "false";
+
+        phBetaBaner.Visible = bool.Parse(showBetaBanner);
+        phWebinarBanner.Visible = bool.Parse(showWebinarBanner);
+    }
+}

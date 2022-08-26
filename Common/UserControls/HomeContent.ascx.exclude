@@ -1,0 +1,103 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="HomeContent.ascx.cs" Inherits="Common_UserControls_HomeContent" %>
+
+<%--User controls--%>
+<%@ Register Src="~/Common/UserControls/ContentColumn.ascx" TagName="ContentColumn" TagPrefix="qsf" %>
+<%@ Register Src="~/Common/UserControls/SampleApps.ascx" TagName="SampleApps" TagPrefix="qsf" %>
+<%@ Register Src="~/Common/UserControls/BetaHighlights.ascx" TagName="BetaHighlights" TagPrefix="qsf" %>
+
+<div id="mobile-demos">
+    <h2>Mobile Support and Responsiveness</h2>
+    <p><a runat="server" href="~/mobile.aspx">Test the behavior of Telerik controls on mobile devices in this lighter version of the demos.<span class="click-zone"></span></a></p>
+</div>
+
+
+<div id="overview-controls">
+
+    <h2>ASP.NET AJAX Controls</h2>
+
+    <div class="columns columns-border">
+
+        <div id="most-popular-controls" class="col">
+            <div class="group">
+                <h3>Most Popular</h3>
+                <ul>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/grid/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Grid</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/editor/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Editor</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/htmlchart/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Chart (HTML5)</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/menu/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Menu</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/scheduler/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Scheduler</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/asyncupload/examples/overview/default{0}.aspx", CurrentLanguage)) %>">Upload</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/treeview/examples/overview/default{0}.aspx", CurrentLanguage)) %>">TreeView</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/combobox/examples/overview/default{0}.aspx", CurrentLanguage)) %>">ComboBox</a></li>
+                    <li><a href="<%= ResolveClientUrl(string.Format("~/textbox/overview/default{0}.aspx", CurrentLanguage)) %>">Input</a></li>
+                </ul>
+            </div>
+            <div id="mobile-qr-code">
+                <p>Test the behavior of Telerik controls on mobile devices in this lighter version of the demos.</p>
+                <a runat="server" href="http://tlrk.it/1vVxMCB">
+                    <telerik:RadBarcode runat="server" Type="QRCode" Text="http://tlrk.it/1vVxMCB" Width="100" Height="100"
+                        OutputType="EmbeddedPNG">
+                        <QRCodeSettings Version="0" AutoIncreaseVersion="true" DotSize="4" />
+                    </telerik:RadBarcode>
+                </a>
+            </div>
+        </div>
+
+        <div class="col">
+
+            <qsf:ContentColumn ID="DataManagement" Title="Data Management" runat="server" />
+
+            <qsf:ContentColumn ID="Scheduling" Title="Scheduling" runat="server" />
+
+            <qsf:ContentColumn ID="Interactivity" Title="Interactivity &amp; UX" runat="server" />
+
+            <qsf:ContentColumn ID="Theming" Title="Theming" runat="server" />
+
+        </div>
+
+        <div class="col">
+
+            <qsf:ContentColumn ID="Layout" Title="Layout" runat="server" />
+
+            <qsf:ContentColumn ID="Editors" Title="Editors" runat="server" />
+
+            <qsf:ContentColumn ID="AJAX" Title="AJAX" runat="server" />
+
+        </div>
+
+        <div class="col">
+
+            <qsf:ContentColumn ID="Diagrams" Title="Diagrams &amp; Maps" runat="server" />
+
+            <qsf:ContentColumn ID="DataVisualization" Title="Data Visualization" runat="server" />
+
+            <qsf:ContentColumn ID="Navigation" Title="Navigation" runat="server" />
+
+            <qsf:ContentColumn ID="SpellChecking" Title="Spell Checking" runat="server" />
+        </div>
+
+        <div class="col">
+
+            <qsf:ContentColumn ID="FileManagement" Title="File Upload &amp; Management" runat="server" />
+
+            <qsf:ContentColumn ID="Media" Title="Media" runat="server" />
+
+            <qsf:ContentColumn ID="Social" Title="Social" runat="server" />
+
+            <div class="group">
+                <h3>SharePoint Web Parts</h3>
+                <ul>
+                    <li><a href="http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Content-Editor-Web-Part-using-RadEditor.aspx">Editor</a></li>
+                    <li><a href="http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Single-List-Binding.aspx">Grid</a></li>
+                    <li><a href="http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/RadScheduler-and-Exchange.aspx">Scheduler</a></li>
+                    <li><a href="http://sharepoint.telerik.com/aspnet-ajax/web-parts/Pages/Telerik-SPRadListView-Web-Part.aspx">ListView</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<qsf:SampleApps runat="server" ID="SampleAppsControl"></qsf:SampleApps>
+<qsf:BetaHighlights runat="server" ID="BetaHighlightsControl"></qsf:BetaHighlights>

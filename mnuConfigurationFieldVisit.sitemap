@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode title="Application Setup">
+
+    <siteMapNode url="~/Default.aspx" title="Home">
+      <siteMapNode url="UserManagement.aspx" title="User Management"></siteMapNode>
+      <siteMapNode url="~/App/PDCC/SavingsTransaction.aspx" title="Transaction Year"></siteMapNode>
+    </siteMapNode>
+    
+    <siteMapNode title="Facilities Config.">
+      <!--<siteMapNode url="~/App/Contract/AssignAssetsToOpsManager.aspx" title="Operations Manager"/>-->
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/Superintendent.aspx" title="Production Unit Managers"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/Districts.aspx" title="District"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/facilities.aspx" title="Facility"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/divestment.aspx" title="Divestment Asset Mgt"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/PlannerFacilityMapping.aspx" title="Assign Planner to Facilities"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/PlannerFacilityMapView.aspx" title="Planner Facilities Map View"/>
+    </siteMapNode>
+
+    <siteMapNode title="Field Visit/PEC Config.">
+      <siteMapNode url="~/App/FieldVisit/Forms/Setup/Questionaire.aspx" title="Questionaire"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/PlanExeccutionCriteria.aspx" title="Plan Execution Criteria"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/ActivityType.aspx" title="Activity Type"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/OilUnit.aspx" title="Oil Unit"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/TradeTypes.aspx" title="Trade Types"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/FieldContact.aspx" title="Field/FPSO Contact"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/VisaType.aspx" title="Visa Type"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/Baggage.aspx" title="Baggage"/>
+      <siteMapNode url="~/App/FieldVisit/Forms/PEC/PECSetup/LastVisit.aspx" title="Last Visit"/>
+    </siteMapNode>
+
+  </siteMapNode>
+
+</siteMap>

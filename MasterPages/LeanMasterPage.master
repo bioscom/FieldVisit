@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeFile="LeanMasterPage.master.cs" Inherits="MasterPages_LeanMasterPage" %>
+
+<%--<%@ Register Assembly="ComponentArt.Web.UI" Namespace="ComponentArt.Web.UI" TagPrefix="ComponentArt" %>--%>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>UIOG CI Projects and Dashboard</title>
+
+    <link href="../css/menuStyle.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/LeanStyleSheet.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script lang="javascript" src="../Scripts/clientMessageUI.js" type="text/javascript"></script>
+    <script lang="javascript" src="../Scripts/formValidator.js" type="text/javascript"></script>
+    <script lang="javascript" src="../Script/MyScripts.js" type="text/javascript"></script>
+
+    <!--Include JQuery File-->
+    <%--<script lang="javascript" src="../JavaScript/jquery-1.4.1.js" type="text/javascript"></script>
+    <script type="text/javascript" lang="Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>--%>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 5px; margin-top: 0.5em; position: absolute;" />
+
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                    <asp:Label ID="loggedinUserLabel" runat="server"></asp:Label>
+                    &nbsp;| 
+                <asp:LinkButton ID="lnkHomePage" runat="server"
+                    PostBackUrl="~/Default.aspx?App=Lean" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    &nbsp;|
+                    <asp:HyperLink ID="hpkLogout" runat="server"
+                        NavigateUrl="~/Default.aspx">Logout</asp:HyperLink>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text=""></asp:Label>
+                    <br />
+                    Logged in as
+                    <asp:Label ID="UserRoleLabel" runat="server" Font-Bold="True" Font-Size="Smaller" ForeColor="Red"></asp:Label>
+                    <br />
+                    <asp:Label ID="UserIDLabel" runat="server" Font-Bold="True" Font-Size="Smaller" ForeColor="Red"></asp:Label>
+                    &nbsp;<asp:Label ID="CompanyNameLabel" runat="server" Font-Bold="True" Font-Size="Smaller" ForeColor="Red"></asp:Label>
+                </div>
+            </div>
+            <div id="navigation">
+                <div class="firstChild">
+                </div>
+
+                <div class="child" style="vertical-align: top">
+                </div>
+
+            </div>
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+            <div id="navigation3">
+                <div class="xFChild">
+                    <asp:Image ID="lockImg" runat="server" Height="22px" ImageUrl="~/Images/i_keyLock.gif" Width="22px" />
+                    <asp:Label ID="MessageLabel" runat="server" CssClass="Warning"></asp:Label>
+                </div>
+                <div class="xChild">
+                    <a id="dpeBackLink" href="javascript:history.back()">
+                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />
+                        Back</a>
+                </div>
+            </div>
+
+            <div id="master_content">
+                <div class="master_contentplaceholder">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <span style="float: left; vertical-align: top">
+                <asp:Label ID="lblInfo" runat="server" Text=""></asp:Label>
+            </span>
+
+            <span style="float: right; vertical-align: top">
+                <asp:Label ID="lblCopyRight" runat="server" Text=""></asp:Label>
+            </span>
+        </div>
+    </form>
+</body>
+</html>

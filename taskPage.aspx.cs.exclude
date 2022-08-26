@@ -1,0 +1,160 @@
+﻿using System;
+using System.Web;
+using System.Web.UI;
+
+public partial class taskPage : aspnetPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //lnkIAP.PostBackUrl = "http://sww.scin.cpdms.shell.com/iap/Default.aspx";
+
+        if (!IsPostBack)
+        {
+            //msgPanel.Visible = false;
+            loggedinUserLabel.Text = oSessnx.getOnlineUser.m_sFullName;// System.Web.HttpContext.Current.User.Identity.Name;
+            //Summary: In case session expires, please relogin the user automatically.
+            if (string.IsNullOrEmpty(oSessnx.getOnlineUser.m_sUserName))
+            {
+                //Response.Redirect("~/Default.aspx");
+            }
+        }
+    }
+    protected void lnkFieldVisit_Click(object sender, EventArgs e)
+    {
+        FieldVisitLogin();
+    }
+    protected void imgLnkFieldVisit_Click(object sender, ImageClickEventArgs e)
+    {
+        FieldVisitLogin();
+    }
+    protected void imgLnkIMF_Click(object sender, ImageClickEventArgs e)
+    {
+        InitiativeManagementFrameworkLogin();
+    }
+    protected void lnkIMF_Click(object sender, EventArgs e)
+    {
+        InitiativeManagementFrameworkLogin();
+    }
+    protected void imgLnkFlrWvr_Click(object sender, ImageClickEventArgs e)
+    {
+        FlareWaiverLogin();
+    }
+    protected void lnkFlrWvr_Click(object sender, EventArgs e)
+    {
+        FlareWaiverLogin();
+    }
+    protected void imnLnkBI500_Click(object sender, ImageClickEventArgs e)
+    {
+        BI500Login();
+    }
+    protected void lnkBI500_Click(object sender, EventArgs e)
+    {
+        BI500Login();
+    }
+    protected void imgLnkPDCC_Click(object sender, ImageClickEventArgs e)
+    {
+        PdccLogin();
+    }
+    protected void lnkPDCC_Click(object sender, EventArgs e)
+    {
+        PdccLogin();
+    }
+
+    private void FieldVisitLogin()
+    {
+        Response.Redirect("~/App/FieldVisit/taskPage.aspx");
+        //if ((oSessnx.getOnlineUser.m_iRoleIdFieldVisit == null) || (oSessnx.getOnlineUser.m_iRoleIdFieldVisit == 0))
+        //{
+        //    ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, you do not have any sufficient account to use Field Visit/PEC. Please contact the Administrator.");
+        //}
+        //else
+        //{
+        //    Response.Redirect("~/App/FieldVisit/taskPage.aspx");
+        //}
+    }
+    private void InitiativeManagementFrameworkLogin()
+    {
+        Response.Redirect("~/App/ManHour/taskPage.aspx");
+        //if ((oSessnx.getOnlineUser.m_iRoleIdManHr == null) || (oSessnx.getOnlineUser.m_iRoleIdManHr == 0))
+        //{
+        //    ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, you do not have any sufficient account to use Initiative Management Framework. Please contact the Administrator.");
+        //}
+        //else
+        //{
+        //    Response.Redirect("~/App/ManHour/taskPage.aspx");
+        //}
+    }
+    private void FlareWaiverLogin()
+    {
+        Response.Redirect("~/App/FlareWaiver/taskPage.aspx");
+        //if ((oSessnx.getOnlineUser.m_iRoleIdFlr == null) || (oSessnx.getOnlineUser.m_iRoleIdFlr == 0))
+        //{
+        //    ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, you do not have any defined role to use Flare Waiver Control. Please contact the Administrator.");
+        //}
+        //else
+        //{
+        //    Response.Redirect("~/App/FlareWaiver/taskPage.aspx");
+        //}
+    }
+    private void BI500Login()
+    {
+        Response.Redirect("~/App/BI500/Default.aspx");
+        //if ((oSessnx.getOnlineUser.m_iRoleIdBI == 0) || (oSessnx.getOnlineUser.m_iRoleIdBI == null))
+        //{
+        //    ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, you do not have any defined role to use BI500. Please contact the Administrator.");
+        //}
+        //{
+        //    Response.Redirect("~/App/BI500/Default.aspx");
+        //}
+    }
+    private void PdccLogin()
+    {
+        Response.Redirect("~/App/PDCC/Default.aspx");
+        //if ((oSessnx.getOnlineUser.m_iRoleIdBI == 0) || (oSessnx.getOnlineUser.m_iRoleIdBI == null))
+        //{
+        //    ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, you do not have any defined role to use BI500. Please contact the Administrator.");
+        //}
+        //{
+        //    Response.Redirect("~/App/BI500/Default.aspx");
+        //}
+    }
+    
+    //protected void btnLogin_Click(object sender, EventArgs e)
+    //{
+    //    Encryption encryptPassword = new Encryption();
+    //    string retrievedEncryptedPaswd = encryptPassword.encryptPassword(txtPassword.Text.Trim());
+    //    bool bFound = appUsersHelper.LoginToUserAccountEx(txtUserName.Text.ToUpper().Trim(), retrievedEncryptedPaswd);
+
+    //    appUsers eAppUserInfo = appUsersHelper.objGetUserByUserIdEx(txtUserName.Text.ToUpper().Trim(), retrievedEncryptedPaswd);
+    //    if (bFound)
+    //    {
+    //        //FormsAuthentication.RedirectFromLoginPage(eAppUserInfo.m_sUserName, true);
+    //        httpSessionx oInitSessn = new httpSessionx(HttpContext.Current.Session, eAppUserInfo);
+
+    //        msgPanel.Visible = true;
+    //        string mssg = "Login successful, you can now continue to your choice application. Thank you.";
+    //        ajaxWebExtension.showJscriptAlert(Page, this, mssg);
+    //        mssgImg.ImageUrl = "~/Images/approved.png";
+    //        mssgLabel.Text = mssg;
+    //    }
+    //    else
+    //    {
+    //        Session["PasswordTrial"] = int.Parse(Session["PasswordTrial"].ToString()) + 1;
+
+    //        if (int.Parse(Session["PasswordTrial"].ToString()) > 3)
+    //        {
+    //            msgPanel.Visible = true;
+    //            mssgImg.ImageUrl = "~/Images/smallFail.gif";
+    //            mssgLabel.Text = "No of Password trial exceeded.";
+
+    //            btnLogin.Enabled = false;
+    //        }
+    //        else
+    //        {
+    //            msgPanel.Visible = true;
+    //            mssgImg.ImageUrl = "~/Images/smallFail.gif";
+    //            mssgLabel.Text = "Invalid Username or Password. Try login again.";
+    //        }
+    //    }
+    //}
+}

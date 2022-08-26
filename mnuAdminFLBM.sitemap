@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+
+  <siteMapNode title="FLBM" description="Front Line Barrier Management">
+
+    <siteMapNode title="Front Line Barrier Mngt">
+      <siteMapNode url="~/App/FLBM/Default.aspx" title="Home Page"/>
+      <siteMapNode url="~/App/FLBM/Register.aspx" title="Assessment Register"/>
+      <siteMapNode url="~/App/FLBM/Assessment.aspx" title="Knowledge and Skill Assessment"/>
+      <!--<siteMapNode url="~/App/FLBM/PECRequestStatus.aspx" title="PEC Requests Status"/>-->
+
+    </siteMapNode>
+
+    <siteMapNode title="Admin Management">
+      <siteMapNode url="~/App/FLBM/Settings.aspx" title="Data Management"/>
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

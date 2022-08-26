@@ -1,0 +1,181 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class App_Lean_MyLeanProjects : aspnetPage
+{
+    MainProjectHelper oMainProjectHelper = new MainProjectHelper();
+    FunctionMgt oFunctionMgt = new FunctionMgt();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            List<int> iYears = oMainProjectHelper.lstYears();
+            foreach (int iYear in iYears)
+            {
+                ddlYear.Items.Add(iYear.ToString());
+            }
+
+            List<Functions> oFunctions = oFunctionMgt.lstGetFunctions();
+            foreach (Functions oFunction in oFunctions)
+            {
+                ddlFunction.Items.Add(new ListItem(oFunction.m_sFunction, oFunction.m_iFunctionId.ToString()));
+            }
+
+            oMainProjectHelper.LoadProjects(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, grdGridView);
+        }
+    }
+    protected void grdGridView_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdGridView.PageIndex = e.NewPageIndex;
+        LoadProjectsByCriteria();
+    }
+    protected void grdGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        string ButtonClicked = e.CommandName; //Determines which button was clicked (stores the name of each button)
+        DataSorter sortMe = new DataSorter();
+
+        try
+        {
+            if ((ButtonClicked == "Sort") || (ButtonClicked == "Page"))
+            {
+                //CurrentSortExpression = sortMe.MySortExpression(e);
+
+                //int result;
+                //if (Int32.TryParse(e.CommandArgument.ToString(), out result) == false)
+                //{
+                //    Session["SortExpression"] = e.CommandArgument.ToString();
+                //}
+                //CurrentSortExpression = Session["SortExpression"].ToString();
+            }
+            else
+            {
+                int index = Convert.ToInt32(e.CommandArgument); //Command Argument stores the index of each row
+
+                if (ButtonClicked == "Project")
+                {
+                    LinkButton lbProjectLinkButton = (LinkButton)grdGridView.Rows[index].FindControl("ProjectLinkButton");
+                    long ProjectId = long.Parse(lbProjectLinkButton.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/IES.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "EditProject")
+                {
+                    LinkButton lbEditLinkButton = (LinkButton)grdGridView.Rows[index].FindControl("EditLinkButton");
+                    long ProjectId = long.Parse(lbEditLinkButton.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/EditLeanProject.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "IES")
+                {
+                    LinkButton lbIES = (LinkButton)grdGridView.Rows[index].FindControl("IESLinkButton");
+                    long ProjectId = long.Parse(lbIES.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/IES.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "VSM")
+                {
+                    LinkButton lbVSM = (LinkButton)grdGridView.Rows[index].FindControl("VsmLinkButton");
+                    long ProjectId = long.Parse(lbVSM.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/AsIsVsm.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "KaizenAction")
+                {
+                    LinkButton lbKaizenAction = (LinkButton)grdGridView.Rows[index].FindControl("KaizenLinkButton");
+                    long ProjectId = long.Parse(lbKaizenAction.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/KaizenAction.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "Benefit")
+                {
+                    LinkButton lbBenefit = (LinkButton)grdGridView.Rows[index].FindControl("BenefitLinkButton");
+                    long ProjectId = long.Parse(lbBenefit.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/Benefit.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                //if (ButtonClicked == "Benefit")
+                //{
+                //    LinkButton lbBenefit = (LinkButton)grdGridView.Rows[index].FindControl("BenefitLinkButton");
+                //    long lRecommendationId = long.Parse(lbBenefit.Attributes["RECOMMENDATIONID"].ToString());
+                //    long ProjectId = long.Parse(lbBenefit.Attributes["IDPROJECT"].ToString());
+                //    Response.Redirect("~/App/Lean/Benefit.aspx" + "?ProjectId=" + ProjectId + "&RecommendationId=" + lRecommendationId, false);
+                //}
+
+                if (ButtonClicked == "Recommendations")
+                {
+                    LinkButton lbRecommendations = (LinkButton)grdGridView.Rows[index].FindControl("RecommendationsLinkButton");
+                    long ProjectId = long.Parse(lbRecommendations.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/ProjectRecommendation.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "LoadDocs")
+                {
+                    LinkButton lbLoadDocs = (LinkButton)grdGridView.Rows[index].FindControl("DocsLinkButton");
+                    long ProjectId = long.Parse(lbLoadDocs.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/LoadDocs.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+
+                if (ButtonClicked == "Assessment")
+                {
+                    LinkButton lbAssessment = (LinkButton)grdGridView.Rows[index].FindControl("AssessmentLinkButton");
+                    long ProjectId = long.Parse(lbAssessment.Attributes["IDPROJECT"].ToString());
+                    Response.Redirect("~/App/Lean/AssessmentQuiz.aspx" + "?ProjectId=" + ProjectId, false);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+
+    protected void grdGridView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        LoadProjectsByCriteria();
+    }
+
+    protected void ddlFunction_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        LoadProjectsByCriteria();
+    }
+
+    protected void btnClose_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/App/Lean/Default.aspx");
+    }
+
+    private void LoadProjectsByCriteria()
+    {
+        if ((ddlYear.SelectedValue == "-1") && (ddlFunction.SelectedValue == "-1"))
+        {
+            oMainProjectHelper.LoadProjects(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, grdGridView);
+        }
+        else if ((ddlYear.SelectedValue != "-1") && (ddlFunction.SelectedValue == "-1"))
+        {
+            //oMainProjectHelper.LoadProjectsByYear(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, int.Parse(ddlYear.SelectedValue), grdGridView);
+            //oMainProjectHelper.LoadProjectsByYear(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, int.Parse(ddlYear.SelectedValue), grdGridView);
+        }
+        else if ((ddlYear.SelectedValue == "-1") && (ddlFunction.SelectedValue != "-1"))
+        {
+            oMainProjectHelper.LoadProjectsByFunction(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, int.Parse(ddlFunction.SelectedValue), grdGridView);
+        }
+        else if ((ddlYear.SelectedValue != "-1") && (ddlFunction.SelectedValue != "-1"))
+        {
+            oMainProjectHelper.LoadProjectsByFunctionYear(oSessnx.getOnlineUser.m_iRoleIdLean, oSessnx.getOnlineUser.m_iUserId, int.Parse(ddlYear.SelectedValue), int.Parse(ddlFunction.SelectedValue), grdGridView);
+        }
+    }
+}

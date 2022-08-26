@@ -1,0 +1,39 @@
+﻿using System;
+using Microsoft.Security.Application;
+
+public partial class UsersManagement_EditUser : aspnetPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            appUsersHelper oappUsersHelper = new appUsersHelper();
+            appUserRolesFlrWaiver.getUserRoles(ddlUserRole);
+
+            if (Request.QueryString["iUserId"] != null)
+            {
+                appUsers oappUsers = oappUsersHelper.objGetUserByUserID(int.Parse(Encoder.HtmlEncode(Request.QueryString["iUserId"].ToString())));
+
+                lblFullName.Text = Encoder.HtmlEncode(oappUsers.m_sFullName);
+                ddlUserRole.SelectedValue = Encoder.HtmlEncode(oappUsers.m_iRoleIdFlr.ToString());
+                //txtPhoneExt.Text = Encoder.HtmlEncode(user.m_sPhoneExt);
+            }
+        }
+    }
+    protected void closeBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/App/FlareWaiver/UsersManagement/ViewUsers.aspx");
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        bool success = appUsersHelper.UpdateUser((int.Parse(Request.QueryString["iUserId"].ToString())), int.Parse(ddlUserRole.SelectedValue));
+        if (success == true)
+        {
+            Response.Redirect("~/App/FlareWaiver/UsersManagement/ViewUsers.aspx");
+        }
+        else
+        {
+            ajaxWebExtension.showJscriptAlert(Page, this, "Sorry, this user's role cannot be changed, he/she is involved in the approval of one or more Request in his current role.");
+        }
+    }
+}

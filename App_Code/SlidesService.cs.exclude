@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+
+/// <summary>
+/// Summary description for SlidesService
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class SlidesService : System.Web.Services.WebService
+{
+    public SlidesService()
+    {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    [WebMethod]
+    public AjaxControlToolkit.Slide[] GetSlides()
+    {
+        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(@"C:\App\Office Projects\FieldVisit\App\PDCC\CostSavingStories\");
+        System.IO.FileInfo[] smFiles = di.GetFiles("*.*");
+
+        AjaxControlToolkit.Slide[] MySlides = new AjaxControlToolkit.Slide[smFiles.Length];
+
+        int i = 0;
+        foreach (System.IO.FileInfo fi in smFiles)
+        {
+            MySlides[i] = new AjaxControlToolkit.Slide(fi.DirectoryName, fi.ToString(), fi.Name);
+            i++;
+        }
+
+        return MySlides;
+    }
+
+    //    Try
+    //        Dim i As Integer
+    //        i = 1
+
+
+    //    Catch ex As Exception
+    //        appMonitor.logAppExceptions(ex)
+    //    End Try
+
+    //    'MySlides(0) = New AjaxControlToolkit.Slide("App/PDCC/CostSavingStories/Blue hills.jpg", "Blue Hills", "Go Blue")
+    //    'MySlides(1) = New AjaxControlToolkit.Slide("App/PDCC/CostSavingStories/Sunset.jpg", "Sunset", "Setting sun")
+    //    'MySlides(2) = New AjaxControlToolkit.Slide("App/PDCC/CostSavingStories/Winter.jpg", "Winter", "Wintery...")
+    //    'MySlides(3) = New AjaxControlToolkit.Slide("App/PDCC/CostSavingStories/Water lilies.jpg", "Water lillies", "Lillies in the water")
+    //    'MySlides(4) = New AjaxControlToolkit.Slide("App/PDCC/CostSavingStories/VerticalPicture.jpg", "Sedona", "Portrait style picture")
+
+    //    Return MySlides
+    //End Function
+
+}

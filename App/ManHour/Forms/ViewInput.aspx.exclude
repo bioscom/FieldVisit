@@ -1,0 +1,111 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/siteMaster.master" AutoEventWireup="true" CodeFile="ViewInput.aspx.cs" Inherits="Forms_ViewInput" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headId" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <table class="tMainBorder" style="width:98%">
+        <tr>
+            <td class="cHeadTile">My Initiatives
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:GridView ID="grdView" runat="server" AllowSorting="True" AutoGenerateColumns="False"
+                    OnPageIndexChanged="grdView_PageIndexChanged" AllowPaging="true" PageSize="20"
+                    OnPageIndexChanging="grdView_PageIndexChanging"
+                    OnSorted="grdView_Sorted" OnSorting="grdView_Sorting"
+                    Width="100%" OnRowCommand="grdView_RowCommand">
+                    <Columns>
+
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <%# Container.DataItemIndex + 1 %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="...">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="editLinkButton" runat="server"
+                                    CommandArgument="<%# Container.DisplayIndex %>" CommandName="editThis"
+                                    IDINITIATIVE='<%# DataBinder.Eval(Container.DataItem, "IDINITIATIVE") %>'>Edit</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Owner" SortExpression="FULLNAME">
+                            <ItemTemplate>
+                                <asp:Label ID="labelFullName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "FULLNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle Width="150px" />
+                        </asp:TemplateField>
+
+                        <%--<asp:TemplateField HeaderText="Function" SortExpression="REFIND">
+                            <ItemTemplate>
+                                <asp:Label ID="label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "REFIND") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>--%>
+
+                        <asp:TemplateField HeaderText="Business Case" SortExpression="BUS_CASE">
+                            <ItemTemplate>
+                                <asp:Label ID="labelBusCase" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "BUS_CASE") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Scope" SortExpression="SCOPE">
+                            <ItemTemplate>
+                                <asp:Label ID="labelScope" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SCOPE") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%--<asp:TemplateField HeaderText="Delieverables" SortExpression="DELIVERABLES">
+                            <ItemTemplate>
+                                <asp:Label ID="labelDeliverables" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "DELIVERABLES") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>--%>
+
+                        <asp:TemplateField HeaderText="Date Submitted" SortExpression="DATE_SUBMITTED">
+                            <ItemTemplate>
+                                <asp:Label ID="labelDateSubmitted" runat="server" Text='<%# dateRoutine.dateShort(DateTime.Parse(DataBinder.Eval(Container.DataItem, "DATE_SUBMITTED").ToString())) %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle Width="100px" />
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="...">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="viewLinkButton" runat="server"
+                                    CommandArgument="<%# Container.DisplayIndex %>" CommandName="View"
+                                    IDINITIATIVE='<%# DataBinder.Eval(Container.DataItem, "IDINITIATIVE") %>'>View Details</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="...">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="MainReportLinkButton" runat="server" 
+                                    CommandArgument="<%# Container.DisplayIndex %>" CommandName="MainReport" 
+                                    IDINITIATIVE='<%# DataBinder.Eval(Container.DataItem, "IDINITIATIVE") %>'>Report</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="...">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="reportLinkButton" runat="server" 
+                                    CommandArgument="<%# Container.DisplayIndex %>" CommandName="report" 
+                                    IDINITIATIVE='<%# DataBinder.Eval(Container.DataItem, "IDINITIATIVE") %>'>Chart Report</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="...">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="deleteLinkButton" runat="server"
+                                    CommandArgument="<%# Container.DisplayIndex %>" CommandName="deleteThis"
+                                    IDINITIATIVE='<%# DataBinder.Eval(Container.DataItem, "IDINITIATIVE") %>'>Delete</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                    </Columns>
+                </asp:GridView>
+
+            </td>
+        </tr>
+    </table>
+</asp:Content>

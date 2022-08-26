@@ -1,0 +1,10 @@
+<asp:GridView runat="server" CssClass="table table-striped table-bordered table-hover">
+  <AlternatingRowStyle CssClass="AlternatingRowStyle" />
+   <RowStyle CssClass="RowStyle" />
+   <HeaderStyle CssClass="HeaderStyle" />   
+   <SelectedRowStyle CssClass="SelectedRowStyle"/>
+   <EditRowStyle CssClass="EditRowStyle"/>
+   <%--<PagerStyle CssClass="PagerRowStyle" />--%>
+   <PagerSettings Mode="NumericFirstLast" PageButtonCount="15" /> 
+</asp:GridView>
+

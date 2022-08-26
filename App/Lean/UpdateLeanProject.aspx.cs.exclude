@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class App_Lean_Addproject : System.Web.UI.Page
+{
+    MainProjectHelper oMainProjectHelper = new MainProjectHelper();
+    IdentifyHelper oIdentifyHelper = new IdentifyHelper();
+    EliminateHelper oEliminateHelper = new EliminateHelper();
+    SustainHelper oSustainHelper = new SustainHelper();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            List<int> iYears = oMainProjectHelper.lstYears();
+            foreach (int iYear in iYears)
+            {
+                ddlYear.Items.Add(iYear.ToString());
+            }
+            ddlYear.SelectedValue = DateTime.Today.Year.ToString();
+            oMainProjectHelper.LoadProjectsByYear(ddlProjects, ddlYear);
+        }
+    }
+
+    protected void ddlProjects_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        MainProjects oMainProject = oMainProjectHelper.objGetLeanProjectsByProjectId(long.Parse(ddlProjects.SelectedValue));
+
+        //oLeanProjectDetails1.Init_Control(oMainProject);
+
+        Identify oIdentify = oIdentifyHelper.objGetIdentifyByProjectId(long.Parse(ddlProjects.SelectedValue));
+        Eliminate oEliminate = oEliminateHelper.objGetEliminateByProjectId(long.Parse(ddlProjects.SelectedValue));
+        Sustain oSustain = oSustainHelper.objGetSustainByProjectId(long.Parse(ddlProjects.SelectedValue));
+
+        LoadIdentify(oIdentify);
+        LoadEliminate(oEliminate);
+        LoadSustain(oSustain);
+    }
+
+    private void LoadIdentify(Identify oIdentify)
+    {
+        int result;
+        if (int.TryParse(oIdentify.sCharterSignOff, out result) == true)
+            ddlSignOff._SelectedValue(int.Parse(oIdentify.sCharterSignOff));
+
+        if (int.TryParse(oIdentify.sKickOffMeeting, out result) == true)
+            ddlSIPOC._SelectedValue(int.Parse(oIdentify.sKickOffMeeting));
+
+        if (int.TryParse(oIdentify.sProcessWalk, out result) == true)
+            ddlProcessWalk._SelectedValue(int.Parse(oIdentify.sProcessWalk));
+
+        if (int.TryParse(oIdentify.sVSM, out result) == true)
+            ddlVSM._SelectedValue(int.Parse(oIdentify.sVSM));
+    }
+
+    private void LoadEliminate(Eliminate oEliminate)
+    {
+        int result;
+        if (int.TryParse(oEliminate.sCharterSignOff, out result) == true)
+        ddlDRBTollGate._SelectedValue(int.Parse(oEliminate.sCharterSignOff));
+
+        if (int.TryParse(oEliminate.sCharterSignOff, out result) == true)
+        ddlKaizen._SelectedValue(int.Parse(oEliminate.sCharterSignOff));
+
+        if (int.TryParse(oEliminate.sVSM, out result) == true)
+        ddlPilot._SelectedValue(int.Parse(oEliminate.sCharterSignOff));
+
+       
+    }
+
+    private void LoadSustain(Sustain oSustain)
+    {
+        int result;
+
+        if (int.TryParse(oSustain.sCharterSignOff, out result) == true)
+        ddlSOP._SelectedValue(int.Parse(oSustain.sCharterSignOff));
+
+        if (int.TryParse(oSustain.sCharterSignOff, out result) == true)
+        ddlHandOver._SelectedValue(int.Parse(oSustain.sCharterSignOff));
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        oMainProjectHelper.LoadProjectsByYear(ddlProjects, ddlYear);
+    }
+    protected void btnClose_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/App/Lean/Default.aspx");
+    }
+}

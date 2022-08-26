@@ -1,0 +1,36 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SkinChooser.ascx.cs" Inherits="Common_UserControls_Mobile_SkinChooser" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<telerik:RadSkinManager ID="QsfSkinManager" runat="server" />
+
+<div id="skin-chooser" class="tm-drawer tm-drawer-right">
+    <header class="tm-header">
+        <h4>Themes</h4>
+    </header>
+    <div class="skin-list">
+        <ul>
+            <li><a href="<%= Url %>Black" class="skin-black">Black</a></li>
+            <li><a href="<%= Url %>BlackMetroTouch" class="skin-blackmetrotouch">BlackMetroTouch</a></li>
+            <li><a href="<%= Url %>Bootstrap" class="skin-bootstrap">Bootstrap</a></li>
+            <li><a href="<%= Url %>Default" class="skin-default">Default</a></li>
+            <li><a href="<%= Url %>Glow" class="skin-glow">Glow</a></li>
+            <li><a href="<%= Url %>Material" class="skin-material">Material</a></li>
+            <li><a href="<%= Url %>Metro" class="skin-metro">Metro</a></li>
+            <li><a href="<%= Url %>MetroTouch" class="skin-metrotouch">MetroTouch</a></li>
+            <li><a href="<%= Url %>Office2007" class="skin-office2007">Office2007</a></li>
+            <li><a href="<%= Url %>Office2010Black" class="skin-office2010black">Office2010Black</a></li>
+            <li><a href="<%= Url %>Office2010Blue" class="skin-office2010blue">Office2010Blue</a></li>
+            <li><a href="<%= Url %>Office2010Silver" class="skin-office2010silver">Office2010Silver</a></li>
+            <li><a href="<%= Url %>Outlook" class="skin-outlook">Outlook</a></li>
+            <li><a href="<%= Url %>Silk" class="skin-silk">Silk</a></li>
+            <li><a href="<%= Url %>Simple" class="skin-simple">Simple</a></li>
+            <li><a href="<%= Url %>Sunset" class="skin-sunset">Sunset</a></li>
+            <li><a href="<%= Url %>Telerik" class="skin-telerik">Telerik</a></li>
+            <li><a href="<%= Url %>Vista" class="skin-vista">Vista</a></li>
+            <li><a href="<%= Url %>Web20" class="skin-web20">Web20</a></li>
+            <li><a href="<%= Url %>WebBlue" class="skin-webblue">WebBlue</a></li>
+            <li><a href="<%= Url %>Windows7" class="skin-windows7">Windows7</a></li>
+        </ul>
+    </div>
+    <input type="hidden" id="skin" value="<%= SelectedSkin.ToLowerInvariant() %>" />
+</div>

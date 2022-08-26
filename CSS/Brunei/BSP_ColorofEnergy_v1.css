@@ -1,0 +1,1917 @@
+﻿/* Main CSS  - Deliberato Theme by TopSharePoint.com */
+body{font: 11px verdana; }
+a:active {color:#446c84}
+a:link {color:#446c84}
+a:visited {color:#446c84}
+a {color:#446c84}
+blockquote {margin: 0 0 0 30px;}
+
+.ribbonArea {margin:0; width:1024px; margin:0 auto; padding:0; background:white;}
+
+.wrapper{ width:1024px; margin:0 auto; padding:0; border:0; 
+
+
+
+
+}
+
+/*.logoContainer {width:100%; padding:0; margin:5px 0 0 0; float:left; background-color:transparent;}
+.logo {padding:0; float:left; background-color:transparent;}
+.logo img {margin:14px 0 0 0;} */
+
+/* Header */
+.header {width:1024px; height:145px; margin:0 auto; padding:0; background:white; /* border-top:3px solid #f76a2d;*/
+
+
+}
+.headerHome {width:1024px; height:106px; margin:0 auto; padding:0;/* border-top:3px solid #f76a2d;*/}
+
+/* Top Menu */
+.NavMainBar {width:1024px; height:30px; padding:0; margin:0; display:block; opacity:0.8; z-index:1; }
+.s4-tn{padding:0; margin:0; background-color:transparent; color:fff;}
+.s4-pr s4-notdlg {background-color:#dff2fd;}
+.s4-tn li.static > .menu-item{color:#fff; padding:5px 15px 0 10px; background-color:#f7d117; margin:0 2px 0 0;  font-size:11px; height:20px;}
+.s4-tn li.static > a:hover{color:#000; text-decoration:none;}
+.s4-toplinks .s4-tn a.selected{background-color:#dff2fd; color:#fff; padding:5px 10px; margin:0 2px 0 0;}
+.s4-toplinks .s4-tn a.selected:hover{color:#333;}
+/* Sub items border */
+.s4-tn ul.dynamic{background-color:transparent; border:0;}
+/* Menu Item */
+.s4-tn li.dynamic > .menu-item{display:block;  font-size:11px; padding:4px 10px; background-color:#FFEAA0; width:200px; color:#333; border-bottom:1px solid #E8BF0A;}
+.s4-tn li.dynamic > a:visited {color:#333; font-weight:bold;}
+.s4-tn li.dynamic > a {color:#333; font-weight:bold;}
+/* Menu Item Hover Over */
+.s4-tn li.dynamic > a:hover{color:#404040; text-decoration:none; background-color:#FCFEDF; ; font-size:11px;}
+/* Hover over top menu */
+.s4-tn li.static > a:hover{color:#404040; background-color:#f76a2d; ; font-size:11px;}
+
+/* Main Banner */
+.mainBanner {height:150px; width:1024px; overflow:hidden; float:left; margin:-30px 0 0 0; padding:0; z-index:-1;}
+.mainBanner img {z-index:-1;}
+
+/* Bread Crumb */
+.breadCrmb {width:1024px; margin:0 0 0 198px; padding:4px 0 0 0; float:left; font-size:11px; text-align:left; height:20px;}
+.breadCrmb a{color:#446c84; text-decoration:none; font-size:11px; padding:3px 2px 2px 0;}
+.breadCrmb a:hover{color:#000;}
+
+/* Middle Area */
+.midArea {width:1024px;  margin:0 auto; padding:0;}
+
+/* Left Navigation */
+.leftNav {width:185px; margin:0; padding:0; float:left; display: none;}
+
+.siteTitle {font-size:22px; color:#fff; width:185px; overflow:hidden; margin:-100px 0 10px 0; padding:100px 0 0 0; background-color:#f76a2d; display:block; opacity:0.8; z-index:1;}
+
+
+.leftNavHolder {margin:0; padding:0; width:185px; float:left;}
+/* Left Nav Style */ 
+.leftNavHolder li > .menu-item {padding:5px 0 5px 0;}
+/* Left WP Title */
+.leftWPHolder {padding:5px; margin:250px 0 0 0; float:left; width:185px; display:block; position:absolute;}
+/* web part padding for left column */
+.leftWPHolder .ms-wpContentDivSpace {padding:0;}
+/* remove some white speace from web parts in left column */
+.leftWPHolder .ms-WPHeader .ms-wpTdSpace {display:none;}
+/* remove border from bottom of web parts in left column */
+.customLeftWPHolder	.ms-WPHeader td {border-bottom: none;}
+
+.menu-vertical {float:left; margin:0; display:block; padding:0; width:186px; position:absolute; min-height:275px;}
+.menu-vertical ul li {margin:0; padding:0;}
+.menu-vertical ul li a {font-weight:bold; font-size:10px; color:#666; text-indent:5px;}
+.menu-vertical ul li .selected {color:#f76a2d; border-top:1px solid #eee; border-bottom:1px solid #eee;}
+.menu-vertical ul li a:hover {color:#000; text-decoration:none;}
+.menu-vertical ul li ul li a {margin:0; padding:0; font-size:10px; font-weight:bold;}
+.menu-vertical ul li ul li .menu-item-text {margin:0 0 0 10px; padding:0;}
+.menu-vertical .menu-item-text {margin:0 0 0 2px;}
+
+/* Main Content */
+.mainContent {float:right; width:1024px; margin:0 auto; padding:0; text-align:left; background:white;
+}
+.article-content {padding:0; margin:0;}
+
+/* Homepage Main Content */
+.mainContentHome {float:right; width:100%; margin:0 auto; padding:0; text-align:left;}
+
+/* Footer */
+.footer{width:1024px; margin:0 auto; bottom:0; clear:both; background-color:#ffffff;
+
+-webkit-box-shadow: #666 0px 1px 1px;
+-moz-box-shadow: #666 0px 1px 1px;
+box-shadow: #666 0px 1px 1px;
+
+
+ }
+
+/* Adavnced Search Box */
+.srcBoxAdvMain {margin: 0 0 10px 0; width:500px;}
+.srcBoxAdv{display:block}
+.srcBoxAdv *{display:block; height:1px; overflow:hidden; font-size:.01em; background:#c5e3d5}
+.srcBoxAdv1{margin-left:3px; margin-right:3px; padding-left:1px; padding-right:1px; border-left:1px solid #e6f2ec; border-right:1px solid #e6f2ec; background:#d3eadf}
+.srcBoxAdv2{margin-left:1px; margin-right:1px; padding-right:1px; padding-left:1px; border-left:1px solid #f9fcfa; border-right:1px solid #f9fcfa; background:#d0e8dc}
+.srcBoxAdv3{margin-left:1px; margin-right:1px; border-left:1px solid #d0e8dc; border-right:1px solid #d0e8dc;}
+.srcBoxAdv4{ border-left:1px solid #e6f2ec; border-right:1px solid #e6f2ec}
+.srcBoxAdv5{ border-left:1px solid #d3eadf; border-right:1px solid #d3eadf}
+.srcBoxAdvfg{background:#c5e3d5; padding:5px 10px 5px 10px; margin:0;}
+
+table.ms-sbtable.ms-sbtable-ex.s4-search {width:220px; height:29px;}
+.s4-search input.ms-sbplain {background:none; max-width:182px; margin:0 0 0 10px; border: 1 solid #000 !important;}
+.s4-search .srch-gosearchimg{background:none; ; background-image:none; border:1 solid #000 !important;}
+td.ms-sbgo.ms-sbcell{border:0 solid #000;}
+
+/* corev4.css - SharePoint Fixes */
+#s4-topheader2 {border:0;}
+#s4-mainarea {border:0px solid #d8dccb;}
+.srch-sb-results2 {margin:2px 0 0 0; padding:15px 0 0 250px; background-color:#fff; height:50px; border-top:1px solid #f76a2d;}
+div.srch-refinearea {margin:0 0 0 5px;}
+
+div.welcome {padding: 5px 5px;}
+
+div.article {padding: 5px 5px;}
+
+/* Logo Area */
+/*.s4-title{background-color:transparent; background:none; padding:0; margin:0; overflow:hidden; height:80px;}
+
+/* Search box */
+.s4-search{padding:0 !important; font-size:10px; margin:-60px -15px 0 0; float:right;}
+.srch-sb-results {background-color:transparent; margin:0; padding:0;}
+.srch-stats {background-color:transparent; padding:10px; width:730px; border:1px solid #ccc;}
+.srch-sort-right2 {margin:6px 0 0 0;}
+
+.dfwp-column {background-color:transparent; margin:0;}
+.level-section {margin:0;}
+.level-section a:visited {font-size:11px; color:#446c84;}
+.level-section a {font-size:11px; color:#446c84;}
+.level-header {margin-left:0;}
+.level-header a:visited {font-size:11px; color:#446c84;}
+.level-header a {font-size:11px; color:#446c84;}
+/*.headermarker {margin:0;}*/
+.customAll {clear: both;}
+
+
+
+
+/********************************************************************************************************************/
+/*Shellv4.css*/
+/********************************************************************************************************************/
+/***Site Logo***/
+.s4-titlelogo
+{
+	padding-top: 0px;
+	padding-bottom: 5px;
+	position: relative;
+	top: -5px;
+}
+.s4-mini-sitelogo
+{	
+ 	vertical-align:middle;
+ 	max-height:40px;
+ 	max-width:40px; 
+	margin-top: -5px; 
+    margin-left: -5px;
+    margin-right: -20px;  
+    overflow: hidden;
+}
+/*Added only for Fast search site logo*/
+.s4-mini-sitelogo-search
+{
+    vertical-align:middle;
+}
+/* "System Account" Menu button style */
+.ms-qatbutton:hover
+{
+	background-image: none;
+	background-color: #FFEAA0;
+	border-color: #404040;
+}
+.s4-breadcrumb-anchor-open
+{
+	background-image: none;
+	background-color: #FFEAA0;
+	border-color: #404040;
+}
+.s4-breadcrumb-anchor:hover
+{
+	background-image: none;
+	background-color: #FFEAA0;
+	border-color: #404040;
+}
+.ms-SpLinkButtonActive.ms-welcomeMenu
+{
+	background-image: none;
+	background-color: #FFEAA0;
+	border-color: #404040;
+}
+.ms-cui-TabRowLeft
+{
+	margin-top: 12px;
+}
+/* increasaing height for browse,page in selected modes for not showing border bottom */
+.ms-cui-tt-a
+{
+ 	margin-top: 12px;
+ 	height:30px; /*IE compatibility Issue*/
+ 	width: auto !important; 
+}
+/* Font color for page tab on mouse hover */
+.ms-cui-tt-span
+{
+    color:black; 
+}
+/*** To handle mouse hover in Library & Documents tab when any one of the tab is active ***/
+/*** Browse Tab - To handle mouse hover when it is active ***/
+.ms-browseTab.ms-cui-tt-s .ms-cui-tt-span:hover
+{
+	background-color: #ffffff;
+} 
+/*** To handle mouse hover in Library & Documents tab when any one of the tab is active ***/
+/*** Page Tab - To handle mouse hover when it is active ***/
+.ms-cui-tt-s .ms-cui-tt-a .ms-cui-tt-span:hover
+{
+	background-color: #FFFFFF;
+}
+
+/* browse tab in selected mode */
+.ms-browseTab.ms-cui-tt-s > a.ms-cui-tt-a
+{
+    background-color:#ffffff;
+    color:#23272c !important;
+    border-top:1px #D42E12 solid;
+    border-left:1px #D42E12 solid;
+    border-right:1px #D42E12 solid;
+    border-bottom:none;
+    margin-right:1px; /*To resolve line gap when mouse hover on library tools*/
+}
+/* browse tab in selected mode with mouse hover */
+.ms-browseTab.ms-cui-tt-s > a.ms-cui-tt-a:hover
+{
+    background-color:#ffffff;
+    color:#23272c !important;
+    border-top:1px #D42E12 solid;
+    border-left:1px #D42E12 solid;
+    border-right:1px #D42E12 solid;
+    border-bottom:none;
+    height:30px; /*For IE7 compatibility Issue*/
+    margin-top:12px; 
+}
+/* page tab in selected mode */
+.ms-cui-tt-s .ms-cui-tt-a
+{
+    background-color:#ffffff;
+    color:#23272c !important;
+    border-top:1px #D42E12 solid;
+    border-left:1px #D42E12 solid;
+    border-right:1px #D42E12 solid;
+    border-bottom:none;
+}
+/* page tab in selected mode with mouse hover */
+.ms-cui-tt-s .ms-cui-tt-a:hover
+{
+    background-color:#ffffff;
+    color:#23272c !important;
+    border-top:1px #D42E12 solid;
+    border-left:1px #D42E12 solid;
+    border-right:1px #D42E12 solid;
+    border-bottom:none;
+    height:30px;
+}
+/* browse tab,page tab in non selected mode with mouse hover*/
+a.ms-cui-tt-a:hover
+{
+    background-color:#ffeaa0;
+    border-top:1px #D42E12 solid;
+    border-left:1px #D42E12 solid;
+    border-right:1px #D42E12 solid;
+    border-bottom:1px #D42E12 solid;
+    margin-bottom:20px;
+    background-repeat:repeat-y;
+    margin-top: 12px;  /*IE7 compatibility issue*/
+    height: 23px;   /*IE7 compatibility issue*/
+}
+/*on mouse hover on document library color will not change*/
+.ms-cui-tt-span:hover
+{
+    background-color:#FFEAA0;
+    height: 9px !important; /*IE7 compatibility issue*/
+    color: #404040;
+}
+.ms-cui-ct-ul .ms-cui-tt-s .ms-cui-tt-span:hover
+{
+	background:white;
+}
+.ms-browseTab.ms-cui-tt-s .ms-cui-tt-span:hover
+{
+	background-color: #ffffff;
+} 
+.ms-cui-tt-s .ms-cui-tt-a .ms-cui-tt-span:hover
+{
+	background-color: #FFFFFF;
+}
+/*Ribbon bottom line color has been changed to BDBDBD */
+.ms-cui-tabBody
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-pp
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-yl
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-or
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-lb
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-gr
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+.ms-cui-tabBody-db
+{
+	border-bottom-color:#bdbdbd !important; 
+}
+body 
+{
+    background: #FFFFFF;
+	font: 11px verdana,arial,helvetica,sans-serif;
+	color: #000000;
+}
+/* Remove blue color below top bar. should be white  */
+body #s4-ribbonrow  
+{
+    background-color:#ffffff !important;
+}
+/* Background color op Top Ribbon Bar (yellow) */
+.ms-cui-ribbonTopBars 
+{
+    background-color:#f7d117;
+    
+}
+/* Selected Top navigation (current site) */
+.s4-tn a:selected 
+{
+	background: #ffeaa0 !important;
+    background-color: #ffeaa0 !important;
+    border-bottom-color: 1px solid #ffeaa0 !important;
+    border-top-color: 1px solid #ffeaa0 !important;
+    border-left-color: 1px solid #ffeaa0 !important;
+    border-right-color: 1px solid #ffeaa0 !important;
+}
+/* Site navigation bar (yellow) */
+.s4-title 
+{
+    background: #ffffff url('selbg.png') repeat-x left top;
+}
+/* QuickLaunch Header */
+.s4-ql UL.root > LI > .menu-item 
+{
+	margin:0px;
+	padding:3px 4px 3px 10px;
+	border-top:1px #bdbdbd solid;
+	border-left:1px #bdbdbd solid;
+	border-bottom:1px #bdbdbd solid;
+	word-wrap:break-word;
+	color: #404040 !important;
+	font-size: 8pt;
+	font-weight: bold;
+	overflow-x:hidden;
+	background-color:#ffeaa0;
+}
+/* QuickLaunch Menu Item */
+.s4-ql UL.root UL > LI > A 
+{
+	padding:3px 4px 4px 10px;
+	color:#404040;
+	overflow-x:hidden;
+	display:block;
+	zoom:1;
+	background-color:#fcfedf;
+	border-left: #BDBDBD 1px solid !important;
+	border-bottom: #BDBDBD 1px solid !important;
+    border-top: transparent 1px solid !important;
+    margin-bottom:0px;
+}
+/* QuickLaunch selected item */
+.s4-ql UL.root UL > LI > A.selected 
+{
+    background:#fcfedf;
+    border-right:none;
+    margin-bottom:0px; /*IE 7 compatibility Issue*/
+}
+.s4-qlheader
+{
+	font-size:1.2em;
+	color: #404040;
+	padding:3px 4px 3px 10px;
+	border-width:1px 0px;
+	border-style: solid;
+	border-color: #6767676;
+	word-wrap: break-word;
+	overflow-x:hidden;
+	font-weight:bold;
+	background-color:#ffeaa0;
+}
+/* Site Title */
+.s4-title H1 A 
+{
+    color:#d42e12 !important;
+}
+/* Site Actions Menu */
+.ms-siteactionsmenu > SPAN > A 
+{
+    color: #000000;
+}
+/* Selected Tab text */
+.ms-cui-tt-s > A.ms-cui-tt-a 
+{
+    color: #000000;
+}
+/* Other Tabs text */
+.ms-cui-tt-a 
+{
+    color: #000000 !important;
+}
+/* User Selection Control */
+.ms-welcomeMenu A:link 
+{
+    color: #000000 !important;
+}
+/* ribbon updates */
+.ms-cui-ribbonTopBars
+{
+	background-image: url('shell_ribbon.png');
+	background-repeat: repeat-x;
+	background-position:50% bottom;
+}
+.ms-cui-tt-s .ms-cui-tt-a
+{
+	border-color: #D42E12 !important;
+}
+/* For all colors */
+.ms-cui-cg
+{
+	border-color: #D42E12;
+	margin-left: 2px; /*For removing the line gap, when mouse hover on library tools*/
+}
+.ms-cui-cg .ms-cui-cg-t
+{
+	color: #000000; 
+	background-image: none;
+}
+.ms-cui-cg.ms-cui-cg-s .ms-cui-cg-t
+{
+	color: #FFFFFF;
+	background: none;
+	background-color: #D42E12;
+}
+/*********************Edit permission tools & Web part Tools alignment********************/
+.ms-cui-cg .ms-cui-cg-i
+{
+	border: 0px;
+	background-color:#FFEAA0;/*Permission Tools background color,when not selected*/
+}
+.ms-cui-ct-ul .ms-cui-tt-span
+{
+    border:0px;
+}
+.ms-cui-ct-ul .ms-cui-tt-span:hover 
+{
+    border:0px;
+}
+.ms-cui-ct-ul .ms-cui-tt-a
+{                              
+    margin-top:0px;
+    border-bottom:none; 
+	background:none; 
+}
+.ms-cui-ct-ul .ms-cui-tt-a:hover 
+{		
+	margin-top:0px;
+	border-bottom:none; 
+	border-top-color:#bdbdbd;
+	background:none; 
+}
+/*********************Edit permission tool alignment***********************************/
+
+.ms-cui-cg .ms-cui-tt-a
+{
+	background-image: none;	
+}
+.ms-cui-cg
+{
+	border-color: #D42E12;
+	background-image: none;
+	height:41px; /*IE compatibility issue*/
+}
+.ms-cui-cg.ms-cui-cg-s .ms-cui-ct-ul /* Border */
+{
+	background-color: transparent;
+	border-color: #D42E12;
+}
+/* Non-selected tab in selected tab group */
+.ms-cui-cg.ms-cui-cg-s .ms-cui-tt-a:hover 
+{
+	color: #000000 !important;
+	background-image: none !important;
+	background-color: #ffffff !important;
+}
+/* Non-selected tab bg color */
+.ms-cui-cg.ms-cui-cg-s .ms-cui-tt .ms-cui-tt-a 
+{
+	background-color: transparent !important;
+	background-image:none;
+}
+.ms-cui-cg.ms-cui-cg-s .ms-cui-tt-s .ms-cui-tt-a /*Selected  documents/library  tab in library tools*/
+{
+	background-color: #ffffff !important;
+	border: 1px !important;
+	border-top: 0px !important;
+	border-style: solid !important;
+	border-color: #D42E12 !important;
+	background-image: none !important;
+}
+/* set margin for documents,library tab  in library tools */
+.ms-cui-cg-db .ms-cui-tt-a
+{
+    margin-top:0px;	
+    border:none;   
+    background:none;  
+}
+/* set margin for documents,library tab  in library tools */
+.ms-cui-cg-db .ms-cui-tt-a:hover 
+{
+  	margin-top:0px;	
+    border:none;
+    background-color:#ffffff;
+  	background:none;
+}
+.sui-separator
+{
+    margin-top: 6px;
+    padding-left:1px;
+    padding-right:1px;
+}
+.sui-container-leftflow-globalmenu
+{
+    float:left; 
+}
+div.sui-container-leftflow-globalmenu > a
+{
+    display: none;    
+}
+/*For Search CSS */
+TD.ms-sbscopes
+{
+    padding-right: 0px;
+    border: medium none;
+}
+.s4-search INPUT.ms-sbplain
+{
+    width: 185px  !important;
+    font-family: Verdana;
+    color: inherit !important;
+    font-size: 11px;
+}
+.s4-search SELECT.ms-sbscopes
+{
+    border: solid 1px #bdbdbd;
+    font-family:Verdana;
+    font-size:11px;
+}
+/*** Footer ***/
+.sui-copyright
+{
+    padding-top: 5px;
+}
+.sui-footer-table td 
+{
+    padding-bottom:3px;
+}
+table #footeritem
+{
+    width: 100%;
+}
+td #footerrow
+{
+    width: 30%;
+}
+.sui-footer-item
+{
+    vertical-align: bottom;
+}
+.sui-footer-heading
+{
+    font: bold 11px verdana;
+    color: #000;
+}
+.sui-footer-text
+{
+    font: normal 11px verdana;
+    color: #000;
+    text-decoration: none;
+}
+/*Footer hyperlinks*/
+.sui-footer-heading A:Visited
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-text A:Visited
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-item A:Visited
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-heading A:Hover
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-heading A:Link
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-text A:Link
+{
+	color: #174E82 !important;	
+}
+
+.sui-footer-item A:Link
+{
+	color: #174E82 !important;	
+}
+
+/*Added for Footer Alignment*/
+* {
+     margin: 0;
+  }
+html.ms-dialog body 
+{
+     overflow-y: visible;  /* Show the vertical scrollbar only when needed in the dialog forms. */
+}
+.outer
+{
+     min-height: 100%;
+     height: auto !important;
+     height: 100%;
+     margin: 0 auto -82px; /* The bottom margin is the negative value of the footer’s height */
+     overflow: visible !important;
+}
+
+.push
+{
+     height: 82px; /* .push must be the same height as .footer */
+     clear: both; /* Multicolumn Layout With Sticky Footer */     
+}
+
+.footer
+{
+     height: 82px; /* .push must be the same height as .footer */
+     clear: both; /* Multicolumn Layout With Sticky Footer */     
+}
+/* Set the dialog overlay to 100% width and Height. Otherwise the page body will show scrollbars. */
+.ms-dlgOverlay 
+{
+     height: 100% !important;
+     width: 100% !important;
+}
+body #s4-workspace 
+{
+     margin-bottom: -82px;
+     background-color:#efefef;
+}
+/*Footer Alignment Part Ended*/
+/* End Of Footer CSS */
+/* start of minimal master css*/
+/*To resolve the overlapping of shell logo and  the  fast search mini-title*/
+.s4-mini-h1-a
+{
+    /* [ReplaceColor(themeColor:"Light1")] */ color:#d42e12 !important;
+     margin-left:10px /*IE7 compatibility issue*/
+}
+body #s4-mini-header h3
+{
+     color:#d42e12;
+     margin-top: 14px;
+     color: #404040;
+}
+body #s4-mini-header h2
+{
+     color:#d42e12;
+     margin-top: 14px;
+     color: #404040;
+}
+body #s4-mini-header h3 a
+{
+     color:#d42e12;
+     margin-top: 14px;
+     color: #404040;
+}
+body #s4-mini-header h2 a
+{
+     color:#d42e12;
+     margin-top: 14px;
+     color: #404040;
+}
+/*remove background color shading from TS and MWS masterpages*/
+.s4-tn
+{
+	 background-color: #ffffff !important
+}
+/* Fix ribbon search: Show default yellow/red bar on top of page when Ribbon is not shown */
+#s4-ribbonrow.s4-ribbonrowhidetitle #s4-ribboncont
+{
+    background-color: #f7d117 !important; 
+    height: 42px;
+    min-height: 42px;
+    background-image: url('shell_ribbon.png'); 
+    background-repeat: repeat-x;
+    background-position: 50% bottom;
+}
+/*remove background color shading from the Search masterpage*/
+#s4-topheader2
+{
+	 background: none !important;
+}
+.s4-pr
+{
+	 background-color:#fff;
+}
+.bread-bg
+{
+     background-color:#fff;
+}
+/* Change of SiteActionsMenuInner background color */
+.ms-siteactionsmenuinner
+{
+     background: none !important;
+	 background-color : #EFEFEF !important;
+	 border: 1px solid #404040 !important;
+}
+.ms-siteactionsmenuhover
+{
+	 background: none !important;
+     background-color : #FFEAA0 !important;
+	 border: 1px solid #404040 !important;
+}
+/* Site Actions Menu Inner Text color*/
+.ms-siteactionsmenuhover .ms-menu-a
+{
+	 color: #000000 !important;
+}
+.ms-siteactionsmenuinner .ms-menu-a
+{
+	 color: #000000 !important;
+}
+/*Welcome statement color*/
+.ms-rteElement-H1B
+{
+     color: #404040;
+}
+/* web part header background style*/
+.ms-WPMenuDiv
+{
+     background-color : #FFEAA0 !important;
+	 border-right-color: #FFEAA0 !important;
+	 border-left-color: #FFEAA0 !important;
+	 border-top-color: #FFEAA0 !important;
+	 border-bottom-color: #FFFFFF!important;
+	 Color: #404040 !important;
+	 text-indent: 5px;
+}
+.ms-WPHeaderTdSelection
+{
+     background-color : #FFEAA0 !important;
+	 border-right-color: #FFEAA0 !important;
+	 border-left-color: #FFEAA0 !important;
+	 border-top-color: #FFEAA0 !important;
+	 border-bottom-color: #FFFFFF!important;
+	 Color: #404040 !important;
+	 text-indent: 5px;
+}
+.ms-WPHeaderTdMenu
+{
+     background-color : #FFEAA0 !important;
+	 border-right-color: #FFEAA0 !important;
+	 border-left-color: #FFEAA0 !important;
+	 border-top-color: #FFEAA0 !important;
+	 border-bottom-color: #FFFFFF!important;
+	 Color: #404040 !important;
+	 text-indent: 5px;
+}
+.ms-WPTitle
+{
+     background-color : #FFEAA0 !important;
+	 border-right-color: #FFEAA0 !important;
+	 border-left-color: #FFEAA0 !important;
+	 border-top-color: #FFEAA0 !important;
+	 border-bottom-color: #FFFFFF!important;
+	 Color: #404040 !important;
+	 text-indent: 5px;
+}
+.ms-WPHeaderTdMenu
+{
+	 margin-top: 2px !important;
+	 text-indent: 0px;
+}
+/* Indenting the Webpart Header */
+.ms-rte-wpbox
+{
+	 text-indent: 0px;
+}
+.ms-standardheader
+{
+     border-bottom-color: #FFEAA0 !important;
+	 border-top-color: #FFEAA0 !important;
+	 border-right-color: #FFEAA0 !important;
+	 border-left-color: #FFEAA0 !important;
+}
+.ms-WPTitle A
+{
+	 color: #404040 !important;
+}
+/* pop up menu items background color changing with mouse hover
+ in site actions,welcome, ecb menus and related sub menu items  */
+div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner ul.ms-MenuUIUL div.ms-MenuUIULItemHover
+{
+    background:none;
+    Background-color: #FFE6A0;
+    border:1px solid #f7d117;
+    border-top-color:#f7d117;
+    margin:0px;
+    outline:none;
+    color:#174E82 ;
+}
+.ms-WPTitle
+{
+    font : verdana;
+    font-size : 8pt;
+    font-weight : bold !important; 
+}
+.menu-vertical
+{
+	font : verdana;
+    font-size : 8pt;
+}
+.static .menu-item a
+{
+	border: solid 1px #CACACA;
+}
+BODY #s4-mini-titlearea
+{
+    vertical-align:middle;
+}
+#s4-mini-header
+{
+	vertical-align:bottom;
+	background: none !important;
+	border-bottom: 1px solid #BDBDBD !important;
+	background:lime;
+}
+.ms-mini-socialNotif a
+{
+	height: 60px !important;
+	width: 48px !important;
+}
+.menu A .menu-item SPAN .menu-item-text
+{
+    font-size: 8pt;
+    font: verdana;
+}
+.ms-cui-topbar2
+{
+    padding-left:10px;
+}
+/* Library tools  bg color */
+.ms-cui-cg-db .ms-cui-cg-t
+{   
+    background-color:#FFEAA0;
+}
+/*** calender box ***/
+/* quick launch calender current item bg color */
+.ms-quickLaunch table.ms-picker-table td.ms-picker-monthselected
+{
+    background-color:#FFEAA0;
+    border:solid 1px #F7D117; 
+    background-image:none; 
+}
+/*Calender-Datepicker's Footer Hyperlink Color*/
+.ms-picker-footer A:link
+{
+    color:#174E82;
+}
+/*Calendar View Hyperlink color*/
+.ms-acal-apanel-title SPAN:hover
+{
+    color:#174E82 !important;
+}
+/* Out look  calender items bg color */
+TR TD DIV.ms-acal-today
+{
+    border-color:#f7d117 !important;
+	background-image:none; 
+	border-width:1px !important;
+	background-color:#ffeaa0;
+}
+/* Out look  calender items bg color with mouse over */
+.ms-acal-summary-dayrow td div:hover
+{
+    background-color:#ffeaa0;
+    border-color:#ffeaa0 !important;
+    border-width:1px !important;
+}
+/* quick launch calender items bg color */
+.ms-quickLaunch table.ms-picker-table td.ms-picker-monthcenterOn
+{
+    padding-bottom:3px;
+    /* [ReplaceColor(themeColor:"Accent1-Darker")] */ color:#44aff6;
+    cursor:pointer;
+    text-decoration:underline;
+    background-color:#ffeaa0;
+}
+/****Calendar Day, Week View Mouse Hover #ffeaa0 */
+/**** calendar date mouse hover background color has been changed*/
+.ms-picker-today
+{
+    background-color:#FFEAA0;
+    border-color:#f7d117 !important;
+    background-image:none;
+}
+/*** calendar week mouse hover background color has been changed*/
+.ms-acal-week-top td.ms-acal-hover div
+{
+    background-color:#FFEAA0;
+    border-color:#f7d117 !important;
+    background-image:none; 
+}
+/*** calendar Month mouse hover background color has been changed*/
+.ms-acal-month td.ms-acal-hover div
+{
+    background-color:#FFEAA0;
+    border-color:#f7d117 !important;
+    background-image:none; 
+}
+/* calender heading background color */
+.ms-cui-cg-gr .ms-cui-cg-t
+{
+	background-color:#ffeaa0;	
+}
+/* Calendar Control Color */
+.ms-acal-summary-dayrow th.ms-acal-hover
+{
+	background:none !important;
+	background-color: #FFEAA0 !important;
+	border-color:#F7D117 !important;
+	text-decoration:underline;
+}
+.ms-acal-summary-dayrow td.ms-acal-hover div
+{
+	background:none !important;
+	background-color: #FFEAA0 !important;
+	border-color:#F7D117 !important;
+	text-decoration:underline;
+}
+.ms-acal-week-top td.ms-acal-hover div
+{
+	background:none !important;
+	background-color: #FFEAA0 !important;
+	border-color:#F7D117 !important;
+	text-decoration:underline;
+}
+/*******************/
+/*left navigation sub menu items with mouse over */
+.s4-ql ul.root ul > li > a:hover
+{
+	color: #404040 !important;
+	background-color:#efefef;
+}
+/*Remove the gap between libraries,lists,discussions */
+.s4-ql ul.root ul
+{
+    margin:0px;           /*Updated for SUI. ORIGINAL: */  /* margin:0px 0px 20px 0px; */
+    margin-bottom:-2px;   /***Update For IE7 compatibility Issue***/
+    padding-left:0px;
+    border: none;             /*ADDED for SUI  */
+    background-color:#fcfedf; /*Added background color of qk launch in site analysis page*/  
+}
+/*Remove border for the top bar*/
+.ms-cui-topBar2
+{
+	border-bottom: #cad2db 0px solid !important; 
+	height:42px; /*IE7 compatibility Issue*/
+}
+.s4-wpcell .ms-WPSelected .ms-WPHeader td
+{
+    border-bottom:1px solid #FFFFFF !important;
+}
+.s4-wpActive .ms-WPHeader td
+{
+    border-bottom:1px solid #FFFFFF !important;
+}
+.s4-wpcell:hover .ms-WPHeader td
+{
+    border-bottom:1px solid #FFFFFF !important;
+}
+.ms-fakewptitle
+{
+    border-bottom:1px solid #FFFFFF;
+    border-collapse:collapse;
+}
+.ms-WPHeader td
+{
+    border-bottom:1px solid #FFFFFF;
+    border-collapse:collapse;
+}
+/*Welcome page header border bottom in Record Center Site template*/
+.ms-welcomepageheader
+{
+    border-bottom: #ffeaa0 1px solid !important;
+}
+/*Remove the WPBorder in webpart title in the Site Template Document Center*/
+.ms-WPBorder
+{
+	border-bottom: #ffffff 1px solid !important;
+	border-top: #ffffff 1px solid !important;
+	border-left: #ffffff 1px solid !important;
+	border-right: #ffffff 1px solid !important;
+}
+/*Remove the Lines appearing in Library Tools in the Ribbon Menu IE8*/
+.ms-cui-ct-first .ms-cui-tt-a
+{
+	border-left-color: transparent !important;
+}
+/*Remove the Lines appearing in Library Tools in the Ribbon Menu IE8*/
+.ms-cui-ct-last .ms-cui-tt-a
+{
+	border-right-color: transparent !important;
+}
+/*Remove the lines appearing in library tools in the ribbon menu IE7*/
+.ms-cui-ct-first .ms-cui-tt-a
+{
+	border-left-color:transparent !important;
+}
+.ms-cui-ct-last .ms-cui-tt-a
+{
+	border-right-color: transparent !important;
+}
+/*Remove the lines appearing in library tools in the ribbon menu IE7*/
+/*Business Center Heading Color in BusinessIntelligenceCenter Site Template*/
+.BICenterHeading 
+{
+	color: #404040 !important;
+}
+.BlockHeading
+{
+	color: #404040 !important;
+}
+/*MySiteHost Site Template Styles*/
+.ms-newsfeedheader
+{
+	color: #404040 !important;
+}
+/*Publishing Portal Menu-Item*/
+.s4-tn LI.static > .menu-item
+{
+	color: #404040 !important;
+}
+/*Class to change the font details of the Add Document link details for document library webpart*/
+a.ms-addnew
+{
+	font-weight:normal;
+	font-family:verdana;
+	font-size:8pt;
+	color:#174E82;
+	text-decoration:none;
+}
+.ms-SpLinkButtonInActive 
+{
+	 background-color: #EFEFEF !important;
+	 border-bottom: 1px solid #404040 !important;
+	 border-top: 1px solid #404040 !important;
+	 border-right: 1px solid #404040 !important;
+	 border-left:  1px solid #404040  !important;
+}
+.ms-SpLinkButtonInActive:hover
+{
+	 background-color: #FFEAA0;
+	 border-bottom: 1px solid #404040 !important;
+	 border-top: 1px solid #404040 !important;
+	 border-right: 1px solid #404040 !important;
+	 border-left:  1px solid #404040  !important;
+}
+/* Search Scope */
+.ms-ptabarea
+{
+	border-bottom: 2px solid #F7D117 !important;
+	width: 413px;
+}
+.ms-sctabcnhover 
+{
+	background: #F7D117 !important;
+	background-color: #F7D117;
+	border : 1px solid #BDBDBD;
+	border-top-color:  #BDBDBD !important;
+	border-right-color:  #BDBDBD !important;
+	border-left-color:  #BDBDBD !important;
+	border-bottom-color:  #F7D117 !important;
+	color: #174E82;
+	
+}
+.ms-sctabcn 
+{
+	background: #F7D117 !important;
+	background-color: #F7D117;
+	border : 1px solid #BDBDBD;
+	border-top-color:  #BDBDBD !important;
+	border-right-color:  #BDBDBD !important;
+	border-left-color:  #BDBDBD !important;
+	border-bottom-color:  #F7D117 !important;
+	color: #174E82;
+}
+.ms-sctabcf 
+{
+	background-color: #EFEFEF !important;
+	border : 1px solid #BDBDBD;
+	border-top-color: #BDBDBD !important;
+	border-right-color: #BDBDBD !important;
+	border-left-color: #BDBDBD !important;
+	border-bottom-color: #EFEFEF !important;
+	color: #174E82 !important;
+}
+.ms-sctabcfhover
+{
+	border : 1px solid #BDBDBD;
+	border-top-color:  #BDBDBD !important;
+	border-right-color: #BDBDBD !important;
+	border-left-color: #BDBDBD !important;
+	border-bottom-color:  #EFEFEF !important;
+	color: #174E82 !important;
+}
+.srch-sb-main
+{
+	padding-bottom: 100px !important;
+	padding-top: 120px !important;
+}
+
+/*search scope header link*/
+.ms-sctabcfhover A:visited{
+/* [ReplaceColor(themeColor:"Accent1")] */ color:#174E82 !important;
+}
+.ms-sctabcfhover A:link{
+/* [ReplaceColor(themeColor:"Accent1")] */ color:#174E82 !important;
+}
+.ms-sctabcf A:visited{
+/* [ReplaceColor(themeColor:"Accent1")] */ color:#174E82 !important;
+}
+.ms-sctabcf A:link{
+/* [ReplaceColor(themeColor:"Accent1")] */ color:#174E82 !important;
+}
+/*Changing the Hyperlink color(In Fast search Page)*/
+.ms-sblink A:Link
+{
+    color:#174E82 !important;
+}
+/*Search Header*/
+/*Search Results Page*/
+.ms-searchref-filterlink:hover
+{
+	color: #174e82 !important;
+}
+
+.ms-searchref-filterlink
+{
+	color: #174e82 !important;
+}
+
+.ms-socialNotif-text
+{
+	text-decoration: none;
+}
+
+/*SpLinkButton Color on InActive state*/
+.ms-SpLinkButtonInActive
+{
+	background-color: #EFEFEF;
+}
+/* SpLinkButton Color on Mouse Hover*/
+.ms-SpLinkButtonActive a:hover
+{
+	color:#000000;
+	background-color: #FFEAA0;
+	text-decoration:none;
+}
+/* Site Menu Button*/
+/*Top Link bar in Team Site Template*/
+.s4-toplinks .s4-tn A.selected
+{
+	background: #ffeaa0 !important;
+	background-color: #ffeaa0 !important;
+	border: 1px solid #FFEAA0 !important;
+}
+.s4-tn LI.static > .menu-item A.selected
+{
+	border: 1px solid #FFEAA0 !important;
+	background-color: #FFFFFF !important;
+}
+.s4-tn LI.static > .menu-item:hover
+{
+	background: #ffeaa0 !important;
+	background-color: #ffeaa0 !important;
+	border: 1px solid #FFEAA0 !important;
+	text-decoration: none;
+}
+/*Top Link bar in Meeting Workspace*/
+.s4-tn LI.static > .menu-item A.selected
+{
+	background: #ffeaa0 !important;
+	background-color: #ffeaa0 !important;
+	border: 1px solid #FFEAA0 !important;
+}
+/* Hyperlink Section Site Settings*/
+.ms-linksection-level1 UL LI A 
+{
+	color: #174e82 !important;
+}
+.ms-splinkbutton-text
+{
+	color: #174e82 !important;
+}
+.ms-vb2 A:link
+{
+	color: #174e82 !important;
+}
+.ms-WPBody A:Link
+{
+	color: #174e82 !important;
+}
+.ms-toolbar
+{
+	color: #174e82 !important;
+}
+/* View Selected Link button */
+.ms-viewselector div
+{
+	background-color: #EFEFEF !important;
+	border-color: 1px solid #404040 !important;
+}
+/* View Selected Link button for td */
+.ms-menutoolbar TD TD.ms-viewselectorhover
+{
+	border: 1px solid #404040;
+}
+.ms-menutoolbar TD TD.ms-viewselector
+{
+	border: 1px solid #404040;
+}
+/*For Link color in Personal.aspx*/
+div.ms-wpContentDivSpace a
+{
+    color:#174E82; 
+}
+div.ms-contactcardtext3 span
+{
+    color:#174E82;
+}
+.ms-searchref-filterlink:A .ms-searchref-msg:A
+{
+	color: #174E82 !important;
+}
+.ms-searchref-msg
+{
+	color: #174E82 !important;
+}
+.ms-splinkbutton-text:hover .ms-searchref-filterlink
+{
+	color: #174E82 !important;
+}
+.ms-sctabf A:link
+{
+	color: #174E82 !important;
+}
+.ms-vb A:link
+{
+	color: #174E82 !important;
+}
+.ms-vb-user A:link
+{
+	color: #174E82 !important;
+}
+/*Hyperlink Color- In List settings page*/
+.ms-propertysheet A:link
+{
+    color: #174e82 !important;
+}
+/*Recycle bin- Column name Hyperlinks*/
+.ms-vh2-nofilter A:link
+{
+    color: #174e82 !important;
+}
+/*Recycle bin- Topsite Hyperlink*/
+.s4-title .s4-pagedescription A:link
+{
+    color: #174e82 !important;
+}
+/*Recycle bin-Quick launch menu Item links in Site collection Recycle bin*/
+.ms-navitem A:hover
+{
+    color: #174e82 !important;
+}
+/*Hyperlink color- In welcome user control >> my settings page*/
+.ms-descriptiontext A:link
+{
+    color: #174e82 !important;
+}
+/*Hyperlink color-In View All pages*/
+.ms-vb-user A:link
+{
+    color: #174e82 !important;
+}
+/*Hyperlink color- In picture Library Menu items*/
+.ms-menutoolbar TD A:link
+{
+    color: #174e82 !important;
+}
+/* Discussions bgcolor */
+/* after clicking Discussions link in left navigation, then 
+  changing list tools heading background color in ribbon control */
+.ms-cui-cg.ms-cui-cg-t
+{
+	background-color:#ffeaa0;
+}
+/*To reduce gap between site pages and Most Recently used in
+ left navigation when we click on site pages link */
+.s4-recentchanges
+{
+    padding-bottom:0px;
+}
+.ms-quicklaunch
+{
+    padding-top:0px;
+}
+.ms-itmhover
+{
+    border:#FCFEDF 1px solid;
+}
+/* after clicking any custom list or tasks link in left navigation, then 
+  changing list tools heading background color in ribbon control */
+.ms-cui-cg-lb .ms-cui-cg-t
+{
+	background-color:#ffeaa0;
+}
+/* remove blue color background on documents,library with mouse hover in selected mode */
+.ms-cui-cg-s.ms-cui-cg .ms-cui-tt-s .ms-cui-tt-a:hover
+{
+	background-color: #FFFFFF !important;
+	color: #000000 !important;
+}
+/* fixing margin for calender sub tabs(Events/calendar)*/
+.ms-cui-cg-gr .ms-cui-tt-a
+{
+    margin-top:0px;	
+    border:none;   
+    background:none;
+}
+/* fixing margin for calender sub tabs(Events/calendar)with mouse hover*/
+.ms-cui-cg-gr .ms-cui-tt-a:hover
+{
+    margin-top:0px;	
+    border:none;   
+    background:none;
+}
+/* fixing margin for Lists sub tabs(Items/List) */
+.ms-cui-cg-lb .ms-cui-tt-a
+{
+    margin-top:0px;	
+    border:none;   
+    background:none;
+}
+/* fixing margin for Lists sub tabs(Items/List) with mouse hover */
+.ms-cui-cg-lb .ms-cui-tt-a:hover
+{
+    margin-top:0px;	
+    border:none;   
+    background:none;
+}
+/*showing yellow bg color in all site content sub menu items*/
+#ctl00_PlaceHolderMain_ToolBar_RightRptControls_ctl00_ctl00_onetViewSelector:hover 
+{
+	background-color:#FFEAA0; 
+	background-image:none; 
+}
+/*** Edit Permissions Needs clarifications ***/
+.ms-cui-cg-s .ms-cui-cg-or .ms-cui-cg-t
+{
+	background-color:#ffeaa0;
+}
+/*** Ends ***/
+.ms-cui-tabBody .ms-cui-tabBody-or
+{
+	border-bottom-color: #BDBDBD !important;
+}
+/* My Site Menu mouse over Actions*/
+.ms-globalnav
+{	
+	background-color: #F7D117 !important;
+	border-bottom: #d42e12 6px solid;
+	height: 36px;
+}
+.s4-mysitetn A:hover
+{
+	background: none !important;	
+}
+.s4-mysitetn A:hover > SPAN.additional-background
+{
+	background: none !important;	
+}
+.s4-mysitetn A:hover > SPAN.additional-background > SPAN.menu-item-text
+{
+	background: none !important;	
+}
+.s4-mysitetn A.selected:hover
+{
+	background: none !important;	
+}
+.s4-mysitetn A.selected
+{
+	background: none !important;	
+}
+.s4-mysitetn A.selected:hover > SPAN.additional-background
+{
+	background: none !important;	
+}
+.s4-mysitetn A.selected > SPAN.additional-background
+{
+	background: none !important;	
+}
+.s4-mysitetn A.selected:hover > SPAN.additional-background > SPAN.menu-item-text
+{
+	background: none !important;
+}
+/*People Search Box */
+.srch-InputText
+{
+    color:#000000;
+    background-color: #ffffff;
+}
+ms-globalnavmenu li.static
+{
+    background-color: rgb(240,53,56);
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position:left;
+    padding-left: 5px;
+}
+.s4-mysitetn A
+{
+    color: black !important;
+}
+.ms-globalnavicon a:hover
+{
+    color: black !important;
+}
+.ms-globalnavicon a
+{
+    color: black !important;
+}
+.ms-globalnavicon
+{
+    padding-bottom: 12px;
+    padding-left: 7px;
+    padding-right: 5px;
+    padding-top: 12px;
+    font-size:8pt;
+}
+.s4-mysitetn li.selected a.menu-item:active span.additional-background span.menu-item-text
+{
+    color:black !important;
+    background-image:url('tab-selected.png') !important;
+    background-repeat:repeat-x !important;
+    background-position: left bottom;
+    border:none;
+    border-bottom-width:0px;
+    margin-right:-2px;
+}
+.s4-mysitetn li.selected a.selected span.additional-background span.menu-item-text
+{
+    color:black !important;
+    background-image:url('tab-selected.png') !important;
+    background-repeat:repeat-x !important;
+    background-position: left bottom;
+    border:none;
+    border-bottom-width:0px;
+    margin-right:-2px;
+}
+.s4-mysitetn li.selected a.selected
+{
+    color:black !important;
+    background-image:url('tab-selected.png') !important;
+    background-repeat:repeat-x !important;
+    background-position: left bottom;
+    border:none;
+    border-bottom-width:0px;
+    margin-right:-2px;
+}
+.ms-globalnavicon li.selected a.menu-item:active span.additional-background span.menu-item-text
+{
+    color:black !important;
+    background-image:url('tab-selected.png') !important;
+    background-repeat:repeat-x !important;
+    background-position: left bottom;
+    border:none;
+    border-bottom-width:0px;
+    margin-right:-2px;
+}
+.ms-globalnavicon li.selected a.selected span.additional-background span.menu-item-text
+{
+    color:black !important;
+    background-image:url('tab-selected.png') !important;
+    background-repeat:repeat-x !important;
+    background-position: left bottom;
+    border:none;
+    border-bottom-width:0px;
+    margin-right:-2px;
+}
+.s4-mysitetn li.selected a.menu-item:hover span.additional-background span.menu-item-text
+{
+    background-image: none transparent;
+    background-color:#fff;
+    margin-right:-2px;
+    color:black !important;
+    text-decoration:underline;
+}
+.s4-mysitetn li.selected a.selected:hover span.additional-background span.menu-item-text
+{
+    background-image: none transparent;
+    background-color:#fff;
+    margin-right:-2px;
+    color:black !important;
+    text-decoration:underline;
+}
+.s4-mysitetn li.selected a.selected:hover
+{
+    background-image: none transparent;
+    background-color:#fff;
+    margin-right:-2px;
+    color:black !important;
+    text-decoration:underline;
+}
+.ms-globalnavicon li.selected a.selected:hover span.additional-background span.menu-item-text
+{
+    background-image: none transparent;
+    background-color:#fff;
+    margin-right:-2px;
+    color:black !important;
+    text-decoration:underline;
+}
+.s4-mysitetn li.static a.static:hover span.additional-background span.menu-item-text 
+{
+    background:none !important;
+    border-style:none !important;
+    color: black !important;
+    text-decoration:underline;
+}
+.s4-mysitetn li.static a.static:hover span.additional-background 
+{
+    background:none !important;
+    border-style:none !important;
+    color: black !important;
+    text-decoration:underline;
+}
+.s4-mysitetn a.static:hover 
+{
+    background:none !important;
+    border-style:none !important;
+    color: black !important;
+    text-decoration:underline;
+}
+.ms-globalnavmenu li.static a.menu-item:hover span.additional-background span.menu-item-text 
+{
+    background:none !important;
+    border-style:none !important;
+    color: black !important;
+    text-decoration:underline;
+}
+.ms-globalnavmenu li.static a.menu-item:hover span.additional-background 
+{
+    background:none !important;
+    border-style:none !important;
+    color: black !important;
+    text-decoration:underline;
+}
+/*Personalized Page:page tool tab in Ribbon control background color has been changed similar to library tool tab ****/
+.ms-cui-cg-yl .ms-cui-cg-i
+{
+	background-color:#FFEAA0;
+}
+/****Personalized Page:WebPart tool tab in Ribbon control background color has been changed similar to library tool tab ****/
+.ms-cui-cg-pp .ms-cui-cg-i
+{
+	background-color:#FFEAA0;
+}
+/* Hiding the Global Help Button */
+.ms-globalnavhelp span
+{
+	display: none !important;
+}
+/*My site people search backgroung color*/
+.ms-globalnav td.ms-sbgo
+{
+    background: #FFFFFF;
+    border-color: #404040 !important; 
+    color: #404040; 
+}
+.ms-globalnav .srch-gosearchimg
+{
+    background: #FFFFFF;
+    border-color: #404040 !important; 
+    color: #404040; 
+}
+.ms-globalnav .s4-search input
+{
+    background: #FFFFFF;
+    border-color: #404040 !important; 
+    color: #404040; 
+}
+.ms-globalnav .ms-sbcell input
+{
+    background: #FFFFFF;
+    border-color: #404040 !important; 
+    color: #404040; 
+}
+.ms-globalnav .ms-sbcell
+{
+    background: #FFFFFF;
+    border-color: #404040 !important; 
+    color: #404040; 
+}
+s4-search INPUT .ms-sbplain
+{
+    color: #404040;
+}
+/*Mysite  myprofile logo background color changed*/
+#ctl00_PlaceHolderMain_PictureUrlImage
+{
+    background-color:#BDBDBD;
+    margin: 0 0 0 0;
+    background-repeat: repeat-x;
+}
+/*Mysite's My Profile Color Scheme*/
+.s4-sn LI.static > A.selected
+{
+	background-color: #FFFFFF !important;
+	border-top	: #BDBDBD 1px solid;
+	border-left	: #BDBDBD 1px solid;
+	border-right	: #BDBDBD 1px solid;	
+}
+.s4-sn LI.static > A
+{
+	background-color: #FCFEDF !important;
+	color:#174E82; /*my site - my profile page options tab font color*/
+	font-size:11px; /*my site - my profile page options tab font size*/
+}
+.s4-sn
+{
+	border-bottom: #BDBDBD 1px solid;
+	background-color: #FCFEDF !important;
+}
+.ms-profilepageheader
+{
+	background-color: #FCFEDF !important;
+	border-right: #BDBDBD 1px solid;
+}
+.ms-profileasseenby
+{
+	background: none !important;
+	background-color: #FFEAA0 !important;
+	color: #174e82 !important;
+}
+.ms-contactcardtext1
+{
+	color: #404040 !important;
+}
+/*For IE7 compatibility issue: white line between "Allsites","people" tab and the searchbox in Fast search Page*/
+.ms-sctabcfb
+{
+    background-color:#F7D117 !important;
+} 
+.ms-sctabcnb
+{
+    background-color:#F7D117 !important;
+} 
+/*IE 7 compatibility Issue: For "Edit" option alignment in "permission Tools" Tab*/
+.ms-cui-ct-last.ms-cui-ct-first
+{
+    text-align:center;
+    width:105px;
+}
+/*IE 7 compatibility issue*/
+.ms-cui-tts
+{
+    height:42px; 
+}
+/*calendar Quicklaunch bar background*/   
+.ms-quicklaunch-navmgr 
+{
+    background-color:#FCFEDF;
+} 
+
+/*To resolve the line gap when mouse hover on library tools*/    
+.ms-cui-tt
+{
+    margin:0px 0px 1px 0px;
+}
+/*To resolve the line gap when mouse hover on library tools*/    
+.ms-cui-tts .ms-browseTab > a.ms-cui-tt-a
+{
+    margin-right:2px; 
+}
+/*To resolve the line gap when mouse hover on library tools*/    
+.ms-cui-tts .ms-browseTab > a.ms-cui-tt-a:hover 
+{
+    margin-right:2px; 
+}
+
+/*To Fix the gap between "page" tab and "Publish" tab in Fast Search Site with out mouse hover*/
+.ms-cui-tts .ms-cui-tt  > .ms-cui-tt-a
+{
+    margin-right:2px; 
+}
+/*To Fix the gap between "page" tab and "Publish" tab in Fast Search Site with mouse hover*/
+.ms-cui-tts .ms-cui-tt > .ms-cui-tt-a:hover 
+{
+    margin-right:2px; 
+}
+
+/*To Set the Margin in the Library Tools without mouse hover*/
+.ms-cui-ct-ul .ms-cui-tt .ms-cui-tt-a
+{
+    margin-right:0px;
+} 
+/*To Set the Margin in the Library Tools with mouse hover*/
+.ms-cui-ct-ul .ms-cui-tt .ms-cui-tt-a:hover
+{
+    margin-right:0px;
+} 
+
+/* To Set the LinkSectionHeader background color in workflow page*/
+TD.ms-linksectionheader
+{
+    background: none !important;
+    background-color: #FFEAA0 !important;
+    border: #FFEAA0 1px solid;
+    color: #404040 !important;
+}
+/*Added for Date Range banner,below the ribbon control,*/
+.s4-status-s1
+{
+   background:none;
+   background-color:#FFEAA0; 
+   border-top:#bdbdbd;
+   border-bottom:#bdbdbd;
+   border-right:#bdbdbd;
+   border-left:#bdbdbd;
+}
+.s4-status-s1 A:link
+{
+   color:#174E82;
+}
+.s4-ql A.selected
+{
+  background:none;
+  border-top-color:#bdbdbd !important;
+  border-bottom-color:#bdbdbd !important;
+  border-right-color:#bdbdbd !important;
+  border-left-color:#bdbdbd !important;
+}
+/* Added for Developer Dashboard */
+.ms-developerdashboard
+{
+    padding-bottom: 82px; /* Added to prevent that the footer overlaps the developer dashboard */
+}
+.ms-developerdashboardnav UL LI
+{
+    margin-left: 15px;
+}
+
+.ms-authoringcontrols .outer
+{
+    margin: 0 auto 0px; /* To fix the margin issue in the Content Organizer Rules dialog window */
+}
+
+#topLevelNavTable .activeexpanded a
+{
+    background: #EFEFEF url('globaltab_offrightexp_red.gif') no-repeat right top !important;
+}
+
+#topLevelNavTable .activeexpandedhover a 
+{
+    background: #FFFFFF url('globaltab_offrightexp_red.gif') no-repeat right top !important;
+}
+/********************************************************************************************************************/
+
+.item link-item bullet
+{
+	background-image: url ('red_box.gif'); 
+}
+
+/********************************************************************************************************************/
+.s4-recentchanges
+      {
+          DISPLAY:none;
+      }
+      
+      
+#s4-leftpanel 
+	{
+	      display:none;                              
+	}                              
+.s4-ca 
+	{                                
+	      margin-left:0px!important;   
+	                                 
+	}
+	
+	
+	/********************* CSS3PIE.com for the body Wrapper *****/ 
+
+
+.sui-footer-table
+{
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#efefef;
+    padding: 10px 10px 10px 10px !important;
+    vertical-align: top !important;
+	border:thin #bdbdbd	solid;
+	width:100%;
+
+
+
+	
+}
+
+/* Aligns the Top Bars 
+
+.ms-cui-ribbonTopBars {
+width: 1024px !important;
+margin-left:auto;
+margin-right:auto;
+}
+ 
+/* Turns off the border on the bottom of the tabs 
+.ms-cui-ribbonTopBars > div {
+border-bottom:1px solid transparent !important;
+}
+
+*/
+
+
+
+
+
+#footer{
+clear:both;
+    margin-left:auto;
+    margin-right:auto;
+
+-webkit-box-shadow: #666 0px 2px 3px;
+-moz-box-shadow: #666 0px 2px 3px;
+box-shadow: #666 0px 2px 3px;
+background: #ffffff;
+/* behavior: url(../Style%20Library/BSP/PIE.htc);  */
+
+width: 100% !important;
+
+}
+
+
+/* Aligns the Main body */
+
+#s4-bodyContainer {
+width: 1033px !important;
+height:auto;
+margin-left:auto;
+margin-right:auto;
+background-color:#bdbdbd;
+border: 1px solid #bdbdbd;
+
+-webkit-box-shadow: #666 0px 2px 3px;
+-moz-box-shadow: #666 0px 2px 3px;
+box-shadow: #666 0px 2px 3px;
+background: #ffffff;
+/*  behavior: url(../Style%20Library/BSP/PIE.htc ); */
+
+
+}
+
+

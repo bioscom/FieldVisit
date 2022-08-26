@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="">
+    <siteMapNode url="" title="Cost Reduction Ideas"  description="">
+      <!--<siteMapNode url="~/Default.aspx" title="Home Page"  description="" />-->
+      <siteMapNode url="~/App/BI500/CostReductionIdea.aspx" title="Raise Cost Reduction Idea"  description="" />
+      <siteMapNode url="~/App/BI500/CostReduction.aspx" title="Cost Reduction Database"  description="" />
+      <siteMapNode url="~/App/BI500/CostReductionMyIdeas.aspx" title="My Cost Reduction Ideas"  description="" />
+      <siteMapNode url="~/App/BI500/CostReductionForMyAction.aspx" title="Cost Reduction Ideas For My Action"  description="" />
+    </siteMapNode>
+
+    <siteMapNode title="Environment Setup">
+      <siteMapNode url="~/App/BI500/Setups.aspx" title="Business Organisation Structure"/>
+      <siteMapNode url="~/App/BI500/CostReductionStageGaters.aspx" title="Stage Gate Managers"  description="" />
+      <siteMapNode url="~/App/BI500/BILeanReviwers.aspx" title="BI/Lean Reviewers"  description="" />
+      <siteMapNode url="~/App/BI500/CorporateReviewers.aspx" title="Corporate Reviewers"  description="" />
+    </siteMapNode>
+
+    <siteMapNode title="Downloads">
+      <siteMapNode url="~/App/BI500/Resources/Plan and Weekly Commitment.pptx" title="Cadence Review Tool"/>
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

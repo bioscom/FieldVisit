@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+
+  <siteMapNode title="Service/Material Cost Red Flag" description="Service/Material Cost Red Flag">
+
+    <siteMapNode title="Service/Material Cost Red Flag">
+      <siteMapNode url="~/App/Prices/Default.aspx" title="Submit Service/Material Cost Red Flag" />
+      <siteMapNode url="~/App/Prices/MyServiceMaterialCost.aspx" title="My Service/Material Cost Red Flag"/>
+      <siteMapNode url="~/App/Prices/PriceCheckList.aspx" title="Service/Material Cost Red Flag Register"/>
+    </siteMapNode>
+
+    <siteMapNode title="Admin Management">
+      <siteMapNode url="~/App/Prices/Reviewers.aspx" title="Reviewers Management"/>
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Telerik.QuickStart;
+
+public partial class Common_UserControls_HomeContent : System.Web.UI.UserControl
+{
+    #region Properties
+
+    internal bool IsBeta
+    {
+        get
+        {
+            string value = ConfigurationManager.AppSettings.Get("IsBeta");
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+
+            return Convert.ToBoolean(value);
+        }
+    }
+
+    protected string CurrentLanguage
+    {
+        get
+        {
+            return (string)(Session[QSFConstants.NavigationLanguageLiteral] ?? "CS");
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    protected override void OnInit(EventArgs e)
+    {
+        SampleAppsControl.Visible = !IsBeta;
+        BetaHighlightsControl.Visible = IsBeta;
+
+        base.OnLoad(e);
+    }
+
+    #endregion
+}

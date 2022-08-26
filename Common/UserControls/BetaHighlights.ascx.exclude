@@ -1,0 +1,43 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BetaHighlights.ascx.cs" Inherits="Common_UserControls_BetaHighlights" %>
+<div id="beta-highlights">
+    <h2>Beta Highlights</h2>
+    <ul>
+        <li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li>
+        <li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li><li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li><li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li><li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li><li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li><li>
+            <span class="icon icon-radgrid"></span>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
+            <a href="http://demos.telerik.com/aspnet-ajax-beta/grid/examples/overview/defaultCS.aspx">RadGrid
+            </a>
+        </li>
+    </ul>
+</div>

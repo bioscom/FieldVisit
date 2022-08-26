@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  
+  <siteMapNode title="" description="">
+    <siteMapNode>
+      <siteMapNode url="Dashboard2.aspx" title="Cost Saving Performance Dashboard" description="Dashboard" />
+      <siteMapNode url="VerificationHeatMapReport.aspx" title="RPI Verification Heat Map" />
+      <siteMapNode url="AppGatePass.aspx?sAppToken=ftnDay" title="14 Days Contract"/>
+      <siteMapNode url="~/App/PPMS/Default.aspx" title="Project Registration System"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=pdcc" title="Production Cost Challenge"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=pec" title="Field Visit / PEC"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=IMF" title="Initiative Management"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=flr" title="Flare Waiver"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=BI" title="Bright Ideas"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=Lean" title="CI Projects Dashboard"/>
+      <siteMapNode url="AppGatePass.aspx?sAppToken=pr" title="Service/Material Cost Red Flag"/>
+      <siteMapNode url="http://sww.scin.cpdms.shell.com/iap/Default.aspx" title="IAP Change Control Form"/>
+      <siteMapNode url="~/App/FLBM/Default.aspx" title="Front Line Barrier Management"/>
+   </siteMapNode>
+ 
+    <!--<siteMapNode url="AppGatePass.aspx?sAppToken=DlyRpt" title="Production Daily Report"/>-->
+
+  </siteMapNode>
+
+</siteMap>
+
+
+
+

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode title="Application Configuration">
+    
+    <siteMapNode title="PEC Configuration">
+      <siteMapNode url="~/Forms/Setup/Superintendent.aspx" title="Superintendent"/>
+      <siteMapNode url="~/Forms/Setup/Districts.aspx" title="District"/>
+      <siteMapNode url="~/Forms/Setup/facilities.aspx" title="Facility"/>
+      <siteMapNode url="~/Forms/Setup/PlannerFacilityMapping.aspx" title="Map Planner to Facilities"/>
+      <siteMapNode url="~/Forms/Setup/Questionaire.aspx" title="Questionaire"/>
+    </siteMapNode>
+
+    <siteMapNode title="IAP Window">
+      <siteMapNode url="~/Forms/SetupSepcin/PlanExeccutionCriteria.aspx" title="Plan Execution Criteria"/>
+    </siteMapNode>
+
+      <siteMapNode title="Activity Information">
+        <siteMapNode url="~/Forms/SetupSepcin/ActivityType.aspx" title="Activity Type"/>
+        <siteMapNode url="~/Forms/SetupSepcin/OilUnit.aspx" title="Oil Unit"/>        
+      </siteMapNode>
+
+      <siteMapNode title="Vendor Call Out Information">
+        <siteMapNode url="~/Forms/SetupSepcin/TradeTypes.aspx" title="Trade Types"/>
+      </siteMapNode>
+
+      <siteMapNode title="Personnel Information">
+        <siteMapNode url="~/Forms/SetupSepcin/FieldContact.aspx" title="Field/FPSO Contact"/>
+        <siteMapNode url="~/Forms/SetupSepcin/VisaType.aspx" title="Visa Type"/>
+        <siteMapNode url="~/Forms/SetupSepcin/Baggage.aspx" title="Baggage"/>
+        <siteMapNode url="~/Forms/SetupSepcin/LastVisit.aspx" title="Last Visit"/>
+      </siteMapNode>      
+
+    <siteMapNode url="~/Default.aspx" title="Exit"></siteMapNode>
+
+  </siteMapNode>
+  
+</siteMap>

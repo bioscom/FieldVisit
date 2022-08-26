@@ -1,0 +1,122 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="KeyActivitiesMilestone.ascx.cs" Inherits="UserControl_KeyActivitiesMilestone" %>
+<%@ Reference VirtualPath="~/UserControl/dateControl.ascx" %>
+<%@ Register Src="~/UserControl/dateControl.ascx" TagName="dateControl" TagPrefix="uc3" %>
+
+<asp:GridView ID="grdView" runat="server" AutoGenerateColumns="False" ShowFooter="true"
+    OnPageIndexChanging="grdView_PageIndexChanging" OnRowCommand="grdView_RowCommand"
+    OnRowCancelingEdit="grdView_RowCancelingEdit"
+    OnRowDataBound="grdView_RowDataBound" OnRowDeleting="grdView_RowDeleting"
+    OnRowEditing="grdView_RowEditing" OnRowUpdating="grdView_RowUpdating" DataKeyNames="ID_TIMELINE"
+    Width="100%">
+    <Columns>
+        <%--<asp:TemplateField>
+                        <ItemTemplate>
+                            <%# Container.DataItemIndex + 1 %>
+                        </ItemTemplate>
+                    </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="Activity Description" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <asp:TextBox ID="activityDescTextBox" runat="server"
+                    Text='<%# Eval("ACTIVITY_DESCRIPTION") %>'
+                    TextMode="MultiLine" Width="500px" Height="50px"></asp:TextBox>
+            </EditItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="activityDescTextBox" runat="server"
+                    TextMode="MultiLine" Width="500px" Height="50px"></asp:TextBox>
+            </FooterTemplate>
+            <ItemTemplate>
+                <%# Eval("ACTIVITY_DESCRIPTION")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Start Date (SD)" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <uc3:dateControl ID="SDdateControl" runat="server" />
+            </EditItemTemplate>
+            <FooterTemplate>
+                <uc3:dateControl ID="SDdateControl" runat="server" />
+            </FooterTemplate>
+            <ItemTemplate>
+                <%# Eval("START_DATE")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Finish Date(FD = SD + 21Days)" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <uc3:dateControl ID="FDdateControl" runat="server" />
+            </EditItemTemplate>
+            <FooterTemplate>
+                <uc3:dateControl ID="FDdateControl" runat="server" />
+            </FooterTemplate>
+            <ItemTemplate>
+                <%# Eval("FINISH_DATE")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Edit" ShowHeader="False" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <asp:LinkButton ID="lnkUpdate" runat="server" CausesValidation="True" CommandName="Update"
+                    Text="Update" OnClientClick="return confirm('Update?')" ValidationGroup="Update"></asp:LinkButton>
+                <asp:ValidationSummary ID="vsUpdate" runat="server" ShowMessageBox="true" ShowSummary="false"
+                    ValidationGroup="Update" Enabled="true" HeaderText="Validation Summary..." />
+                <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel"
+                    Text="Cancel"></asp:LinkButton>
+            </EditItemTemplate>
+            <FooterTemplate>
+                <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="True" CommandName="Insert"
+                    ValidationGroup="Insert" Text="Add"></asp:LinkButton>
+                <asp:ValidationSummary ID="vsInsert" runat="server" ShowMessageBox="true" ShowSummary="false"
+                    ValidationGroup="Insert" Enabled="true" HeaderText="Validation..." />
+            </FooterTemplate>
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit"
+                    Text="Edit"></asp:LinkButton>
+            </ItemTemplate>
+            <HeaderStyle HorizontalAlign="Left" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Delete" ShowHeader="False" HeaderStyle-HorizontalAlign="Left">
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="False" CommandName="Delete"
+                    Text="Delete" OnClientClick="return confirm('Delete?')"></asp:LinkButton>
+            </ItemTemplate>
+            <HeaderStyle HorizontalAlign="Left" />
+        </asp:TemplateField>
+
+    </Columns>
+    <EmptyDataTemplate>
+        <table style="width: 100%" border="1" id="gvEG">
+            <tr>
+                <th scope="col">Activity Description</th>
+                <th scope="col">Start Date(SD)</th>
+                <th scope="col">Finish Date(FD = SD + 21Days)</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            <tr>
+                <td>
+                    <asp:TextBox ID="activityDescTextBox" runat="server"
+                        Text='<%# Eval("ACTIVITY_DESCRIPTION") %>'
+                        ID_TIMELINE='<%# DataBinder.Eval(Container.DataItem, "ID_TIMELINE") %>'
+                        TextMode="MultiLine" Width="450px" Height="50px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvEmployeeCode" ValidationGroup="Update" runat="server"
+                        ControlToValidate="activityDescTextBox" ErrorMessage="Please Enter Activity Description"
+                        ToolTip="Please Enter Activity Description" SetFocusOnError="true" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </td>
+                <td>
+                    <uc3:dateControl ID="SDdateControl" runat="server" />
+                </td>
+                <td>
+                    <uc3:dateControl ID="FDdateControl" runat="server" />
+                </td>
+                <td colspan="2">
+                    <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="false" CommandName="emptyInsert"
+                        Text="Add" ValidationGroup="Update"></asp:LinkButton>
+                </td>
+            </tr>
+        </table>
+    </EmptyDataTemplate>
+
+</asp:GridView>
+

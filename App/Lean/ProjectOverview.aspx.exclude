@@ -1,0 +1,28 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/LeanMasterPage.master" AutoEventWireup="true" CodeFile="ProjectOverview.aspx.cs" Inherits="App_Lean_Projects" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <ajaxToolkit:ToolkitScriptManager ID="smtAjaxManager" runat="Server" CombineScripts="false" EnablePartialRendering="true" />
+    <ajaxToolkit:TabContainer runat="server" ID="smtAjaxTabs" ActiveTabIndex="0" Width="100%">
+
+        <ajaxToolkit:TabPanel runat="server" ID="pnlAwaiting" HeaderText="Ongoing Projects" Visible="true">
+            <HeaderTemplate>
+                Project Overview
+            </HeaderTemplate>
+            <ContentTemplate>
+            </ContentTemplate>
+        </ajaxToolkit:TabPanel>
+
+        <ajaxToolkit:TabPanel runat="server" ID="pnlApproved" HeaderText="Approved Projects" Visible="true">
+            <HeaderTemplate>
+                Project Kaizen Recommendations
+            </HeaderTemplate>
+            <ContentTemplate>
+            </ContentTemplate>
+        </ajaxToolkit:TabPanel>
+
+    </ajaxToolkit:TabContainer>
+    <br />
+</asp:Content>
+

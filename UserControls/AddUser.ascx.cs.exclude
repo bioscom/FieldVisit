@@ -1,0 +1,75 @@
+﻿using System;
+
+public partial class UserControl_AddUser : aspnetUserControl
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    public void Init_Page(int iToken)
+    {
+        //Note: sToken is used to know which application to add user
+        if (iToken == (int)AppTokens.appTokens.BI500)
+        {
+
+        }
+        else if (iToken == (int)AppTokens.appTokens.FlareWaiver)
+        {
+            appUserRolesFlrWaiver.getUserRoles(ddlUserRole);
+        }
+        else if (iToken == (int)AppTokens.appTokens.FourteenDayContract)
+        {
+
+        }
+        else if (iToken == (int)AppTokens.appTokens.initiativeMgt)
+        {
+
+        }
+        else if (iToken == (int)AppTokens.appTokens.lean)
+        {
+
+        }
+        else if (iToken == (int)AppTokens.appTokens.pec)
+        {
+            appUsersRoles roles = new appUsersRoles();
+            roles.getUserRoles(ddlUserRole);
+        }
+
+        Search4User1.initUserInfo("Select Planner", 250);
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        appUsersHelper oappUsersHelper = new appUsersHelper();
+        if (Search4User1.userIsValid)
+        {
+            bool success = false; //oappUsersHelper.AddNewUser(Search4User1.selectedUserDetails.m_sUserName, Search4User1.selectedUserDetails.m_sUserMail, Search4User1.selectedUserDetails.m_sFullName, txtPhoneExt.Text, int.Parse(ddlUserRole.SelectedValue), int.Parse(ddlAffiliates.SelectedValue));
+            if (success == true)
+            {
+                //appUsers oAppUser = oappUsersHelper.objGetUserByGIDUserName(appUsersHelper.LoginIDNoDomain(Search4User1.selectedUserDetails.m_sUserMail));
+                //sendMail oMail = new sendMail(oSessnx.getOnlineUser.structUserIdx);
+                //oMail.UserDefinition(oAppUser.structUserIdx, oAppUser);
+
+                //ajaxWebExtension.showJscriptAlert(Page, this, "User Successfully defined.");
+            }
+            else
+            {
+                //appUsers oUser = oappUsersHelper.objGetOnlineUserByUserName(Search4User1.selectedUserDetails.m_sUserName);
+                //ajaxWebExtension.showJscriptAlert(Page, this, oUser.m_sFullName + " has been defined as " + UserRoles.userRoleDesc(oUser.m_eUserRole) + ", but may have been deactivated. Contact the Administrator.");
+            }
+        }
+        else
+        {
+            ajaxWebExtension.showJscriptAlert(Page, this, "User not successfully defined, please try again later.");
+        }
+    }
+
+    private void Clear()
+    {
+        //txtUserName.Text = "";
+        ddlUserRole.ClearSelection();
+        ddlAffiliates.ClearSelection();
+        txtPhoneExt.Text = "";
+    }
+}

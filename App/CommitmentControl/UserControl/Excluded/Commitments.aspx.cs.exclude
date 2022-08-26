@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class App_BONGACCP_Commitments : aspnetPage
+{
+    CommitmentsMgt o = new CommitmentsMgt();
+    ActivityDetailsMgt oMgt = new ActivityDetailsMgt();
+    ApprovalDecisionMgt oApproval = new ApprovalDecisionMgt();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if(!IsPostBack)
+        {
+            List<ApprovalDecision> oLst = oApproval.lstGetApprovalDecisions();
+            foreach (var listItem in oLst.Select(r => new ListItem(r.m_sDecision, r.m_iApprovalId.ToString())))
+                ddlApprovalDecision.Items.Add(listItem);            
+        }
+    }
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/App/CommitmentControl/Default.aspx");
+    }
+
+    protected void ApprovalDecisionChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ddlApprovalDecision.SelectedItem.Text == "ALL")
+            {
+                List<Commitments> olst = o.lstCommitments();
+                o.ExporttoExcel(olst);
+            }
+            else
+            {
+                int iApprovalId = int.Parse(ddlApprovalDecision.SelectedValue);
+                List<Commitments> olst = o.lstCommitmentsByApprovalDecision(iApprovalId);
+                o.ExporttoExcel(olst);
+            }
+        }
+        catch (Exception ex)
+        {
+            appMonitor.logAppExceptions(ex);
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+}

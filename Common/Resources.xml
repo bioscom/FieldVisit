@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls>
+    <control docs="label/overview.html" forum="label">Label</control>
+    <control docs="navigation/overview.html" forum="navigation">Navigation</control>
+    <control docs="clientexportmanager/overview.html" forum="client-export-manager" cl="client-export-manager">ClientExportManager</control>
+    <control docs="menu/overview.html" forum="menu" cl="menu" kb="menu" sa="aspnet-ajax/imagegallery">Menu</control>
+    <control docs="wizard/overview.html" forum="wizard">Wizard</control>
+    <control docs="cloudupload/overview.html" forum="cloud-upload" kb="upload-(cloud)">CloudUpload</control>
+    <control docs="asyncupload/overview.html" forum="async-upload" cl="asyncupload" kb="upload-(async)" sa="aspnet-ajax/imagegallery">AsyncUpload</control>
+    <control docs="treeview/overview.html" forum="treeview" cl="treeview" kb="treeview" sa="aspnet-ajax/salesdashboard/">TreeView</control>
+    <control docs="treemap/overview.html" forum="treemap">TreeMap</control>
+    <control docs="toolbar/overview.html" forum="toolbar" cl="toolbar" kb="toolbar" sa="aspnet-ajax/sample-applications/diagram-app/">ToolBar</control>
+    <control docs="tabstrip/overview.html" forum="tabstrip" cl="tabstrip" kb="tabstrip" sa="aspnet-ajax/salesdashboard/">TabStrip</control>
+    <control docs="sitemap/overview.html" forum="sitemap">SiteMap</control>
+    <control docs="searchbox/overview.html" forum="search-box">SearchBox</control>
+    <control docs="scheduler/overview.html" forum="scheduler" cl="scheduler" kb="scheduler" sa="aspnet-ajax/webmail/">Scheduler</control>
+    <control docs="ribbonbar/overview.html" forum="ribbonbar">RibbonBar</control>
+    <control docs="progressarea/overview.html" forum="progress-area">ProgressArea</control>
+    <control docs="persistenceframework/overview.html" forum="persistence-framework">PersistenceFramework</control>
+    <control docs="panelbar/overview/overview.html" forum="panelbar" cl="panelbar" kb="panelbar" sa="aspnet-ajax/webmail/" >PanelBar</control>
+    <control docs="orgchart/overview/overview.html" forum="org-chart" sa="aspnet-ajax/imagegallery">OrgChart</control>
+    <control docs="odatadatasource/overview.html" forum="odata-datasource" sa="aspnet-ajax/imagegallery">ODataDataSource</control>
+    <control docs="listbox/overview.html" forum="listbox" cl="listbox" kb="listbox" sa="aspnet-ajax/sample-applications/olympic-games">ListBox</control>
+    <control docs="gantt/overview.html" forum="gantt" cl="gantt">Gantt</control>
+    <control docs="autocompletebox/overview.html" forum="autocompletebox" cl="autocompletebox" sa="aspnet-ajax/sample-applications/olympic-games">AutoCompleteBox</control>
+    <control docs="dropdowntree/overview.html" forum="dropdowntree" sa="aspnet-ajax/webmail">DropDownTree</control>
+    <control docs="dropdownlist/overview.html" forum="dropdownlist">DropDownList</control>
+    <control docs="combobox/overview.html" forum="combobox" cl="combobox" kb="combobox" sa="aspnet-ajax/imagegallery">ComboBox</control>
+    <control docs="pagelayout/overview.html" forum="page-layout" sa="aspnet-ajax/imagegallery">PageLayout</control>
+    <control docs="scriptmanager/overview.html" forum="scriptmanager-and-stylesheetmanager">ScriptManager</control>
+    <control docs="stylesheetmanager/overview.html" forum="scriptmanager-and-stylesheetmanager">StyleSheetManager</control>
+    <control docs="button/overview.html" forum="button" cl="button" sa="aspnet-ajax/imagegallery">Button</control>
+    <control docs="pushbutton/overview.html" forum="pushbutton" cl="button" sa="aspnet-ajax/imagegallery">PushButton</control>
+    <control docs="checkbox/overview.html" forum="checkbox" cl="button" sa="aspnet-ajax/imagegallery">CheckBox</control>
+    <control docs="linkbutton/overview.html" forum="linkbutton" cl="button" sa="aspnet-ajax/imagegallery">LinkButton</control>
+    <control docs="togglebutton/overview.html" forum="togglebutton" cl="button" sa="aspnet-ajax/imagegallery">ToggleButton</control>
+    <control docs="imagebutton/overview.html" forum="imagebutton" cl="button" sa="aspnet-ajax/imagegallery">ImageButton</control>
+    <control docs="captcha/overview.html" forum="captcha" cl="captcha">Captcha</control>
+    <control docs="colorpicker/overview.html" forum="colorpicker" kb="colorpicker" sa="aspnet-ajax/sample-applications/diagram-app">ColorPicker</control>
+    <control docs="htmlchart/overview.html" forum="htmlchart" cl="html-chart" kb="chart-%28html5%29" sa="aspnet-ajax/sample-applications/olympic-games">HtmlChart</control>
+    <control docs="diagram/overview.html" forum="diagram" sa="aspnet-ajax/sample-applications/diagram-app">Diagram</control>
+    <control docs="dock/overview.html" forum="docking" cl="docking" kb="dock">Dock</control>
+    <control docs="editor/overview.html" forum="editor" cl="editor" kb="editor" sa="aspnet-ajax/webmail">Editor</control>
+    <control docs="fileexplorer/overview.html" forum="file-explorer" cl="file-explorer" kb="fileexplorer" sa="aspnet-ajax/webmail/">FileExplorer</control>
+    <control docs="formdecorator/overview.html" forum="form-decorator" cl="form-decorator" kb="formdecorator" sa="aspnet-ajax/carrental">FormDecorator</control>
+    <control docs="gauge/overview.html" forum="gauge" sa="aspnet-ajax/sample-applications/olympic-games/">Gauge</control>
+    <control docs="imageeditor/overview.html" forum="image-editor" cl="image-editor" sa="aspnet-ajax/imagegallery">ImageEditor</control>
+    <control docs="map/overview.html" forum="map" sa="aspnet-ajax/imagegallery">Map</control>
+    <control docs="notification/overview.html" forum="notification" cl="notification" kb="notification">Notification</control>
+    <control docs="pdfprocessing/overview.html">PdfProcessing</control>
+    <control docs="progressbar/overview.html" forum="progress-bar">ProgressBar</control>
+    <control docs="rating/overview.html" forum="rating" cl="rating">Rating</control>
+    <control docs="rotator/overview.html" forum="rotator" cl="rotator" kb="rotator">Rotator</control>
+    <control docs="slider/overview.html" forum="slider" cl="slider" kb="slider">Slider</control>
+    <control docs="socialshare/overview.html" forum="social-share" cl="socialshare">SocialShare</control>
+    <control docs="spell/overview.html" forum="spell" cl="spell" kb="spell" sa="aspnet-ajax/webmail">Spell</control>
+    <control docs="splitter/overview.html" forum="splitter" cl="splitter" kb="splitter" sa="aspnet-ajax/sample-applications/diagram-app/">Splitter</control>
+    <control docs="tagcloud/overview.html" forum="tagcloud">TagCloud</control>
+    <control docs="tilelist/overview.html" forum="tilelist" cl="tilelist" kb="tilelist" sa="responsive-web-design-aspnet/">TileList</control>
+    <control docs="tooltip/overview.html" forum="tooltip" cl="tooltip" kb="tooltip" sa="aspnet-ajax/salesdashboard/">ToolTip</control>
+    <control docs="window/overview.html" forum="window" cl="window" kb="window" sa="aspnet-ajax/carrental/">Window</control>
+    <control docs="xmlhttppanel/overview.html" forum="xmlhttppanel" sa="aspnet-ajax/salesdashboard/">XmlHttpPanel</control>
+    <control docs="ajax/overview.html" forum="ajax" cl="ajax" sa="aspnet-ajax/salesdashboard">Ajax</control>
+    <control docs="barcode/overview.html" forum="barcode">Barcode</control>
+    <control docs="radbinaryimage.html" forum="binary-image" cl="binaryimage" sa="aspnet-ajax/salesdashboard">BinaryImage</control>
+    <control docs="calendar/overview.html" forum="calendar" cl="calendar" kb="calendar" sa="aspnet-ajax/imagegallery">Calendar</control>
+    <control docs="clientdatasource/overview.html" forum="client-data-source" >ClientDataSource</control>
+    <control docs="dataform/overview.html" forum="dataform">DataForm</control>
+    <control docs="datapager/overview.html" forum="datapager">DataPager</control>
+    <control docs="filter/overview.html" forum="filter">Filter</control>
+    <control docs="grid/overview.html" forum="grid" cl="grid" kb="grid" sa="aspnet-ajax/webmail">Grid</control>
+    <control docs="imagegallery/overview.html" forum="image-gallery" sa="aspnet-ajax/imagegallery">ImageGallery</control>
+    <control docs="input/overview.html" forum="input" cl="input" sa="aspnet-ajax/imagegallery">Input</control>
+    <control docs="lightbox/overview.html" forum="lightbox" sa="aspnet-ajax/imagegallery">LightBox</control>
+    <control docs="listview/overview.html" forum="listview" cl="listview" sa="aspnet-ajax/imagegallery">ListView</control>
+    <control docs="mediaplayer/overview.html" forum="media-video-player" sa="aspnet-ajax/imagegallery">MediaPlayer</control>
+    <control docs="pivotgrid/overview.html" forum="pivotgrid" cl="pivotgrid" sa="aspnet-ajax/sample-applications/olympic-games/">PivotGrid</control>
+    <control docs="spreadprocessing/overview.html">SpreadProcessing</control>
+    <control docs="treelist/overview.html" forum="treelist" cl="treelist">TreeList</control>
+    <control docs="wordsprocessing/overview.html">WordsProcessing</control>
+    <control docs="ziplibrary/overview.html">ZipLibrary</control>
+    <control docs="spreadsheet/overview.html" forum="spreadsheet" >Spreadsheet</control>
+  <control docs="datepicker/overview.html" cl="calendar" forum="datepicker" >DatePicker</control>
+  <control docs="datetimepicker/overview.html" cl="calendar" forum="datetimepicker" >DateTimePicker</control>
+  <control docs="timepicker/overview.html" cl="calendar" forum="timepicker" >TimePicker</control>
+  <control docs="monthyearpicker/overview.html" cl="calendar" forum="monthyearpicker" >MonthYearPicker</control>
+  <control docs="textbox/overview.html" cl="input" forum="input" >TextBox</control>
+  <control docs="numerictextbox/overview.html" cl="input" forum="numerictextbox" >NumericTextBox</control>
+  <control docs="dateinput/overview.html" cl="input" forum="dateinput" >DateInput</control>
+  <control docs="maskedtextbox/overview.html" cl="input" forum="maskedtextbox" >MaksedTextBox</control>
+  <control docs="inputmanager/overview.html" forum="inputmanager" >InputManager</control>
+  <control docs="ajaxloadingpanel/overview.html" cl="ajax" forum="ajaxloadingpanel" >AjaxLoadingPanel</control>
+  <control docs="ajaxmanager/overview.html" cl="ajax" forum="ajax" >AjaxManager</control>
+  <control docs="ajaxpanel/overview.html" cl="ajax" forum="dateinput" >AjaxPanel</control>
+
+</controls>

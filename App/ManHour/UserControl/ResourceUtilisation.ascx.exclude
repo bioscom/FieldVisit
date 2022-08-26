@@ -1,0 +1,103 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ResourceUtilisation.ascx.cs" Inherits="UserControl_ResourceUtilisation" %>
+<%@ Register Src="~/UserControl/DetailResourceUtilisation.ascx" TagPrefix="ManHr" TagName="DetailResourceUtilisation" %>
+<%@ Reference VirtualPath="~/UserControl/DetailResourceUtilisation.ascx" %>
+
+<table style="width: 99%; border:solid 1px gray; border-collapse:separate">
+    <tr>
+        <td>&nbsp;&nbsp;</td>
+        <td style="width: 210px"><b>New Initiative</b></td>
+        <td style="width: 230px"><b>Discipline</b></td>
+        <td style="width: 90px"><b>No of Staff</b></td>
+        <td style="width: 190px"><b>Max. Work Hours/Staff</b></td>
+        <td><b>Staff Hour Utilisation</b></td>
+    </tr>
+</table>
+
+<asp:GridView ID="MasterGridView" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="false"
+    OnPageIndexChanging="MasterGridView_PageIndexChanging" OnRowCommand="MasterGridView_RowCommand"
+    OnRowCancelingEdit="MasterGridView_RowCancelingEdit" OnRowDeleting="MasterGridView_RowDeleting"
+    OnRowEditing="MasterGridView_RowEditing" OnRowUpdating="MasterGridView_RowUpdating" DataKeyNames="IDMASTER" Width="99%">
+
+    <RowStyle CssClass="gRepeatItemPlate" />
+    <AlternatingRowStyle CssClass="gRepeatAlterPlate" />
+    <Columns>
+        <%--<asp:TemplateField>
+            <ItemTemplate>
+                <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+        </asp:TemplateField>--%>
+
+        <asp:TemplateField HeaderText="..." ShowHeader="False" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <asp:LinkButton ID="lnkUpdate" runat="server" CausesValidation="True" CommandName="Update"
+                    Text="Update" OnClientClick="return confirm('Update?')" ValidationGroup="mstUpdate"></asp:LinkButton>
+                <asp:ValidationSummary ID="vsUpdate" runat="server" ShowMessageBox="true" ShowSummary="false"
+                    ValidationGroup="mstUpdate" Enabled="true" HeaderText="Validation Summary..." />
+                <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel"
+                    Text="Cancel"></asp:LinkButton>
+            </EditItemTemplate>
+
+            <FooterTemplate>
+                <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="True" CommandName="Insert"
+                    ValidationGroup="mstInsert" Text="Add"></asp:LinkButton>
+                <asp:ValidationSummary ID="vsInsert" runat="server" ShowMessageBox="true" ShowSummary="false"
+                    ValidationGroup="mstInsert" Enabled="true" HeaderText="Validation..." />
+            </FooterTemplate>
+
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+            </ItemTemplate>
+
+            <HeaderStyle Width="50px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="New Initiative" HeaderStyle-HorizontalAlign="Left">
+            <EditItemTemplate>
+                <asp:TextBox ID="txtInitiative" runat="server" Text='<%# Eval("INITIATIVE") %>' Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="Initiative" runat="server" ControlToValidate="txtInitiative" ErrorMessage="Please Enter New Initiative" ForeColor="Red" SetFocusOnError="true" ToolTip="Please Enter New Initiative" ValidationGroup="mstUpdate">*</asp:RequiredFieldValidator>
+            </EditItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txtInitiative" runat="server" Text='<%# Eval("INITIATIVE") %>' Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="Initiative" runat="server" ControlToValidate="txtInitiative" ErrorMessage="Please Enter New Initiative" ForeColor="Red" SetFocusOnError="true" ToolTip="Please Enter New Initiative" ValidationGroup="mstInsert">*</asp:RequiredFieldValidator>
+            </FooterTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lblInitiative" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "INITIATIVE") %>'></asp:Label>
+            </ItemTemplate>
+
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Resource Utilisation Breakdown" HeaderStyle-HorizontalAlign="Center">
+            <ItemTemplate>
+                <ManHr:DetailResourceUtilisation runat="server" ID="DetailResourceUtilisation1" />
+            </ItemTemplate>
+            <ItemStyle Width="800px" />
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="..." ShowHeader="False" HeaderStyle-HorizontalAlign="Left">
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="False" CommandName="Delete"
+                    Text="Delete" OnClientClick="return confirm('Delete?')"></asp:LinkButton>
+            </ItemTemplate>
+            <HeaderStyle HorizontalAlign="Left" />
+        </asp:TemplateField>
+
+    </Columns>
+    <EmptyDataTemplate>
+        <table class="tMainBorder" style="width: 100%" border="0" id="gvEG">
+            <tr>
+                <th colspan="2" scope="col">New Initiative</th>
+            </tr>
+            <tr>
+                <td style="width: 200px">
+                    <asp:TextBox ID="txtInitiative" runat="server" Text='<%# Eval("INITIATIVE") %>' Width="200px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="Initiative" runat="server" ControlToValidate="txtInitiative" ErrorMessage="Please Enter New Initiative" ForeColor="Red" SetFocusOnError="true" ToolTip="Please Enter New Initiative" ValidationGroup="mstUpdate">*</asp:RequiredFieldValidator>
+                </td>
+                <td>
+                    <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="false" CommandName="emptyInsert" Text="Add" ValidationGroup="mstUpdate"></asp:LinkButton>
+                </td>
+            </tr>
+        </table>
+    </EmptyDataTemplate>
+</asp:GridView>
+
+<asp:HiddenField ID="lInitiativeHF" runat="server" />

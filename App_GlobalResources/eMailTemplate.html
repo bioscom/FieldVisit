@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .auto-style1
+        {
+            text-decoration: underline;
+        }
+        </style>
+</head>
+<body style="margin: 0.5em 8em 0.5em 8em; width:600px">
+    <div style="border: solid 1px silver; font-size:10pt; font-family:Tahoma">
+        <div id="header" style="margin: 0em 0em 0em 0em; border: solid 1px silver; border-bottom: solid 3px #D42E12; height: 60px">
+            <div style="float: left">
+                <img alt="Shell Logo" src="../Images/ShellLogo.png" />
+            </div>
+            <div style="float: right; color: #D42E12; padding: 1em 1em 1em 1em; font-size: 120%">
+                Flare Waiver - UIO-G Flaring/GOR Control Waiver
+            </div>
+        </div>
+        @=EMAIL<br />
+
+        <span class="auto-style1">Distribution List:</span>
+        <br />
+        <br />
+        Line Manager: @=LIMEMGR<br />
+        GM Onshore/GM Offshore: <br />
+        Production Services Manager: @=PRODSERVMGR<br />
+        General Manager Production: @=GMPROD<br />
+        <br />
+        Login to your Account <a href ="@=EEEE">here</a>. Please, contact the Administrator for any support regarding your account.
+        <br />
+        <br />
+        @=TTTT
+    </div>
+
+</body>
+</html>

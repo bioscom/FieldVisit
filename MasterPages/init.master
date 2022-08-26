@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="init.master.cs" Inherits="MasterPages_init" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head" runat="server">
+    <title></title>
+
+    <link href="../CSS/stylesFieldVisit.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/menuStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/navigationStyle.css" rel="stylesheet" type="text/css" />
+
+    <script lang="javascript" type="text/javascript" src="../Script/fieldVisit.js"></script>
+</head>
+
+<body>
+    <form id="form2" runat="server">
+        <div id="container">
+            <div id="header">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 0px; position: absolute; top: 1px" />
+                <div class="title">
+                    <asp:Label ID="lblWebSiteTitle" runat="server" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="breadcrumb">
+                    Welcome
+                            <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;|
+                            <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                    <br />
+                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                    &nbsp;<asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink>
+                    &nbsp;<br />
+                </div>
+            </div>
+
+            <div id="navigation1">
+            </div>
+            <div id="navigation2">
+            </div>
+
+            <div style="float: right; width: 100%">
+                <asp:ContentPlaceHolder ID="LoginAreaContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <hr />
+            <div id="master_content">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width: 270px">
+                            <div class="col1">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolderCol" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col2">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <%--<div id="footer">
+                <span style="float: left; vertical-align: top">Production Services - Production Business Improvement</span>
+                <span style="float: right; vertical-align: top">Copyright © 2012 SEPCiN Production Business Improvement </span>
+            </div>--%>
+        </div>
+    </form>
+</body>
+</html>

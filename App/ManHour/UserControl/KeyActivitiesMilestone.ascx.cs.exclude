@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class UserControl_KeyActivitiesMilestone : aspnetUserControl
+{
+    public void Page_Init()
+    {
+        
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            long iActivityInfo = long.Parse(Session["ActivityInfoID"].ToString());
+            Retrieve_Data(iActivityInfo);
+        }
+    }
+
+    public void Retrieve_Data(long iActivityInfo)
+    {
+        grdView.DataSource = ActivityTimeLine.dtGetActivityTimeLineByActivityId(iActivityInfo);
+        grdView.DataBind();
+    }
+
+    protected void grdView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+
+    }
+
+    protected void grdView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.Equals("Insert"))
+        {
+            long iActivityInfo = long.Parse(Session["ActivityInfoID"].ToString());
+
+            ActivityTimeLine eTimeLine = new ActivityTimeLine();
+            eTimeLine.m_sACTIVITY_DESCRIPTION = Convert.ToString(((TextBox)grdView.FooterRow.FindControl("activityDescTextBox")).Text);
+
+            ASP.usercontrol_datecontrol_ascx SD = (ASP.usercontrol_datecontrol_ascx)grdView.FooterRow.FindControl("SDdateControl");
+            ASP.usercontrol_datecontrol_ascx FD = (ASP.usercontrol_datecontrol_ascx)grdView.FooterRow.FindControl("FDdateControl");
+
+            eTimeLine.m_sSTART_DATE = SD.SelectedDate;
+            eTimeLine.m_sFINISH_DATE = FD.SelectedDate;
+
+            ActivityTimeLine.createActivityTimeLine(iActivityInfo, eTimeLine);
+            Retrieve_Data(iActivityInfo);
+        }
+
+        if (e.CommandName.Equals("emptyInsert"))
+        {
+            int iActivityInfo = int.Parse(Session["ActivityInfoID"].ToString());
+
+            GridViewRow emptyRow = grdView.Controls[0].Controls[0] as GridViewRow;
+
+            ActivityTimeLine eTimeLine = new ActivityTimeLine();
+            eTimeLine.m_sACTIVITY_DESCRIPTION = Convert.ToString(((TextBox)emptyRow.FindControl("activityDescTextBox")).Text);
+
+            ASP.usercontrol_datecontrol_ascx SD = (ASP.usercontrol_datecontrol_ascx)emptyRow.FindControl("SDdateControl");
+            ASP.usercontrol_datecontrol_ascx FD = (ASP.usercontrol_datecontrol_ascx)emptyRow.FindControl("FDdateControl");
+
+            eTimeLine.m_sSTART_DATE = SD.SelectedDate;
+            eTimeLine.m_sFINISH_DATE = FD.SelectedDate;
+            if (Convert.ToString(((TextBox)emptyRow.FindControl("activityDescTextBox")).Text) != "")
+            {
+                ActivityTimeLine.createActivityTimeLine(iActivityInfo, eTimeLine);
+            }
+            else
+            {
+                ajaxWebExtension.showJscriptAlertCx(Page, this, "Activity Description is required.");
+            }
+
+            Retrieve_Data(iActivityInfo);
+        }
+    }
+
+    protected void grdView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        int iActivityInfo = int.Parse(Session["ActivityInfoID"].ToString());
+        grdView.EditIndex = -1;
+        Retrieve_Data(iActivityInfo);
+    }
+    protected void grdView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        
+    }
+    protected void grdView_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        int iActivityInfo = int.Parse(Session["ActivityInfoID"].ToString());
+        grdView.EditIndex = e.NewEditIndex;
+        Retrieve_Data(iActivityInfo);
+
+        Int64 lTimeLine = Convert.ToInt64(grdView.DataKeys[e.NewEditIndex].Values[0].ToString());
+        ActivityTimeLine ThisTimeLine = ActivityTimeLine.objGetActivityTimeLineById(lTimeLine);
+
+        ASP.usercontrol_datecontrol_ascx SD = (ASP.usercontrol_datecontrol_ascx)grdView.Rows[e.NewEditIndex].FindControl("SDdateControl");
+        ASP.usercontrol_datecontrol_ascx FD = (ASP.usercontrol_datecontrol_ascx)grdView.Rows[e.NewEditIndex].FindControl("FDdateControl");
+
+        SD.setDate(ThisTimeLine.m_sSTART_DATE);
+        FD.setDate(ThisTimeLine.m_sFINISH_DATE);
+    }
+    protected void grdView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        try
+        {
+            int iActivityInfo = int.Parse(Session["ActivityInfoID"].ToString());
+
+            ActivityTimeLine eTimeLine = new ActivityTimeLine();
+            eTimeLine.m_iID_TIMELINE = Convert.ToInt64(grdView.DataKeys[e.RowIndex].Values[0].ToString());
+            eTimeLine.m_sACTIVITY_DESCRIPTION = Convert.ToString(((TextBox)grdView.Rows[e.RowIndex].FindControl("activityDescTextBox")).Text);
+
+            ASP.usercontrol_datecontrol_ascx SD = (ASP.usercontrol_datecontrol_ascx)grdView.Rows[e.RowIndex].FindControl("SDdateControl");
+            ASP.usercontrol_datecontrol_ascx FD = (ASP.usercontrol_datecontrol_ascx)grdView.Rows[e.RowIndex].FindControl("FDdateControl");
+
+            eTimeLine.m_sSTART_DATE = SD.SelectedDate;
+            eTimeLine.m_sFINISH_DATE = FD.SelectedDate;
+
+            ActivityTimeLine.updateActivityTimeLine(eTimeLine);
+
+            grdView.EditIndex = -1;
+            Retrieve_Data(iActivityInfo);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+    protected void grdView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        int iActivityInfo = int.Parse(Session["ActivityInfoID"].ToString());
+
+        Int64 iTimeLineId = Convert.ToInt64(grdView.DataKeys[e.RowIndex].Values[0].ToString());
+        ActivityTimeLine.deleteTimeLine(iTimeLineId);
+        Retrieve_Data(iActivityInfo);
+    }
+}

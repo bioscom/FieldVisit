@@ -1,0 +1,141 @@
+﻿using System;
+using System.Data;
+using System.Web.UI.WebControls;
+
+/// <summary>
+/// Summary description for StatusReporter
+/// </summary>
+public class StatusReporter
+{
+    public StatusReporter()
+    {
+        
+    }
+
+    public StatusReporter(GridView theGridView, DataTable dt, string sortExpression, int iRoleId)
+    {
+        bool deletePrivilege = UserRoles.FlareWaiverDeletePrivilege(iRoleId); //Determines who can delete IP
+
+        DataView dv = dt.DefaultView;
+        dv.Sort = sortExpression;
+
+        theGridView.DataSource = dv;
+        theGridView.DataBind();
+
+        try
+        {
+            foreach (GridViewRow grdRow in theGridView.Rows)
+            {
+                Label Status = (Label)grdRow.FindControl("labelStatus");
+                LinkButton lbRequestID = (LinkButton)grdRow.FindControl("ViewStatusLinkButton");
+                LinkButton lbStatus = (LinkButton)grdRow.FindControl("ViewStatusLinkButton");
+                LinkButton ActionCTR = (LinkButton)grdRow.FindControl("AddCommentLinkButton");
+                LinkButton CancelRequest = (LinkButton)theGridView.Rows[grdRow.RowIndex].FindControl("CancelLinkButton");
+                LinkButton DeleteRequest = (LinkButton)theGridView.Rows[grdRow.RowIndex].FindControl("DeleteLinkButton");
+                LinkButton EditRequest = (LinkButton)grdRow.FindControl("EditCTRLinkButton");
+                Label lbCTRTitle = (Label)grdRow.FindControl("labelCTRTitle");
+
+                if (CancelRequest != null)
+                {
+                    CancelRequest.Attributes.Add("onClick", "return CancelCTR('" + lbCTRTitle.Text + "')");
+                }
+
+                if (DeleteRequest != null)
+                {
+                    DeleteRequest.Attributes.Add("onClick", "return DeleteCTR('" + lbCTRTitle.Text + "')");
+                }
+
+                if (EditRequest != null)
+                {
+                    if ((iRoleId == (int)UserRoles.userRole.Initiator) || (iRoleId == (int)UserRoles.userRole.Administrator))
+                    {
+                        theGridView.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        theGridView.Columns[9].Visible = false;
+                    }
+                }
+
+                if (ActionCTR != null)
+                {
+                    ActionCTR.Enabled = false;
+                    ActionCTR.ToolTip = "You cannot action this Request for now, wait till status change to awaiting your approval.";
+                    int iStatus = Convert.ToInt32(lbStatus.Attributes["STATUS"]);
+
+                    if ((iStatus == (int) RequestStatusReporter.RequestStatusRpt.AwaitLineManagerSupport) && ((int)UserRoles.userRole.LineManager == iRoleId))
+                    {
+                        ActionCTR.Enabled = true;
+                        ActionCTR.ToolTip = "";
+                    }
+                    else if ((iStatus == (int)RequestStatusReporter.RequestStatusRpt.AwaitProductionServiceManagerSupport) && ((int)UserRoles.userRole.ProductionServicesManager == iRoleId))
+                    {
+                        ActionCTR.Enabled = true;
+                        ActionCTR.ToolTip = "";
+                    }
+                    else if ((iStatus == (int)RequestStatusReporter.RequestStatusRpt.AwaitsGMProductionApproval) && ((int)UserRoles.userRole.GMProduction == iRoleId))
+                    {
+                        ActionCTR.Enabled = true;
+                        ActionCTR.ToolTip = "";
+                    }
+                }
+
+                if (Status != null)
+                {
+                    Status.Text = "";
+                    int iStatus = int.Parse(lbStatus.Attributes["STATUS"]);
+
+                    if (EditRequest != null)
+                    {
+                        if ((iStatus != (int)RequestStatusReporter.RequestStatusRpt.Approved) && (iRoleId == (int)UserRoles.userRole.Initiator))
+                            EditRequest.Enabled = true;
+                        else
+                            EditRequest.Enabled = false;
+                    }
+
+                    if (iStatus == (int)RequestStatusReporter.RequestStatusRpt.AwaitsGMProductionApproval)
+                    {
+                        Status.ForeColor = System.Drawing.Color.Red;
+                        Status.Text = RequestStatusReporter.RequestStatusRptDesc(RequestStatusReporter.RequestStatusRpt.AwaitsGMProductionApproval);
+                    }
+                    else if (iStatus == (int)RequestStatusReporter.RequestStatusRpt.AwaitLineManagerSupport)
+                    {
+                        Status.ForeColor = System.Drawing.Color.Orange;
+                        Status.Text = RequestStatusReporter.RequestStatusRptDesc(RequestStatusReporter.RequestStatusRpt.AwaitLineManagerSupport);
+                    }
+                    else if (iStatus == (int)RequestStatusReporter.RequestStatusRpt.AwaitProductionServiceManagerSupport)
+                    {
+                        Status.ForeColor = System.Drawing.Color.Brown;
+                        Status.Text = RequestStatusReporter.RequestStatusRptDesc(RequestStatusReporter.RequestStatusRpt.AwaitProductionServiceManagerSupport);
+                    }
+
+                    else if (iStatus == (int)RequestStatusReporter.RequestStatusRpt.Approved)
+                    {
+                        Status.ForeColor = System.Drawing.Color.Green;
+                        Status.Text = RequestStatusReporter.RequestStatusRptDesc(RequestStatusReporter.RequestStatusRpt.Approved);
+                    }
+                    //else if (iStatus == ctrStatus.iRestored)
+                    //{
+                    //    Status.ForeColor = System.Drawing.Color.Red;
+                    //    Status.Text = ctrStatus.sRestored;
+                    //}
+                    //else if (iStatus == ctrStatus.iCancelled)
+                    //{
+                    //    Status.ForeColor = System.Drawing.Color.Red;
+                    //    Status.Text = ctrStatus.sCancelled;
+                    //}
+                }
+
+                Label lbRolePlayed = (Label)grdRow.FindControl("labelRolePlayed");
+                if (lbRolePlayed != null)
+                {
+                    lbRolePlayed.Text = UserRoles.userRoleDesc((UserRoles.userRole)int.Parse(lbRolePlayed.Text));
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+}

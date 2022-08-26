@@ -1,0 +1,69 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BongaCCP.master" AutoEventWireup="true" CodeFile="Commitments.aspx.cs" Inherits="App_BONGACCP_Commitments" %>
+
+<%@ Register Src="UserControl/oCommitmentControl.ascx" TagName="oCommitmentControl" TagPrefix="uc2" %>
+
+
+<%@ Register src="UserControl/oCommitmentControlApproved.ascx" tagname="oCommitmentControlApproved" tagprefix="uc3" %>
+<%@ Register src="UserControl/oCommitmentControlRejected.ascx" tagname="oCommitmentControlRejected" tagprefix="uc4" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headId" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
+    <ajaxToolkit:ToolkitScriptManager ID="smtAjaxManager" runat="server" ScriptMode="Release"></ajaxToolkit:ToolkitScriptManager>
+
+    <table class="tMainBorder" style="width: 99%">
+        <tr>
+            <td class="cHeadTile">Bonga Commitment Control
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Add New Commitment" ValidationGroup="yyy" />
+                &nbsp;
+
+                <asp:DropDownList ID="ddlApprovalDecision" runat="server" OnSelectedIndexChanged="ApprovalDecisionChanged" AutoPostBack="true" AppendDataBoundItems="true">
+                    <asp:ListItem Text="Export to Excel" Value="-1"></asp:ListItem>
+                    <asp:ListItem>ALL</asp:ListItem>
+                </asp:DropDownList>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:UpdatePanel ID="uppAjaxBloc" runat="server">
+                    <ContentTemplate>
+                        <ajaxToolkit:TabContainer runat="server" ID="smtAjaxTabs" Width="100%" ActiveTabIndex="0">
+                            <ajaxToolkit:TabPanel runat="server" ID="pnlBusinessInitiative" HeaderText="Awaiting Approval" Width="100%">
+                                <HeaderTemplate>Commitments For Review</HeaderTemplate>
+                                <ContentTemplate>
+                                    <uc2:oCommitmentControl ID="oCommitmentControl1" runat="server" />                                        
+                                </ContentTemplate>
+                            </ajaxToolkit:TabPanel>
+
+                            <ajaxToolkit:TabPanel runat="server" ID="pnlDistrict" HeaderText="Approved PPS Code" Width="100%">
+                                <HeaderTemplate>Approved Commitments</HeaderTemplate>
+                                <ContentTemplate>
+                                    <uc3:oCommitmentControlApproved ID="oCommitmentControlApproved1" runat="server" />
+                                </ContentTemplate>
+                            </ajaxToolkit:TabPanel>
+
+                            <ajaxToolkit:TabPanel runat="server" ID="pnlResourceUtilisation" HeaderText="Approved PPS Code" Width="100%">
+                                <HeaderTemplate>Rejected Commitments</HeaderTemplate>
+                                <ContentTemplate>
+                                    <uc4:oCommitmentControlRejected ID="oCommitmentControlRejected1" runat="server" />
+                                </ContentTemplate>
+                            </ajaxToolkit:TabPanel>
+
+                        </ajaxToolkit:TabContainer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
